@@ -64,6 +64,7 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(250, 653);
             panel1.TabIndex = 0;
+            panel1.Paint += panel1_Paint;
             // 
             // btn_DangXuat
             // 
@@ -77,6 +78,7 @@
             btn_DangXuat.TabIndex = 9;
             btn_DangXuat.Text = "Đăng Xuất";
             btn_DangXuat.UseVisualStyleBackColor = true;
+            btn_DangXuat.Click += btn_DangXuat_Click;
             btn_DangXuat.MouseEnter += btn_DangXuat_MouseEnter;
             btn_DangXuat.MouseLeave += btn_DangXuat_MouseLeave;
             // 
@@ -92,6 +94,7 @@
             btn_KhuyenMai.TabIndex = 8;
             btn_KhuyenMai.Text = "Khuyến Mãi";
             btn_KhuyenMai.UseVisualStyleBackColor = true;
+            btn_KhuyenMai.Click += btn_KhuyenMai_Click;
             btn_KhuyenMai.MouseEnter += btn_KhuyenMai_MouseEnter;
             btn_KhuyenMai.MouseLeave += btn_KhuyenMai_MouseLeave;
             // 
@@ -107,6 +110,7 @@
             btn_VaiTro.TabIndex = 7;
             btn_VaiTro.Text = "Vai Trò";
             btn_VaiTro.UseVisualStyleBackColor = true;
+            btn_VaiTro.Click += btn_VaiTro_Click;
             btn_VaiTro.MouseEnter += btn_VaiTro_MouseEnter;
             btn_VaiTro.MouseLeave += btn_VaiTro_MouseLeave;
             // 
@@ -122,6 +126,7 @@
             btn_ThongKe.TabIndex = 6;
             btn_ThongKe.Text = "Thống Kê";
             btn_ThongKe.UseVisualStyleBackColor = true;
+            btn_ThongKe.Click += btn_ThongKe_Click;
             btn_ThongKe.MouseEnter += btn_ThongKe_MouseEnter;
             btn_ThongKe.MouseLeave += btn_ThongKe_MouseLeave;
             // 
@@ -137,6 +142,7 @@
             btn_BanHang.TabIndex = 5;
             btn_BanHang.Text = "Bán Hàng";
             btn_BanHang.UseVisualStyleBackColor = true;
+            btn_BanHang.Click += btn_BanHang_Click;
             btn_BanHang.MouseEnter += btn_BanHang_MouseEnter;
             btn_BanHang.MouseLeave += btn_BanHang_MouseLeave;
             // 
@@ -152,6 +158,7 @@
             btn_HoaDon.TabIndex = 4;
             btn_HoaDon.Text = "Hóa Đơn";
             btn_HoaDon.UseVisualStyleBackColor = true;
+            btn_HoaDon.Click += btn_HoaDon_Click;
             btn_HoaDon.MouseEnter += btn_HoaDon_MouseEnter;
             btn_HoaDon.MouseLeave += btn_HoaDon_MouseLeave;
             // 
@@ -167,6 +174,7 @@
             btn_NhanVien.TabIndex = 3;
             btn_NhanVien.Text = "Nhân Viên";
             btn_NhanVien.UseVisualStyleBackColor = true;
+            btn_NhanVien.Click += btn_NhanVien_Click;
             btn_NhanVien.MouseEnter += btn_NhanVien_MouseEnter;
             btn_NhanVien.MouseLeave += btn_NhanVien_MouseLeave;
             // 
@@ -182,6 +190,7 @@
             btn_SanPham.TabIndex = 2;
             btn_SanPham.Text = "Sản Phẩm";
             btn_SanPham.UseVisualStyleBackColor = true;
+            btn_SanPham.Click += btn_SanPham_Click;
             btn_SanPham.MouseEnter += btn_SanPham_MouseEnter;
             btn_SanPham.MouseLeave += btn_SanPham_MouseLeave;
             // 
@@ -198,6 +207,7 @@
             btn_KhachHang.TabIndex = 1;
             btn_KhachHang.Text = "Khách Hàng";
             btn_KhachHang.UseVisualStyleBackColor = true;
+            btn_KhachHang.Click += btn_KhachHang_Click;
             btn_KhachHang.MouseEnter += btn_KhachHang_MouseEnter;
             btn_KhachHang.MouseLeave += btn_KhachHang_MouseLeave;
             // 
@@ -210,6 +220,7 @@
             panel2.Name = "panel2";
             panel2.Size = new Size(250, 125);
             panel2.TabIndex = 0;
+            panel2.Paint += panel2_Paint;
             // 
             // pictureBox1
             // 
@@ -220,6 +231,7 @@
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
+            pictureBox1.Click += pictureBox1_Click;
             // 
             // Form1
             // 

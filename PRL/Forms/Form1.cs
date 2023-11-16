@@ -109,5 +109,56 @@ namespace PRL.Forms
         {
             btn_DangXuat.Font = new Font(btn_DangXuat.Font.FontFamily, 9);
         }
+
+        private void btn_KhachHang_Click(object sender, EventArgs e)
+        {
+            Form2 form2 = new Form2();
+            form2.ShowDialog();
+            this.Close();
+        }
+
+        private void btn_DangXuat_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void btn_KhuyenMai_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void btn_VaiTro_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void btn_ThongKe_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void btn_BanHang_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void btn_HoaDon_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void btn_NhanVien_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void btn_SanPham_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+        }
     }
 }
