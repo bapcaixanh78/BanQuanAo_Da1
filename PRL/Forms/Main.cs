@@ -17,6 +17,5 @@ namespace PRL.Forms
             InitializeComponent();
         }
 
-
     }
 }
