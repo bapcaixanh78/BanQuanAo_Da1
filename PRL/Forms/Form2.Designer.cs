@@ -62,7 +62,7 @@
             panel1.Dock = DockStyle.Left;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(250, 550);
+            panel1.Size = new Size(250, 653);
             panel1.TabIndex = 1;
             // 
             // btn_DangXuat
@@ -79,7 +79,6 @@
             btn_DangXuat.UseVisualStyleBackColor = true;
             btn_DangXuat.MouseEnter += btn_DangXuat_MouseEnter;
             btn_DangXuat.MouseLeave += btn_DangXuat_MouseLeave;
-
             // 
             // btn_KhuyenMai
             // 
@@ -95,7 +94,6 @@
             btn_KhuyenMai.UseVisualStyleBackColor = true;
             btn_KhuyenMai.MouseEnter += btn_KhuyenMai_MouseEnter;
             btn_KhuyenMai.MouseLeave += btn_KhuyenMai_MouseLeave;
-
             // 
             // btn_VaiTro
             // 
@@ -111,7 +109,6 @@
             btn_VaiTro.UseVisualStyleBackColor = true;
             btn_VaiTro.MouseEnter += btn_VaiTro_MouseEnter;
             btn_VaiTro.MouseLeave += btn_VaiTro_MouseLeave;
-
             // 
             // btn_ThongKe
             // 
@@ -127,7 +124,6 @@
             btn_ThongKe.UseVisualStyleBackColor = true;
             btn_ThongKe.MouseEnter += btn_ThongKe_MouseEnter;
             btn_ThongKe.MouseLeave += btn_ThongKe_MouseLeave;
-
             // 
             // btn_BanHang
             // 
@@ -173,7 +169,6 @@
             btn_NhanVien.UseVisualStyleBackColor = true;
             btn_NhanVien.MouseEnter += btn_NhanVien_MouseEnter;
             btn_NhanVien.MouseLeave += btn_NhanVien_MouseLeave;
-
             // 
             // btn_SanPham
             // 
@@ -189,7 +184,6 @@
             btn_SanPham.UseVisualStyleBackColor = true;
             btn_SanPham.MouseEnter += btn_SanPham_MouseEnter;
             btn_SanPham.MouseLeave += btn_SanPham_MouseLeave;
-
             // 
             // btn_KhachHang
             // 
@@ -206,8 +200,6 @@
             btn_KhachHang.UseVisualStyleBackColor = true;
             btn_KhachHang.MouseEnter += btn_KhachHang_MouseEnter;
             btn_KhachHang.MouseLeave += btn_KhachHang_MouseLeave;
-
-
             // 
             // panel2
             // 
@@ -233,7 +225,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(892, 550);
+            ClientSize = new Size(1182, 653);
             Controls.Add(panel1);
             Name = "Form2";
             Text = "Form2";
