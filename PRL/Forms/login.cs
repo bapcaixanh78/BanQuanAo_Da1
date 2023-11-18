@@ -17,5 +17,21 @@ namespace PRL.Forms
             InitializeComponent();
         }
 
+        private void btn_Exit_MouseMove(object sender, MouseEventArgs e)
+        {
+            btn_Exit.Font = new Font(btn_Exit.Font.FontFamily, 11);
+            btn_Exit.BackColor = Color.Red;
+        }
+
+        private void btn_Exit_MouseLeave(object sender, EventArgs e)
+        {
+            btn_Exit.Font = new Font(btn_Exit.Font.FontFamily, 9);
+            btn_Exit.BackColor = Color.White;
+        }
+
+        private void btn_Exit_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

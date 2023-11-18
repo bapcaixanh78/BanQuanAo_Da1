@@ -30,22 +30,23 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(login));
             label6 = new Label();
-            button1 = new Button();
+            btn_Login = new Button();
             label4 = new Label();
             label3 = new Label();
             label2 = new Label();
             pictureBox1 = new PictureBox();
             label1 = new Label();
             panel1 = new Panel();
-            label5 = new Label();
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
-            pictureBox2 = new PictureBox();
+            btn_Exit = new Button();
             pictureBox3 = new PictureBox();
+            pictureBox2 = new PictureBox();
+            txt_Password = new TextBox();
+            txt_Username = new TextBox();
+            label5 = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             SuspendLayout();
             // 
             // label6
@@ -57,18 +58,18 @@
             label6.Size = new Size(0, 21);
             label6.TabIndex = 9;
             // 
-            // button1
+            // btn_Login
             // 
-            button1.BackColor = Color.FromArgb(155, 89, 182);
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            button1.ForeColor = SystemColors.ButtonHighlight;
-            button1.Location = new Point(43, 515);
-            button1.Name = "button1";
-            button1.Size = new Size(324, 35);
-            button1.TabIndex = 8;
-            button1.Text = "Login";
-            button1.UseVisualStyleBackColor = false;
+            btn_Login.BackColor = Color.RoyalBlue;
+            btn_Login.FlatStyle = FlatStyle.Flat;
+            btn_Login.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            btn_Login.ForeColor = SystemColors.ButtonHighlight;
+            btn_Login.Location = new Point(43, 515);
+            btn_Login.Name = "btn_Login";
+            btn_Login.Size = new Size(324, 35);
+            btn_Login.TabIndex = 8;
+            btn_Login.Text = "Login";
+            btn_Login.UseVisualStyleBackColor = false;
             // 
             // label4
             // 
@@ -122,13 +123,14 @@
             // panel1
             // 
             panel1.BackColor = Color.White;
+            panel1.Controls.Add(btn_Exit);
             panel1.Controls.Add(pictureBox3);
             panel1.Controls.Add(pictureBox2);
-            panel1.Controls.Add(textBox2);
-            panel1.Controls.Add(textBox1);
+            panel1.Controls.Add(txt_Password);
+            panel1.Controls.Add(txt_Username);
             panel1.Controls.Add(label5);
             panel1.Controls.Add(label6);
-            panel1.Controls.Add(button1);
+            panel1.Controls.Add(btn_Login);
             panel1.Controls.Add(label4);
             panel1.Controls.Add(label3);
             panel1.Controls.Add(label2);
@@ -140,31 +142,32 @@
             panel1.Size = new Size(431, 674);
             panel1.TabIndex = 1;
             // 
-            // label5
+            // btn_Exit
             // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            label5.Location = new Point(147, 157);
-            label5.Name = "label5";
-            label5.Size = new Size(124, 28);
-            label5.TabIndex = 10;
-            label5.Text = "Shirt Haven";
+            btn_Exit.Dock = DockStyle.Bottom;
+            btn_Exit.FlatAppearance.BorderSize = 0;
+            btn_Exit.FlatStyle = FlatStyle.Flat;
+            btn_Exit.ForeColor = Color.Black;
+            btn_Exit.ImageAlign = ContentAlignment.MiddleLeft;
+            btn_Exit.Location = new Point(0, 629);
+            btn_Exit.Name = "btn_Exit";
+            btn_Exit.Size = new Size(431, 45);
+            btn_Exit.TabIndex = 16;
+            btn_Exit.Text = "Exit";
+            btn_Exit.UseVisualStyleBackColor = true;
+            btn_Exit.Click += btn_Exit_Click;
+            btn_Exit.MouseLeave += btn_Exit_MouseLeave;
+            btn_Exit.MouseMove += btn_Exit_MouseMove;
             // 
-            // textBox1
+            // pictureBox3
             // 
-            textBox1.Location = new Point(53, 349);
-            textBox1.Name = "textBox1";
-            textBox1.PlaceholderText = "usernamehere";
-            textBox1.Size = new Size(261, 27);
-            textBox1.TabIndex = 11;
-            // 
-            // textBox2
-            // 
-            textBox2.Location = new Point(53, 438);
-            textBox2.Name = "textBox2";
-            textBox2.PlaceholderText = "pass";
-            textBox2.Size = new Size(261, 27);
-            textBox2.TabIndex = 12;
+            pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
+            pictureBox3.Location = new Point(320, 438);
+            pictureBox3.Name = "pictureBox3";
+            pictureBox3.Size = new Size(27, 27);
+            pictureBox3.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox3.TabIndex = 14;
+            pictureBox3.TabStop = false;
             // 
             // pictureBox2
             // 
@@ -176,15 +179,32 @@
             pictureBox2.TabIndex = 13;
             pictureBox2.TabStop = false;
             // 
-            // pictureBox3
+            // txt_Password
             // 
-            pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
-            pictureBox3.Location = new Point(320, 438);
-            pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(27, 27);
-            pictureBox3.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox3.TabIndex = 14;
-            pictureBox3.TabStop = false;
+            txt_Password.Location = new Point(53, 438);
+            txt_Password.Name = "txt_Password";
+            txt_Password.PlaceholderText = "pass";
+            txt_Password.Size = new Size(261, 27);
+            txt_Password.TabIndex = 12;
+            txt_Password.UseSystemPasswordChar = true;
+            // 
+            // txt_Username
+            // 
+            txt_Username.Location = new Point(53, 349);
+            txt_Username.Name = "txt_Username";
+            txt_Username.PlaceholderText = "usernamehere";
+            txt_Username.Size = new Size(261, 27);
+            txt_Username.TabIndex = 11;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label5.Location = new Point(147, 157);
+            label5.Name = "label5";
+            label5.Size = new Size(124, 28);
+            label5.TabIndex = 10;
+            label5.Text = "Shirt Haven";
             // 
             // login
             // 
@@ -199,15 +219,15 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
 
         private Label label6;
-        private Button button1;
+        private Button btn_Login;
         private Label label4;
         private Label label3;
         private Label label2;
@@ -216,8 +236,9 @@
         private Panel panel1;
         private Label label5;
         private PictureBox pictureBox2;
-        private TextBox textBox2;
-        private TextBox textBox1;
+        private TextBox txt_Password;
+        private TextBox txt_Username;
         private PictureBox pictureBox3;
+        private Button btn_Exit;
     }
 }
