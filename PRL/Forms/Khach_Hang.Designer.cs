@@ -1,6 +1,6 @@
 ﻿namespace PRL.Forms
 {
-    partial class Main
+    partial class Khach_Hang
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Khach_Hang));
             panel1 = new Panel();
             btn_DangXuat = new Button();
             btn_KhuyenMai = new Button();
@@ -63,7 +63,7 @@
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
             panel1.Size = new Size(250, 653);
-            panel1.TabIndex = 0;
+            panel1.TabIndex = 1;
             // 
             // btn_DangXuat
             // 
@@ -198,7 +198,6 @@
             btn_KhachHang.TabIndex = 1;
             btn_KhachHang.Text = "Khách Hàng";
             btn_KhachHang.UseVisualStyleBackColor = true;
-            btn_KhachHang.Click += btn_KhachHang_Click;
             btn_KhachHang.MouseEnter += btn_KhachHang_MouseEnter;
             btn_KhachHang.MouseLeave += btn_KhachHang_MouseLeave;
             // 
@@ -222,13 +221,14 @@
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
             // 
-            // Form1
+            // Form2
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1182, 653);
             Controls.Add(panel1);
-            Name = "Form1";
+            Name = "Form2";
+            Text = "Form2";
             panel1.ResumeLayout(false);
             panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
@@ -238,9 +238,6 @@
         #endregion
 
         private Panel panel1;
-        private Panel panel2;
-        private PictureBox pictureBox1;
-        private Button btn_KhachHang;
         private Button btn_DangXuat;
         private Button btn_KhuyenMai;
         private Button btn_VaiTro;
@@ -249,5 +246,8 @@
         private Button btn_HoaDon;
         private Button btn_NhanVien;
         private Button btn_SanPham;
+        private Button btn_KhachHang;
+        private Panel panel2;
+        private PictureBox pictureBox1;
     }
 }

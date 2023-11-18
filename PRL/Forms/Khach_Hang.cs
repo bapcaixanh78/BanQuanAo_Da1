@@ -7,13 +7,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Windows.Forms;
 
 namespace PRL.Forms
 {
-    public partial class Main : Form
+    public partial class Khach_Hang : Form
     {
-        public Main()
+        public Khach_Hang()
         {
             InitializeComponent();
         }
@@ -110,12 +109,6 @@ namespace PRL.Forms
             btn_DangXuat.Font = new Font(btn_DangXuat.Font.FontFamily, 9);
         }
 
-        private void btn_KhachHang_Click(object sender, EventArgs e)
-        {
-            Khach_Hang form2 = new Khach_Hang();
-            form2.ShowDialog();
-            this.Close();
-        }
-
     }
 }
+
