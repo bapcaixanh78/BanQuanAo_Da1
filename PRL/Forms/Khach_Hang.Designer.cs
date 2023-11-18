@@ -1,6 +1,6 @@
 ﻿namespace PRL.Forms
 {
-    partial class Form2
+    partial class Khach_Hang
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form2));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Khach_Hang));
             panel1 = new Panel();
             btn_DangXuat = new Button();
             btn_KhuyenMai = new Button();

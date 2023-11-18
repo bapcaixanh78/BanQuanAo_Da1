@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace PRL.Forms
 {
-    public partial class Form2 : Form
+    public partial class Khach_Hang : Form
     {
-        public Form2()
+        public Khach_Hang()
         {
             InitializeComponent();
         }
