@@ -33,5 +33,12 @@ namespace PRL.Forms
         {
             Application.Exit();
         }
+
+        private void btn_Login_Click(object sender, EventArgs e)
+        {
+            Main frm = new Main();
+            this.Hide();
+            frm.ShowDialog();
+        }
     }
 }
