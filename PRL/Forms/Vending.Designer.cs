@@ -36,15 +36,15 @@
             label3 = new Label();
             label4 = new Label();
             label5 = new Label();
-            richTextBox1 = new RichTextBox();
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
-            textBox3 = new TextBox();
-            textBox4 = new TextBox();
+            rtxt_Name = new RichTextBox();
+            txt_IDVending = new TextBox();
+            txt_SoLuong = new TextBox();
+            txt_Gia = new TextBox();
+            txt_Tong = new TextBox();
             dtg_GioHang = new DataGridView();
             btn_Add = new Button();
             label6 = new Label();
-            comboBox1 = new ComboBox();
+            cmb_Sale = new ComboBox();
             btn_clear = new Button();
             btn_ClearAll = new Button();
             panel2 = new Panel();
@@ -142,41 +142,41 @@
             label5.TabIndex = 6;
             label5.Text = "Total :";
             // 
-            // richTextBox1
+            // rtxt_Name
             // 
-            richTextBox1.Location = new Point(230, 267);
-            richTextBox1.Name = "richTextBox1";
-            richTextBox1.Size = new Size(221, 72);
-            richTextBox1.TabIndex = 7;
-            richTextBox1.Text = "";
+            rtxt_Name.Location = new Point(230, 267);
+            rtxt_Name.Name = "rtxt_Name";
+            rtxt_Name.Size = new Size(221, 72);
+            rtxt_Name.TabIndex = 7;
+            rtxt_Name.Text = "";
             // 
-            // textBox1
+            // txt_IDVending
             // 
-            textBox1.Location = new Point(46, 267);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(125, 27);
-            textBox1.TabIndex = 8;
+            txt_IDVending.Location = new Point(46, 267);
+            txt_IDVending.Name = "txt_IDVending";
+            txt_IDVending.Size = new Size(125, 27);
+            txt_IDVending.TabIndex = 8;
             // 
-            // textBox2
+            // txt_SoLuong
             // 
-            textBox2.Location = new Point(535, 267);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(125, 27);
-            textBox2.TabIndex = 9;
+            txt_SoLuong.Location = new Point(535, 267);
+            txt_SoLuong.Name = "txt_SoLuong";
+            txt_SoLuong.Size = new Size(125, 27);
+            txt_SoLuong.TabIndex = 9;
             // 
-            // textBox3
+            // txt_Gia
             // 
-            textBox3.Location = new Point(724, 267);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(125, 27);
-            textBox3.TabIndex = 10;
+            txt_Gia.Location = new Point(724, 267);
+            txt_Gia.Name = "txt_Gia";
+            txt_Gia.Size = new Size(125, 27);
+            txt_Gia.TabIndex = 10;
             // 
-            // textBox4
+            // txt_Tong
             // 
-            textBox4.Location = new Point(910, 267);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(125, 27);
-            textBox4.TabIndex = 11;
+            txt_Tong.Location = new Point(910, 267);
+            txt_Tong.Name = "txt_Tong";
+            txt_Tong.Size = new Size(125, 27);
+            txt_Tong.TabIndex = 11;
             // 
             // dtg_GioHang
             // 
@@ -206,13 +206,13 @@
             label6.TabIndex = 14;
             label6.Text = "Sale";
             // 
-            // comboBox1
+            // cmb_Sale
             // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(1107, 270);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(151, 28);
-            comboBox1.TabIndex = 15;
+            cmb_Sale.FormattingEnabled = true;
+            cmb_Sale.Location = new Point(1107, 270);
+            cmb_Sale.Name = "cmb_Sale";
+            cmb_Sale.Size = new Size(151, 28);
+            cmb_Sale.TabIndex = 15;
             // 
             // btn_clear
             // 
@@ -401,15 +401,15 @@
             Controls.Add(panel2);
             Controls.Add(btn_ClearAll);
             Controls.Add(btn_clear);
-            Controls.Add(comboBox1);
+            Controls.Add(cmb_Sale);
             Controls.Add(label6);
             Controls.Add(btn_Add);
             Controls.Add(dtg_GioHang);
-            Controls.Add(textBox4);
-            Controls.Add(textBox3);
-            Controls.Add(textBox2);
-            Controls.Add(textBox1);
-            Controls.Add(richTextBox1);
+            Controls.Add(txt_Tong);
+            Controls.Add(txt_Gia);
+            Controls.Add(txt_SoLuong);
+            Controls.Add(txt_IDVending);
+            Controls.Add(rtxt_Name);
             Controls.Add(label5);
             Controls.Add(label4);
             Controls.Add(label3);
@@ -439,15 +439,15 @@
         private Label label3;
         private Label label4;
         private Label label5;
-        private RichTextBox richTextBox1;
-        private TextBox textBox1;
-        private TextBox textBox2;
-        private TextBox textBox3;
-        private TextBox textBox4;
+        private RichTextBox rtxt_Name;
+        private TextBox txt_IDVending;
+        private TextBox txt_SoLuong;
+        private TextBox txt_Gia;
+        private TextBox txt_Tong;
         private DataGridView dtg_GioHang;
         private Button btn_Add;
         private Label label6;
-        private ComboBox comboBox1;
+        private ComboBox cmb_Sale;
         private Button btn_clear;
         private Button btn_ClearAll;
         private Panel panel2;
