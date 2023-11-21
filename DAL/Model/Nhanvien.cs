@@ -20,7 +20,7 @@ namespace DAL.Model
 
         //khoa ngoai
         public Guid Idquyen { get; set; }
-
+        public virtual Quyen quyen { get; set; }
 
         public virtual ICollection<Hoadon> Hoadons { get; set; }
         

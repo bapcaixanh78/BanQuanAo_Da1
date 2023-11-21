@@ -20,6 +20,51 @@ namespace DAL.Mydbcontext
             optionsBuilder.UseSqlServer(@"Data Source=(local)\SQLEXPRESS;Initial Catalog=ShopQuanAo;Integrated Security=True");
         }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Chitietsanpham>()
+            .HasOne(p => p.Sanpham)
+            .WithMany(c => c.Chitietsanphams)
+            .HasForeignKey(p => p.Idsanpham)
+            .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Chitietsanpham>()
+            .HasOne(p => p.Danhmuc)
+            .WithMany(c => c.Chitietsanphams)
+            .HasForeignKey(p => p.Iddanhmuc)
+            .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Hoadon>()
+            .HasOne(p => p.Nhanvien)
+            .WithMany(c => c.Hoadons)
+            .HasForeignKey(p => p.Idnhanvien)
+            .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Hoadon>()
+            .HasOne(p => p.Khachhang)
+            .WithMany(c => c.Hoadons)
+            .HasForeignKey(p => p.Idkhachhang)
+            .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Hoadonchitiet>()
+            .HasOne(p => p.Hoadon)
+            .WithMany(c => c.hoadonchitiets)
+            .HasForeignKey(p => p.Idhoadon)
+            .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Hoadonchitiet>()
+            .HasOne(p => p.chitietsanpham)
+            .WithMany(c => c.hoadonchitiets)
+            .HasForeignKey(p => p.Idchitietsanpham)
+            .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Nhanvien>()
+            .HasOne(p => p.quyen)
+            .WithMany(c => c.Nhanviens)
+            .HasForeignKey(p => p.Idquyen)
+            .OnDelete(DeleteBehavior.Restrict);
+
+        }
 
         public DbSet<Anh> Anhs { get; set; }
         public DbSet<Chatlieu> Chatlieus { get; set; }

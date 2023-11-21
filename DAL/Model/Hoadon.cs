@@ -17,15 +17,15 @@ namespace DAL.Model
 
         //khoa ngoai
         public Guid Idnhanvien { get;set; }
-
+        public virtual Nhanvien Nhanvien { get; set; }
 
         public Guid Idkhachhang { get; set; }
-
+        public virtual Khachhang Khachhang { get; set; }
 
         public virtual ICollection<Hoadonchitiet> hoadonchitiets { get; set; }
 
         public Guid Idkhuyenmai { get; set; }
-
+        public virtual Khuyenmai khuyenmai { get;set; }
 
          
 

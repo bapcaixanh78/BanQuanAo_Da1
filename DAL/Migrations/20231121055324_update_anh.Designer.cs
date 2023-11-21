@@ -4,6 +4,7 @@ using DAL.Mydbcontext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DAL.Migrations
 {
     [DbContext(typeof(ShopDbcontext))]
-    partial class ShopDbcontextModelSnapshot : ModelSnapshot
+    [Migration("20231121055324_update_anh")]
+    partial class update_anh
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -52,7 +54,7 @@ namespace DAL.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("ChitietsanphamId")
+                    b.Property<Guid>("ChitietsanphamId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("Idchitietsanpham")
@@ -83,6 +85,9 @@ namespace DAL.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid>("DanhmucId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<decimal>("Giaban")
                         .HasColumnType("decimal(18,2)");
 
@@ -105,6 +110,9 @@ namespace DAL.Migrations
                     b.Property<DateTime>("Ngaytao")
                         .HasColumnType("datetime2");
 
+                    b.Property<Guid>("SanphamId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<int>("Soluongton")
                         .HasColumnType("int");
 
@@ -114,9 +122,9 @@ namespace DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Iddanhmuc");
+                    b.HasIndex("DanhmucId");
 
-                    b.HasIndex("Idsanpham");
+                    b.HasIndex("SanphamId");
 
                     b.ToTable("Chitietsanphams");
                 });
@@ -163,8 +171,14 @@ namespace DAL.Migrations
                     b.Property<Guid>("Idnhanvien")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid>("KhachhangId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<DateTime>("Ngaytao")
                         .HasColumnType("datetime2");
+
+                    b.Property<Guid>("NhanvienId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Trangthai")
                         .IsRequired()
@@ -175,9 +189,9 @@ namespace DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Idkhachhang");
+                    b.HasIndex("KhachhangId");
 
-                    b.HasIndex("Idnhanvien");
+                    b.HasIndex("NhanvienId");
 
                     b.HasIndex("khuyenmaiId");
 
@@ -193,6 +207,9 @@ namespace DAL.Migrations
                     b.Property<decimal>("Giaban")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<Guid>("HoadonId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<Guid>("Idchitietsanpham")
                         .HasColumnType("uniqueidentifier");
 
@@ -202,11 +219,14 @@ namespace DAL.Migrations
                     b.Property<int>("Soluong")
                         .HasColumnType("int");
 
+                    b.Property<Guid>("chitietsanphamId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("Idchitietsanpham");
+                    b.HasIndex("HoadonId");
 
-                    b.HasIndex("Idhoadon");
+                    b.HasIndex("chitietsanphamId");
 
                     b.ToTable("Hoadonchitiets");
                 });
@@ -266,7 +286,10 @@ namespace DAL.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("ChitietsanphamId")
+                    b.Property<Guid>("ChitietsanphamId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("IdChitietsanpham")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Size")
@@ -290,7 +313,10 @@ namespace DAL.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("ChitietsanphamId")
+                    b.Property<Guid>("ChitietsanphamId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("Idchitietsanpham")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Mau")
@@ -340,9 +366,12 @@ namespace DAL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<Guid>("quyenId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("Idquyen");
+                    b.HasIndex("quyenId");
 
                     b.ToTable("Nhanvien");
                 });
@@ -390,23 +419,27 @@ namespace DAL.Migrations
 
             modelBuilder.Entity("DAL.Model.Chatlieu", b =>
                 {
-                    b.HasOne("DAL.Model.Chitietsanpham", null)
+                    b.HasOne("DAL.Model.Chitietsanpham", "Chitietsanpham")
                         .WithMany("chatlieus")
-                        .HasForeignKey("ChitietsanphamId");
+                        .HasForeignKey("ChitietsanphamId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Chitietsanpham");
                 });
 
             modelBuilder.Entity("DAL.Model.Chitietsanpham", b =>
                 {
                     b.HasOne("DAL.Model.Danhmuc", "Danhmuc")
                         .WithMany("Chitietsanphams")
-                        .HasForeignKey("Iddanhmuc")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .HasForeignKey("DanhmucId")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("DAL.Model.Sanpham", "Sanpham")
                         .WithMany("Chitietsanphams")
-                        .HasForeignKey("Idsanpham")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .HasForeignKey("SanphamId")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Danhmuc");
@@ -418,14 +451,14 @@ namespace DAL.Migrations
                 {
                     b.HasOne("DAL.Model.Khachhang", "Khachhang")
                         .WithMany("Hoadons")
-                        .HasForeignKey("Idkhachhang")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .HasForeignKey("KhachhangId")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("DAL.Model.Nhanvien", "Nhanvien")
                         .WithMany("Hoadons")
-                        .HasForeignKey("Idnhanvien")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .HasForeignKey("NhanvienId")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("DAL.Model.Khuyenmai", "khuyenmai")
@@ -443,16 +476,16 @@ namespace DAL.Migrations
 
             modelBuilder.Entity("DAL.Model.Hoadonchitiet", b =>
                 {
-                    b.HasOne("DAL.Model.Chitietsanpham", "chitietsanpham")
-                        .WithMany("hoadonchitiets")
-                        .HasForeignKey("Idchitietsanpham")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
                     b.HasOne("DAL.Model.Hoadon", "Hoadon")
                         .WithMany("hoadonchitiets")
-                        .HasForeignKey("Idhoadon")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .HasForeignKey("HoadonId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("DAL.Model.Chitietsanpham", "chitietsanpham")
+                        .WithMany("hoadonchitiets")
+                        .HasForeignKey("chitietsanphamId")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Hoadon");
@@ -462,24 +495,32 @@ namespace DAL.Migrations
 
             modelBuilder.Entity("DAL.Model.Kichthuoc", b =>
                 {
-                    b.HasOne("DAL.Model.Chitietsanpham", null)
+                    b.HasOne("DAL.Model.Chitietsanpham", "Chitietsanpham")
                         .WithMany("kichthuocs")
-                        .HasForeignKey("ChitietsanphamId");
+                        .HasForeignKey("ChitietsanphamId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Chitietsanpham");
                 });
 
             modelBuilder.Entity("DAL.Model.Mauao", b =>
                 {
-                    b.HasOne("DAL.Model.Chitietsanpham", null)
+                    b.HasOne("DAL.Model.Chitietsanpham", "Chitietsanpham")
                         .WithMany("Mauaos")
-                        .HasForeignKey("ChitietsanphamId");
+                        .HasForeignKey("ChitietsanphamId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Chitietsanpham");
                 });
 
             modelBuilder.Entity("DAL.Model.Nhanvien", b =>
                 {
                     b.HasOne("DAL.Model.Quyen", "quyen")
                         .WithMany("Nhanviens")
-                        .HasForeignKey("Idquyen")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .HasForeignKey("quyenId")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("quyen");

@@ -21,9 +21,10 @@ namespace DAL.Model
 
         //khoa ngoai
         public Guid Idsanpham { get; set; }
-
+        public virtual Sanpham Sanpham { get; set; }
 
         public Guid Iddanhmuc { get; set; }
+        public virtual Danhmuc Danhmuc { get; set; }
 
         public virtual ICollection<Mauao> Mauaos { get; set; }
 
