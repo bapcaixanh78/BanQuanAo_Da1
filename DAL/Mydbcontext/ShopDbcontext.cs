@@ -29,10 +29,34 @@ namespace DAL.Mydbcontext
             .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<Chitietsanpham>()
+            .HasOne(p => p.Kichthuoc)
+            .WithMany(c => c.Chitietsanphams)
+            .HasForeignKey(p => p.Idkichthuoc)
+            .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Chitietsanpham>()
+            .HasOne(p => p.Chatlieu)
+            .WithMany(c => c.Chitietsanphams)
+            .HasForeignKey(p => p.Idchatlieu)
+            .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Chitietsanpham>()
             .HasOne(p => p.Danhmuc)
             .WithMany(c => c.Chitietsanphams)
             .HasForeignKey(p => p.Iddanhmuc)
             .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Chitietsanpham>()
+            .HasOne(p => p.Mauao)
+            .WithMany(c => c.Chitietsanphams)
+            .HasForeignKey(p => p.Idmauao)
+            .OnDelete(DeleteBehavior.Restrict);
+
+
+            modelBuilder.Entity<Chitietsanpham>()
+            .HasOne(p => p.Anhs)
+            .WithOne(d => d.Chitietsanphams)
+            .HasForeignKey<Anh>(d => d.Idanh);
 
             modelBuilder.Entity<Hoadon>()
             .HasOne(p => p.Nhanvien)
@@ -63,6 +87,7 @@ namespace DAL.Mydbcontext
             .WithMany(c => c.Nhanviens)
             .HasForeignKey(p => p.Idquyen)
             .OnDelete(DeleteBehavior.Restrict);
+
 
         }
 

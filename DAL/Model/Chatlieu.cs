@@ -15,8 +15,6 @@ namespace DAL.Model
         public string Mota { get; set; }
         public string Trangthai { get; set; }
 
-        //khoa ngoai
-        public Guid Idchitietsanpham { get; set; }
-
+        public virtual ICollection<Chitietsanpham> Chitietsanphams { get; set; }
     }
 }

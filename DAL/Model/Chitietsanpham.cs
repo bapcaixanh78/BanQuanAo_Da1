@@ -20,19 +20,22 @@ namespace DAL.Model
         public string Trangthai { get; set; }
 
         //khoa ngoai
+        public virtual Anh Anhs { get; set; }
         public Guid Idsanpham { get; set; }
         public virtual Sanpham Sanpham { get; set; }
 
         public Guid Iddanhmuc { get; set; }
         public virtual Danhmuc Danhmuc { get; set; }
 
-        public virtual ICollection<Mauao> Mauaos { get; set; }
+        public Guid Idmauao { get; set; }
+        public virtual Mauao Mauao { get; set; }
 
-        public virtual ICollection<Chatlieu> chatlieus { get; set; } 
+        public Guid Idchatlieu { get; set; }
+        public virtual Chatlieu Chatlieu { get; set; }
+        public Guid Idkichthuoc { get; set; }
+        public virtual Kichthuoc Kichthuoc { get; set; }
 
-        public virtual ICollection<Hoadonchitiet> hoadonchitiets { get; set; }  
-
-        public virtual ICollection<Kichthuoc> kichthuocs { get; set; }
+        public virtual ICollection<Hoadonchitiet> hoadonchitiets { get; set; }
 
 
     }

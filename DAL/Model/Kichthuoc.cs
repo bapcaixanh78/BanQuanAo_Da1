@@ -12,5 +12,7 @@ namespace DAL.Model
         public string Size { get; set; }
         public string Trangthai { get; set; }
 
+        public virtual ICollection<Chitietsanpham> Chitietsanphams { get; set; }
+
     }
 }

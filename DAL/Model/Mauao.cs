@@ -14,6 +14,7 @@ namespace DAL.Model
         public string Mau { get; set; }
         public string Trangthai { get; set; }
 
+        public virtual ICollection<Chitietsanpham> Chitietsanphams { get; set; }
 
     }
 }
