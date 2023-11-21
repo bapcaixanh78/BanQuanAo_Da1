@@ -16,9 +16,9 @@ namespace DAL.Model
 
         //khoa ngoai 
         public Guid Idhoadon { get; set; }
-        public Hoadon Hoadon { get; set; }
+
 
         public Guid Idchitietsanpham { get; set; }
-        public Chitietsanpham chitietsanpham { get; set; }
+
     }
 }

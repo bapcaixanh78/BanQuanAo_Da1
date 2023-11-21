@@ -16,7 +16,7 @@ namespace DAL.Model
         public string Ghichu { get; set; }
         
         //khoa ngoai
-        public ICollection<Chitietsanpham> Chitietsanphams { get; set; }
+        public virtual ICollection<Chitietsanpham> Chitietsanphams { get; set; }
 
     }
 }

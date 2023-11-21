@@ -14,9 +14,9 @@ namespace DAL.Model
         public string Ten { get; set; }
 
         //khoa ngoai
-        public ICollection<Anh> Anhs { get; set; }
+        public virtual  ICollection<Anh> Anhs { get; set; }
 
-        public ICollection<Chitietsanpham> Chitietsanphams { get; set; }
+        public virtual ICollection<Chitietsanpham> Chitietsanphams { get; set; }
 
     }
 }

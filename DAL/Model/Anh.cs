@@ -14,8 +14,6 @@ namespace DAL.Model
         public string Ten { get; set; }
         public string Url { get; set; }
 
-        //khoa ngoai
-        public Guid IdSanpham { get; set; }
-        public Sanpham Sanpham { get; set; }
+
     }
 }

@@ -16,7 +16,7 @@ namespace DAL.Model
         public string Trangthai { get; set; }
 
         //khoa ngoai
-        public ICollection<Hoadon> Hoadons { get; set; }
+        public virtual ICollection<Hoadon> Hoadons { get; set; }
 
     }
 }

@@ -12,8 +12,5 @@ namespace DAL.Model
         public string Size { get; set; }
         public string Trangthai { get; set; }
 
-        //khoa ngoai
-        public Guid IdChitietsanpham { get; set; }  
-        public Chitietsanpham Chitietsanpham { get; set; }
     }
 }

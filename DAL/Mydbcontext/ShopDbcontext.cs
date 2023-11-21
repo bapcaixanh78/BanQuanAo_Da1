@@ -3,23 +3,24 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace DAL.Mydbcontext
 {
-    public class ShopDbcontext:DbContext
+    public class ShopDbcontext : DbContext
     {
-        public ShopDbcontext() { }
-        public ShopDbcontext(DbContextOptions dbContextOptions) : base(dbContextOptions)
+        public ShopDbcontext()
         {
-
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(@"Data Source=(local)\SQLEXPRESS;Initial Catalog=ShopQuanAo;Integrated Security=True");
         }
+
+
         public DbSet<Anh> Anhs { get; set; }
         public DbSet<Chatlieu> Chatlieus { get; set; }
         public DbSet<Chitietsanpham> Chitietsanphams { get; set; }
@@ -33,5 +34,9 @@ namespace DAL.Mydbcontext
         public DbSet<Nhanvien> Nhanvien { get; set; }
         public DbSet<Quyen> Quyens { get; set; }
         public DbSet<Sanpham> Sanphams { get; set; }
+
+
+
+
     }
 }

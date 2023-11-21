@@ -14,8 +14,6 @@ namespace DAL.Model
         public string Mau { get; set; }
         public string Trangthai { get; set; }
 
-        //khoa ngoai
-        public Guid Idchitietsanpham { get; set; }
-        public Chitietsanpham Chitietsanpham { get; set; }
+
     }
 }

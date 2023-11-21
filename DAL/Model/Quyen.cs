@@ -13,6 +13,6 @@ namespace DAL.Model
         public string Trangthai { get; set; }
 
         //khoa ngoai
-        public ICollection<Nhanvien> Nhanviens { get; set; }
+        public virtual ICollection<Nhanvien> Nhanviens { get; set; }
     }
 }
