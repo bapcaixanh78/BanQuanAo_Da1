@@ -63,6 +63,7 @@
             label7 = new Label();
             txt_SDT = new TextBox();
             txt_KhachHang = new TextBox();
+            backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dtg_Vending).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dtg_GioHang).BeginInit();
@@ -76,7 +77,7 @@
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1683, 49);
+            panel1.Size = new Size(1787, 49);
             panel1.TabIndex = 0;
             // 
             // txt_TimKiemVending
@@ -90,11 +91,11 @@
             // dtg_Vending
             // 
             dtg_Vending.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dtg_Vending.Location = new Point(0, 55);
+            dtg_Vending.Location = new Point(314, 68);
             dtg_Vending.Name = "dtg_Vending";
             dtg_Vending.RowHeadersWidth = 51;
             dtg_Vending.RowTemplate.Height = 29;
-            dtg_Vending.Size = new Size(470, 193);
+            dtg_Vending.Size = new Size(368, 125);
             dtg_Vending.TabIndex = 1;
             // 
             // label1
@@ -249,10 +250,9 @@
             panel2.Controls.Add(label7);
             panel2.Controls.Add(txt_SDT);
             panel2.Controls.Add(txt_KhachHang);
-            panel2.Dock = DockStyle.Right;
-            panel2.Location = new Point(1264, 49);
+            panel2.Location = new Point(1301, 49);
             panel2.Name = "panel2";
-            panel2.Size = new Size(419, 629);
+            panel2.Size = new Size(382, 629);
             panel2.TabIndex = 18;
             // 
             // btn_ThanhToan
@@ -397,7 +397,8 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1683, 678);
+            AutoSize = true;
+            ClientSize = new Size(1787, 678);
             Controls.Add(panel2);
             Controls.Add(btn_ClearAll);
             Controls.Add(btn_clear);
@@ -466,5 +467,6 @@
         private Label lb_TienKhachTra;
         private Label label12;
         private Button btn_ThanhToan;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }

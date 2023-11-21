@@ -71,7 +71,7 @@
             panel1.ForeColor = Color.White;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(202, 653);
+            panel1.Size = new Size(202, 678);
             panel1.TabIndex = 0;
             // 
             // btn_DangXuat
@@ -266,7 +266,7 @@
             panel3.Dock = DockStyle.Top;
             panel3.Location = new Point(202, 0);
             panel3.Name = "panel3";
-            panel3.Size = new Size(980, 125);
+            panel3.Size = new Size(1585, 125);
             panel3.TabIndex = 2;
             // 
             // label2
@@ -320,14 +320,14 @@
             pn_ChucNang.Dock = DockStyle.Fill;
             pn_ChucNang.Location = new Point(202, 125);
             pn_ChucNang.Name = "pn_ChucNang";
-            pn_ChucNang.Size = new Size(980, 528);
+            pn_ChucNang.Size = new Size(1585, 553);
             pn_ChucNang.TabIndex = 3;
             // 
             // Main
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1182, 653);
+            ClientSize = new Size(1787, 678);
             Controls.Add(pn_ChucNang);
             Controls.Add(panel3);
             Controls.Add(panel1);

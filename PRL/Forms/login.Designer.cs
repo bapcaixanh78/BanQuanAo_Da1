@@ -43,6 +43,7 @@
             txt_Password = new TextBox();
             txt_Username = new TextBox();
             label5 = new Label();
+            cb_showpass = new CheckBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
@@ -64,9 +65,9 @@
             btn_Login.FlatStyle = FlatStyle.Flat;
             btn_Login.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
             btn_Login.ForeColor = SystemColors.ButtonHighlight;
-            btn_Login.Location = new Point(43, 515);
+            btn_Login.Location = new Point(53, 562);
             btn_Login.Name = "btn_Login";
-            btn_Login.Size = new Size(324, 35);
+            btn_Login.Size = new Size(324, 49);
             btn_Login.TabIndex = 8;
             btn_Login.Text = "Login";
             btn_Login.UseVisualStyleBackColor = false;
@@ -105,9 +106,9 @@
             // pictureBox1
             // 
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(153, 38);
+            pictureBox1.Location = new Point(136, 12);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(100, 100);
+            pictureBox1.Size = new Size(145, 142);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
@@ -124,6 +125,7 @@
             // panel1
             // 
             panel1.BackColor = Color.White;
+            panel1.Controls.Add(cb_showpass);
             panel1.Controls.Add(btn_Exit);
             panel1.Controls.Add(pictureBox3);
             panel1.Controls.Add(pictureBox2);
@@ -163,7 +165,7 @@
             // pictureBox3
             // 
             pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
-            pictureBox3.Location = new Point(320, 438);
+            pictureBox3.Location = new Point(350, 438);
             pictureBox3.Name = "pictureBox3";
             pictureBox3.Size = new Size(27, 27);
             pictureBox3.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -173,7 +175,7 @@
             // pictureBox2
             // 
             pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
-            pictureBox2.Location = new Point(320, 349);
+            pictureBox2.Location = new Point(350, 349);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(27, 27);
             pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -184,8 +186,8 @@
             // 
             txt_Password.Location = new Point(53, 438);
             txt_Password.Name = "txt_Password";
-            txt_Password.PlaceholderText = "pass";
-            txt_Password.Size = new Size(261, 27);
+            txt_Password.PlaceholderText = "password here";
+            txt_Password.Size = new Size(291, 27);
             txt_Password.TabIndex = 12;
             txt_Password.UseSystemPasswordChar = true;
             // 
@@ -193,19 +195,29 @@
             // 
             txt_Username.Location = new Point(53, 349);
             txt_Username.Name = "txt_Username";
-            txt_Username.PlaceholderText = "usernamehere";
-            txt_Username.Size = new Size(261, 27);
+            txt_Username.PlaceholderText = "username here";
+            txt_Username.Size = new Size(291, 27);
             txt_Username.TabIndex = 11;
             // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            label5.Location = new Point(147, 157);
+            label5.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point);
+            label5.Location = new Point(120, 186);
             label5.Name = "label5";
-            label5.Size = new Size(124, 28);
+            label5.Size = new Size(172, 38);
             label5.TabIndex = 10;
             label5.Text = "Shirt Haven";
+            // 
+            // cb_showpass
+            // 
+            cb_showpass.AutoSize = true;
+            cb_showpass.Location = new Point(53, 497);
+            cb_showpass.Name = "cb_showpass";
+            cb_showpass.Size = new Size(134, 24);
+            cb_showpass.TabIndex = 17;
+            cb_showpass.Text = "Show password";
+            cb_showpass.UseVisualStyleBackColor = true;
             // 
             // login
             // 
@@ -241,5 +253,6 @@
         private TextBox txt_Username;
         private PictureBox pictureBox3;
         private Button btn_Exit;
+        private CheckBox cb_showpass;
     }
 }

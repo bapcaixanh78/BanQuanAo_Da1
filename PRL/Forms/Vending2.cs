@@ -1,5 +1,4 @@
 ﻿using System;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -11,9 +10,9 @@ using System.Windows.Forms;
 
 namespace PRL.Forms
 {
-    public partial class Admin_Bill : Form
+    public partial class Vending2 : Form
     {
-        public Admin_Bill()
+        public Vending2()
         {
             InitializeComponent();
         }

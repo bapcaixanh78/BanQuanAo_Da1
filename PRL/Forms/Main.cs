@@ -119,7 +119,7 @@ namespace PRL.Forms
 
         private void btn_KhachHang_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new Forms.Admin_Customers(), sender);
+            OpenChildForm(new Forms.Admin_Customers2(), sender);
         }
         private void OpenChildForm(Form childForm, object btnSender)
         {
@@ -142,18 +142,18 @@ namespace PRL.Forms
             {
                 if (currentButton != (Button)btnSender)
                 {
-                    
+
 
                     btnCloseChildForm.Visible = true;
                 }
             }
         }
-        
+
 
 
         private void Reset()
         {
-            
+
 
             currentButton = null;
             btnCloseChildForm.Visible = false;
@@ -183,7 +183,7 @@ namespace PRL.Forms
 
         private void btn_BanHang_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new Forms.Vending(), sender);
+            OpenChildForm(new Forms.Vending2(), sender);
         }
     }
 }
