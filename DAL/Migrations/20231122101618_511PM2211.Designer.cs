@@ -4,6 +4,7 @@ using DAL.Mydbcontext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DAL.Migrations
 {
     [DbContext(typeof(ShopDbcontext))]
-    partial class ShopDbcontextModelSnapshot : ModelSnapshot
+    [Migration("20231122101618_511PM2211")]
+    partial class _511PM2211
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -25,7 +27,6 @@ namespace DAL.Migrations
             modelBuilder.Entity("DAL.Model.Anh", b =>
                 {
                     b.Property<Guid>("Idanh")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Ten")
@@ -76,9 +77,6 @@ namespace DAL.Migrations
                     b.Property<decimal>("Gianhap")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<Guid>("IdAnh")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<Guid>("Idchatlieu")
                         .HasColumnType("uniqueidentifier");
 
@@ -112,8 +110,6 @@ namespace DAL.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("IdAnh");
 
                     b.HasIndex("Idchatlieu");
 
@@ -378,14 +374,19 @@ namespace DAL.Migrations
                     b.ToTable("Sanphams");
                 });
 
-            modelBuilder.Entity("DAL.Model.Chitietsanpham", b =>
+            modelBuilder.Entity("DAL.Model.Anh", b =>
                 {
-                    b.HasOne("DAL.Model.Anh", "Anhs")
-                        .WithMany()
-                        .HasForeignKey("IdAnh")
+                    b.HasOne("DAL.Model.Chitietsanpham", "Chitietsanpham")
+                        .WithOne("Anhs")
+                        .HasForeignKey("DAL.Model.Anh", "Idanh")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.Navigation("Chitietsanpham");
+                });
+
+            modelBuilder.Entity("DAL.Model.Chitietsanpham", b =>
+                {
                     b.HasOne("DAL.Model.Chatlieu", "Chatlieu")
                         .WithMany("Chitietsanphams")
                         .HasForeignKey("Idchatlieu")
@@ -415,8 +416,6 @@ namespace DAL.Migrations
                         .HasForeignKey("Idsanpham")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
-
-                    b.Navigation("Anhs");
 
                     b.Navigation("Chatlieu");
 
@@ -493,6 +492,9 @@ namespace DAL.Migrations
 
             modelBuilder.Entity("DAL.Model.Chitietsanpham", b =>
                 {
+                    b.Navigation("Anhs")
+                        .IsRequired();
+
                     b.Navigation("hoadonchitiets");
                 });
 

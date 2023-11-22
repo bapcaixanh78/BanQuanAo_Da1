@@ -15,8 +15,7 @@ namespace DAL.Model
         public string Ten { get; set; }
         public string Url { get; set; }
 
-        [ForeignKey("FK_Chitietsanpham")] // Đánh dấu đây là khóa ngoại trỏ đến bảng Chitietsanpham
-        public virtual Chitietsanpham Chitietsanphams { get; set; }
+        
 
     }
 }
