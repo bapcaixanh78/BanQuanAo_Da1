@@ -38,11 +38,11 @@
             lb_Welcome = new Label();
             panel1 = new Panel();
             panel3 = new Panel();
+            btnCloseChildForm = new Button();
             label2 = new Label();
             label1 = new Label();
             pictureBox1 = new PictureBox();
             pn_ChucNang = new Panel();
-            btnCloseChildForm = new Button();
             panel2.SuspendLayout();
             panel1.SuspendLayout();
             panel3.SuspendLayout();
@@ -174,6 +174,20 @@
             panel3.Size = new Size(980, 125);
             panel3.TabIndex = 7;
             // 
+            // btnCloseChildForm
+            // 
+            btnCloseChildForm.FlatAppearance.BorderSize = 0;
+            btnCloseChildForm.FlatStyle = FlatStyle.Flat;
+            btnCloseChildForm.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
+            btnCloseChildForm.ForeColor = Color.White;
+            btnCloseChildForm.Location = new Point(37, 39);
+            btnCloseChildForm.Name = "btnCloseChildForm";
+            btnCloseChildForm.Size = new Size(94, 39);
+            btnCloseChildForm.TabIndex = 0;
+            btnCloseChildForm.Text = "X";
+            btnCloseChildForm.UseVisualStyleBackColor = true;
+            btnCloseChildForm.Click += btnCloseChildForm_Click;
+            // 
             // label2
             // 
             label2.AutoSize = true;
@@ -214,25 +228,11 @@
             pn_ChucNang.Size = new Size(980, 528);
             pn_ChucNang.TabIndex = 8;
             // 
-            // btnCloseChildForm
-            // 
-            btnCloseChildForm.FlatAppearance.BorderSize = 0;
-            btnCloseChildForm.FlatStyle = FlatStyle.Flat;
-            btnCloseChildForm.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
-            btnCloseChildForm.ForeColor = Color.White;
-            btnCloseChildForm.Location = new Point(37, 39);
-            btnCloseChildForm.Name = "btnCloseChildForm";
-            btnCloseChildForm.Size = new Size(94, 39);
-            btnCloseChildForm.TabIndex = 0;
-            btnCloseChildForm.Text = "X";
-            btnCloseChildForm.UseVisualStyleBackColor = true;
-            btnCloseChildForm.Click += btnCloseChildForm_Click;
-
-            // 
             // MainNV
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            AutoSize = true;
             ClientSize = new Size(1182, 653);
             Controls.Add(pn_ChucNang);
             Controls.Add(panel3);

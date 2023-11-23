@@ -53,6 +53,8 @@
             groupBox3 = new GroupBox();
             pictureBox1 = new PictureBox();
             panel1 = new Panel();
+            label8 = new Label();
+            cmb_Material = new ComboBox();
             ((System.ComponentModel.ISupportInitialize)dtg_SanPham).BeginInit();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
@@ -117,7 +119,7 @@
             // txtGiaNhap
             // 
             txtGiaNhap.BackColor = SystemColors.Info;
-            txtGiaNhap.Location = new Point(839, 83);
+            txtGiaNhap.Location = new Point(839, 88);
             txtGiaNhap.Name = "txtGiaNhap";
             txtGiaNhap.Size = new Size(329, 27);
             txtGiaNhap.TabIndex = 12;
@@ -125,7 +127,7 @@
             // txtTenHang
             // 
             txtTenHang.BackColor = SystemColors.Info;
-            txtTenHang.Location = new Point(839, 40);
+            txtTenHang.Location = new Point(839, 44);
             txtTenHang.Name = "txtTenHang";
             txtTenHang.Size = new Size(329, 27);
             txtTenHang.TabIndex = 11;
@@ -134,7 +136,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label2.Location = new Point(648, 86);
+            label2.Location = new Point(648, 87);
             label2.Name = "label2";
             label2.Size = new Size(119, 28);
             label2.TabIndex = 10;
@@ -154,7 +156,7 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label3.Location = new Point(648, 129);
+            label3.Location = new Point(648, 131);
             label3.Name = "label3";
             label3.Size = new Size(68, 28);
             label3.TabIndex = 18;
@@ -163,7 +165,7 @@
             // txtGiaBan
             // 
             txtGiaBan.BackColor = SystemColors.Info;
-            txtGiaBan.Location = new Point(839, 126);
+            txtGiaBan.Location = new Point(839, 132);
             txtGiaBan.Name = "txtGiaBan";
             txtGiaBan.Size = new Size(329, 27);
             txtGiaBan.TabIndex = 19;
@@ -172,7 +174,7 @@
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label4.Location = new Point(648, 171);
+            label4.Location = new Point(648, 175);
             label4.Name = "label4";
             label4.Size = new Size(102, 28);
             label4.TabIndex = 20;
@@ -181,7 +183,7 @@
             // txt_SoLuong
             // 
             txt_SoLuong.BackColor = SystemColors.Info;
-            txt_SoLuong.Location = new Point(839, 169);
+            txt_SoLuong.Location = new Point(839, 176);
             txt_SoLuong.Name = "txt_SoLuong";
             txt_SoLuong.Size = new Size(329, 27);
             txt_SoLuong.TabIndex = 21;
@@ -190,7 +192,7 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label5.Location = new Point(648, 301);
+            label5.Location = new Point(646, 351);
             label5.Name = "label5";
             label5.Size = new Size(121, 28);
             label5.TabIndex = 22;
@@ -200,7 +202,7 @@
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label6.Location = new Point(648, 215);
+            label6.Location = new Point(648, 219);
             label6.Name = "label6";
             label6.Size = new Size(69, 28);
             label6.TabIndex = 24;
@@ -210,7 +212,7 @@
             // 
             label7.AutoSize = true;
             label7.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label7.Location = new Point(648, 258);
+            label7.Location = new Point(648, 263);
             label7.Name = "label7";
             label7.Size = new Size(56, 28);
             label7.TabIndex = 25;
@@ -220,7 +222,7 @@
             // 
             cmb_Color.BackColor = SystemColors.Info;
             cmb_Color.FormattingEnabled = true;
-            cmb_Color.Location = new Point(839, 212);
+            cmb_Color.Location = new Point(839, 219);
             cmb_Color.Name = "cmb_Color";
             cmb_Color.Size = new Size(329, 28);
             cmb_Color.TabIndex = 26;
@@ -229,7 +231,7 @@
             // 
             cmb_Size.BackColor = SystemColors.Info;
             cmb_Size.FormattingEnabled = true;
-            cmb_Size.Location = new Point(839, 255);
+            cmb_Size.Location = new Point(839, 263);
             cmb_Size.Name = "cmb_Size";
             cmb_Size.Size = new Size(329, 28);
             cmb_Size.TabIndex = 27;
@@ -237,7 +239,7 @@
             // rtxt_MoTa
             // 
             rtxt_MoTa.BackColor = SystemColors.Info;
-            rtxt_MoTa.Location = new Point(839, 297);
+            rtxt_MoTa.Location = new Point(839, 351);
             rtxt_MoTa.Name = "rtxt_MoTa";
             rtxt_MoTa.Size = new Size(329, 41);
             rtxt_MoTa.TabIndex = 28;
@@ -270,6 +272,8 @@
             // 
             // groupBox3
             // 
+            groupBox3.Controls.Add(cmb_Material);
+            groupBox3.Controls.Add(label8);
             groupBox3.Controls.Add(pictureBox1);
             groupBox3.Controls.Add(label4);
             groupBox3.Controls.Add(rtxt_MoTa);
@@ -311,6 +315,25 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(1787, 441);
             panel1.TabIndex = 32;
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label8.Location = new Point(648, 307);
+            label8.Name = "label8";
+            label8.Size = new Size(93, 28);
+            label8.TabIndex = 32;
+            label8.Text = "Material :";
+            // 
+            // cmb_Material
+            // 
+            cmb_Material.BackColor = SystemColors.Info;
+            cmb_Material.FormattingEnabled = true;
+            cmb_Material.Location = new Point(839, 307);
+            cmb_Material.Name = "cmb_Material";
+            cmb_Material.Size = new Size(329, 28);
+            cmb_Material.TabIndex = 33;
             // 
             // Admin_Products
             // 
@@ -359,5 +382,7 @@
         private GroupBox groupBox3;
         private PictureBox pictureBox1;
         private Panel panel1;
+        private Label label8;
+        private ComboBox cmb_Material;
     }
 }

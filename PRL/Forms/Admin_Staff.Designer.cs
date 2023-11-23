@@ -36,6 +36,8 @@
             dtg_NhanVien = new DataGridView();
             groupBox1 = new GroupBox();
             panel1 = new Panel();
+            cmb_Roles = new ComboBox();
+            label8 = new Label();
             pictureBox1 = new PictureBox();
             txt_Email = new TextBox();
             txt_MK = new TextBox();
@@ -91,13 +93,15 @@
             // txt_TimKiemNV
             // 
             txt_TimKiemNV.BackColor = SystemColors.Info;
+            txt_TimKiemNV.Dock = DockStyle.Bottom;
             txt_TimKiemNV.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            txt_TimKiemNV.Location = new Point(8, 244);
+            txt_TimKiemNV.Location = new Point(4, 332);
             txt_TimKiemNV.Margin = new Padding(4);
             txt_TimKiemNV.Name = "txt_TimKiemNV";
             txt_TimKiemNV.PlaceholderText = "Search";
             txt_TimKiemNV.Size = new Size(336, 34);
             txt_TimKiemNV.TabIndex = 48;
+            txt_TimKiemNV.TextChanged += txt_TimKiemNV_TextChanged;
             // 
             // dtg_NhanVien
             // 
@@ -127,6 +131,8 @@
             // 
             // panel1
             // 
+            panel1.Controls.Add(cmb_Roles);
+            panel1.Controls.Add(label8);
             panel1.Controls.Add(pictureBox1);
             panel1.Controls.Add(txt_Email);
             panel1.Controls.Add(txt_MK);
@@ -145,6 +151,24 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(1787, 370);
             panel1.TabIndex = 51;
+            // 
+            // cmb_Roles
+            // 
+            cmb_Roles.FormattingEnabled = true;
+            cmb_Roles.Location = new Point(963, 197);
+            cmb_Roles.Name = "cmb_Roles";
+            cmb_Roles.Size = new Size(265, 36);
+            cmb_Roles.TabIndex = 60;
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Location = new Point(784, 189);
+            label8.Margin = new Padding(4, 0, 4, 0);
+            label8.Name = "label8";
+            label8.Size = new Size(64, 28);
+            label8.TabIndex = 59;
+            label8.Text = "Role : ";
             // 
             // pictureBox1
             // 
@@ -324,5 +348,7 @@
         private Label label2;
         private Label label1;
         private PictureBox pictureBox1;
+        private Label label8;
+        private ComboBox cmb_Roles;
     }
 }

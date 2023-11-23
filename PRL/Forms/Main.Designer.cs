@@ -32,7 +32,6 @@
             panel1 = new Panel();
             btn_DangXuat = new Button();
             btn_KhuyenMai = new Button();
-            btn_VaiTro = new Button();
             btn_ThongKe = new Button();
             btn_BanHang = new Button();
             btn_HoaDon = new Button();
@@ -59,7 +58,6 @@
             panel1.BackColor = Color.RoyalBlue;
             panel1.Controls.Add(btn_DangXuat);
             panel1.Controls.Add(btn_KhuyenMai);
-            panel1.Controls.Add(btn_VaiTro);
             panel1.Controls.Add(btn_ThongKe);
             panel1.Controls.Add(btn_BanHang);
             panel1.Controls.Add(btn_HoaDon);
@@ -81,12 +79,13 @@
             btn_DangXuat.FlatStyle = FlatStyle.Flat;
             btn_DangXuat.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
             btn_DangXuat.ForeColor = Color.White;
-            btn_DangXuat.Location = new Point(0, 485);
+            btn_DangXuat.Location = new Point(0, 440);
             btn_DangXuat.Name = "btn_DangXuat";
             btn_DangXuat.Size = new Size(202, 45);
             btn_DangXuat.TabIndex = 9;
             btn_DangXuat.Text = "Log out";
             btn_DangXuat.UseVisualStyleBackColor = true;
+            btn_DangXuat.Click += btn_DangXuat_Click;
             btn_DangXuat.MouseEnter += btn_DangXuat_MouseEnter;
             btn_DangXuat.MouseLeave += btn_DangXuat_MouseLeave;
             // 
@@ -97,30 +96,15 @@
             btn_KhuyenMai.FlatStyle = FlatStyle.Flat;
             btn_KhuyenMai.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
             btn_KhuyenMai.ForeColor = Color.White;
-            btn_KhuyenMai.Location = new Point(0, 440);
+            btn_KhuyenMai.Location = new Point(0, 395);
             btn_KhuyenMai.Name = "btn_KhuyenMai";
             btn_KhuyenMai.Size = new Size(202, 45);
             btn_KhuyenMai.TabIndex = 8;
             btn_KhuyenMai.Text = "Sale";
             btn_KhuyenMai.UseVisualStyleBackColor = true;
+            btn_KhuyenMai.Click += btn_KhuyenMai_Click;
             btn_KhuyenMai.MouseEnter += btn_KhuyenMai_MouseEnter;
             btn_KhuyenMai.MouseLeave += btn_KhuyenMai_MouseLeave;
-            // 
-            // btn_VaiTro
-            // 
-            btn_VaiTro.Dock = DockStyle.Top;
-            btn_VaiTro.FlatAppearance.BorderSize = 0;
-            btn_VaiTro.FlatStyle = FlatStyle.Flat;
-            btn_VaiTro.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            btn_VaiTro.ForeColor = Color.White;
-            btn_VaiTro.Location = new Point(0, 395);
-            btn_VaiTro.Name = "btn_VaiTro";
-            btn_VaiTro.Size = new Size(202, 45);
-            btn_VaiTro.TabIndex = 7;
-            btn_VaiTro.Text = "Role";
-            btn_VaiTro.UseVisualStyleBackColor = true;
-            btn_VaiTro.MouseEnter += btn_VaiTro_MouseEnter;
-            btn_VaiTro.MouseLeave += btn_VaiTro_MouseLeave;
             // 
             // btn_ThongKe
             // 
@@ -135,6 +119,7 @@
             btn_ThongKe.TabIndex = 6;
             btn_ThongKe.Text = "Statistics";
             btn_ThongKe.UseVisualStyleBackColor = true;
+            btn_ThongKe.Click += btn_ThongKe_Click;
             btn_ThongKe.MouseEnter += btn_ThongKe_MouseEnter;
             btn_ThongKe.MouseLeave += btn_ThongKe_MouseLeave;
             // 
@@ -350,7 +335,6 @@
         private Button btn_KhachHang;
         private Button btn_DangXuat;
         private Button btn_KhuyenMai;
-        private Button btn_VaiTro;
         private Button btn_ThongKe;
         private Button btn_BanHang;
         private Button btn_HoaDon;

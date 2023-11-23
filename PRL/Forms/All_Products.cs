@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace PRL.Forms
 {
-    public partial class Admin_Customers : Form
+    public partial class All_Products : Form
     {
-        public Admin_Customers()
+        public All_Products()
         {
             InitializeComponent();
         }

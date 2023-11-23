@@ -16,5 +16,10 @@ namespace PRL.Forms
         {
             InitializeComponent();
         }
+
+        private void txt_TimKiemNV_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -10,11 +10,13 @@ using System.Windows.Forms;
 
 namespace PRL.Forms
 {
-    public partial class Statistic : Form
+    public partial class Sale : Form
     {
-        public Statistic()
+        public Sale()
         {
             InitializeComponent();
         }
+
+
     }
 }

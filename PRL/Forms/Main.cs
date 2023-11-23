@@ -87,15 +87,7 @@ namespace PRL.Forms
             btn_ThongKe.Font = new Font(btn_ThongKe.Font.FontFamily, 12);
         }
 
-        private void btn_VaiTro_MouseEnter(object sender, EventArgs e)
-        {
-            btn_VaiTro.Font = new Font(btn_VaiTro.Font.FontFamily, 14);
-        }
 
-        private void btn_VaiTro_MouseLeave(object sender, EventArgs e)
-        {
-            btn_VaiTro.Font = new Font(btn_VaiTro.Font.FontFamily, 12);
-        }
 
         private void btn_KhuyenMai_MouseEnter(object sender, EventArgs e)
         {
@@ -184,6 +176,21 @@ namespace PRL.Forms
         private void btn_BanHang_Click(object sender, EventArgs e)
         {
             OpenChildForm(new Forms.Vending2(), sender);
+        }
+
+        private void btn_KhuyenMai_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new Forms.Sale(), sender);
+        }
+
+        private void btn_ThongKe_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new Forms.Statistics(), sender);
+        }
+
+        private void btn_DangXuat_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -32,6 +32,7 @@
             dtg_SanPham = new DataGridView();
             groupBox1 = new GroupBox();
             panel2 = new Panel();
+            btn_Search = new Button();
             label2 = new Label();
             label1 = new Label();
             dtpk_Loc = new DateTimePicker();
@@ -68,6 +69,7 @@
             // 
             // panel2
             // 
+            panel2.Controls.Add(btn_Search);
             panel2.Controls.Add(label2);
             panel2.Controls.Add(label1);
             panel2.Controls.Add(dtpk_Loc);
@@ -78,6 +80,16 @@
             panel2.Name = "panel2";
             panel2.Size = new Size(1787, 272);
             panel2.TabIndex = 0;
+            // 
+            // btn_Search
+            // 
+            btn_Search.FlatAppearance.BorderSize = 0;
+            btn_Search.Location = new Point(1322, 89);
+            btn_Search.Name = "btn_Search";
+            btn_Search.Size = new Size(154, 74);
+            btn_Search.TabIndex = 41;
+            btn_Search.Text = "Search";
+            btn_Search.UseVisualStyleBackColor = true;
             // 
             // label2
             // 
@@ -125,7 +137,7 @@
             txt_TimKiemSP.Multiline = true;
             txt_TimKiemSP.Name = "txt_TimKiemSP";
             txt_TimKiemSP.PlaceholderText = "Search";
-            txt_TimKiemSP.Size = new Size(549, 48);
+            txt_TimKiemSP.Size = new Size(549, 38);
             txt_TimKiemSP.TabIndex = 36;
             // 
             // Admin_Bill
@@ -154,5 +166,6 @@
         private DateTimePicker dtpk_Loc;
         private Label label2;
         private Label label1;
+        private Button btn_Search;
     }
 }
