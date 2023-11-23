@@ -11,7 +11,9 @@ namespace DAL.Model
     {
         [Key]
         public Guid Id { get; set; }
-        public string Ten { get; set; }
+        public string Tenmakhuyenmai { get; set; }
+        public DateTime Thoigianbatdau { get; set; }
+        public DateTime Thoigianketthuc { get; set; }
         public int Giamgia { get; set; }
         public string Mota { get; set; }
 
