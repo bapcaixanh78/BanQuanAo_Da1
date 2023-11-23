@@ -13,7 +13,6 @@ namespace DAL.Model
         public Guid Id { get; set; }
         public string Ten { get; set; }
         public string Sdt { get; set; }
-        public string Trangthai { get; set; }
 
         //khoa ngoai
         public virtual ICollection<Hoadon> Hoadons { get; set; }

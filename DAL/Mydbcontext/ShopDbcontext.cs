@@ -53,12 +53,6 @@ namespace DAL.Mydbcontext
             .OnDelete(DeleteBehavior.Restrict);
 
 
-            //modelBuilder.Entity<Chitietsanpham>()
-            //.HasOne(p => p.Anhs)
-            //.WithOne(d => d.chitiet)
-            //.HasForeignKey<Anh>(d => d.Idanh);
-
-
             modelBuilder.Entity<Hoadon>()
             .HasOne(p => p.Nhanvien)
             .WithMany(c => c.Hoadons)
@@ -69,6 +63,13 @@ namespace DAL.Mydbcontext
             .HasOne(p => p.Khachhang)
             .WithMany(c => c.Hoadons)
             .HasForeignKey(p => p.Idkhachhang)
+            .OnDelete(DeleteBehavior.Restrict);
+
+
+            modelBuilder.Entity<Hoadon>()
+            .HasOne(p => p.khuyenmai)
+            .WithMany(c => c.Hoadons)
+            .HasForeignKey(p => p.Idkhuyenmai)
             .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<Hoadonchitiet>()

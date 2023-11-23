@@ -12,9 +12,9 @@ namespace DAL.Model
         [Key]
         public Guid Id { get; set; }
         public string Ten { get; set; }
-        public string Mota { get; set; }
         public int Giamgia { get; set; }
-        public string Kieugiamgia { get; set; }
+        public string Mota { get; set; }
+
 
         //khoa ngoai
         public virtual ICollection<Hoadon> Hoadons { get; set; }
