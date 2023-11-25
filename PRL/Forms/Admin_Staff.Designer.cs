@@ -36,20 +36,20 @@
             dtg_NhanVien = new DataGridView();
             groupBox1 = new GroupBox();
             panel1 = new Panel();
-            cmb_Roles = new ComboBox();
-            label8 = new Label();
+            cbb_role = new ComboBox();
             pictureBox1 = new PictureBox();
-            txt_Email = new TextBox();
-            txt_MK = new TextBox();
-            dtp_NgayTao = new DateTimePicker();
+            txt_Password = new TextBox();
+            txt_Account = new TextBox();
             txt_DiaChi = new TextBox();
             label6 = new Label();
-            label4 = new Label();
             label3 = new Label();
             txt_TenNV = new TextBox();
             label2 = new Label();
             label1 = new Label();
             groupBox2 = new GroupBox();
+            label8 = new Label();
+            txt_email = new TextBox();
+            label5 = new Label();
             ((System.ComponentModel.ISupportInitialize)dtg_NhanVien).BeginInit();
             groupBox1.SuspendLayout();
             panel1.SuspendLayout();
@@ -93,15 +93,13 @@
             // txt_TimKiemNV
             // 
             txt_TimKiemNV.BackColor = SystemColors.Info;
-            txt_TimKiemNV.Dock = DockStyle.Bottom;
             txt_TimKiemNV.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            txt_TimKiemNV.Location = new Point(4, 332);
+            txt_TimKiemNV.Location = new Point(8, 244);
             txt_TimKiemNV.Margin = new Padding(4);
             txt_TimKiemNV.Name = "txt_TimKiemNV";
             txt_TimKiemNV.PlaceholderText = "Search";
             txt_TimKiemNV.Size = new Size(336, 34);
             txt_TimKiemNV.TabIndex = 48;
-            txt_TimKiemNV.TextChanged += txt_TimKiemNV_TextChanged;
             // 
             // dtg_NhanVien
             // 
@@ -131,15 +129,15 @@
             // 
             // panel1
             // 
-            panel1.Controls.Add(cmb_Roles);
+            panel1.Controls.Add(txt_email);
+            panel1.Controls.Add(label5);
             panel1.Controls.Add(label8);
+            panel1.Controls.Add(cbb_role);
             panel1.Controls.Add(pictureBox1);
-            panel1.Controls.Add(txt_Email);
-            panel1.Controls.Add(txt_MK);
-            panel1.Controls.Add(dtp_NgayTao);
+            panel1.Controls.Add(txt_Password);
+            panel1.Controls.Add(txt_Account);
             panel1.Controls.Add(txt_DiaChi);
             panel1.Controls.Add(label6);
-            panel1.Controls.Add(label4);
             panel1.Controls.Add(label3);
             panel1.Controls.Add(txt_TenNV);
             panel1.Controls.Add(label2);
@@ -152,23 +150,14 @@
             panel1.Size = new Size(1787, 370);
             panel1.TabIndex = 51;
             // 
-            // cmb_Roles
+            // cbb_role
             // 
-            cmb_Roles.FormattingEnabled = true;
-            cmb_Roles.Location = new Point(963, 197);
-            cmb_Roles.Name = "cmb_Roles";
-            cmb_Roles.Size = new Size(265, 36);
-            cmb_Roles.TabIndex = 60;
-            // 
-            // label8
-            // 
-            label8.AutoSize = true;
-            label8.Location = new Point(784, 189);
-            label8.Margin = new Padding(4, 0, 4, 0);
-            label8.Name = "label8";
-            label8.Size = new Size(64, 28);
-            label8.TabIndex = 59;
-            label8.Text = "Role : ";
+            cbb_role.BackColor = SystemColors.Info;
+            cbb_role.FormattingEnabled = true;
+            cbb_role.Location = new Point(961, 137);
+            cbb_role.Name = "cbb_role";
+            cbb_role.Size = new Size(265, 36);
+            cbb_role.TabIndex = 59;
             // 
             // pictureBox1
             // 
@@ -181,40 +170,31 @@
             pictureBox1.TabIndex = 58;
             pictureBox1.TabStop = false;
             // 
-            // txt_Email
+            // txt_Password
             // 
-            txt_Email.BackColor = SystemColors.Info;
-            txt_Email.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            txt_Email.Location = new Point(440, 197);
-            txt_Email.Margin = new Padding(4);
-            txt_Email.Name = "txt_Email";
-            txt_Email.Size = new Size(265, 34);
-            txt_Email.TabIndex = 57;
+            txt_Password.BackColor = SystemColors.Info;
+            txt_Password.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            txt_Password.Location = new Point(440, 197);
+            txt_Password.Margin = new Padding(4);
+            txt_Password.Name = "txt_Password";
+            txt_Password.Size = new Size(265, 34);
+            txt_Password.TabIndex = 57;
             // 
-            // txt_MK
+            // txt_Account
             // 
-            txt_MK.BackColor = SystemColors.Info;
-            txt_MK.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            txt_MK.Location = new Point(440, 137);
-            txt_MK.Margin = new Padding(4);
-            txt_MK.Name = "txt_MK";
-            txt_MK.Size = new Size(265, 34);
-            txt_MK.TabIndex = 56;
-            // 
-            // dtp_NgayTao
-            // 
-            dtp_NgayTao.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            dtp_NgayTao.Location = new Point(963, 77);
-            dtp_NgayTao.Margin = new Padding(4);
-            dtp_NgayTao.Name = "dtp_NgayTao";
-            dtp_NgayTao.Size = new Size(265, 34);
-            dtp_NgayTao.TabIndex = 55;
+            txt_Account.BackColor = SystemColors.Info;
+            txt_Account.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            txt_Account.Location = new Point(440, 137);
+            txt_Account.Margin = new Padding(4);
+            txt_Account.Name = "txt_Account";
+            txt_Account.Size = new Size(265, 34);
+            txt_Account.TabIndex = 56;
             // 
             // txt_DiaChi
             // 
             txt_DiaChi.BackColor = SystemColors.Info;
             txt_DiaChi.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            txt_DiaChi.Location = new Point(963, 137);
+            txt_DiaChi.Location = new Point(961, 77);
             txt_DiaChi.Margin = new Padding(4);
             txt_DiaChi.Name = "txt_DiaChi";
             txt_DiaChi.Size = new Size(265, 34);
@@ -223,32 +203,22 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(784, 137);
+            label6.Location = new Point(782, 77);
             label6.Margin = new Padding(4, 0, 4, 0);
             label6.Name = "label6";
             label6.Size = new Size(86, 28);
             label6.TabIndex = 53;
             label6.Text = "Address:";
             // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Location = new Point(784, 77);
-            label4.Margin = new Padding(4, 0, 4, 0);
-            label4.Name = "label4";
-            label4.Size = new Size(144, 28);
-            label4.TabIndex = 52;
-            label4.Text = "Creation date : ";
-            // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(264, 189);
+            label3.Location = new Point(264, 200);
             label3.Margin = new Padding(4, 0, 4, 0);
             label3.Name = "label3";
-            label3.Size = new Size(73, 28);
+            label3.Size = new Size(102, 28);
             label3.TabIndex = 51;
-            label3.Text = "Email : ";
+            label3.Text = "Password: ";
             // 
             // txt_TenNV
             // 
@@ -266,9 +236,9 @@
             label2.Location = new Point(264, 137);
             label2.Margin = new Padding(4, 0, 4, 0);
             label2.Name = "label2";
-            label2.Size = new Size(102, 28);
+            label2.Size = new Size(88, 28);
             label2.TabIndex = 49;
-            label2.Text = "Password :";
+            label2.Text = "Account:";
             // 
             // label1
             // 
@@ -276,9 +246,9 @@
             label1.Location = new Point(264, 77);
             label1.Margin = new Padding(4, 0, 4, 0);
             label1.Name = "label1";
-            label1.Size = new Size(131, 28);
+            label1.Size = new Size(105, 28);
             label1.TabIndex = 48;
-            label1.Text = "User's name : ";
+            label1.Text = "Full name: ";
             // 
             // groupBox2
             // 
@@ -295,6 +265,36 @@
             groupBox2.TabIndex = 0;
             groupBox2.TabStop = false;
             groupBox2.Text = "Services";
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Location = new Point(782, 143);
+            label8.Margin = new Padding(4, 0, 4, 0);
+            label8.Name = "label8";
+            label8.Size = new Size(54, 28);
+            label8.TabIndex = 60;
+            label8.Text = "Role:";
+            // 
+            // txt_email
+            // 
+            txt_email.BackColor = SystemColors.Info;
+            txt_email.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            txt_email.Location = new Point(961, 194);
+            txt_email.Margin = new Padding(4);
+            txt_email.Name = "txt_email";
+            txt_email.Size = new Size(265, 34);
+            txt_email.TabIndex = 64;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(782, 197);
+            label5.Margin = new Padding(4, 0, 4, 0);
+            label5.Name = "label5";
+            label5.Size = new Size(68, 28);
+            label5.TabIndex = 63;
+            label5.Text = "Email: ";
             // 
             // Admin_Staff
             // 
@@ -322,8 +322,6 @@
         private RichTextBox rtxt_MoTa;
         private ComboBox cmb_Size;
         private ComboBox cmb_Color;
-        private Label label7;
-        private Label label5;
         private TextBox txt_SoLuong;
         private TextBox txtGiaBan;
         private DataGridView dtg_SanPham;
@@ -337,18 +335,18 @@
         private GroupBox groupBox1;
         private Panel panel1;
         private GroupBox groupBox2;
-        private TextBox txt_Email;
-        private TextBox txt_MK;
-        private DateTimePicker dtp_NgayTao;
+        private TextBox txt_Password;
+        private TextBox txt_Account;
         private TextBox txt_DiaChi;
         private Label label6;
-        private Label label4;
         private Label label3;
         private TextBox txt_TenNV;
         private Label label2;
         private Label label1;
         private PictureBox pictureBox1;
+        private ComboBox cbb_role;
         private Label label8;
-        private ComboBox cmb_Roles;
+        private TextBox txt_email;
+        private Label label5;
     }
 }
