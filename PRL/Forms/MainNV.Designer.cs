@@ -77,6 +77,7 @@
             btn_ThongKe.TabIndex = 6;
             btn_ThongKe.Text = "Statistics";
             btn_ThongKe.UseVisualStyleBackColor = true;
+            btn_ThongKe.Click += btn_ThongKe_Click_1;
             btn_ThongKe.MouseEnter += btn_ThongKe_MouseEnter;
             btn_ThongKe.MouseLeave += btn_ThongKe_MouseLeave;
             // 

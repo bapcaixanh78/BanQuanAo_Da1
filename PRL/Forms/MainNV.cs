@@ -99,14 +99,23 @@ namespace PRL.Forms
             OpenChildForm(new Forms.Vending2(), sender);
         }
 
-        private void btn_ThongKe_Click(object sender, EventArgs e)
-        {
-
-        }
+        
 
         private void btn_DangXuat_Click(object sender, EventArgs e)
         {
+            var option = MessageBox.Show("Confirm logout", "Confirm", MessageBoxButtons.YesNo);
+            if (option == DialogResult.Yes)
+            {
+                login login = new login();
+                login.Show();
+                this.Hide();
 
+
+            }
+            else
+            {
+                return;
+            }
         }
 
         private void btnCloseChildForm_Click(object sender, EventArgs e)
@@ -114,6 +123,11 @@ namespace PRL.Forms
             if (activeForm != null)
                 activeForm.Close();
             Reset();
+        }
+
+        private void btn_ThongKe_Click_1(object sender, EventArgs e)
+        {
+            OpenChildForm(new Forms.Statistics(), sender);
         }
     }
 }
