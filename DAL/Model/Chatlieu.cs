@@ -13,11 +13,13 @@ namespace DAL.Model
     {
         [Key]
         public Guid Id { get; set; }
-        [Column(TypeName = "nvarchar")]
+        [Column(TypeName = "nvarchar(500)")]
         public string Ten { get; set; }
-        [Column(TypeName = "nvarchar")]
+        [Column(TypeName = "nvarchar(500)")]
+
         public string Mota { get; set; }
-        [Column(TypeName = "nvarchar")]
+        [Column(TypeName = "nvarchar(500)")]
+
         public string Trangthai { get; set; }
 
         public virtual ICollection<Chitietsanpham> Chitietsanphams { get; set; }

@@ -14,9 +14,11 @@ namespace DAL.Model
         [Key]
         public Guid Id { get; set; }
         public DateTime Ngaytao { get; set; }
-        [Column(TypeName = "nvarchar")]
+        [Column(TypeName = "nvarchar(500)")]
+
         public string Ghichu { get; set; }
-        [Column(TypeName = "nvarchar")]
+        [Column(TypeName = "nvarchar(500)")]
+
         public string Trangthai { get; set; }
 
         //khoa ngoai

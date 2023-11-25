@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
+﻿using FSharp.Data.Runtime.StructuralTypes;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -13,19 +15,26 @@ namespace DAL.Model
     {
         [Key]
         public Guid Id { get; set; }
-        [Column(TypeName = "nvarchar")]
+        [Column(TypeName = "nvarchar(500)")]
+
         public string Ten { get; set; }
         public string Password { get; set; }
         public string Email { get; set; }
-        [Column(TypeName = "nvarchar")]
+        [Column(TypeName = "nvarchar(500)")]
+
         public string Diachi { get; set; }
         public DateTime Ngaytao { get; set; }
-        [Column(TypeName = "nvarchar")]
+
+        public int Quyen { get; set; }
+
+        public string Taikhoan { get; set; }
+        public string Matkhau { get; set; }
+
+        [Column(TypeName = "nvarchar(500)")]
+
         public string Trangthai { get; set; }
 
         //khoa ngoai
-        public Guid Idquyen { get; set; }
-        public virtual Quyen quyen { get; set; }
 
         public virtual ICollection<Hoadon> Hoadons { get; set; }
         

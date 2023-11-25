@@ -84,13 +84,6 @@ namespace DAL.Mydbcontext
             .HasForeignKey(p => p.Idchitietsanpham)
             .OnDelete(DeleteBehavior.Restrict);
 
-            modelBuilder.Entity<Nhanvien>()
-            .HasOne(p => p.quyen)
-            .WithMany(c => c.Nhanviens)
-            .HasForeignKey(p => p.Idquyen)
-            .OnDelete(DeleteBehavior.Restrict);
-
-
         }
 
         public DbSet<Anh> Anhs { get; set; }
@@ -104,7 +97,6 @@ namespace DAL.Mydbcontext
         public DbSet<Kichthuoc> Kichthuocs { get; set; }
         public DbSet<Mauao> Mauaos { get; set; }
         public DbSet<Nhanvien> Nhanvien { get; set; }
-        public DbSet<Quyen> Quyens { get; set; }
         public DbSet<Sanpham> Sanphams { get; set; }
 
 

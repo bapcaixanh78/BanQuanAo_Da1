@@ -16,10 +16,12 @@ namespace DAL.Model
         public decimal Giaban { get; set; }
         public DateTime Ngaytao { get; set; }
         public int Soluongton { get; set; }
-        [Column(TypeName = "nvarchar")]
+        [Column(TypeName = "nvarchar(500)")]
+
         public string Mota { get; set; }
         public DateTime Ngaycapnhat { get; set; }
-        [Column(TypeName = "nvarchar")]
+        [Column(TypeName = "nvarchar(500)")]
+
         public string Trangthai { get; set; }
 
         //khoa ngoai

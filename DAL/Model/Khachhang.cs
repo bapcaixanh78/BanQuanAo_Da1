@@ -13,7 +13,8 @@ namespace DAL.Model
     {
         [Key]
         public Guid Id { get; set; }
-        [Column(TypeName = "nvarchar")]
+        [Column(TypeName = "nvarchar(500)")]
+
         public string Ten { get; set; }
         public string Sdt { get; set; }
 
