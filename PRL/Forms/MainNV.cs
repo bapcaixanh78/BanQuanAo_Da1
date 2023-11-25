@@ -96,7 +96,7 @@ namespace PRL.Forms
 
         private void btn_BanHang_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new Forms.Vending(), sender);
+            OpenChildForm(new Forms.Vending2(), sender);
         }
 
         private void btn_ThongKe_Click(object sender, EventArgs e)

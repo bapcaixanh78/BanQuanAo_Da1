@@ -190,7 +190,19 @@ namespace PRL.Forms
 
         private void btn_DangXuat_Click(object sender, EventArgs e)
         {
-
+            var option = MessageBox.Show("Confirm logout", "Confirm", MessageBoxButtons.YesNo);
+            if (option == DialogResult.Yes)
+            {
+                login login = new login();
+                login.Show();
+                this.Hide();
+                
+                
+            }
+            else
+            {
+                return;
+            }
         }
     }
 }

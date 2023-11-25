@@ -83,6 +83,7 @@
             btn_Update.TabIndex = 9;
             btn_Update.Text = "Update";
             btn_Update.UseVisualStyleBackColor = true;
+            btn_Update.Click += btn_Update_Click;
             // 
             // txt_TimKiemKH
             // 
