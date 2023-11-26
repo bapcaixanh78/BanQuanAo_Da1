@@ -1,6 +1,7 @@
 ﻿using DAL.IRepositories;
 using DAL.Model;
 using DAL.Mydbcontext;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,20 +19,31 @@ namespace DAL.Repositories
         }
         public bool Add(Chitietsanpham CTSP)
         {
-            throw new NotImplementedException();
+            _shopDbcontext.Add(CTSP);
+            _shopDbcontext.SaveChanges();
+            return true;
         }
 
         public bool Delete(Chitietsanpham CTSP)
         {
-            throw new NotImplementedException();
+            _shopDbcontext.Remove(CTSP);
+            _shopDbcontext.SaveChanges();
+            return true;
         }
 
         public List<Chitietsanpham> GetAll()
         {
-            throw new NotImplementedException();
+            return _shopDbcontext.Chitietsanphams.ToList();
         }
 
-        public bool Update(Chitietsanpham CTSP)
+        public bool Update(Guid id, Chitietsanpham CTSP)
+        {
+            _shopDbcontext.Update(CTSP);
+            _shopDbcontext.SaveChanges();
+            return true;
+        }
+
+        public bool Update(Chitietsanpham clone)
         {
             throw new NotImplementedException();
         }

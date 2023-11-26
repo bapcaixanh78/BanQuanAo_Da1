@@ -10,7 +10,7 @@ namespace DAL.IRepositories
     internal interface IDetailProductsRP
     {
         public bool Add(Chitietsanpham CTSP);
-        public bool Update(Chitietsanpham CTSP);
+        public bool Update(Guid id,Chitietsanpham CTSP);
         public bool Delete(Chitietsanpham CTSP);
         public List<Chitietsanpham> GetAll();
 
