@@ -7,9 +7,10 @@ using System.Threading.Tasks;
 
 namespace BUS.IServices
 {
-    internal interface IProductsSV
+    public interface IProductsSV
     {
         public string Add(Sanpham SP);
+        public Sanpham Findbyid(Guid id);
         public string Update(Sanpham SP);
         public string Delete(Sanpham SP);
         public List<Sanpham> GetSP(string search);

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BUS.IServices
 {
-    internal interface ICustomersSV
+    public interface ICustomersSV
     {
         public string Update(Khachhang kh);
         public string Delete(Khachhang kh);

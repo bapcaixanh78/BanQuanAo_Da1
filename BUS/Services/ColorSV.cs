@@ -13,7 +13,7 @@ namespace BUS.Services
     {
         private ColorRP ColorRP;
 
-            public ColorSV()
+        public ColorSV()
         {
             ColorRP = new ColorRP();
         }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BUS.IServices
 {
-    internal interface IStaffSV
+    public interface IStaffSV
     {
         public string Add(Nhanvien NV);
         public string Update(Nhanvien NV);

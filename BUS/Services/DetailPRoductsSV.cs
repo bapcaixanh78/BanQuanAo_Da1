@@ -61,7 +61,11 @@ namespace BUS.Services
             }
         }
 
-       
+        public List<Chitietsanpham> GetAll1()
+        {
+            return detailProductsRP.GetAll();
+
+        }
 
         public string Update(Chitietsanpham CTSP, Sanpham SP)
         {

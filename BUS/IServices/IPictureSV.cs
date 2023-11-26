@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BUS.IServices
 {
-    internal interface IPictureSV
+    public interface IPictureSV
     {
         
     }

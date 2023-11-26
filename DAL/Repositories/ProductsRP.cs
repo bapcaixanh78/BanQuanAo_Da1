@@ -28,7 +28,7 @@ namespace DAL.Repositories
 
         public List<Sanpham> GetAll()
         {
-            throw new NotImplementedException();
+            return _dbcontext.Sanphams.ToList();
         }
 
         public bool Update(Sanpham SP)

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DAL.Migrations
 {
     [DbContext(typeof(ShopDbcontext))]
-    [Migration("20231126053054_12H27PM2611")]
-    partial class _12H27PM2611
+    [Migration("20231126055002_12H49PM2611")]
+    partial class _12H49PM2611
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

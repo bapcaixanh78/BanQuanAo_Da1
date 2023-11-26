@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BUS.IServices
 {
-    internal interface IStatisticSV
+    public interface IStatisticSV
     {
         public List<Hoadonchitiet> GetAll();
     }

@@ -26,6 +26,8 @@ namespace BUS.Services
             throw new NotImplementedException();
         }
 
+
+
         public List<Sanpham> GetSP(string search)
         {
             throw new NotImplementedException();
@@ -34,6 +36,11 @@ namespace BUS.Services
         public string Update(Sanpham SP)
         {
             throw new NotImplementedException();
+        }
+
+        public Sanpham Findbyid(Guid id)
+        {
+            return productsRP.GetAll().FirstOrDefault(c => c.Id == id);
         }
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BUS.IServices
 {
-    internal interface IDetailBillSV
+    public interface IDetailBillSV
     {
     }
 }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BUS.IServices
 {
-    internal interface ISaleSV
+    public interface ISaleSV
     {
         public string Update(Khuyenmai KM);
         public string Add(Khuyenmai KM);

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BUS.IServices
 {
-    internal interface IColorSV
+    public interface IColorSV
     {
         public List<Mauao> GetMauaos();
     }

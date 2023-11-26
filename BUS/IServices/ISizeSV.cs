@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BUS.IServices
 {
-    internal interface ISizeSV
+    public interface ISizeSV
     {
         public List<Kichthuoc> GetKichthuocs();
     }

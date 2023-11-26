@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BUS.IServices
 {
-    internal interface IMaterialSV
+    public interface IMaterialSV
     {
         public List<Chatlieu> GetChatlieus();
     }
