@@ -18,7 +18,8 @@ namespace DAL.Model
         [Column(TypeName = "nvarchar(500)")]
 
         public string Ten { get; set; }
-        public string Password { get; set; }
+        public string Taikhoan { get; set; }
+        public string Matkhau { get; set; }
         public string Email { get; set; }
         [Column(TypeName = "nvarchar(500)")]
 
@@ -27,8 +28,7 @@ namespace DAL.Model
 
         public int Quyen { get; set; }
 
-        public string Taikhoan { get; set; }
-        public string Matkhau { get; set; }
+
 
         [Column(TypeName = "nvarchar(500)")]
 
