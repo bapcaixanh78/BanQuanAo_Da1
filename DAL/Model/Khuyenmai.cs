@@ -21,7 +21,7 @@ namespace DAL.Model
         public int Giamgia { get; set; }
         [Column(TypeName = "nvarchar(500)")]
 
-        public string Mota { get; set; }
+        public string? Mota { get; set; }
 
 
         //khoa ngoai

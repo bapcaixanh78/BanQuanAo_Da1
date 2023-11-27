@@ -36,16 +36,13 @@ namespace DAL.Repositories
             return _shopDbcontext.Chitietsanphams.ToList();
         }
 
-        public bool Update(Guid id, Chitietsanpham CTSP)
-        {
-            _shopDbcontext.Update(CTSP);
-            _shopDbcontext.SaveChanges();
-            return true;
-        }
+        
 
         public bool Update(Chitietsanpham clone)
         {
-            throw new NotImplementedException();
+            _shopDbcontext.Update(clone);
+            _shopDbcontext.SaveChanges();
+            return true;
         }
     }
 }

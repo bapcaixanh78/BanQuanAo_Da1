@@ -18,9 +18,9 @@ namespace BUS.Services
             detailProductsRP = new DetailProductsRP();
             productsRP = new ProductsRP();
         }
-        public string Add(Chitietsanpham CTSP,Sanpham SP)
+        public string Add(Chitietsanpham CTSP)
         {
-            if (detailProductsRP.Add(CTSP) == true && productsRP.Add(SP)) 
+            if (detailProductsRP.Add(CTSP) == true) 
             {
                 return "You have added successfully";
             }
@@ -32,12 +32,12 @@ namespace BUS.Services
 
         
 
-        public string Delete(Chitietsanpham CTSP, Sanpham SP)
+        public string Delete(Chitietsanpham CTSP)
         {
             var clone = detailProductsRP.GetAll().FirstOrDefault(x => x.Id == CTSP.Id);
-            var clone1 = productsRP.GetAll().FirstOrDefault(y => y.Id == SP.Id);
+            
 
-            if (detailProductsRP.Delete(clone) == true && productsRP.Delete(clone1) == true)
+            if (detailProductsRP.Delete(clone) == true )
             {
                 return "You have removed successfully";
             }
@@ -61,25 +61,34 @@ namespace BUS.Services
             }
         }
 
-        public List<Chitietsanpham> GetAll1()
+        public List<Chitietsanpham> GetAll1(string search)
         {
+            //if (search == null)
+            //{
             return detailProductsRP.GetAll();
+            //}
+            //else
+            //{
+            //    return detailProductsRP.GetAll().Where(x => x.Sanpham.Ten.ToLower().Trim().Contains(search)).ToList();
+            //}
+
 
         }
 
-        public string Update(Chitietsanpham CTSP, Sanpham SP)
+        
+
+        public string Update(Chitietsanpham CTSP)
         {
             var clone = detailProductsRP.GetAll().FirstOrDefault(x => x.Id == CTSP.Id);
-            var clone1 = productsRP.GetAll().FirstOrDefault(z => z.Id == SP.Id);
-            clone1.Ten = SP.Ten;
+            
             clone.Gianhap = CTSP.Gianhap;
             clone.Giaban = CTSP.Giaban;
             clone.Soluongton = CTSP.Soluongton;
-            clone.Mauao = CTSP.Mauao;
-            clone.Kichthuoc = CTSP.Kichthuoc;
-            clone.Chatlieu = CTSP.Chatlieu;
-            clone.Mota=CTSP.Mota;
-            if (detailProductsRP.Update(clone) == true&& productsRP.Update(clone1))
+            clone.Idmauao = CTSP.Idmauao;
+            clone.Idkichthuoc = CTSP.Idkichthuoc;
+            clone.Idchatlieu = CTSP.Idchatlieu;
+            clone.Mota = CTSP.Mota;
+            if (detailProductsRP.Update(clone))
             {
                 return "Sửa thành công";
             }
@@ -88,8 +97,6 @@ namespace BUS.Services
                 return "Sửa thất bại";
             }
         }
-
-        
-        }
+    }
     }
 

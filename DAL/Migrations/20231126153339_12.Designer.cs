@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DAL.Migrations
 {
     [DbContext(typeof(ShopDbcontext))]
-    [Migration("20231126055002_12H49PM2611")]
-    partial class _12H49PM2611
+    [Migration("20231126153339_12")]
+    partial class _12
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -50,7 +50,6 @@ namespace DAL.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Mota")
-                        .IsRequired()
                         .HasColumnType("nvarchar(500)");
 
                     b.Property<string>("Ten")
@@ -97,7 +96,6 @@ namespace DAL.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Mota")
-                        .IsRequired()
                         .HasColumnType("nvarchar(500)");
 
                     b.Property<DateTime>("Ngaycapnhat")
@@ -160,7 +158,6 @@ namespace DAL.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Ghichu")
-                        .IsRequired()
                         .HasColumnType("nvarchar(500)");
 
                     b.Property<Guid>("Idkhachhang")
@@ -246,7 +243,6 @@ namespace DAL.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Mota")
-                        .IsRequired()
                         .HasColumnType("nvarchar(500)");
 
                     b.Property<string>("Tenmakhuyenmai")

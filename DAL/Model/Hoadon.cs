@@ -16,7 +16,7 @@ namespace DAL.Model
         public DateTime Ngaytao { get; set; }
         [Column(TypeName = "nvarchar(500)")]
 
-        public string Ghichu { get; set; }
+        public string? Ghichu { get; set; }
         [Column(TypeName = "nvarchar(500)")]
 
         public string Trangthai { get; set; }

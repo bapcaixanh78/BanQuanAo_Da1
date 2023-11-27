@@ -11,6 +11,8 @@ namespace BUS.IServices
     {
         public string Add(Sanpham SP);
         public Sanpham Findbyid(Guid id);
+
+        public Guid FindIDbyName(string name);
         public string Update(Sanpham SP);
         public string Delete(Sanpham SP);
         public List<Sanpham> GetSP(string search);

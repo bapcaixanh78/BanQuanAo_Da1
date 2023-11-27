@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DAL.IRepositories
 {
-    internal interface IMaterialRP
+    public interface IMaterialRP
     {
         public List<Chatlieu> GetChatlieus();
     }

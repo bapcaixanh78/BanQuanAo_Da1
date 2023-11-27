@@ -51,10 +51,11 @@
             groupBox1 = new GroupBox();
             groupBox2 = new GroupBox();
             groupBox3 = new GroupBox();
+            cmb_Material = new ComboBox();
+            label8 = new Label();
             pictureBox1 = new PictureBox();
             panel1 = new Panel();
-            label8 = new Label();
-            cmb_Material = new ComboBox();
+            btn_clear = new Button();
             ((System.ComponentModel.ISupportInitialize)dtg_SanPham).BeginInit();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
@@ -74,17 +75,21 @@
             dtg_SanPham.RowTemplate.Height = 29;
             dtg_SanPham.Size = new Size(1781, 186);
             dtg_SanPham.TabIndex = 17;
+            dtg_SanPham.CellClick += dtg_SanPham_CellClick;
+            dtg_SanPham.CellLeave += dtg_SanPham_CellLeave;
             // 
             // txt_TimKiemSP
             // 
             txt_TimKiemSP.BackColor = SystemColors.Info;
+            txt_TimKiemSP.Dock = DockStyle.Bottom;
             txt_TimKiemSP.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            txt_TimKiemSP.Location = new Point(6, 176);
+            txt_TimKiemSP.Location = new Point(3, 396);
             txt_TimKiemSP.Multiline = true;
             txt_TimKiemSP.Name = "txt_TimKiemSP";
             txt_TimKiemSP.PlaceholderText = "Search";
-            txt_TimKiemSP.Size = new Size(416, 42);
+            txt_TimKiemSP.Size = new Size(335, 42);
             txt_TimKiemSP.TabIndex = 16;
+            txt_TimKiemSP.TextChanged += txt_TimKiemSP_TextChanged;
             // 
             // btn_Update
             // 
@@ -95,6 +100,7 @@
             btn_Update.TabIndex = 15;
             btn_Update.Text = "Update";
             btn_Update.UseVisualStyleBackColor = true;
+            btn_Update.Click += btn_Update_Click;
             // 
             // btn_Del
             // 
@@ -105,6 +111,7 @@
             btn_Del.TabIndex = 14;
             btn_Del.Text = "Delete";
             btn_Del.UseVisualStyleBackColor = true;
+            btn_Del.Click += btn_Del_Click;
             // 
             // btn_Add
             // 
@@ -115,6 +122,7 @@
             btn_Add.TabIndex = 13;
             btn_Add.Text = "Add";
             btn_Add.UseVisualStyleBackColor = true;
+            btn_Add.Click += btn_Add_Click;
             // 
             // txtGiaNhap
             // 
@@ -258,6 +266,7 @@
             // 
             // groupBox2
             // 
+            groupBox2.Controls.Add(btn_clear);
             groupBox2.Controls.Add(btn_Del);
             groupBox2.Controls.Add(txt_TimKiemSP);
             groupBox2.Controls.Add(btn_Update);
@@ -296,6 +305,25 @@
             groupBox3.TabIndex = 31;
             groupBox3.TabStop = false;
             // 
+            // cmb_Material
+            // 
+            cmb_Material.BackColor = SystemColors.Info;
+            cmb_Material.FormattingEnabled = true;
+            cmb_Material.Location = new Point(839, 307);
+            cmb_Material.Name = "cmb_Material";
+            cmb_Material.Size = new Size(329, 28);
+            cmb_Material.TabIndex = 33;
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label8.Location = new Point(648, 307);
+            label8.Name = "label8";
+            label8.Size = new Size(93, 28);
+            label8.TabIndex = 32;
+            label8.Text = "Material :";
+            // 
             // pictureBox1
             // 
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
@@ -316,24 +344,16 @@
             panel1.Size = new Size(1787, 441);
             panel1.TabIndex = 32;
             // 
-            // label8
+            // btn_clear
             // 
-            label8.AutoSize = true;
-            label8.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label8.Location = new Point(648, 307);
-            label8.Name = "label8";
-            label8.Size = new Size(93, 28);
-            label8.TabIndex = 32;
-            label8.Text = "Material :";
-            // 
-            // cmb_Material
-            // 
-            cmb_Material.BackColor = SystemColors.Info;
-            cmb_Material.FormattingEnabled = true;
-            cmb_Material.Location = new Point(839, 307);
-            cmb_Material.Name = "cmb_Material";
-            cmb_Material.Size = new Size(329, 28);
-            cmb_Material.TabIndex = 33;
+            btn_clear.Dock = DockStyle.Top;
+            btn_clear.Location = new Point(3, 155);
+            btn_clear.Name = "btn_clear";
+            btn_clear.Size = new Size(335, 44);
+            btn_clear.TabIndex = 17;
+            btn_clear.Text = "Clear Form";
+            btn_clear.UseVisualStyleBackColor = true;
+            btn_clear.Click += btn_clear_Click;
             // 
             // Admin_Products
             // 
@@ -384,5 +404,6 @@
         private Panel panel1;
         private Label label8;
         private ComboBox cmb_Material;
+        private Button btn_clear;
     }
 }

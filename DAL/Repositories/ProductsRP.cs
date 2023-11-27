@@ -18,12 +18,16 @@ namespace DAL.Repositories
         }
         public bool Add(Sanpham SP)
         {
-            throw new NotImplementedException();
+            _dbcontext.Add(SP);
+            _dbcontext.SaveChanges();
+            return true;
         }
 
         public bool Delete(Sanpham SP)
         {
-            throw new NotImplementedException();
+            _dbcontext.Remove(SP);
+            _dbcontext.SaveChanges();
+            return true;
         }
 
         public List<Sanpham> GetAll()
@@ -33,7 +37,9 @@ namespace DAL.Repositories
 
         public bool Update(Sanpham SP)
         {
-            throw new NotImplementedException();
+            _dbcontext.Update(SP);
+            _dbcontext.SaveChanges();
+            return true;
         }
     }
 }

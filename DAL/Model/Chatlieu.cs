@@ -17,7 +17,7 @@ namespace DAL.Model
         public string Ten { get; set; }
         [Column(TypeName = "nvarchar(500)")]
 
-        public string Mota { get; set; }
+        public string? Mota { get; set; }
         [Column(TypeName = "nvarchar(500)")]
 
         public string Trangthai { get; set; }
