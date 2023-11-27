@@ -11,6 +11,8 @@ namespace DAL.IRepositories
     {
         public bool Add(Khuyenmai KM);
         public bool Update(Khuyenmai KM);
+        public bool Delete(Khuyenmai KM);
+        public List<Khuyenmai> GetKhuyemaiByName(string name);
         public List<Khuyenmai> GetAll();
     }
 }

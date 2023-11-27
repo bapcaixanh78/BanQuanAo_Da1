@@ -30,6 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Sale));
             panel1 = new Panel();
+            txt_MoTa = new TextBox();
+            label5 = new Label();
             dtpk_EndDate = new DateTimePicker();
             dtpk_StartDate = new DateTimePicker();
             pictureBox1 = new PictureBox();
@@ -45,6 +47,7 @@
             btn_Add = new Button();
             btn_Update = new Button();
             txt_Search = new TextBox();
+            btn_Delete = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             groupBox1.SuspendLayout();
@@ -54,6 +57,8 @@
             // 
             // panel1
             // 
+            panel1.Controls.Add(txt_MoTa);
+            panel1.Controls.Add(label5);
             panel1.Controls.Add(dtpk_EndDate);
             panel1.Controls.Add(dtpk_StartDate);
             panel1.Controls.Add(pictureBox1);
@@ -68,10 +73,26 @@
             panel1.Size = new Size(1344, 336);
             panel1.TabIndex = 0;
             // 
+            // txt_MoTa
+            // 
+            txt_MoTa.Location = new Point(470, 243);
+            txt_MoTa.Name = "txt_MoTa";
+            txt_MoTa.Size = new Size(336, 27);
+            txt_MoTa.TabIndex = 77;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(311, 246);
+            label5.Name = "label5";
+            label5.Size = new Size(51, 20);
+            label5.TabIndex = 76;
+            label5.Text = "Mô tả:";
+            // 
             // dtpk_EndDate
             // 
             dtpk_EndDate.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            dtpk_EndDate.Location = new Point(454, 192);
+            dtpk_EndDate.Location = new Point(470, 128);
             dtpk_EndDate.Margin = new Padding(4);
             dtpk_EndDate.Name = "dtpk_EndDate";
             dtpk_EndDate.Size = new Size(336, 34);
@@ -80,7 +101,7 @@
             // dtpk_StartDate
             // 
             dtpk_StartDate.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            dtpk_StartDate.Location = new Point(454, 139);
+            dtpk_StartDate.Location = new Point(470, 75);
             dtpk_StartDate.Margin = new Padding(4);
             dtpk_StartDate.Name = "dtpk_StartDate";
             dtpk_StartDate.Size = new Size(336, 34);
@@ -90,7 +111,7 @@
             // 
             pictureBox1.Anchor = AnchorStyles.None;
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(86, 82);
+            pictureBox1.Location = new Point(102, 18);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(192, 172);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -101,7 +122,7 @@
             // 
             txt_MinBill.BackColor = SystemColors.Info;
             txt_MinBill.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            txt_MinBill.Location = new Point(454, 245);
+            txt_MinBill.Location = new Point(470, 181);
             txt_MinBill.Margin = new Padding(4);
             txt_MinBill.Name = "txt_MinBill";
             txt_MinBill.Size = new Size(336, 34);
@@ -110,7 +131,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(295, 259);
+            label4.Location = new Point(311, 195);
             label4.Margin = new Padding(4, 0, 4, 0);
             label4.Name = "label4";
             label4.Size = new Size(70, 20);
@@ -120,7 +141,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(295, 206);
+            label3.Location = new Point(311, 142);
             label3.Margin = new Padding(4, 0, 4, 0);
             label3.Name = "label3";
             label3.Size = new Size(79, 20);
@@ -131,7 +152,7 @@
             // 
             txt_TenSale.BackColor = SystemColors.Info;
             txt_TenSale.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            txt_TenSale.Location = new Point(454, 90);
+            txt_TenSale.Location = new Point(470, 26);
             txt_TenSale.Margin = new Padding(4);
             txt_TenSale.Name = "txt_TenSale";
             txt_TenSale.Size = new Size(336, 34);
@@ -140,7 +161,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(295, 153);
+            label2.Location = new Point(311, 89);
             label2.Margin = new Padding(4, 0, 4, 0);
             label2.Name = "label2";
             label2.Size = new Size(81, 20);
@@ -150,7 +171,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(295, 100);
+            label1.Location = new Point(311, 36);
             label1.Margin = new Padding(4, 0, 4, 0);
             label1.Name = "label1";
             label1.Size = new Size(98, 20);
@@ -180,9 +201,11 @@
             dtg_Sale.RowTemplate.Height = 29;
             dtg_Sale.Size = new Size(1781, 297);
             dtg_Sale.TabIndex = 0;
+            dtg_Sale.CellClick += dtg_Sale_CellClick;
             // 
             // groupBox2
             // 
+            groupBox2.Controls.Add(btn_Delete);
             groupBox2.Controls.Add(btn_Add);
             groupBox2.Controls.Add(btn_Update);
             groupBox2.Controls.Add(txt_Search);
@@ -205,6 +228,7 @@
             btn_Add.TabIndex = 77;
             btn_Add.Text = "Add";
             btn_Add.UseVisualStyleBackColor = true;
+            btn_Add.Click += btn_Add_Click;
             // 
             // btn_Update
             // 
@@ -216,6 +240,7 @@
             btn_Update.TabIndex = 78;
             btn_Update.Text = "Update";
             btn_Update.UseVisualStyleBackColor = true;
+            btn_Update.Click += btn_Update_Click;
             // 
             // txt_Search
             // 
@@ -228,6 +253,19 @@
             txt_Search.PlaceholderText = "Search";
             txt_Search.Size = new Size(407, 34);
             txt_Search.TabIndex = 76;
+            txt_Search.TextChanged += txt_Search_TextChanged;
+            // 
+            // btn_Delete
+            // 
+            btn_Delete.Dock = DockStyle.Top;
+            btn_Delete.Location = new Point(3, 154);
+            btn_Delete.Margin = new Padding(4);
+            btn_Delete.Name = "btn_Delete";
+            btn_Delete.Size = new Size(407, 62);
+            btn_Delete.TabIndex = 79;
+            btn_Delete.Text = "Delete";
+            btn_Delete.UseVisualStyleBackColor = true;
+            btn_Delete.Click += btn_Delete_Click;
             // 
             // Sale
             // 
@@ -239,6 +277,7 @@
             Controls.Add(panel1);
             Name = "Sale";
             Text = "Sale";
+            Load += Sale_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
@@ -267,5 +306,8 @@
         private DataGridView dtg_Sale;
         private Button btn_Add;
         private Button btn_Update;
+        private TextBox txt_MoTa;
+        private Label label5;
+        private Button btn_Delete;
     }
 }

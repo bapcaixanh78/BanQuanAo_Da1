@@ -19,17 +19,55 @@ namespace BUS.Services
 
         public string Add(Khuyenmai KM)
         {
-            throw new NotImplementedException();
+            if(saleRP.Add(KM))
+            {
+                return "Sale added successfully";
+            }
+            else
+            {
+                return "Failed to add Sale";
+            }
         }
 
-        public List<Khuyenmai> GetKM(string search)
+        public string Delete(Guid id)
         {
-            throw new NotImplementedException();
+            var khuyenmai = saleRP.GetAll().FirstOrDefault(x=> x.Id == id);
+            if(saleRP.Delete(khuyenmai))
+            {
+                return "Sale deleted successfully";
+            }
+            else
+            {
+                return "Failed to delete Sale";
+            }
         }
 
-        public string Update(Khuyenmai KM)
+        public List<Khuyenmai> GetKhuyenMaiByName(string name)
         {
-            throw new NotImplementedException();
+            return saleRP.GetKhuyemaiByName(name);
+        }
+
+        public List<Khuyenmai> GetKM()
+        {
+            return saleRP.GetAll();
+        }
+
+        public string Update(Guid id, Khuyenmai KM)
+        {
+            var khuyenmai = saleRP.GetAll().FirstOrDefault(x => x.Id == id);
+            khuyenmai.Tenmakhuyenmai = KM.Tenmakhuyenmai;
+            khuyenmai.Thoigianbatdau = KM.Thoigianbatdau;
+            khuyenmai.Thoigianketthuc = KM.Thoigianketthuc;
+            khuyenmai.Giamgia = KM.Giamgia;
+            khuyenmai.Mota = KM.Mota;
+            if (saleRP.Update(khuyenmai))
+            {
+                return "Update Successfully";
+            }
+            else
+            {
+                return "Update failed";
+            }
         }
     }
 }

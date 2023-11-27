@@ -11,7 +11,7 @@ namespace DAL.IRepositories
     {
         public bool Add(Nhanvien NV);
         public bool Update(Nhanvien NV);
-        public bool Lock(Nhanvien NV);
+        public List<Nhanvien> GetStaffByName(string name);
 
         public List<Nhanvien> GetAll();
 

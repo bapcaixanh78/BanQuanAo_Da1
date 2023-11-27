@@ -18,22 +18,27 @@ namespace DAL.Repositories
         }
         public bool Add(Nhanvien NV)
         {
-            throw new NotImplementedException();
+            _dbcontext.Add(NV);
+            _dbcontext.SaveChanges();
+            return true;
         }
 
         public List<Nhanvien> GetAll()
         {
-            throw new NotImplementedException();
+            return _dbcontext.Nhanvien.ToList();
         }
 
-        public bool Lock(Nhanvien NV)
+        public List<Nhanvien> GetStaffByName(string name)
         {
-            throw new NotImplementedException();
+            var nameNV= _dbcontext.Nhanvien.Where(x => x.Ten.Contains(name)).ToList();
+            return nameNV;
         }
 
         public bool Update(Nhanvien NV)
         {
-            throw new NotImplementedException();
+            _dbcontext.Update(NV);
+            _dbcontext.SaveChanges();
+            return true;
         }
     }
 }

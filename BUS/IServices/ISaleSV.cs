@@ -9,9 +9,11 @@ namespace BUS.IServices
 {
     public interface ISaleSV
     {
-        public string Update(Khuyenmai KM);
+        public string Update(Guid id, Khuyenmai KM);
         public string Add(Khuyenmai KM);
+        public string Delete(Guid id);
+        public List<Khuyenmai> GetKhuyenMaiByName(string name);
 
-        public List<Khuyenmai> GetKM(string search);
+        public List<Khuyenmai> GetKM();
     }
 }

@@ -10,9 +10,10 @@ namespace BUS.IServices
     public interface IStaffSV
     {
         public string Add(Nhanvien NV);
-        public string Update(Nhanvien NV);
-        public string Lock(Nhanvien NV);
+        public string Update(Guid id, Nhanvien NVUpdate);
+        public string Lock(Guid id);
 
-        public List<Nhanvien> GetNV(string search);
+        public List<Nhanvien> GetStaffByName(string name);
+        public List<Nhanvien> GetAll();
     }
 }

@@ -36,6 +36,9 @@
             dtg_NhanVien = new DataGridView();
             groupBox1 = new GroupBox();
             panel1 = new Panel();
+            txt_email = new TextBox();
+            label5 = new Label();
+            label8 = new Label();
             cbb_role = new ComboBox();
             pictureBox1 = new PictureBox();
             txt_Password = new TextBox();
@@ -47,9 +50,7 @@
             label2 = new Label();
             label1 = new Label();
             groupBox2 = new GroupBox();
-            label8 = new Label();
-            txt_email = new TextBox();
-            label5 = new Label();
+            btn_Clear = new Button();
             ((System.ComponentModel.ISupportInitialize)dtg_NhanVien).BeginInit();
             groupBox1.SuspendLayout();
             panel1.SuspendLayout();
@@ -67,6 +68,7 @@
             btn_Update.TabIndex = 35;
             btn_Update.Text = "Update";
             btn_Update.UseVisualStyleBackColor = true;
+            btn_Update.Click += btn_Update_Click;
             // 
             // btn_Lock
             // 
@@ -76,8 +78,9 @@
             btn_Lock.Name = "btn_Lock";
             btn_Lock.Size = new Size(336, 62);
             btn_Lock.TabIndex = 34;
-            btn_Lock.Text = "Lock";
+            btn_Lock.Text = "Lock/Unlock";
             btn_Lock.UseVisualStyleBackColor = true;
+            btn_Lock.Click += btn_Lock_Click;
             // 
             // btn_Add
             // 
@@ -89,17 +92,19 @@
             btn_Add.TabIndex = 33;
             btn_Add.Text = "Add";
             btn_Add.UseVisualStyleBackColor = true;
+            btn_Add.Click += btn_Add_Click;
             // 
             // txt_TimKiemNV
             // 
             txt_TimKiemNV.BackColor = SystemColors.Info;
             txt_TimKiemNV.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            txt_TimKiemNV.Location = new Point(8, 244);
+            txt_TimKiemNV.Location = new Point(4, 306);
             txt_TimKiemNV.Margin = new Padding(4);
             txt_TimKiemNV.Name = "txt_TimKiemNV";
             txt_TimKiemNV.PlaceholderText = "Search";
             txt_TimKiemNV.Size = new Size(336, 34);
             txt_TimKiemNV.TabIndex = 48;
+            txt_TimKiemNV.TextChanged += txt_TimKiemNV_TextChanged;
             // 
             // dtg_NhanVien
             // 
@@ -113,6 +118,7 @@
             dtg_NhanVien.RowTemplate.Height = 29;
             dtg_NhanVien.Size = new Size(1779, 220);
             dtg_NhanVien.TabIndex = 49;
+            dtg_NhanVien.CellClick += dtg_NhanVien_CellClick;
             // 
             // groupBox1
             // 
@@ -150,10 +156,41 @@
             panel1.Size = new Size(1787, 370);
             panel1.TabIndex = 51;
             // 
+            // txt_email
+            // 
+            txt_email.BackColor = SystemColors.Info;
+            txt_email.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            txt_email.Location = new Point(961, 194);
+            txt_email.Margin = new Padding(4);
+            txt_email.Name = "txt_email";
+            txt_email.Size = new Size(265, 34);
+            txt_email.TabIndex = 64;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(782, 197);
+            label5.Margin = new Padding(4, 0, 4, 0);
+            label5.Name = "label5";
+            label5.Size = new Size(68, 28);
+            label5.TabIndex = 63;
+            label5.Text = "Email: ";
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Location = new Point(782, 143);
+            label8.Margin = new Padding(4, 0, 4, 0);
+            label8.Name = "label8";
+            label8.Size = new Size(54, 28);
+            label8.TabIndex = 60;
+            label8.Text = "Role:";
+            // 
             // cbb_role
             // 
             cbb_role.BackColor = SystemColors.Info;
             cbb_role.FormattingEnabled = true;
+            cbb_role.Items.AddRange(new object[] { "Quản lý", "Nhân viên" });
             cbb_role.Location = new Point(961, 137);
             cbb_role.Name = "cbb_role";
             cbb_role.Size = new Size(265, 36);
@@ -252,6 +289,7 @@
             // 
             // groupBox2
             // 
+            groupBox2.Controls.Add(btn_Clear);
             groupBox2.Controls.Add(txt_TimKiemNV);
             groupBox2.Controls.Add(btn_Lock);
             groupBox2.Controls.Add(btn_Add);
@@ -266,35 +304,17 @@
             groupBox2.TabStop = false;
             groupBox2.Text = "Services";
             // 
-            // label8
+            // btn_Clear
             // 
-            label8.AutoSize = true;
-            label8.Location = new Point(782, 143);
-            label8.Margin = new Padding(4, 0, 4, 0);
-            label8.Name = "label8";
-            label8.Size = new Size(54, 28);
-            label8.TabIndex = 60;
-            label8.Text = "Role:";
-            // 
-            // txt_email
-            // 
-            txt_email.BackColor = SystemColors.Info;
-            txt_email.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            txt_email.Location = new Point(961, 194);
-            txt_email.Margin = new Padding(4);
-            txt_email.Name = "txt_email";
-            txt_email.Size = new Size(265, 34);
-            txt_email.TabIndex = 64;
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Location = new Point(782, 197);
-            label5.Margin = new Padding(4, 0, 4, 0);
-            label5.Name = "label5";
-            label5.Size = new Size(68, 28);
-            label5.TabIndex = 63;
-            label5.Text = "Email: ";
+            btn_Clear.Dock = DockStyle.Top;
+            btn_Clear.Location = new Point(4, 217);
+            btn_Clear.Margin = new Padding(4);
+            btn_Clear.Name = "btn_Clear";
+            btn_Clear.Size = new Size(336, 62);
+            btn_Clear.TabIndex = 49;
+            btn_Clear.Text = "Clear";
+            btn_Clear.UseVisualStyleBackColor = true;
+            btn_Clear.Click += btn_Clear_Click;
             // 
             // Admin_Staff
             // 
@@ -307,6 +327,7 @@
             Margin = new Padding(4);
             Name = "Admin_Staff";
             Text = "Admin_Staff";
+            Load += Admin_Staff_Load;
             ((System.ComponentModel.ISupportInitialize)dtg_NhanVien).EndInit();
             groupBox1.ResumeLayout(false);
             panel1.ResumeLayout(false);
@@ -348,5 +369,6 @@
         private Label label8;
         private TextBox txt_email;
         private Label label5;
+        private Button btn_Clear;
     }
 }
