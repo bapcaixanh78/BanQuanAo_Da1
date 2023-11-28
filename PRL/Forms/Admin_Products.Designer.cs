@@ -50,17 +50,19 @@
             rtxt_MoTa = new RichTextBox();
             groupBox1 = new GroupBox();
             groupBox2 = new GroupBox();
+            btn_clear = new Button();
             groupBox3 = new GroupBox();
+            btn_browser = new Button();
             cmb_Material = new ComboBox();
             label8 = new Label();
-            pictureBox1 = new PictureBox();
+            Picturebox_Product = new PictureBox();
             panel1 = new Panel();
-            btn_clear = new Button();
+            txt_ImgPath = new TextBox();
             ((System.ComponentModel.ISupportInitialize)dtg_SanPham).BeginInit();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)Picturebox_Product).BeginInit();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -279,11 +281,24 @@
             groupBox2.TabStop = false;
             groupBox2.Text = "Services";
             // 
+            // btn_clear
+            // 
+            btn_clear.Dock = DockStyle.Top;
+            btn_clear.Location = new Point(3, 155);
+            btn_clear.Name = "btn_clear";
+            btn_clear.Size = new Size(335, 44);
+            btn_clear.TabIndex = 17;
+            btn_clear.Text = "Clear Form";
+            btn_clear.UseVisualStyleBackColor = true;
+            btn_clear.Click += btn_clear_Click;
+            // 
             // groupBox3
             // 
+            groupBox3.Controls.Add(txt_ImgPath);
+            groupBox3.Controls.Add(btn_browser);
             groupBox3.Controls.Add(cmb_Material);
             groupBox3.Controls.Add(label8);
-            groupBox3.Controls.Add(pictureBox1);
+            groupBox3.Controls.Add(Picturebox_Product);
             groupBox3.Controls.Add(label4);
             groupBox3.Controls.Add(rtxt_MoTa);
             groupBox3.Controls.Add(txtGiaNhap);
@@ -305,6 +320,16 @@
             groupBox3.TabIndex = 31;
             groupBox3.TabStop = false;
             // 
+            // btn_browser
+            // 
+            btn_browser.Location = new Point(250, 364);
+            btn_browser.Name = "btn_browser";
+            btn_browser.Size = new Size(168, 46);
+            btn_browser.TabIndex = 34;
+            btn_browser.Text = "Browser";
+            btn_browser.UseVisualStyleBackColor = true;
+            btn_browser.Click += btn_browser_Click;
+            // 
             // cmb_Material
             // 
             cmb_Material.BackColor = SystemColors.Info;
@@ -324,15 +349,15 @@
             label8.TabIndex = 32;
             label8.Text = "Material :";
             // 
-            // pictureBox1
+            // Picturebox_Product
             // 
-            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(221, 67);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(222, 241);
-            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox1.TabIndex = 31;
-            pictureBox1.TabStop = false;
+            Picturebox_Product.Image = (Image)resources.GetObject("Picturebox_Product.Image");
+            Picturebox_Product.Location = new Point(221, 67);
+            Picturebox_Product.Name = "Picturebox_Product";
+            Picturebox_Product.Size = new Size(222, 241);
+            Picturebox_Product.SizeMode = PictureBoxSizeMode.StretchImage;
+            Picturebox_Product.TabIndex = 31;
+            Picturebox_Product.TabStop = false;
             // 
             // panel1
             // 
@@ -344,16 +369,13 @@
             panel1.Size = new Size(1787, 441);
             panel1.TabIndex = 32;
             // 
-            // btn_clear
+            // txt_ImgPath
             // 
-            btn_clear.Dock = DockStyle.Top;
-            btn_clear.Location = new Point(3, 155);
-            btn_clear.Name = "btn_clear";
-            btn_clear.Size = new Size(335, 44);
-            btn_clear.TabIndex = 17;
-            btn_clear.Text = "Clear Form";
-            btn_clear.UseVisualStyleBackColor = true;
-            btn_clear.Click += btn_clear_Click;
+            txt_ImgPath.BackColor = SystemColors.Info;
+            txt_ImgPath.Location = new Point(221, 318);
+            txt_ImgPath.Name = "txt_ImgPath";
+            txt_ImgPath.Size = new Size(222, 27);
+            txt_ImgPath.TabIndex = 35;
             // 
             // Admin_Products
             // 
@@ -371,7 +393,7 @@
             groupBox2.PerformLayout();
             groupBox3.ResumeLayout(false);
             groupBox3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)Picturebox_Product).EndInit();
             panel1.ResumeLayout(false);
             ResumeLayout(false);
         }
@@ -400,10 +422,12 @@
         private GroupBox groupBox1;
         private GroupBox groupBox2;
         private GroupBox groupBox3;
-        private PictureBox pictureBox1;
+        private PictureBox Picturebox_Product;
         private Panel panel1;
         private Label label8;
         private ComboBox cmb_Material;
         private Button btn_clear;
+        private Button btn_browser;
+        private TextBox txt_ImgPath;
     }
 }

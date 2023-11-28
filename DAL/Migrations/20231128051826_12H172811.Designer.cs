@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DAL.Migrations
 {
     [DbContext(typeof(ShopDbcontext))]
-    [Migration("20231126153339_12")]
-    partial class _12
+    [Migration("20231128051826_12H172811")]
+    partial class _12H172811
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -77,19 +77,19 @@ namespace DAL.Migrations
                     b.Property<decimal>("Gianhap")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<Guid>("IdAnh")
+                    b.Property<Guid?>("IdAnh")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("Idchatlieu")
+                    b.Property<Guid?>("Idchatlieu")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("Iddanhmuc")
+                    b.Property<Guid?>("Iddanhmuc")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("Idkichthuoc")
+                    b.Property<Guid?>("Idkichthuoc")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("Idmauao")
+                    b.Property<Guid?>("Idmauao")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("Idsanpham")
@@ -358,33 +358,27 @@ namespace DAL.Migrations
                 {
                     b.HasOne("DAL.Model.Anh", "Anhs")
                         .WithMany()
-                        .HasForeignKey("IdAnh")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("IdAnh");
 
                     b.HasOne("DAL.Model.Chatlieu", "Chatlieu")
                         .WithMany("Chitietsanphams")
                         .HasForeignKey("Idchatlieu")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("DAL.Model.Danhmuc", "Danhmuc")
                         .WithMany("Chitietsanphams")
                         .HasForeignKey("Iddanhmuc")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("DAL.Model.Kichthuoc", "Kichthuoc")
                         .WithMany("Chitietsanphams")
                         .HasForeignKey("Idkichthuoc")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("DAL.Model.Mauao", "Mauao")
                         .WithMany("Chitietsanphams")
                         .HasForeignKey("Idmauao")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("DAL.Model.Sanpham", "Sanpham")
                         .WithMany("Chitietsanphams")

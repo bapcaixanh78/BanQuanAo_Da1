@@ -20,7 +20,7 @@ namespace PRL.Forms
         IColorSV _colorsv;
         IMaterialSV _materialsv;
         IDetailProductsSV _detailproductsv;
-
+        IPictureSV _picturesv;
         ISizeSV _sizesv;
         IProductsSV _producsv;
         Guid _idWhenClickCTSP;
@@ -35,6 +35,7 @@ namespace PRL.Forms
             InitializeComponent();
             LoadComboBox();
             LoadGrid(null);
+            _picturesv = new PictureSV();
         }
 
         public void LoadComboBox()
@@ -94,11 +95,18 @@ namespace PRL.Forms
                 Ten = txtTenHang.Text,
 
             };
+            //var Img = new Anh()
+            //{
+            //    Idanh = Guid.NewGuid(),
+            //    Ten = "Ảnh áo phông",
+            //    Path = txt_ImgPath.Text,
+            //};
 
-            _producsv.Add(SP);
 
 
 
+
+            //CTSP.IdAnh = Img.Idanh;
             CTSP.Gianhap = decimal.Parse(txtGiaNhap.Text);
             CTSP.Ngaytao = DateTime.Now;
             CTSP.Ngaycapnhat = DateTime.Now;
@@ -116,7 +124,12 @@ namespace PRL.Forms
             var option = MessageBox.Show("Confirm", "Notification", MessageBoxButtons.YesNo);
             if (option == DialogResult.Yes)
             {
+                //_picturesv.AddImg(Img);
                 MessageBox.Show(_detailproductsv.Add(CTSP));
+                _producsv.Add(SP);
+
+
+
             }
             else
             {
@@ -132,20 +145,20 @@ namespace PRL.Forms
 
 
             CTSP.Id = _idWhenClickCTSP;
-            SP.Id=_idWhenClickSP;
+            SP.Id = _idWhenClickSP;
 
             var option = MessageBox.Show("Xác nhận muốn Xóa?", "Xác nhận", MessageBoxButtons.YesNo);
             if (option == DialogResult.Yes)
             {
                 _detailproductsv.Delete(CTSP);
                 MessageBox.Show(_producsv.Delete(SP));
-                
+
             }
             else
             {
                 return;
             }
-            LoadGrid(null );
+            LoadGrid(null);
         }
 
 
@@ -170,7 +183,7 @@ namespace PRL.Forms
             rtxt_MoTa.Text = CTSP.Mota;
             txt_SoLuong.Text = CTSP.Soluongton.ToString();
 
-            
+
 
         }
 
@@ -178,9 +191,9 @@ namespace PRL.Forms
         {
             var CTSP = _detailproductsv.GetAll1(null).FirstOrDefault(x => x.Id == _idWhenClickCTSP);
             var SP = _producsv.GetSP(null).FirstOrDefault(x => x.Id == _idWhenClickSP);
-            SP.Ten=txtTenHang.Text;
+            SP.Ten = txtTenHang.Text;
             CTSP.Giaban = decimal.Parse(txtGiaBan.Text);
-            CTSP.Gianhap=decimal.Parse(txtGiaNhap.Text);
+            CTSP.Gianhap = decimal.Parse(txtGiaNhap.Text);
             CTSP.Idmauao = _colorsv.FindIDbyName(cmb_Color.SelectedItem.ToString());
             CTSP.Idchatlieu = _materialsv.FindIDbyName(cmb_Material.SelectedItem.ToString());
             CTSP.Idkichthuoc = _sizesv.FindIDbyName(cmb_Size.SelectedItem.ToString());
@@ -216,10 +229,31 @@ namespace PRL.Forms
             txtGiaNhap.Text = null;
             txtGiaBan.Text = null;
             cmb_Color.SelectedIndex = 0;
-            cmb_Material.SelectedIndex =0;
+            cmb_Material.SelectedIndex = 0;
             cmb_Size.SelectedIndex = 0;
             rtxt_MoTa.Text = null;
             txt_SoLuong.Text = null;
+        }
+
+        private void btn_browser_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OpenFileDialog fileOpen = new OpenFileDialog();
+                fileOpen.Title = "Open Image file";
+                fileOpen.Filter = "Files|*.jpg;*.jpeg;*.png";
+
+                if (fileOpen.ShowDialog() == DialogResult.OK)
+                {
+                    Picturebox_Product.Image = Image.FromFile(fileOpen.FileName);
+                    txt_ImgPath.Text = fileOpen.FileName;
+                }
+                fileOpen.Dispose();
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show(err.Message);
+            }
         }
     }
 }
