@@ -18,17 +18,28 @@ namespace DAL.Repositories
         }
         public bool Add(Anh Anh)
         {
-            throw new NotImplementedException();
+            _dbcontext.Add(Anh);
+            _dbcontext.SaveChanges();
+            return true;
         }
 
         public bool Delete(Anh Anh)
         {
-            throw new NotImplementedException();
+            _dbcontext.Remove(Anh);
+            _dbcontext.SaveChanges();
+            return true;
+        }
+
+        public List<Anh> GetAll()
+        {
+            return _dbcontext.Anhs.ToList();
         }
 
         public bool Update(Anh Anh)
         {
-            throw new NotImplementedException();
+            _dbcontext.Update(Anh);
+            _dbcontext.SaveChanges();
+            return true;
         }
     }
 }

@@ -12,6 +12,7 @@ namespace DAL.IRepositories
         public bool Add(Anh Anh);
         public bool Update(Anh Anh);
         public bool Delete(Anh Anh);
+        public List<Anh> GetAll();
 
     }
 }
