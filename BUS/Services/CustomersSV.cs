@@ -21,10 +21,16 @@ namespace BUS.Services
             throw new NotImplementedException();
         }
 
+        public List<Khachhang> GetAll()
+        {
+            return customersRP.GetKH();
+        }
+
         public List<Khachhang> GetKH(string search)
         {
-            throw new NotImplementedException();
+            return customersRP.GetKHbyName(search);
         }
+        
 
         public string Update(Khachhang kh)
         {

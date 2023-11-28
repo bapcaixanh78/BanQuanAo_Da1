@@ -86,6 +86,7 @@
             txt_Search.PlaceholderText = "Type here";
             txt_Search.Size = new Size(906, 44);
             txt_Search.TabIndex = 6;
+            txt_Search.TextChanged += txt_Search_TextChanged;
             // 
             // label1
             // 

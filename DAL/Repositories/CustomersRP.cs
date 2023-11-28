@@ -23,7 +23,13 @@ namespace DAL.Repositories
 
         public List<Khachhang> GetKH()
         {
-            throw new NotImplementedException();
+            return _dbcontext.Khachhangs.ToList();
+        }
+
+        public List<Khachhang> GetKHbyName(string name)
+        {
+            var nameKH = _dbcontext.Khachhangs.Where(x => x.Ten.Contains(name)).ToList();
+            return nameKH;
         }
 
         public bool Remove(Khachhang KH)

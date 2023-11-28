@@ -35,7 +35,7 @@ namespace PRL.Forms
             InitializeComponent();
             LoadComboBox();
             LoadGrid(null);
-            _picturesv = new PictureSV();
+            
         }
 
         public void LoadComboBox()
@@ -212,10 +212,46 @@ namespace PRL.Forms
 
         }
 
+        public void LoadGridSP(List<Chitietsanpham> chitietsanphams)
+        {
+            int stt = 1;
+            dtg_SanPham.ColumnCount = 10;
+            dtg_SanPham.Columns[0].Name = "STT";
+            dtg_SanPham.Columns[1].Name = "ID";
+            dtg_SanPham.Columns[1].Visible = false;
+            dtg_SanPham.Columns[2].Name = "Tên";
+            dtg_SanPham.Columns[3].Name = "Giá nhập";
+            dtg_SanPham.Columns[4].Name = "Giá bán";
+            dtg_SanPham.Columns[5].Name = "Số lượng";
+            dtg_SanPham.Columns[6].Name = "Màu";
+            dtg_SanPham.Columns[7].Name = "Kích thước";
+            dtg_SanPham.Columns[8].Name = "Chất liệu";
+            dtg_SanPham.Columns[9].Name = "Mô tả";
+            dtg_SanPham.Rows.Clear();
+            dtg_SanPham.AllowUserToAddRows = false;
+            foreach (var sp in chitietsanphams)
+            {
+
+                dtg_SanPham.Rows.Add(stt++, sp.Id, _producsv.Findbyid(sp.Idsanpham).Ten, sp.Gianhap, sp.Giaban, sp.Soluongton, _colorsv.FindNamebyID(_colorsv.convertGUID(sp.Idmauao)), _sizesv.FindNamebyID(_sizesv.convertGUID(sp.Idkichthuoc)), _materialsv.FindNamebyID(_materialsv.convertGUID(sp.Idchatlieu)), sp.Mota);
+            }
+        }
         private void txt_TimKiemSP_TextChanged(object sender, EventArgs e)
         {
-            string input = txt_TimKiemSP.Text;
-            LoadGrid(input);
+            List<Chitietsanpham> chitietsanphams = _detailproductsv.GetAll(null);
+            List<Sanpham> sanphams = _producsv.GetSP(null).Where(x=>x.Ten.ToLower().Trim().Contains(txt_TimKiemSP.Text.ToLower())).ToList();
+
+            var overlap = 
+                from pd in chitietsanphams
+                join sp in sanphams on pd.Idsanpham equals sp.Id
+                select pd;
+            if (txt_TimKiemSP != null)
+            {
+                LoadGridSP(overlap.ToList());
+            }
+            else
+            {
+                LoadGrid(null);
+            }
         }
 
         private void dtg_SanPham_CellLeave(object sender, DataGridViewCellEventArgs e)
@@ -243,11 +279,7 @@ namespace PRL.Forms
                 fileOpen.Title = "Open Image file";
                 fileOpen.Filter = "Files|*.jpg;*.jpeg;*.png";
 
-                if (fileOpen.ShowDialog() == DialogResult.OK)
-                {
-                    Picturebox_Product.Image = Image.FromFile(fileOpen.FileName);
-                    txt_ImgPath.Text = fileOpen.FileName;
-                }
+                
                 fileOpen.Dispose();
             }
             catch (Exception err)

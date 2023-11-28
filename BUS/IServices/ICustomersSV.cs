@@ -13,5 +13,7 @@ namespace BUS.IServices
         public string Update(Khachhang kh);
         public string Delete(Khachhang kh);
         public List<Khachhang> GetKH(string search);
+
+        public List<Khachhang> GetAll();
     }
 }

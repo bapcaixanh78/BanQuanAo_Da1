@@ -13,5 +13,9 @@ namespace DAL.IRepositories
         public bool Remove(Khachhang KH);
         public bool Update(Khachhang KH);
         public List<Khachhang> GetKH();
+
+        public List<Khachhang> GetKHbyName(string name);
+
+        
     }
 }
