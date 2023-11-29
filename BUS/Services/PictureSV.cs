@@ -60,6 +60,23 @@ namespace BUS.Services
             {
                 return "Sửa thất bại";
             }
+
+
+        }
+
+        public List<Anh> Getall()
+        {
+            return PictureRP.GetAll();
+        }
+
+        public Guid FindIdByPath(string path)
+        {
+            return PictureRP.GetAll().FirstOrDefault(c=>c.Path == path).Idanh;
+        }
+
+        public List<string> GetLstPath()
+        {
+            return Getall().Select(c=>c.Path).ToList();
         }
     }
 }

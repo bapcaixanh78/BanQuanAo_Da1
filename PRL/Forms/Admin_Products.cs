@@ -32,6 +32,7 @@ namespace PRL.Forms
             _detailproductsv = new DetailPRoductsSV();
             _sizesv = new SizeSv();
             _producsv = new ProductsSV();
+            _picturesv = new PictureSV();
             InitializeComponent();
             LoadComboBox();
             LoadGrid(null);
@@ -65,7 +66,7 @@ namespace PRL.Forms
         public void LoadGrid(string input)
         {
             int stt = 1;
-            dtg_SanPham.ColumnCount = 10;
+            dtg_SanPham.ColumnCount = 11;
             dtg_SanPham.Columns[0].Name = "STT";
             dtg_SanPham.Columns[1].Name = "ID";
             dtg_SanPham.Columns[1].Visible = false;
@@ -77,12 +78,13 @@ namespace PRL.Forms
             dtg_SanPham.Columns[7].Name = "Kích thước";
             dtg_SanPham.Columns[8].Name = "Chất liệu";
             dtg_SanPham.Columns[9].Name = "Mô tả";
+            dtg_SanPham.Columns[10].Name = "ID Ảnh";
             dtg_SanPham.Rows.Clear();
             dtg_SanPham.AllowUserToAddRows = false;
             foreach (var sp in _detailproductsv.GetAll1(txt_TimKiemSP.Text))
             {
 
-                dtg_SanPham.Rows.Add(stt++, sp.Id, _producsv.Findbyid(sp.Idsanpham).Ten, sp.Gianhap, sp.Giaban, sp.Soluongton, _colorsv.FindNamebyID(_colorsv.convertGUID(sp.Idmauao)), _sizesv.FindNamebyID(_sizesv.convertGUID(sp.Idkichthuoc)), _materialsv.FindNamebyID(_materialsv.convertGUID(sp.Idchatlieu)), sp.Mota);
+                dtg_SanPham.Rows.Add(stt++, sp.Id, _producsv.Findbyid(sp.Idsanpham).Ten, sp.Gianhap, sp.Giaban, sp.Soluongton, _colorsv.FindNamebyID(_colorsv.convertGUID(sp.Idmauao)), _sizesv.FindNamebyID(_sizesv.convertGUID(sp.Idkichthuoc)), _materialsv.FindNamebyID(_materialsv.convertGUID(sp.Idchatlieu)), sp.Mota,sp.IdAnh);
             }
         }
 
@@ -91,22 +93,22 @@ namespace PRL.Forms
             var CTSP = new Chitietsanpham();
             var SP = new Sanpham()
             {
-                Id = new Guid(),
+                Id = Guid.NewGuid(),
                 Ten = txtTenHang.Text,
 
             };
-            //var Img = new Anh()
-            //{
-            //    Idanh = Guid.NewGuid(),
-            //    Ten = "Ảnh áo phông",
-            //    Path = txt_ImgPath.Text,
-            //};
+            var Img = new Anh()
+            {
+                Idanh = Guid.NewGuid(),
+                Ten = "Ảnh áo phông",
+                Path = txt_ImgPath.Text,
+            };
 
 
 
 
 
-            //CTSP.IdAnh = Img.Idanh;
+            CTSP.IdAnh = Img.Idanh;
             CTSP.Gianhap = decimal.Parse(txtGiaNhap.Text);
             CTSP.Ngaytao = DateTime.Now;
             CTSP.Ngaycapnhat = DateTime.Now;
@@ -124,9 +126,10 @@ namespace PRL.Forms
             var option = MessageBox.Show("Confirm", "Notification", MessageBoxButtons.YesNo);
             if (option == DialogResult.Yes)
             {
-                //_picturesv.AddImg(Img);
-                MessageBox.Show(_detailproductsv.Add(CTSP));
+                _picturesv.AddImg(Img);
                 _producsv.Add(SP);
+                MessageBox.Show(_detailproductsv.Add(CTSP));
+
 
 
 
@@ -136,13 +139,14 @@ namespace PRL.Forms
                 return;
             }
             LoadGrid(null);
+
         }
 
         private void btn_Del_Click(object sender, EventArgs e)
         {
             var CTSP = _detailproductsv.GetAll1(null).FirstOrDefault(x => x.Id == _idWhenClickCTSP);
             var SP = _producsv.GetSP(null).FirstOrDefault(x => x.Id == _idWhenClickSP);
-
+            var img = _picturesv.Getall().FirstOrDefault(c => c.Idanh == CTSP.IdAnh);
 
             CTSP.Id = _idWhenClickCTSP;
             SP.Id = _idWhenClickSP;
@@ -152,6 +156,7 @@ namespace PRL.Forms
             {
                 _detailproductsv.Delete(CTSP);
                 MessageBox.Show(_producsv.Delete(SP));
+                _picturesv.DeleteImg(img.Idanh);
 
             }
             else
@@ -182,7 +187,9 @@ namespace PRL.Forms
             cmb_Size.SelectedIndex = _sizesv.GetKichthuocs().FindIndex(t => t.Id == CTSP.Idkichthuoc);
             rtxt_MoTa.Text = CTSP.Mota;
             txt_SoLuong.Text = CTSP.Soluongton.ToString();
-
+            txt_ImgPath.Text = _detailproductsv.GetPathImgByIdImg(_detailproductsv.convertGUID(CTSP.IdAnh));
+            Image tmp = _detailproductsv.GetImageByPath(CTSP.Id);
+            Picturebox_Product.Image = tmp;
 
 
         }
@@ -191,7 +198,21 @@ namespace PRL.Forms
         {
             var CTSP = _detailproductsv.GetAll1(null).FirstOrDefault(x => x.Id == _idWhenClickCTSP);
             var SP = _producsv.GetSP(null).FirstOrDefault(x => x.Id == _idWhenClickSP);
+            if (!_picturesv.GetLstPath().Contains(txt_ImgPath.Text))
+            {
+                var Img = new Anh()
+                {
+                    Idanh = Guid.NewGuid(),
+                    Ten = "Ảnh áo phông",
+                    Path = txt_ImgPath.Text,
+                };
+                _picturesv.AddImg(Img);
+            }
+            var img = _picturesv.Getall().FirstOrDefault(c => c.Path == txt_ImgPath.Text);
+
+            img.Path = txt_ImgPath.Text;
             SP.Ten = txtTenHang.Text;
+            CTSP.IdAnh = _picturesv.FindIdByPath(txt_ImgPath.Text);
             CTSP.Giaban = decimal.Parse(txtGiaBan.Text);
             CTSP.Gianhap = decimal.Parse(txtGiaNhap.Text);
             CTSP.Idmauao = _colorsv.FindIDbyName(cmb_Color.SelectedItem.ToString());
@@ -203,6 +224,7 @@ namespace PRL.Forms
             {
                 MessageBox.Show(_detailproductsv.Update(CTSP));
                 _producsv.Update(SP);
+                _picturesv.UpdateImg(img);
             }
             else
             {
@@ -215,7 +237,7 @@ namespace PRL.Forms
         public void LoadGridSP(List<Chitietsanpham> chitietsanphams)
         {
             int stt = 1;
-            dtg_SanPham.ColumnCount = 10;
+            dtg_SanPham.ColumnCount = 11;
             dtg_SanPham.Columns[0].Name = "STT";
             dtg_SanPham.Columns[1].Name = "ID";
             dtg_SanPham.Columns[1].Visible = false;
@@ -279,7 +301,11 @@ namespace PRL.Forms
                 fileOpen.Title = "Open Image file";
                 fileOpen.Filter = "Files|*.jpg;*.jpeg;*.png";
 
-                
+                if (fileOpen.ShowDialog() == DialogResult.OK)
+                {
+                    Picturebox_Product.Image = Image.FromFile(fileOpen.FileName);
+                    txt_ImgPath.Text = fileOpen.FileName;
+                }
                 fileOpen.Dispose();
             }
             catch (Exception err)

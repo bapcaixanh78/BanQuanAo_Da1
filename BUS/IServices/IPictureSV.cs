@@ -13,5 +13,8 @@ namespace BUS.IServices
         public string AddImg(Anh img);
         public string DeleteImg(Guid id);
         public string UpdateImg(Anh anh);
+        public Guid FindIdByPath(string path);
+        public List<Anh> Getall();
+        public List<string> GetLstPath();
     }
 }

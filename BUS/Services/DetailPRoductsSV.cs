@@ -1,26 +1,24 @@
 ﻿using BUS.IServices;
 using DAL.Model;
 using DAL.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+using System.Data;
+using System.Drawing;
 namespace BUS.Services
 {
     public class DetailPRoductsSV : IDetailProductsSV
     {
         private DetailProductsRP detailProductsRP;
         private ProductsRP productsRP;
+        private PictureRP pictureRP;
         public DetailPRoductsSV()
         {
             detailProductsRP = new DetailProductsRP();
             productsRP = new ProductsRP();
+            pictureRP = new PictureRP();
         }
         public string Add(Chitietsanpham CTSP)
         {
-            if (detailProductsRP.Add(CTSP) == true) 
+            if (detailProductsRP.Add(CTSP) == true)
             {
                 return "You have added successfully";
             }
@@ -30,14 +28,14 @@ namespace BUS.Services
             }
         }
 
-        
+
 
         public string Delete(Chitietsanpham CTSP)
         {
             var clone = detailProductsRP.GetAll().FirstOrDefault(x => x.Id == CTSP.Id);
-            
 
-            if (detailProductsRP.Delete(clone) == true )
+
+            if (detailProductsRP.Delete(clone) == true)
             {
                 return "You have removed successfully";
             }
@@ -47,7 +45,7 @@ namespace BUS.Services
             }
         }
 
-        
+
 
         public List<Chitietsanpham> GetAll(string search)
         {
@@ -75,12 +73,10 @@ namespace BUS.Services
 
         }
 
-        
-
         public string Update(Chitietsanpham CTSP)
         {
             var clone = detailProductsRP.GetAll().FirstOrDefault(x => x.Id == CTSP.Id);
-            
+
             clone.Gianhap = CTSP.Gianhap;
             clone.Giaban = CTSP.Giaban;
             clone.Soluongton = CTSP.Soluongton;
@@ -88,6 +84,7 @@ namespace BUS.Services
             clone.Idkichthuoc = CTSP.Idkichthuoc;
             clone.Idchatlieu = CTSP.Idchatlieu;
             clone.Mota = CTSP.Mota;
+            clone.IdAnh = CTSP.IdAnh;
             if (detailProductsRP.Update(clone))
             {
                 return "Sửa thành công";
@@ -97,6 +94,48 @@ namespace BUS.Services
                 return "Sửa thất bại";
             }
         }
+
+        public Image GetImageByPath(Guid ID)
+        {
+            try
+            {
+                Image image = null;
+                Chitietsanpham timSanPham = detailProductsRP.GetAll().FirstOrDefault(c => c.Id == ID);
+                if (timSanPham != null)
+                {
+                    string imagePath = GetPathImgByIdImg(convertGUID(timSanPham.IdAnh));
+                    if (!File.Exists($@"{imagePath}"))
+                    {
+                        image = null;
+                    }
+                    else
+                    {
+                        image = Image.FromFile($@"{imagePath}");
+                    }
+                }
+                return image;
+            }
+            catch (Exception err)
+            {
+                throw err;
+            }
+        }
+
+        public string GetPathImgByIdImg(Guid ID)
+        {
+            var tmp = pictureRP.GetAll().FirstOrDefault(c => c.Idanh == ID).Path;
+            if (tmp != null)
+            {
+                return tmp;
+            }
+            return "Not found image!";
+
+        }
+
+        public Guid convertGUID(Guid? guid)
+        {
+            return guid ?? Guid.Empty;
+        }
     }
-    }
+}
 

@@ -7,8 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="IMG\**" />
     <Compile Remove="Models\**" />
+    <EmbeddedResource Remove="IMG\**" />
     <EmbeddedResource Remove="Models\**" />
+    <None Remove="IMG\**" />
     <None Remove="Models\**" />
   </ItemGroup>
 
@@ -20,10 +23,6 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="IMG\" />
   </ItemGroup>
 
 </Project>
