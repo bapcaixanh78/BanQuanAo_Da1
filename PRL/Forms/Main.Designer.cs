@@ -302,6 +302,7 @@
             // 
             // label3
             // 
+            label3.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             label3.AutoSize = true;
             label3.Font = new Font("Elephant", 16.1999989F, FontStyle.Regular, GraphicsUnit.Point);
             label3.ForeColor = Color.Black;
@@ -313,6 +314,7 @@
             // 
             // label1
             // 
+            label1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             label1.AutoSize = true;
             label1.Font = new Font("Elephant", 16.1999989F, FontStyle.Regular, GraphicsUnit.Point);
             label1.ForeColor = Color.Black;
@@ -324,6 +326,7 @@
             // 
             // label2
             // 
+            label2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             label2.AutoSize = true;
             label2.Font = new Font("Elephant", 16.1999989F, FontStyle.Regular, GraphicsUnit.Point);
             label2.ForeColor = Color.Black;

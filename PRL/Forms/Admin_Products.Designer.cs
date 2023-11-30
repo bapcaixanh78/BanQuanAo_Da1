@@ -32,7 +32,6 @@
             dtg_SanPham = new DataGridView();
             txt_TimKiemSP = new TextBox();
             btn_Update = new Button();
-            btn_Del = new Button();
             btn_Add = new Button();
             txtGiaNhap = new TextBox();
             txtTenHang = new TextBox();
@@ -58,6 +57,8 @@
             label8 = new Label();
             Picturebox_Product = new PictureBox();
             panel1 = new Panel();
+            label9 = new Label();
+            cmb_list = new ComboBox();
             ((System.ComponentModel.ISupportInitialize)dtg_SanPham).BeginInit();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
@@ -104,17 +105,6 @@
             btn_Update.UseVisualStyleBackColor = true;
             btn_Update.Click += btn_Update_Click;
             // 
-            // btn_Del
-            // 
-            btn_Del.Dock = DockStyle.Top;
-            btn_Del.Location = new Point(3, 111);
-            btn_Del.Name = "btn_Del";
-            btn_Del.Size = new Size(335, 44);
-            btn_Del.TabIndex = 14;
-            btn_Del.Text = "Delete";
-            btn_Del.UseVisualStyleBackColor = true;
-            btn_Del.Click += btn_Del_Click;
-            // 
             // btn_Add
             // 
             btn_Add.Dock = DockStyle.Top;
@@ -129,7 +119,7 @@
             // txtGiaNhap
             // 
             txtGiaNhap.BackColor = SystemColors.Info;
-            txtGiaNhap.Location = new Point(839, 88);
+            txtGiaNhap.Location = new Point(839, 83);
             txtGiaNhap.Name = "txtGiaNhap";
             txtGiaNhap.Size = new Size(329, 27);
             txtGiaNhap.TabIndex = 12;
@@ -137,7 +127,7 @@
             // txtTenHang
             // 
             txtTenHang.BackColor = SystemColors.Info;
-            txtTenHang.Location = new Point(839, 44);
+            txtTenHang.Location = new Point(839, 40);
             txtTenHang.Name = "txtTenHang";
             txtTenHang.Size = new Size(329, 27);
             txtTenHang.TabIndex = 11;
@@ -146,7 +136,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label2.Location = new Point(648, 87);
+            label2.Location = new Point(648, 82);
             label2.Name = "label2";
             label2.Size = new Size(119, 28);
             label2.TabIndex = 10;
@@ -156,7 +146,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(648, 43);
+            label1.Location = new Point(648, 39);
             label1.Name = "label1";
             label1.Size = new Size(161, 28);
             label1.TabIndex = 9;
@@ -166,7 +156,7 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label3.Location = new Point(648, 131);
+            label3.Location = new Point(648, 125);
             label3.Name = "label3";
             label3.Size = new Size(68, 28);
             label3.TabIndex = 18;
@@ -175,7 +165,7 @@
             // txtGiaBan
             // 
             txtGiaBan.BackColor = SystemColors.Info;
-            txtGiaBan.Location = new Point(839, 132);
+            txtGiaBan.Location = new Point(839, 126);
             txtGiaBan.Name = "txtGiaBan";
             txtGiaBan.Size = new Size(329, 27);
             txtGiaBan.TabIndex = 19;
@@ -184,7 +174,7 @@
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label4.Location = new Point(648, 175);
+            label4.Location = new Point(648, 168);
             label4.Name = "label4";
             label4.Size = new Size(102, 28);
             label4.TabIndex = 20;
@@ -193,7 +183,7 @@
             // txt_SoLuong
             // 
             txt_SoLuong.BackColor = SystemColors.Info;
-            txt_SoLuong.Location = new Point(839, 176);
+            txt_SoLuong.Location = new Point(839, 169);
             txt_SoLuong.Name = "txt_SoLuong";
             txt_SoLuong.Size = new Size(329, 27);
             txt_SoLuong.TabIndex = 21;
@@ -202,7 +192,7 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label5.Location = new Point(646, 351);
+            label5.Location = new Point(646, 383);
             label5.Name = "label5";
             label5.Size = new Size(121, 28);
             label5.TabIndex = 22;
@@ -212,7 +202,7 @@
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label6.Location = new Point(648, 219);
+            label6.Location = new Point(648, 211);
             label6.Name = "label6";
             label6.Size = new Size(69, 28);
             label6.TabIndex = 24;
@@ -222,7 +212,7 @@
             // 
             label7.AutoSize = true;
             label7.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label7.Location = new Point(648, 263);
+            label7.Location = new Point(648, 254);
             label7.Name = "label7";
             label7.Size = new Size(56, 28);
             label7.TabIndex = 25;
@@ -232,7 +222,7 @@
             // 
             cmb_Color.BackColor = SystemColors.Info;
             cmb_Color.FormattingEnabled = true;
-            cmb_Color.Location = new Point(839, 219);
+            cmb_Color.Location = new Point(839, 211);
             cmb_Color.Name = "cmb_Color";
             cmb_Color.Size = new Size(329, 28);
             cmb_Color.TabIndex = 26;
@@ -241,7 +231,7 @@
             // 
             cmb_Size.BackColor = SystemColors.Info;
             cmb_Size.FormattingEnabled = true;
-            cmb_Size.Location = new Point(839, 263);
+            cmb_Size.Location = new Point(839, 254);
             cmb_Size.Name = "cmb_Size";
             cmb_Size.Size = new Size(329, 28);
             cmb_Size.TabIndex = 27;
@@ -249,7 +239,7 @@
             // rtxt_MoTa
             // 
             rtxt_MoTa.BackColor = SystemColors.Info;
-            rtxt_MoTa.Location = new Point(839, 351);
+            rtxt_MoTa.Location = new Point(839, 387);
             rtxt_MoTa.Name = "rtxt_MoTa";
             rtxt_MoTa.Size = new Size(329, 41);
             rtxt_MoTa.TabIndex = 28;
@@ -269,7 +259,6 @@
             // groupBox2
             // 
             groupBox2.Controls.Add(btn_clear);
-            groupBox2.Controls.Add(btn_Del);
             groupBox2.Controls.Add(txt_TimKiemSP);
             groupBox2.Controls.Add(btn_Update);
             groupBox2.Controls.Add(btn_Add);
@@ -284,7 +273,7 @@
             // btn_clear
             // 
             btn_clear.Dock = DockStyle.Top;
-            btn_clear.Location = new Point(3, 155);
+            btn_clear.Location = new Point(3, 111);
             btn_clear.Name = "btn_clear";
             btn_clear.Size = new Size(335, 44);
             btn_clear.TabIndex = 17;
@@ -294,6 +283,8 @@
             // 
             // groupBox3
             // 
+            groupBox3.Controls.Add(cmb_list);
+            groupBox3.Controls.Add(label9);
             groupBox3.Controls.Add(txt_ImgPath);
             groupBox3.Controls.Add(btn_browser);
             groupBox3.Controls.Add(cmb_Material);
@@ -342,7 +333,7 @@
             // 
             cmb_Material.BackColor = SystemColors.Info;
             cmb_Material.FormattingEnabled = true;
-            cmb_Material.Location = new Point(839, 307);
+            cmb_Material.Location = new Point(839, 297);
             cmb_Material.Name = "cmb_Material";
             cmb_Material.Size = new Size(329, 28);
             cmb_Material.TabIndex = 33;
@@ -351,7 +342,7 @@
             // 
             label8.AutoSize = true;
             label8.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label8.Location = new Point(648, 307);
+            label8.Location = new Point(648, 297);
             label8.Name = "label8";
             label8.Size = new Size(93, 28);
             label8.TabIndex = 32;
@@ -376,6 +367,25 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(1787, 441);
             panel1.TabIndex = 32;
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label9.Location = new Point(648, 340);
+            label9.Name = "label9";
+            label9.Size = new Size(50, 28);
+            label9.TabIndex = 36;
+            label9.Text = "List :";
+            // 
+            // cmb_list
+            // 
+            cmb_list.BackColor = SystemColors.Info;
+            cmb_list.FormattingEnabled = true;
+            cmb_list.Location = new Point(839, 340);
+            cmb_list.Name = "cmb_list";
+            cmb_list.Size = new Size(329, 28);
+            cmb_list.TabIndex = 37;
             // 
             // Admin_Products
             // 
@@ -404,7 +414,6 @@
         private DataGridView dtg_SanPham;
         private TextBox txt_TimKiemSP;
         private Button btn_Update;
-        private Button btn_Del;
         private Button btn_Add;
         private TextBox txtGiaNhap;
         private TextBox txtTenHang;
@@ -430,5 +439,7 @@
         private Button btn_clear;
         private Button btn_browser;
         private TextBox txt_ImgPath;
+        private ComboBox cmb_list;
+        private Label label9;
     }
 }

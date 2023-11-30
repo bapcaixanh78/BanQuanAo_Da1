@@ -24,6 +24,7 @@ namespace PRL.Forms
         IPictureSV _picturesv;
         ISizeSV _sizesv;
         IProductsSV _producsv;
+        IListSV1 _listSV;
         Guid _idWhenClickCTSP;
         Guid _idWhenClickSP;
         public Admin_Products()
@@ -32,6 +33,7 @@ namespace PRL.Forms
             _materialsv = new MaterialSV();
             _detailproductsv = new DetailPRoductsSV();
             _sizesv = new SizeSv();
+            _listSV = new ListSV1();
             _producsv = new ProductsSV();
             _picturesv = new PictureSV();
             InitializeComponent();
@@ -62,12 +64,19 @@ namespace PRL.Forms
             }
             cmb_Size.SelectedIndex = 0;
             cmb_Size.DropDownStyle = ComboBoxStyle.DropDownList;
+
+            foreach (var s in _listSV.GetDanhmucs())
+            {
+                cmb_list.Items.Add(s.Ten);
+            }
+            cmb_list.SelectedIndex = 0;
+            cmb_list.DropDownStyle = ComboBoxStyle.DropDownList;
         }
 
         public void LoadGrid(string input)
         {
             int stt = 1;
-            dtg_SanPham.ColumnCount = 11;
+            dtg_SanPham.ColumnCount = 12;
             dtg_SanPham.Columns[0].Name = "STT";
             dtg_SanPham.Columns[1].Name = "ID";
             dtg_SanPham.Columns[1].Visible = false;
@@ -78,14 +87,16 @@ namespace PRL.Forms
             dtg_SanPham.Columns[6].Name = "Màu";
             dtg_SanPham.Columns[7].Name = "Kích thước";
             dtg_SanPham.Columns[8].Name = "Chất liệu";
-            dtg_SanPham.Columns[9].Name = "Mô tả";
-            dtg_SanPham.Columns[10].Name = "ID Ảnh";
+            dtg_SanPham.Columns[9].Name = "Danh mục";
+            dtg_SanPham.Columns[10].Name = "Mô tả";
+            dtg_SanPham.Columns[11].Name = "ID Ảnh";
+            dtg_SanPham.Columns[11].Visible = false;
             dtg_SanPham.Rows.Clear();
             dtg_SanPham.AllowUserToAddRows = false;
             foreach (var sp in _detailproductsv.GetAll1(txt_TimKiemSP.Text))
             {
 
-                dtg_SanPham.Rows.Add(stt++, sp.Id, _producsv.Findbyid(sp.Idsanpham).Ten, sp.Gianhap, sp.Giaban, sp.Soluongton, _colorsv.FindNamebyID(_colorsv.convertGUID(sp.Idmauao)), _sizesv.FindNamebyID(_sizesv.convertGUID(sp.Idkichthuoc)), _materialsv.FindNamebyID(_materialsv.convertGUID(sp.Idchatlieu)), sp.Mota, sp.IdAnh);
+                dtg_SanPham.Rows.Add(stt++, sp.Id, _producsv.Findbyid(sp.Idsanpham).Ten, sp.Gianhap, sp.Giaban, sp.Soluongton, _colorsv.FindNamebyID(_colorsv.convertGUID(sp.Idmauao)), _sizesv.FindNamebyID(_sizesv.convertGUID(sp.Idkichthuoc)), _materialsv.FindNamebyID(_materialsv.convertGUID(sp.Idchatlieu)),_listSV.FindNamebyID(_listSV.convertGUID(sp.Iddanhmuc)), sp.Mota, sp.IdAnh);
             }
         }
 
@@ -122,6 +133,7 @@ namespace PRL.Forms
             CTSP.Idmauao = _colorsv.FindIDbyName(cmb_Color.SelectedItem.ToString());
             CTSP.Idchatlieu = _materialsv.FindIDbyName(cmb_Material.SelectedItem.ToString());
             CTSP.Idkichthuoc = _sizesv.FindIDbyName(cmb_Size.SelectedItem.ToString());
+            CTSP.Iddanhmuc = _listSV.FindIDbyName(cmb_list.SelectedItem.ToString());
             CTSP.Mota = rtxt_MoTa.Text;
             var option = MessageBox.Show("Confirm", "Notification", MessageBoxButtons.YesNo);
             if (option == DialogResult.Yes)
@@ -129,7 +141,7 @@ namespace PRL.Forms
                 _picturesv.AddImg(Img);
                 _producsv.Add(SP);
                 MessageBox.Show(_detailproductsv.Add(CTSP));
-
+                clear();
 
 
 
@@ -141,31 +153,6 @@ namespace PRL.Forms
             LoadGrid(null);
 
         }
-
-        private void btn_Del_Click(object sender, EventArgs e)
-        {
-            var CTSP = _detailproductsv.GetAll1(null).FirstOrDefault(x => x.Id == _idWhenClickCTSP);
-            var SP = _producsv.GetSP(null).FirstOrDefault(x => x.Id == _idWhenClickSP);
-            var img = _picturesv.Getall().FirstOrDefault(c => c.Idanh == CTSP.IdAnh);
-
-            CTSP.Id = _idWhenClickCTSP;
-            SP.Id = _idWhenClickSP;
-
-            var option = MessageBox.Show("Xác nhận muốn Xóa?", "Xác nhận", MessageBoxButtons.YesNo);
-            if (option == DialogResult.Yes)
-            {
-                _detailproductsv.Delete(CTSP);
-                MessageBox.Show(_producsv.Delete(SP));
-                _picturesv.DeleteImg(img.Idanh);
-
-            }
-            else
-            {
-                return;
-            }
-            LoadGrid(null);
-        }
-
 
         private void dtg_SanPham_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -185,6 +172,7 @@ namespace PRL.Forms
             cmb_Color.SelectedIndex = _colorsv.GetMauaos().FindIndex(t => t.Id == CTSP.Idmauao);
             cmb_Material.SelectedIndex = _materialsv.GetChatlieus().FindIndex(t => t.Id == CTSP.Idchatlieu);
             cmb_Size.SelectedIndex = _sizesv.GetKichthuocs().FindIndex(t => t.Id == CTSP.Idkichthuoc);
+            cmb_list.SelectedIndex = _listSV.GetDanhmucs().FindIndex(t => t.Id == CTSP.Iddanhmuc);
             rtxt_MoTa.Text = CTSP.Mota;
             txt_SoLuong.Text = CTSP.Soluongton.ToString();
 
@@ -222,13 +210,15 @@ namespace PRL.Forms
                 CTSP.Idmauao = _colorsv.FindIDbyName(cmb_Color.SelectedItem.ToString());
                 CTSP.Idchatlieu = _materialsv.FindIDbyName(cmb_Material.SelectedItem.ToString());
                 CTSP.Idkichthuoc = _sizesv.FindIDbyName(cmb_Size.SelectedItem.ToString());
+                CTSP.Iddanhmuc = _listSV.FindIDbyName(cmb_list.SelectedItem.ToString());
                 CTSP.Mota = rtxt_MoTa.Text;
-                var option = MessageBox.Show("Xác nhận muốn Sửa?", "Xác nhận", MessageBoxButtons.YesNo);
+                var option = MessageBox.Show("Confirm", "Notification", MessageBoxButtons.YesNo);
                 if (option == DialogResult.Yes)
                 {
                     MessageBox.Show(_detailproductsv.Update(CTSP));
                     _producsv.Update(SP);
                     _picturesv.UpdateImg(tmpImg);
+                
                 }
                 else
                 {
@@ -236,19 +226,22 @@ namespace PRL.Forms
                     LoadGrid(null);
 
                 }
+                
             }
             catch (Exception ex)
             {
+                clear();
                 return;
             };
             LoadGrid(null);
+            
 
         }
 
         public void LoadGridSP(List<Chitietsanpham> chitietsanphams)
         {
             int stt = 1;
-            dtg_SanPham.ColumnCount = 11;
+            dtg_SanPham.ColumnCount = 12;
             dtg_SanPham.Columns[0].Name = "STT";
             dtg_SanPham.Columns[1].Name = "ID";
             dtg_SanPham.Columns[1].Visible = false;
@@ -259,13 +252,16 @@ namespace PRL.Forms
             dtg_SanPham.Columns[6].Name = "Màu";
             dtg_SanPham.Columns[7].Name = "Kích thước";
             dtg_SanPham.Columns[8].Name = "Chất liệu";
-            dtg_SanPham.Columns[9].Name = "Mô tả";
+            dtg_SanPham.Columns[9].Name = "Danh mục";
+            dtg_SanPham.Columns[10].Name = "Mô tả";
+            dtg_SanPham.Columns[11].Name = "ID Ảnh";
+            dtg_SanPham.Columns[11].Visible = false;
             dtg_SanPham.Rows.Clear();
             dtg_SanPham.AllowUserToAddRows = false;
             foreach (var sp in chitietsanphams)
             {
 
-                dtg_SanPham.Rows.Add(stt++, sp.Id, _producsv.Findbyid(sp.Idsanpham).Ten, sp.Gianhap, sp.Giaban, sp.Soluongton, _colorsv.FindNamebyID(_colorsv.convertGUID(sp.Idmauao)), _sizesv.FindNamebyID(_sizesv.convertGUID(sp.Idkichthuoc)), _materialsv.FindNamebyID(_materialsv.convertGUID(sp.Idchatlieu)), sp.Mota);
+                dtg_SanPham.Rows.Add(stt++, sp.Id, _producsv.Findbyid(sp.Idsanpham).Ten, sp.Gianhap, sp.Giaban, sp.Soluongton, _colorsv.FindNamebyID(_colorsv.convertGUID(sp.Idmauao)), _sizesv.FindNamebyID(_sizesv.convertGUID(sp.Idkichthuoc)), _materialsv.FindNamebyID(_materialsv.convertGUID(sp.Idchatlieu)), _listSV.FindNamebyID(_listSV.convertGUID(sp.Iddanhmuc)), sp.Mota, sp.IdAnh);
             }
         }
         private void txt_TimKiemSP_TextChanged(object sender, EventArgs e)
@@ -291,6 +287,21 @@ namespace PRL.Forms
         {
 
         }
+        public void clear()
+        {
+            txtTenHang.Text = null;
+            txtGiaNhap.Text = null;
+            txtGiaBan.Text = null;
+            cmb_Color.SelectedIndex = 0;
+            cmb_Material.SelectedIndex = 0;
+            cmb_Size.SelectedIndex = 0;
+            cmb_list.SelectedIndex = 0;
+            rtxt_MoTa.Text = null;
+            txt_SoLuong.Text = null;
+            txt_ImgPath.Text = null;
+            Picturebox_Product.Image = Image.FromFile("C:\\Users\\Acer\\Documents\\GitHub\\BanQuanAo_Da1\\PRL\\IMG\\default-thumbnail.jpg");
+
+        }
 
         private void btn_clear_Click(object sender, EventArgs e)
         {
@@ -300,10 +311,11 @@ namespace PRL.Forms
             cmb_Color.SelectedIndex = 0;
             cmb_Material.SelectedIndex = 0;
             cmb_Size.SelectedIndex = 0;
+            cmb_list.SelectedIndex = 0;
             rtxt_MoTa.Text = null;
             txt_SoLuong.Text = null;
             txt_ImgPath.Text = null;
-            Picturebox_Product.Image = Image.FromFile("D:\\Da1_5\\GIT\\BanQuanAo_Da1\\PRL\\IMG\\default-thumbnail.jpg");
+            Picturebox_Product.Image = Image.FromFile("C:\\Users\\Acer\\Documents\\GitHub\\BanQuanAo_Da1\\PRL\\IMG\\default-thumbnail.jpg");
         }
 
         private void btn_browser_Click(object sender, EventArgs e)
