@@ -1,17 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using BUS.Services;
+using BUS.Utilites;
+using DAL.Model;
 
 namespace PRL.Forms
 {
     public partial class login : Form
     {
+        private StaffSV staffSV = new StaffSV();
+
+        public login(StaffSV staffSV)
+        {
+            this.staffSV = staffSV;
+        }
+
         public login()
         {
             InitializeComponent();
@@ -36,9 +37,29 @@ namespace PRL.Forms
 
         private void btn_Login_Click(object sender, EventArgs e)
         {
-            Main frm = new Main();
-            this.Hide();
-            frm.ShowDialog();
+            if (StaffValidate.CheckEmptyString(txt_Username.Text) == false || StaffValidate.CheckEmptyString(txt_Password.Text) == false)
+            {
+                MessageBox.Show("Please fill in username and password");
+            }
+            if (StaffValidate.CheckIfAccountListIsEmpty() == true)
+            {
+                MessageBox.Show("Không có tài khoản nào");
+            }
+            else if (StaffValidate.CheckEmptyString(txt_Username.Text) && StaffValidate.CheckEmptyString(txt_Password.Text))
+            {
+                Nhanvien nhanvien = staffSV.CheckStaffLogin(txt_Username.Text, txt_Password.Text);
+                if (nhanvien != null)
+                {
+                    MessageBox.Show("Thông tin chưa chính xác");
+                }
+                else
+                {
+                    MessageBox.Show("Đăng nhập thành công");
+                    this.Close();
+                    Main main = new Main();
+                    main.ShowDialog();
+                }
+            }
         }
     }
 }

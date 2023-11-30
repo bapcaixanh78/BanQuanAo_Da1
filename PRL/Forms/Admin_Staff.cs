@@ -1,4 +1,5 @@
 ﻿using BUS.Services;
+using BUS.Utilites;
 using DAL.Model;
 
 namespace PRL.Forms
@@ -50,21 +51,28 @@ namespace PRL.Forms
 
         private void btn_Add_Click(object sender, EventArgs e)
         {
-            Nhanvien nhanvien = new Nhanvien()
+            if (StaffValidate.CheckIfStaffAccountNameExist(txt_Account.Text))
             {
-                Id = new Guid(),
-                Ten = txt_TenNV.Text,
-                Taikhoan = txt_Account.Text,
-                Matkhau = txt_Password.Text,
-                Diachi = txt_DiaChi.Text,
-                Email = txt_email.Text,
-                Quyen = cbb_role.SelectedIndex == 0 ? 0 : 1,
-                Ngaytao = DateTime.Now,
-                Trangthai = "Hoạt động"
-            };
-            staffSV.Add(nhanvien);
-            List<Nhanvien> nhanviens = staffSV.GetAll();
-            LoadDataToGridview(nhanviens);
+                MessageBox.Show("Tên tài khoản đã tồn tại");
+            }
+            else
+            {
+                Nhanvien nhanvien = new Nhanvien()
+                {
+                    Id = new Guid(),
+                    Ten = txt_TenNV.Text,
+                    Taikhoan = txt_Account.Text,
+                    Matkhau = txt_Password.Text,
+                    Diachi = txt_DiaChi.Text,
+                    Email = txt_email.Text,
+                    Quyen = cbb_role.SelectedIndex == 0 ? 0 : 1,
+                    Ngaytao = DateTime.Now,
+                    Trangthai = "Hoạt động"
+                };
+                staffSV.Add(nhanvien);
+                List<Nhanvien> nhanviens = staffSV.GetAll();
+                LoadDataToGridview(nhanviens);
+            }
         }
 
         private void dtg_NhanVien_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -86,20 +94,27 @@ namespace PRL.Forms
 
         private void btn_Update_Click(object sender, EventArgs e)
         {
-            Guid currentID = (Guid)dtg_NhanVien.CurrentRow.Cells[9].Value;
-            Nhanvien nhanVienUpdate = new Nhanvien()
+            if (StaffValidate.CheckIfStaffAccountNameExist(txt_Account.Text))
             {
-                Id = currentID,
-                Ten = txt_TenNV.Text,
-                Taikhoan = txt_Account.Text,
-                Matkhau = txt_Password.Text,
-                Diachi = txt_DiaChi.Text,
-                Email = txt_email.Text,
-                Quyen = cbb_role.SelectedValue == "Quản lý" ? 0 : 1,
-            };
-            staffSV.Update(currentID, nhanVienUpdate);
-            List<Nhanvien> nhanviens = staffSV.GetAll();
-            LoadDataToGridview(nhanviens);
+                MessageBox.Show("Tên tài khoản đã tồn tại");
+            }
+            else
+            {
+                Guid currentID = (Guid)dtg_NhanVien.CurrentRow.Cells[9].Value;
+                Nhanvien nhanVienUpdate = new Nhanvien()
+                {
+                    Id = currentID,
+                    Ten = txt_TenNV.Text,
+                    Taikhoan = txt_Account.Text,
+                    Matkhau = txt_Password.Text,
+                    Diachi = txt_DiaChi.Text,
+                    Email = txt_email.Text,
+                    Quyen = cbb_role.SelectedValue == "Quản lý" ? 0 : 1,
+                };
+                staffSV.Update(currentID, nhanVienUpdate);
+                List<Nhanvien> nhanviens = staffSV.GetAll();
+                LoadDataToGridview(nhanviens);
+            }
         }
 
         private void btn_Lock_Click(object sender, EventArgs e)
@@ -123,7 +138,6 @@ namespace PRL.Forms
             txt_Password.Text = string.Empty;
             txt_email.Text = string.Empty;
             txt_DiaChi.Text = string.Empty;
-
         }
     }
 }

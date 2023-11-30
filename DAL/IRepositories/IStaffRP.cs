@@ -10,10 +10,13 @@ namespace DAL.IRepositories
     internal interface IStaffRP
     {
         public bool Add(Nhanvien NV);
+
         public bool Update(Nhanvien NV);
+
         public List<Nhanvien> GetStaffByName(string name);
 
-        public List<Nhanvien> GetAll();
+        public Nhanvien CheckStaffLogin(string username, string password);
 
+        public List<Nhanvien> GetAll();
     }
 }

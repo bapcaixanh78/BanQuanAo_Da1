@@ -12,10 +12,12 @@ namespace DAL.Repositories
     public class StaffRP : IStaffRP
     {
         private ShopDbcontext _dbcontext;
+
         public StaffRP()
         {
             _dbcontext = new ShopDbcontext();
         }
+
         public bool Add(Nhanvien NV)
         {
             _dbcontext.Add(NV);
@@ -28,9 +30,15 @@ namespace DAL.Repositories
             return _dbcontext.Nhanvien.ToList();
         }
 
+        public Nhanvien CheckStaffLogin(string username, string password)
+        {
+            Nhanvien nhanvien = _dbcontext.Nhanvien.FirstOrDefault(x => x.Taikhoan == username && x.Matkhau == password);
+            return nhanvien;
+        }
+
         public List<Nhanvien> GetStaffByName(string name)
         {
-            var nameNV= _dbcontext.Nhanvien.Where(x => x.Ten.Contains(name)).ToList();
+            var nameNV = _dbcontext.Nhanvien.Where(x => x.Ten.Contains(name)).ToList();
             return nameNV;
         }
 

@@ -30,6 +30,11 @@ namespace BUS.Services
             return staffRP.GetAll();
         }
 
+        public Nhanvien CheckStaffLogin(string username, string password)
+        {
+            return staffRP.CheckStaffLogin(username, password);
+        }
+
         public List<Nhanvien> GetStaffByName(string name)
         {
             return staffRP.GetStaffByName(name);
@@ -38,7 +43,7 @@ namespace BUS.Services
         public string Lock(Guid id)
         {
             var nhanvien = staffRP.GetAll().FirstOrDefault(x => x.Id == id);
-            if(nhanvien.Trangthai=="Hoạt động")
+            if (nhanvien.Trangthai == "Hoạt động")
             {
                 nhanvien.Trangthai = "Vô hiệu hóa";
             }
@@ -46,7 +51,7 @@ namespace BUS.Services
             {
                 nhanvien.Trangthai = "Hoạt động";
             }
-            
+
             if (staffRP.Update(nhanvien) == true)
             {
                 return "Lock Successfully";
