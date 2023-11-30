@@ -83,6 +83,7 @@ namespace BUS.Services
             clone.Idmauao = CTSP.Idmauao;
             clone.Idkichthuoc = CTSP.Idkichthuoc;
             clone.Idchatlieu = CTSP.Idchatlieu;
+            clone.Iddanhmuc = CTSP.Iddanhmuc;
             clone.Mota = CTSP.Mota;
             clone.IdAnh = CTSP.IdAnh;
             if (detailProductsRP.Update(clone))
