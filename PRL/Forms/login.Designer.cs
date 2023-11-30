@@ -157,6 +157,7 @@
             cb_showpass.TabIndex = 17;
             cb_showpass.Text = "Show password";
             cb_showpass.UseVisualStyleBackColor = true;
+            cb_showpass.CheckedChanged += cb_showpass_CheckedChanged;
             // 
             // btn_Exit
             // 

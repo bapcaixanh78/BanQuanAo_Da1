@@ -39,7 +39,7 @@ namespace PRL.Forms
         {
             if (StaffValidate.CheckEmptyString(txt_Username.Text) == false || StaffValidate.CheckEmptyString(txt_Password.Text) == false)
             {
-                MessageBox.Show("Please fill in username and password");
+                MessageBox.Show("Please fill in username and password","Log into Shirt Haven");
             }
             if (StaffValidate.CheckIfAccountListIsEmpty() == true)
             {
@@ -48,26 +48,38 @@ namespace PRL.Forms
             else if (StaffValidate.CheckEmptyString(txt_Username.Text) && StaffValidate.CheckEmptyString(txt_Password.Text))
             {
                 Nhanvien nhanvien = staffSV.CheckStaffLogin(txt_Username.Text, txt_Password.Text);
-                if (nhanvien != null && nhanvien.Quyen== 0)
+                if (nhanvien != null && nhanvien.Quyen == 0)
                 {
-                    MessageBox.Show(" Login succesfully "+ nhanvien.Ten,"Inform");
-                    this.Close();
+                    MessageBox.Show(" Welcome back, " + nhanvien.Ten+".", "Log into Shirt Haven");
+                    this.Hide();
                     Main main = new Main();
                     main.ShowDialog();
                 }
                 else if (nhanvien != null && nhanvien.Quyen == 1)
                 {
-                    MessageBox.Show(" Login succesfully " + nhanvien.Ten, "Inform");
-                    this.Close();
+                    MessageBox.Show(" Welcome back, " + nhanvien.Ten+".", "Log into Shirt Havenogin");
+                    this.Hide();
                     MainNV mainNV = new MainNV();
                     mainNV.ShowDialog();
                 }
                 else
                 {
 
-                    MessageBox.Show("Somthing was wrong");
-                    
+                    MessageBox.Show("The user name or password is incorrect. Try again.", "Log into Shirt Haven", MessageBoxButtons.OK,MessageBoxIcon.Information);
+
                 }
+            }
+        }
+
+        private void cb_showpass_CheckedChanged(object sender, EventArgs e)
+        {
+            if(cb_showpass.Checked == true)
+            {
+                txt_Password.UseSystemPasswordChar = false;
+            }
+            else
+            {
+                txt_Password.UseSystemPasswordChar = true;
             }
         }
     }
