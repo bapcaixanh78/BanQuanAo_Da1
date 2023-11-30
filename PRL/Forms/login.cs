@@ -27,7 +27,7 @@ namespace PRL.Forms
         private void btn_Exit_MouseLeave(object sender, EventArgs e)
         {
             btn_Exit.Font = new Font(btn_Exit.Font.FontFamily, 9);
-            btn_Exit.BackColor = Color.White;
+            btn_Exit.BackColor = Color.Gainsboro;
         }
 
         private void btn_Exit_Click(object sender, EventArgs e)
@@ -48,16 +48,25 @@ namespace PRL.Forms
             else if (StaffValidate.CheckEmptyString(txt_Username.Text) && StaffValidate.CheckEmptyString(txt_Password.Text))
             {
                 Nhanvien nhanvien = staffSV.CheckStaffLogin(txt_Username.Text, txt_Password.Text);
-                if (nhanvien != null)
+                if (nhanvien != null && nhanvien.Quyen== 0)
                 {
-                    MessageBox.Show("Thông tin chưa chính xác");
-                }
-                else
-                {
-                    MessageBox.Show("Đăng nhập thành công");
+                    MessageBox.Show(" Login succesfully "+ nhanvien.Ten,"Inform");
                     this.Close();
                     Main main = new Main();
                     main.ShowDialog();
+                }
+                else if (nhanvien != null && nhanvien.Quyen == 1)
+                {
+                    MessageBox.Show(" Login succesfully " + nhanvien.Ten, "Inform");
+                    this.Close();
+                    MainNV mainNV = new MainNV();
+                    mainNV.ShowDialog();
+                }
+                else
+                {
+
+                    MessageBox.Show("Somthing was wrong");
+                    
                 }
             }
         }
