@@ -52,12 +52,12 @@
             groupBox2 = new GroupBox();
             btn_clear = new Button();
             groupBox3 = new GroupBox();
+            txt_ImgPath = new TextBox();
             btn_browser = new Button();
             cmb_Material = new ComboBox();
             label8 = new Label();
             Picturebox_Product = new PictureBox();
             panel1 = new Panel();
-            txt_ImgPath = new TextBox();
             ((System.ComponentModel.ISupportInitialize)dtg_SanPham).BeginInit();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
@@ -320,11 +320,19 @@
             groupBox3.TabIndex = 31;
             groupBox3.TabStop = false;
             // 
+            // txt_ImgPath
+            // 
+            txt_ImgPath.BackColor = SystemColors.Info;
+            txt_ImgPath.Location = new Point(159, 331);
+            txt_ImgPath.Name = "txt_ImgPath";
+            txt_ImgPath.Size = new Size(285, 27);
+            txt_ImgPath.TabIndex = 35;
+            // 
             // btn_browser
             // 
-            btn_browser.Location = new Point(250, 364);
+            btn_browser.Location = new Point(198, 373);
             btn_browser.Name = "btn_browser";
-            btn_browser.Size = new Size(168, 46);
+            btn_browser.Size = new Size(211, 46);
             btn_browser.TabIndex = 34;
             btn_browser.Text = "Browser";
             btn_browser.UseVisualStyleBackColor = true;
@@ -352,9 +360,9 @@
             // Picturebox_Product
             // 
             Picturebox_Product.Image = (Image)resources.GetObject("Picturebox_Product.Image");
-            Picturebox_Product.Location = new Point(221, 67);
+            Picturebox_Product.Location = new Point(159, 43);
             Picturebox_Product.Name = "Picturebox_Product";
-            Picturebox_Product.Size = new Size(222, 241);
+            Picturebox_Product.Size = new Size(285, 265);
             Picturebox_Product.SizeMode = PictureBoxSizeMode.StretchImage;
             Picturebox_Product.TabIndex = 31;
             Picturebox_Product.TabStop = false;
@@ -368,14 +376,6 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(1787, 441);
             panel1.TabIndex = 32;
-            // 
-            // txt_ImgPath
-            // 
-            txt_ImgPath.BackColor = SystemColors.Info;
-            txt_ImgPath.Location = new Point(221, 318);
-            txt_ImgPath.Name = "txt_ImgPath";
-            txt_ImgPath.Size = new Size(222, 27);
-            txt_ImgPath.TabIndex = 35;
             // 
             // Admin_Products
             // 

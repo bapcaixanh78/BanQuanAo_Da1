@@ -62,6 +62,7 @@ namespace BUS.Services
             }
 
 
+
         }
 
         public List<Anh> Getall()
@@ -71,12 +72,12 @@ namespace BUS.Services
 
         public Guid FindIdByPath(string path)
         {
-            return PictureRP.GetAll().FirstOrDefault(c=>c.Path == path).Idanh;
+            return PictureRP.GetAll().FirstOrDefault(c => c.Path == path).Idanh;
         }
 
         public List<string> GetLstPath()
         {
-            return Getall().Select(c=>c.Path).ToList();
+            return Getall().Select(c => c.Path).ToList();
         }
     }
 }

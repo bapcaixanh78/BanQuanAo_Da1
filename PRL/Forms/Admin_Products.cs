@@ -1,6 +1,7 @@
 ﻿using BUS.IServices;
 using BUS.Services;
 using DAL.Model;
+using FSharp.Data.Runtime.StructuralTypes;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -36,7 +37,7 @@ namespace PRL.Forms
             InitializeComponent();
             LoadComboBox();
             LoadGrid(null);
-            
+
         }
 
         public void LoadComboBox()
@@ -84,7 +85,7 @@ namespace PRL.Forms
             foreach (var sp in _detailproductsv.GetAll1(txt_TimKiemSP.Text))
             {
 
-                dtg_SanPham.Rows.Add(stt++, sp.Id, _producsv.Findbyid(sp.Idsanpham).Ten, sp.Gianhap, sp.Giaban, sp.Soluongton, _colorsv.FindNamebyID(_colorsv.convertGUID(sp.Idmauao)), _sizesv.FindNamebyID(_sizesv.convertGUID(sp.Idkichthuoc)), _materialsv.FindNamebyID(_materialsv.convertGUID(sp.Idchatlieu)), sp.Mota,sp.IdAnh);
+                dtg_SanPham.Rows.Add(stt++, sp.Id, _producsv.Findbyid(sp.Idsanpham).Ten, sp.Gianhap, sp.Giaban, sp.Soluongton, _colorsv.FindNamebyID(_colorsv.convertGUID(sp.Idmauao)), _sizesv.FindNamebyID(_sizesv.convertGUID(sp.Idkichthuoc)), _materialsv.FindNamebyID(_materialsv.convertGUID(sp.Idchatlieu)), sp.Mota, sp.IdAnh);
             }
         }
 
@@ -100,7 +101,6 @@ namespace PRL.Forms
             var Img = new Anh()
             {
                 Idanh = Guid.NewGuid(),
-                Ten = "Ảnh áo phông",
                 Path = txt_ImgPath.Text,
             };
 
@@ -187,6 +187,7 @@ namespace PRL.Forms
             cmb_Size.SelectedIndex = _sizesv.GetKichthuocs().FindIndex(t => t.Id == CTSP.Idkichthuoc);
             rtxt_MoTa.Text = CTSP.Mota;
             txt_SoLuong.Text = CTSP.Soluongton.ToString();
+
             txt_ImgPath.Text = _detailproductsv.GetPathImgByIdImg(_detailproductsv.convertGUID(CTSP.IdAnh));
             Image tmp = _detailproductsv.GetImageByPath(CTSP.Id);
             Picturebox_Product.Image = tmp;
@@ -196,40 +197,50 @@ namespace PRL.Forms
 
         private void btn_Update_Click(object sender, EventArgs e)
         {
-            var CTSP = _detailproductsv.GetAll1(null).FirstOrDefault(x => x.Id == _idWhenClickCTSP);
-            var SP = _producsv.GetSP(null).FirstOrDefault(x => x.Id == _idWhenClickSP);
-            if (!_picturesv.GetLstPath().Contains(txt_ImgPath.Text))
+            try
             {
-                var Img = new Anh()
+                var CTSP = _detailproductsv.GetAll1(null).FirstOrDefault(x => x.Id == _idWhenClickCTSP);
+                var SP = _producsv.GetSP(null).FirstOrDefault(x => x.Id == _idWhenClickSP);
+                var img = _picturesv.Getall().FirstOrDefault(c => c.Path == txt_ImgPath.Text);
+                if (img == null)
                 {
-                    Idanh = Guid.NewGuid(),
-                    Ten = "Ảnh áo phông",
-                    Path = txt_ImgPath.Text,
-                };
-                _picturesv.AddImg(Img);
-            }
-            var img = _picturesv.Getall().FirstOrDefault(c => c.Path == txt_ImgPath.Text);
+                    var ImgNew = new Anh()
+                    {
+                        Idanh = Guid.NewGuid(),
+                        Path = txt_ImgPath.Text,
+                    };
+                    _picturesv.AddImg(ImgNew);
+                }
 
-            img.Path = txt_ImgPath.Text;
-            SP.Ten = txtTenHang.Text;
-            CTSP.IdAnh = _picturesv.FindIdByPath(txt_ImgPath.Text);
-            CTSP.Giaban = decimal.Parse(txtGiaBan.Text);
-            CTSP.Gianhap = decimal.Parse(txtGiaNhap.Text);
-            CTSP.Idmauao = _colorsv.FindIDbyName(cmb_Color.SelectedItem.ToString());
-            CTSP.Idchatlieu = _materialsv.FindIDbyName(cmb_Material.SelectedItem.ToString());
-            CTSP.Idkichthuoc = _sizesv.FindIDbyName(cmb_Size.SelectedItem.ToString());
-            CTSP.Mota = rtxt_MoTa.Text;
-            var option = MessageBox.Show("Xác nhận muốn Sửa?", "Xác nhận", MessageBoxButtons.YesNo);
-            if (option == DialogResult.Yes)
-            {
-                MessageBox.Show(_detailproductsv.Update(CTSP));
-                _producsv.Update(SP);
-                _picturesv.UpdateImg(img);
+                var tmpImg = _picturesv.Getall().FirstOrDefault(c => c.Path == txt_ImgPath.Text);
+
+                tmpImg.Path = txt_ImgPath.Text;
+                SP.Ten = txtTenHang.Text;
+                CTSP.IdAnh = _picturesv.FindIdByPath(txt_ImgPath.Text);
+                CTSP.Giaban = decimal.Parse(txtGiaBan.Text);
+                CTSP.Gianhap = decimal.Parse(txtGiaNhap.Text);
+                CTSP.Idmauao = _colorsv.FindIDbyName(cmb_Color.SelectedItem.ToString());
+                CTSP.Idchatlieu = _materialsv.FindIDbyName(cmb_Material.SelectedItem.ToString());
+                CTSP.Idkichthuoc = _sizesv.FindIDbyName(cmb_Size.SelectedItem.ToString());
+                CTSP.Mota = rtxt_MoTa.Text;
+                var option = MessageBox.Show("Xác nhận muốn Sửa?", "Xác nhận", MessageBoxButtons.YesNo);
+                if (option == DialogResult.Yes)
+                {
+                    MessageBox.Show(_detailproductsv.Update(CTSP));
+                    _producsv.Update(SP);
+                    _picturesv.UpdateImg(tmpImg);
+                }
+                else
+                {
+                    return;
+                    LoadGrid(null);
+
+                }
             }
-            else
+            catch (Exception ex)
             {
                 return;
-            }
+            };
             LoadGrid(null);
 
         }
@@ -260,9 +271,9 @@ namespace PRL.Forms
         private void txt_TimKiemSP_TextChanged(object sender, EventArgs e)
         {
             List<Chitietsanpham> chitietsanphams = _detailproductsv.GetAll(null);
-            List<Sanpham> sanphams = _producsv.GetSP(null).Where(x=>x.Ten.ToLower().Trim().Contains(txt_TimKiemSP.Text.ToLower())).ToList();
+            List<Sanpham> sanphams = _producsv.GetSP(null).Where(x => x.Ten.ToLower().Trim().Contains(txt_TimKiemSP.Text.ToLower())).ToList();
 
-            var overlap = 
+            var overlap =
                 from pd in chitietsanphams
                 join sp in sanphams on pd.Idsanpham equals sp.Id
                 select pd;
@@ -291,6 +302,8 @@ namespace PRL.Forms
             cmb_Size.SelectedIndex = 0;
             rtxt_MoTa.Text = null;
             txt_SoLuong.Text = null;
+            txt_ImgPath.Text = null;
+            Picturebox_Product.Image = Image.FromFile("D:\\Da1_5\\GIT\\BanQuanAo_Da1\\PRL\\IMG\\default-thumbnail.jpg");
         }
 
         private void btn_browser_Click(object sender, EventArgs e)
