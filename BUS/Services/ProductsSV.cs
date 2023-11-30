@@ -57,11 +57,11 @@ namespace BUS.Services
             clone.Ten = SP.Ten;
             if (productsRP.Update(clone))
             {
-                return "Sửa thành công";
+                return "You have updated successfully";
             }
             else
             {
-                return "Sửa thất bại";
+                return "You have failed to update";
             }
         }
 
