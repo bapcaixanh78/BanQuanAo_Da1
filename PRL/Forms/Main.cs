@@ -28,63 +28,85 @@ namespace PRL.Forms
         private void btn_KhachHang_MouseEnter(object sender, EventArgs e)
         {
             btn_KhachHang.Font = new Font(btn_KhachHang.Font.FontFamily, 14);
+            btn_KhachHang.BackColor = Color.FromArgb(80, 60, 40);
+
 
         }
 
         private void btn_KhachHang_MouseLeave(object sender, EventArgs e)
         {
             btn_KhachHang.Font = new Font(btn_KhachHang.Font.FontFamily, 12);
+            btn_KhachHang.BackColor = Color.Black;
         }
 
         private void btn_SanPham_MouseEnter(object sender, EventArgs e)
         {
             btn_SanPham.Font = new Font(btn_SanPham.Font.FontFamily, 14);
+            btn_SanPham.BackColor = Color.FromArgb(80, 60, 40);
+
         }
 
         private void btn_SanPham_MouseLeave(object sender, EventArgs e)
         {
             btn_SanPham.Font = new Font(btn_SanPham.Font.FontFamily, 12);
+            btn_SanPham.BackColor = Color.Black;
 
         }
 
         private void btn_NhanVien_MouseEnter(object sender, EventArgs e)
         {
             btn_NhanVien.Font = new Font(btn_NhanVien.Font.FontFamily, 14);
+            btn_NhanVien.BackColor = Color.FromArgb(80, 60, 40);
+
         }
 
         private void btn_NhanVien_MouseLeave(object sender, EventArgs e)
         {
             btn_NhanVien.Font = new Font(btn_NhanVien.Font.FontFamily, 12);
+            btn_NhanVien.BackColor = Color.Black;
+
         }
 
         private void btn_HoaDon_MouseEnter(object sender, EventArgs e)
         {
             btn_HoaDon.Font = new Font(btn_HoaDon.Font.FontFamily, 14);
+            btn_HoaDon.BackColor = Color.FromArgb(80, 60, 40);
+
         }
 
         private void btn_HoaDon_MouseLeave(object sender, EventArgs e)
         {
             btn_HoaDon.Font = new Font(btn_HoaDon.Font.FontFamily, 12);
+            btn_HoaDon.BackColor = Color.Black;
+
         }
 
         private void btn_BanHang_MouseEnter(object sender, EventArgs e)
         {
             btn_BanHang.Font = new Font(btn_BanHang.Font.FontFamily, 14);
+            btn_BanHang.BackColor = Color.FromArgb(80, 60, 40);
+
         }
 
         private void btn_BanHang_MouseLeave(object sender, EventArgs e)
         {
             btn_BanHang.Font = new Font(btn_BanHang.Font.FontFamily, 12);
+            btn_BanHang.BackColor = Color.Black;
+
         }
 
         private void btn_ThongKe_MouseEnter(object sender, EventArgs e)
         {
             btn_ThongKe.Font = new Font(btn_ThongKe.Font.FontFamily, 14);
+            btn_ThongKe.BackColor = Color.FromArgb(80, 60, 40);
+
         }
 
         private void btn_ThongKe_MouseLeave(object sender, EventArgs e)
         {
             btn_ThongKe.Font = new Font(btn_ThongKe.Font.FontFamily, 12);
+            btn_ThongKe.BackColor = Color.Black;
+
         }
 
 
@@ -92,21 +114,29 @@ namespace PRL.Forms
         private void btn_KhuyenMai_MouseEnter(object sender, EventArgs e)
         {
             btn_KhuyenMai.Font = new Font(btn_KhuyenMai.Font.FontFamily, 14);
+            btn_KhuyenMai.BackColor = Color.FromArgb(80, 60, 40);
+
         }
 
         private void btn_KhuyenMai_MouseLeave(object sender, EventArgs e)
         {
             btn_KhuyenMai.Font = new Font(btn_KhuyenMai.Font.FontFamily, 12);
+            btn_KhuyenMai.BackColor = Color.Black;
+
         }
 
         private void btn_DangXuat_MouseEnter(object sender, EventArgs e)
         {
             btn_DangXuat.Font = new Font(btn_DangXuat.Font.FontFamily, 14);
+            btn_DangXuat.BackColor = Color.FromArgb(80, 60, 40);
+
         }
 
         private void btn_DangXuat_MouseLeave(object sender, EventArgs e)
         {
             btn_DangXuat.Font = new Font(btn_DangXuat.Font.FontFamily, 12);
+            btn_DangXuat.BackColor = Color.Black;
+
         }
 
         private void btn_KhachHang_Click(object sender, EventArgs e)
@@ -175,7 +205,7 @@ namespace PRL.Forms
 
         private void btn_BanHang_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new Forms.Vending2(), sender);
+            OpenChildForm(new Forms.Vending3(), sender);
         }
 
         private void btn_KhuyenMai_Click(object sender, EventArgs e)
@@ -196,8 +226,8 @@ namespace PRL.Forms
                 login login = new login();
                 login.Show();
                 this.Hide();
-                
-                
+
+
             }
             else
             {

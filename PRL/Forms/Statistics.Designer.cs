@@ -79,6 +79,7 @@
             // 
             // panel2
             // 
+            panel2.BackColor = SystemColors.InactiveBorder;
             panel2.Dock = DockStyle.Fill;
             panel2.Location = new Point(0, 118);
             panel2.Name = "panel2";

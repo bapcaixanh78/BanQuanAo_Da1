@@ -54,6 +54,7 @@
             // 
             // groupBox1
             // 
+            groupBox1.BackColor = SystemColors.InactiveBorder;
             groupBox1.Controls.Add(pictureBox1);
             groupBox1.Controls.Add(txt_Search);
             groupBox1.Controls.Add(label1);

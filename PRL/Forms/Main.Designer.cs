@@ -39,23 +39,32 @@
             btn_SanPham = new Button();
             btn_KhachHang = new Button();
             panel2 = new Panel();
+            pictureBox1 = new PictureBox();
             lb_Username = new Label();
             lb_Welcome = new Label();
             panel3 = new Panel();
-            label2 = new Label();
-            label1 = new Label();
-            pictureBox1 = new PictureBox();
+            label4 = new Label();
             btnCloseChildForm = new Button();
+            label3 = new Label();
+            label1 = new Label();
+            label2 = new Label();
             pn_ChucNang = new Panel();
+            pictureBox4 = new PictureBox();
+            pictureBox3 = new PictureBox();
+            pictureBox2 = new PictureBox();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
-            panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            panel3.SuspendLayout();
+            pn_ChucNang.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             SuspendLayout();
             // 
             // panel1
             // 
-            panel1.BackColor = Color.RoyalBlue;
+            panel1.BackColor = SystemColors.ActiveCaptionText;
             panel1.Controls.Add(btn_DangXuat);
             panel1.Controls.Add(btn_KhuyenMai);
             panel1.Controls.Add(btn_ThongKe);
@@ -79,9 +88,9 @@
             btn_DangXuat.FlatStyle = FlatStyle.Flat;
             btn_DangXuat.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
             btn_DangXuat.ForeColor = Color.White;
-            btn_DangXuat.Location = new Point(0, 440);
+            btn_DangXuat.Location = new Point(0, 545);
             btn_DangXuat.Name = "btn_DangXuat";
-            btn_DangXuat.Size = new Size(202, 45);
+            btn_DangXuat.Size = new Size(202, 60);
             btn_DangXuat.TabIndex = 9;
             btn_DangXuat.Text = "Log out";
             btn_DangXuat.UseVisualStyleBackColor = true;
@@ -96,9 +105,9 @@
             btn_KhuyenMai.FlatStyle = FlatStyle.Flat;
             btn_KhuyenMai.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
             btn_KhuyenMai.ForeColor = Color.White;
-            btn_KhuyenMai.Location = new Point(0, 395);
+            btn_KhuyenMai.Location = new Point(0, 485);
             btn_KhuyenMai.Name = "btn_KhuyenMai";
-            btn_KhuyenMai.Size = new Size(202, 45);
+            btn_KhuyenMai.Size = new Size(202, 60);
             btn_KhuyenMai.TabIndex = 8;
             btn_KhuyenMai.Text = "Sale";
             btn_KhuyenMai.UseVisualStyleBackColor = true;
@@ -113,9 +122,9 @@
             btn_ThongKe.FlatStyle = FlatStyle.Flat;
             btn_ThongKe.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
             btn_ThongKe.ForeColor = Color.White;
-            btn_ThongKe.Location = new Point(0, 350);
+            btn_ThongKe.Location = new Point(0, 425);
             btn_ThongKe.Name = "btn_ThongKe";
-            btn_ThongKe.Size = new Size(202, 45);
+            btn_ThongKe.Size = new Size(202, 60);
             btn_ThongKe.TabIndex = 6;
             btn_ThongKe.Text = "Statistics";
             btn_ThongKe.UseVisualStyleBackColor = true;
@@ -130,9 +139,9 @@
             btn_BanHang.FlatStyle = FlatStyle.Flat;
             btn_BanHang.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
             btn_BanHang.ForeColor = Color.White;
-            btn_BanHang.Location = new Point(0, 305);
+            btn_BanHang.Location = new Point(0, 365);
             btn_BanHang.Name = "btn_BanHang";
-            btn_BanHang.Size = new Size(202, 45);
+            btn_BanHang.Size = new Size(202, 60);
             btn_BanHang.TabIndex = 5;
             btn_BanHang.Text = "Vending";
             btn_BanHang.UseVisualStyleBackColor = true;
@@ -147,9 +156,9 @@
             btn_HoaDon.FlatStyle = FlatStyle.Flat;
             btn_HoaDon.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
             btn_HoaDon.ForeColor = Color.White;
-            btn_HoaDon.Location = new Point(0, 260);
+            btn_HoaDon.Location = new Point(0, 305);
             btn_HoaDon.Name = "btn_HoaDon";
-            btn_HoaDon.Size = new Size(202, 45);
+            btn_HoaDon.Size = new Size(202, 60);
             btn_HoaDon.TabIndex = 4;
             btn_HoaDon.Text = "Bill";
             btn_HoaDon.UseVisualStyleBackColor = true;
@@ -164,9 +173,9 @@
             btn_NhanVien.FlatStyle = FlatStyle.Flat;
             btn_NhanVien.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
             btn_NhanVien.ForeColor = Color.White;
-            btn_NhanVien.Location = new Point(0, 215);
+            btn_NhanVien.Location = new Point(0, 245);
             btn_NhanVien.Name = "btn_NhanVien";
-            btn_NhanVien.Size = new Size(202, 45);
+            btn_NhanVien.Size = new Size(202, 60);
             btn_NhanVien.TabIndex = 3;
             btn_NhanVien.Text = "Staff";
             btn_NhanVien.UseVisualStyleBackColor = true;
@@ -181,9 +190,9 @@
             btn_SanPham.FlatStyle = FlatStyle.Flat;
             btn_SanPham.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
             btn_SanPham.ForeColor = Color.White;
-            btn_SanPham.Location = new Point(0, 170);
+            btn_SanPham.Location = new Point(0, 185);
             btn_SanPham.Name = "btn_SanPham";
-            btn_SanPham.Size = new Size(202, 45);
+            btn_SanPham.Size = new Size(202, 60);
             btn_SanPham.TabIndex = 2;
             btn_SanPham.Text = "Products";
             btn_SanPham.UseVisualStyleBackColor = true;
@@ -201,7 +210,7 @@
             btn_KhachHang.ImageAlign = ContentAlignment.MiddleLeft;
             btn_KhachHang.Location = new Point(0, 125);
             btn_KhachHang.Name = "btn_KhachHang";
-            btn_KhachHang.Size = new Size(202, 45);
+            btn_KhachHang.Size = new Size(202, 60);
             btn_KhachHang.TabIndex = 1;
             btn_KhachHang.Text = "Customers";
             btn_KhachHang.UseVisualStyleBackColor = true;
@@ -211,9 +220,8 @@
             // 
             // panel2
             // 
-            panel2.BackColor = Color.MidnightBlue;
-            panel2.Controls.Add(lb_Username);
-            panel2.Controls.Add(lb_Welcome);
+            panel2.BackColor = Color.Teal;
+            panel2.Controls.Add(pictureBox1);
             panel2.Dock = DockStyle.Top;
             panel2.ForeColor = Color.White;
             panel2.Location = new Point(0, 0);
@@ -221,70 +229,62 @@
             panel2.Size = new Size(202, 125);
             panel2.TabIndex = 0;
             // 
+            // pictureBox1
+            // 
+            pictureBox1.Dock = DockStyle.Fill;
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(0, 0);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(202, 125);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 1;
+            pictureBox1.TabStop = false;
+            // 
             // lb_Username
             // 
             lb_Username.AutoSize = true;
-            lb_Username.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            lb_Username.Location = new Point(12, 45);
+            lb_Username.Font = new Font("Elephant", 16.1999989F, FontStyle.Regular, GraphicsUnit.Point);
+            lb_Username.ForeColor = SystemColors.ButtonFace;
+            lb_Username.Location = new Point(607, 29);
             lb_Username.Name = "lb_Username";
-            lb_Username.Size = new Size(114, 23);
+            lb_Username.Size = new Size(160, 35);
             lb_Username.TabIndex = 1;
             lb_Username.Text = "User name";
             // 
             // lb_Welcome
             // 
             lb_Welcome.AutoSize = true;
-            lb_Welcome.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            lb_Welcome.Location = new Point(12, 9);
+            lb_Welcome.Font = new Font("Elephant", 16.1999989F, FontStyle.Regular, GraphicsUnit.Point);
+            lb_Welcome.ForeColor = SystemColors.ButtonFace;
+            lb_Welcome.Location = new Point(181, 29);
             lb_Welcome.Name = "lb_Welcome";
-            lb_Welcome.Size = new Size(165, 23);
+            lb_Welcome.Size = new Size(424, 35);
             lb_Welcome.TabIndex = 0;
-            lb_Welcome.Text = "Welcome back,";
+            lb_Welcome.Text = "Welcome back to Shirt Haven,";
             // 
             // panel3
             // 
-            panel3.BackColor = Color.RoyalBlue;
-            panel3.Controls.Add(label2);
-            panel3.Controls.Add(label1);
-            panel3.Controls.Add(pictureBox1);
+            panel3.BackColor = SystemColors.WindowText;
+            panel3.Controls.Add(label4);
+            panel3.Controls.Add(lb_Username);
+            panel3.Controls.Add(lb_Welcome);
             panel3.Controls.Add(btnCloseChildForm);
             panel3.Dock = DockStyle.Top;
             panel3.Location = new Point(202, 0);
             panel3.Name = "panel3";
-            panel3.Size = new Size(1585, 125);
+            panel3.Size = new Size(1585, 79);
             panel3.TabIndex = 2;
             // 
-            // label2
+            // label4
             // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Century Gothic", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
-            label2.ForeColor = Color.White;
-            label2.Location = new Point(455, 68);
-            label2.Name = "label2";
-            label2.Size = new Size(155, 21);
-            label2.TabIndex = 3;
-            label2.Text = "Bring you a comfy";
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.ForeColor = Color.White;
-            label1.Location = new Point(414, 45);
-            label1.Name = "label1";
-            label1.Size = new Size(120, 23);
-            label1.TabIndex = 2;
-            label1.Text = "Shirt Haven";
-            // 
-            // pictureBox1
-            // 
-            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(293, 3);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(115, 115);
-            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox1.TabIndex = 1;
-            pictureBox1.TabStop = false;
+            label4.AutoSize = true;
+            label4.Font = new Font("Elephant", 11.999999F, FontStyle.Regular, GraphicsUnit.Point);
+            label4.ForeColor = Color.White;
+            label4.Location = new Point(957, 36);
+            label4.Name = "label4";
+            label4.Size = new Size(335, 26);
+            label4.TabIndex = 6;
+            label4.Text = "Contact to Admin: 0875453498";
             // 
             // btnCloseChildForm
             // 
@@ -292,21 +292,94 @@
             btnCloseChildForm.FlatStyle = FlatStyle.Flat;
             btnCloseChildForm.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
             btnCloseChildForm.ForeColor = Color.White;
-            btnCloseChildForm.Location = new Point(37, 39);
+            btnCloseChildForm.Location = new Point(6, 3);
             btnCloseChildForm.Name = "btnCloseChildForm";
-            btnCloseChildForm.Size = new Size(94, 39);
+            btnCloseChildForm.Size = new Size(145, 90);
             btnCloseChildForm.TabIndex = 0;
             btnCloseChildForm.Text = "X";
             btnCloseChildForm.UseVisualStyleBackColor = true;
             btnCloseChildForm.Click += btnCloseChildForm_Click;
             // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Elephant", 16.1999989F, FontStyle.Regular, GraphicsUnit.Point);
+            label3.ForeColor = Color.Black;
+            label3.Location = new Point(1188, 61);
+            label3.Name = "label3";
+            label3.Size = new Size(206, 35);
+            label3.TabIndex = 5;
+            label3.Text = "Diverse styles.";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Elephant", 16.1999989F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.ForeColor = Color.Black;
+            label1.Location = new Point(85, 61);
+            label1.Name = "label1";
+            label1.Size = new Size(373, 35);
+            label1.TabIndex = 4;
+            label1.Text = "The highest level of quality";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Elephant", 16.1999989F, FontStyle.Regular, GraphicsUnit.Point);
+            label2.ForeColor = Color.Black;
+            label2.Location = new Point(651, 61);
+            label2.Name = "label2";
+            label2.Size = new Size(258, 35);
+            label2.TabIndex = 3;
+            label2.Text = "Bring you a comfy";
+            // 
             // pn_ChucNang
             // 
+            pn_ChucNang.BackColor = SystemColors.ScrollBar;
+            pn_ChucNang.Controls.Add(pictureBox4);
+            pn_ChucNang.Controls.Add(label3);
+            pn_ChucNang.Controls.Add(pictureBox3);
+            pn_ChucNang.Controls.Add(label1);
+            pn_ChucNang.Controls.Add(label2);
+            pn_ChucNang.Controls.Add(pictureBox2);
             pn_ChucNang.Dock = DockStyle.Fill;
-            pn_ChucNang.Location = new Point(202, 125);
+            pn_ChucNang.Location = new Point(202, 79);
             pn_ChucNang.Name = "pn_ChucNang";
-            pn_ChucNang.Size = new Size(1585, 553);
+            pn_ChucNang.Size = new Size(1585, 599);
             pn_ChucNang.TabIndex = 3;
+            // 
+            // pictureBox4
+            // 
+            pictureBox4.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            pictureBox4.Image = (Image)resources.GetObject("pictureBox4.Image");
+            pictureBox4.Location = new Point(1138, 99);
+            pictureBox4.Name = "pictureBox4";
+            pictureBox4.Size = new Size(307, 467);
+            pictureBox4.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox4.TabIndex = 3;
+            pictureBox4.TabStop = false;
+            // 
+            // pictureBox3
+            // 
+            pictureBox3.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
+            pictureBox3.Location = new Point(114, 99);
+            pictureBox3.Name = "pictureBox3";
+            pictureBox3.Size = new Size(307, 467);
+            pictureBox3.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox3.TabIndex = 2;
+            pictureBox3.TabStop = false;
+            // 
+            // pictureBox2
+            // 
+            pictureBox2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
+            pictureBox2.Location = new Point(626, 99);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new Size(307, 467);
+            pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox2.TabIndex = 1;
+            pictureBox2.TabStop = false;
             // 
             // Main
             // 
@@ -321,10 +394,14 @@
             Text = "Shirt Haven";
             panel1.ResumeLayout(false);
             panel2.ResumeLayout(false);
-            panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            pn_ChucNang.ResumeLayout(false);
+            pn_ChucNang.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ResumeLayout(false);
         }
 
@@ -345,8 +422,13 @@
         private Panel panel3;
         private Panel pn_ChucNang;
         private Button btnCloseChildForm;
-        private Label label1;
         private PictureBox pictureBox1;
         private Label label2;
+        private PictureBox pictureBox3;
+        private PictureBox pictureBox2;
+        private PictureBox pictureBox4;
+        private Label label4;
+        private Label label3;
+        private Label label1;
     }
 }

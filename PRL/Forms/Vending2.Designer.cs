@@ -28,8 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            panel1 = new Panel();
-            txt_TimKiemVending = new TextBox();
             panel2 = new Panel();
             panel3 = new Panel();
             groupBox3 = new GroupBox();
@@ -69,7 +67,6 @@
             btn_Add = new Button();
             groupBox5 = new GroupBox();
             dtg_GioHang = new DataGridView();
-            panel1.SuspendLayout();
             panel2.SuspendLayout();
             panel3.SuspendLayout();
             groupBox3.SuspendLayout();
@@ -83,33 +80,15 @@
             ((System.ComponentModel.ISupportInitialize)dtg_GioHang).BeginInit();
             SuspendLayout();
             // 
-            // panel1
-            // 
-            panel1.BackColor = Color.MidnightBlue;
-            panel1.Controls.Add(txt_TimKiemVending);
-            panel1.Dock = DockStyle.Top;
-            panel1.Location = new Point(0, 0);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(1563, 47);
-            panel1.TabIndex = 0;
-            // 
-            // txt_TimKiemVending
-            // 
-            txt_TimKiemVending.Dock = DockStyle.Left;
-            txt_TimKiemVending.Location = new Point(0, 0);
-            txt_TimKiemVending.Name = "txt_TimKiemVending";
-            txt_TimKiemVending.PlaceholderText = "Search...";
-            txt_TimKiemVending.Size = new Size(369, 27);
-            txt_TimKiemVending.TabIndex = 1;
-            // 
             // panel2
             // 
+            panel2.BackColor = SystemColors.InactiveBorder;
             panel2.Controls.Add(panel3);
             panel2.Controls.Add(panel4);
-            panel2.Dock = DockStyle.Bottom;
-            panel2.Location = new Point(0, 53);
+            panel2.Dock = DockStyle.Fill;
+            panel2.Location = new Point(0, 0);
             panel2.Name = "panel2";
-            panel2.Size = new Size(1563, 658);
+            panel2.Size = new Size(1563, 711);
             panel2.TabIndex = 1;
             // 
             // panel3
@@ -118,9 +97,9 @@
             panel3.Controls.Add(groupBox3);
             panel3.Controls.Add(groupBox2);
             panel3.Controls.Add(groupBox1);
-            panel3.Location = new Point(0, 0);
+            panel3.Location = new Point(43, 40);
             panel3.Name = "panel3";
-            panel3.Size = new Size(1563, 318);
+            panel3.Size = new Size(1520, 301);
             panel3.TabIndex = 1;
             // 
             // groupBox3
@@ -128,9 +107,9 @@
             groupBox3.Controls.Add(txt_SDT);
             groupBox3.Controls.Add(txt_KhachHang);
             groupBox3.Dock = DockStyle.Top;
-            groupBox3.Location = new Point(923, 0);
+            groupBox3.Location = new Point(0, 0);
             groupBox3.Name = "groupBox3";
-            groupBox3.Size = new Size(640, 104);
+            groupBox3.Size = new Size(1520, 104);
             groupBox3.TabIndex = 2;
             groupBox3.TabStop = false;
             groupBox3.Text = "Customer's information";
@@ -163,10 +142,9 @@
             groupBox2.Controls.Add(label5);
             groupBox2.Controls.Add(txt_Gia);
             groupBox2.Controls.Add(label4);
-            groupBox2.Dock = DockStyle.Left;
-            groupBox2.Location = new Point(587, 0);
+            groupBox2.Location = new Point(593, 0);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(336, 318);
+            groupBox2.Size = new Size(330, 302);
             groupBox2.TabIndex = 1;
             groupBox2.TabStop = false;
             groupBox2.Text = "Product details";
@@ -256,10 +234,9 @@
             // groupBox1
             // 
             groupBox1.Controls.Add(dtg_Vending);
-            groupBox1.Dock = DockStyle.Left;
             groupBox1.Location = new Point(0, 0);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(587, 318);
+            groupBox1.Size = new Size(587, 257);
             groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
             groupBox1.Text = "List product";
@@ -273,7 +250,7 @@
             dtg_Vending.Name = "dtg_Vending";
             dtg_Vending.RowHeadersWidth = 51;
             dtg_Vending.RowTemplate.Height = 29;
-            dtg_Vending.Size = new Size(581, 292);
+            dtg_Vending.Size = new Size(581, 231);
             dtg_Vending.TabIndex = 2;
             // 
             // panel4
@@ -284,7 +261,7 @@
             panel4.Controls.Add(groupBox5);
             panel4.Location = new Point(0, 365);
             panel4.Name = "panel4";
-            panel4.Size = new Size(1563, 293);
+            panel4.Size = new Size(1563, 346);
             panel4.TabIndex = 2;
             // 
             // groupBox4
@@ -305,7 +282,7 @@
             groupBox4.Dock = DockStyle.Fill;
             groupBox4.Location = new Point(923, 0);
             groupBox4.Name = "groupBox4";
-            groupBox4.Size = new Size(640, 293);
+            groupBox4.Size = new Size(640, 346);
             groupBox4.TabIndex = 3;
             groupBox4.TabStop = false;
             groupBox4.Text = "Payment";
@@ -440,7 +417,7 @@
             groupBox6.Dock = DockStyle.Left;
             groupBox6.Location = new Point(744, 0);
             groupBox6.Name = "groupBox6";
-            groupBox6.Size = new Size(179, 293);
+            groupBox6.Size = new Size(179, 346);
             groupBox6.TabIndex = 1;
             groupBox6.TabStop = false;
             groupBox6.Text = "Services";
@@ -481,7 +458,7 @@
             groupBox5.Dock = DockStyle.Left;
             groupBox5.Location = new Point(0, 0);
             groupBox5.Name = "groupBox5";
-            groupBox5.Size = new Size(744, 293);
+            groupBox5.Size = new Size(744, 346);
             groupBox5.TabIndex = 0;
             groupBox5.TabStop = false;
             groupBox5.Text = "Cart";
@@ -495,7 +472,7 @@
             dtg_GioHang.Name = "dtg_GioHang";
             dtg_GioHang.RowHeadersWidth = 51;
             dtg_GioHang.RowTemplate.Height = 29;
-            dtg_GioHang.Size = new Size(738, 267);
+            dtg_GioHang.Size = new Size(738, 320);
             dtg_GioHang.TabIndex = 13;
             // 
             // Vending2
@@ -504,11 +481,8 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1563, 711);
             Controls.Add(panel2);
-            Controls.Add(panel1);
             Name = "Vending2";
             Text = "Vending2";
-            panel1.ResumeLayout(false);
-            panel1.PerformLayout();
             panel2.ResumeLayout(false);
             panel3.ResumeLayout(false);
             groupBox3.ResumeLayout(false);
@@ -527,9 +501,6 @@
         }
 
         #endregion
-
-        private Panel panel1;
-        private TextBox txt_TimKiemVending;
         private Panel panel2;
         private Panel panel3;
         private GroupBox groupBox1;

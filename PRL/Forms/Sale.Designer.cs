@@ -44,10 +44,10 @@
             groupBox1 = new GroupBox();
             dtg_Sale = new DataGridView();
             groupBox2 = new GroupBox();
+            btn_Delete = new Button();
             btn_Add = new Button();
             btn_Update = new Button();
             txt_Search = new TextBox();
-            btn_Delete = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             groupBox1.SuspendLayout();
@@ -218,6 +218,18 @@
             groupBox2.TabStop = false;
             groupBox2.Text = "Services";
             // 
+            // btn_Delete
+            // 
+            btn_Delete.Dock = DockStyle.Top;
+            btn_Delete.Location = new Point(3, 154);
+            btn_Delete.Margin = new Padding(4);
+            btn_Delete.Name = "btn_Delete";
+            btn_Delete.Size = new Size(407, 62);
+            btn_Delete.TabIndex = 79;
+            btn_Delete.Text = "Delete";
+            btn_Delete.UseVisualStyleBackColor = true;
+            btn_Delete.Click += btn_Delete_Click;
+            // 
             // btn_Add
             // 
             btn_Add.Dock = DockStyle.Top;
@@ -255,22 +267,11 @@
             txt_Search.TabIndex = 76;
             txt_Search.TextChanged += txt_Search_TextChanged;
             // 
-            // btn_Delete
-            // 
-            btn_Delete.Dock = DockStyle.Top;
-            btn_Delete.Location = new Point(3, 154);
-            btn_Delete.Margin = new Padding(4);
-            btn_Delete.Name = "btn_Delete";
-            btn_Delete.Size = new Size(407, 62);
-            btn_Delete.TabIndex = 79;
-            btn_Delete.Text = "Delete";
-            btn_Delete.UseVisualStyleBackColor = true;
-            btn_Delete.Click += btn_Delete_Click;
-            // 
             // Sale
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = SystemColors.InactiveBorder;
             ClientSize = new Size(1787, 678);
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);

@@ -320,6 +320,7 @@
             // 
             AutoScaleDimensions = new SizeF(11F, 28F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = SystemColors.ScrollBar;
             ClientSize = new Size(1787, 678);
             Controls.Add(groupBox1);
             Controls.Add(panel1);

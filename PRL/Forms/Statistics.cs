@@ -59,7 +59,7 @@ namespace PRL.Forms
             btn_Close.Visible = false;
         }
 
-        
+
 
         private void btn_AllProducts_Click(object sender, EventArgs e)
         {
