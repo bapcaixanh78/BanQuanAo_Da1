@@ -36,7 +36,6 @@
             txt_name = new TextBox();
             cmb_Sale = new ComboBox();
             label2 = new Label();
-            label6 = new Label();
             txt_SoLuong = new TextBox();
             txt_Tong = new TextBox();
             label3 = new Label();
@@ -51,18 +50,12 @@
             txt_SDT = new TextBox();
             txt_KhachHang = new TextBox();
             btn_ThanhToan = new Button();
-            lb_TienKhachTra = new Label();
             label12 = new Label();
             lb_TienThua = new Label();
             lb_TienPhaiTra = new Label();
-            lb_Sale = new Label();
-            lb_Tong = new Label();
-            lb_SoLuong = new Label();
             label11 = new Label();
             label10 = new Label();
             label9 = new Label();
-            label8 = new Label();
-            label7 = new Label();
             groupBox6 = new GroupBox();
             btn_clear = new Button();
             btn_delete = new Button();
@@ -70,6 +63,9 @@
             groupBox5 = new GroupBox();
             dtg_Cart = new DataGridView();
             textBox1 = new TextBox();
+            btn_Update = new Button();
+            lb_Tong = new Label();
+            label8 = new Label();
             Pn_ALL.SuspendLayout();
             Pn_Up.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)Picturebox_Product).BeginInit();
@@ -121,9 +117,7 @@
             // groupBox2
             // 
             groupBox2.Controls.Add(txt_name);
-            groupBox2.Controls.Add(cmb_Sale);
             groupBox2.Controls.Add(label2);
-            groupBox2.Controls.Add(label6);
             groupBox2.Controls.Add(txt_SoLuong);
             groupBox2.Controls.Add(txt_Tong);
             groupBox2.Controls.Add(label3);
@@ -150,9 +144,9 @@
             // cmb_Sale
             // 
             cmb_Sale.FormattingEnabled = true;
-            cmb_Sale.Location = new Point(118, 217);
+            cmb_Sale.Location = new Point(65, 187);
             cmb_Sale.Name = "cmb_Sale";
-            cmb_Sale.Size = new Size(230, 28);
+            cmb_Sale.Size = new Size(144, 28);
             cmb_Sale.TabIndex = 27;
             // 
             // label2
@@ -164,16 +158,6 @@
             label2.Size = new Size(68, 25);
             label2.TabIndex = 17;
             label2.Text = "Name :";
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
-            label6.Location = new Point(6, 216);
-            label6.Name = "label6";
-            label6.Size = new Size(44, 25);
-            label6.TabIndex = 26;
-            label6.Text = "Sale";
             // 
             // txt_SoLuong
             // 
@@ -270,20 +254,17 @@
             // groupBox4
             // 
             groupBox4.Controls.Add(textBox1);
+            groupBox4.Controls.Add(cmb_Sale);
             groupBox4.Controls.Add(groupBox3);
             groupBox4.Controls.Add(btn_ThanhToan);
-            groupBox4.Controls.Add(lb_TienKhachTra);
             groupBox4.Controls.Add(label12);
             groupBox4.Controls.Add(lb_TienThua);
             groupBox4.Controls.Add(lb_TienPhaiTra);
-            groupBox4.Controls.Add(lb_Sale);
             groupBox4.Controls.Add(lb_Tong);
-            groupBox4.Controls.Add(lb_SoLuong);
             groupBox4.Controls.Add(label11);
             groupBox4.Controls.Add(label10);
             groupBox4.Controls.Add(label9);
             groupBox4.Controls.Add(label8);
-            groupBox4.Controls.Add(label7);
             groupBox4.Dock = DockStyle.Fill;
             groupBox4.Location = new Point(948, 0);
             groupBox4.Name = "groupBox4";
@@ -331,25 +312,15 @@
             btn_ThanhToan.Text = "Check out";
             btn_ThanhToan.UseVisualStyleBackColor = false;
             // 
-            // lb_TienKhachTra
-            // 
-            lb_TienKhachTra.AutoSize = true;
-            lb_TienKhachTra.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
-            lb_TienKhachTra.Location = new Point(557, 183);
-            lb_TienKhachTra.Name = "lb_TienKhachTra";
-            lb_TienKhachTra.Size = new Size(22, 25);
-            lb_TienKhachTra.TabIndex = 25;
-            lb_TienKhachTra.Text = "0";
-            // 
             // label12
             // 
             label12.AutoSize = true;
             label12.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
             label12.Location = new Point(267, 182);
             label12.Name = "label12";
-            label12.Size = new Size(251, 25);
+            label12.Size = new Size(120, 25);
             label12.TabIndex = 24;
-            label12.Text = "Cash received from customers";
+            label12.Text = "Cash received";
             // 
             // lb_TienThua
             // 
@@ -371,36 +342,6 @@
             lb_TienPhaiTra.TabIndex = 22;
             lb_TienPhaiTra.Text = "0";
             // 
-            // lb_Sale
-            // 
-            lb_Sale.AutoSize = true;
-            lb_Sale.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
-            lb_Sale.Location = new Point(184, 230);
-            lb_Sale.Name = "lb_Sale";
-            lb_Sale.Size = new Size(22, 25);
-            lb_Sale.TabIndex = 21;
-            lb_Sale.Text = "0";
-            // 
-            // lb_Tong
-            // 
-            lb_Tong.AutoSize = true;
-            lb_Tong.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
-            lb_Tong.Location = new Point(184, 183);
-            lb_Tong.Name = "lb_Tong";
-            lb_Tong.Size = new Size(22, 25);
-            lb_Tong.TabIndex = 20;
-            lb_Tong.Text = "0";
-            // 
-            // lb_SoLuong
-            // 
-            lb_SoLuong.AutoSize = true;
-            lb_SoLuong.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
-            lb_SoLuong.Location = new Point(184, 139);
-            lb_SoLuong.Name = "lb_SoLuong";
-            lb_SoLuong.Size = new Size(22, 25);
-            lb_SoLuong.TabIndex = 19;
-            lb_SoLuong.Text = "0";
-            // 
             // label11
             // 
             label11.AutoSize = true;
@@ -417,42 +358,23 @@
             label10.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
             label10.Location = new Point(267, 141);
             label10.Name = "label10";
-            label10.Size = new Size(173, 23);
+            label10.Size = new Size(128, 23);
             label10.TabIndex = 17;
-            label10.Text = "Accounts receivable ";
+            label10.Text = "Total after sale";
             // 
             // label9
             // 
             label9.AutoSize = true;
             label9.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
-            label9.Location = new Point(6, 228);
+            label9.Location = new Point(9, 187);
             label9.Name = "label9";
             label9.Size = new Size(44, 25);
             label9.TabIndex = 16;
             label9.Text = "Sale";
             // 
-            // label8
-            // 
-            label8.AutoSize = true;
-            label8.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
-            label8.Location = new Point(6, 182);
-            label8.Name = "label8";
-            label8.Size = new Size(49, 25);
-            label8.TabIndex = 15;
-            label8.Text = "Total";
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
-            label7.Location = new Point(6, 139);
-            label7.Name = "label7";
-            label7.Size = new Size(85, 25);
-            label7.TabIndex = 14;
-            label7.Text = "Quantity ";
-            // 
             // groupBox6
             // 
+            groupBox6.Controls.Add(btn_Update);
             groupBox6.Controls.Add(btn_clear);
             groupBox6.Controls.Add(btn_delete);
             groupBox6.Controls.Add(btn_Add);
@@ -519,11 +441,40 @@
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(9, 263);
+            textBox1.Location = new Point(456, 183);
             textBox1.Name = "textBox1";
-            textBox1.PlaceholderText = "Phone Number";
-            textBox1.Size = new Size(270, 27);
-            textBox1.TabIndex = 4;
+            textBox1.Size = new Size(125, 27);
+            textBox1.TabIndex = 28;
+            // 
+            // btn_Update
+            // 
+            btn_Update.Dock = DockStyle.Top;
+            btn_Update.Location = new Point(3, 164);
+            btn_Update.Name = "btn_Update";
+            btn_Update.Size = new Size(198, 47);
+            btn_Update.TabIndex = 21;
+            btn_Update.Text = "Update";
+            btn_Update.UseVisualStyleBackColor = true;
+            // 
+            // lb_Tong
+            // 
+            lb_Tong.AutoSize = true;
+            lb_Tong.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
+            lb_Tong.Location = new Point(187, 142);
+            lb_Tong.Name = "lb_Tong";
+            lb_Tong.Size = new Size(22, 25);
+            lb_Tong.TabIndex = 20;
+            lb_Tong.Text = "0";
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
+            label8.Location = new Point(9, 141);
+            label8.Name = "label8";
+            label8.Size = new Size(49, 25);
+            label8.TabIndex = 15;
+            label8.Text = "Total";
             // 
             // Vending3
             // 
@@ -562,7 +513,6 @@
         private GroupBox groupBox2;
         private ComboBox cmb_Sale;
         private Label label2;
-        private Label label6;
         private TextBox txt_SoLuong;
         private TextBox txt_Tong;
         private Label label3;
@@ -581,19 +531,16 @@
         private Button btn_Add;
         private GroupBox groupBox4;
         private Button btn_ThanhToan;
-        private Label lb_TienKhachTra;
         private Label label12;
         private Label lb_TienThua;
         private Label lb_TienPhaiTra;
-        private Label lb_Sale;
-        private Label lb_Tong;
-        private Label lb_SoLuong;
         private Label label11;
         private Label label10;
         private Label label9;
-        private Label label8;
-        private Label label7;
         private PictureBox Picturebox_Product;
         private TextBox textBox1;
+        private Label lb_Tong;
+        private Label label8;
+        private Button btn_Update;
     }
 }
