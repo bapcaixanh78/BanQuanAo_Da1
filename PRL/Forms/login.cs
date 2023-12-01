@@ -59,7 +59,7 @@ namespace PRL.Forms
                 {
                     MessageBox.Show(" Welcome back, " + nhanvien.Ten+".", "Log into Shirt Havenogin");
                     this.Hide();
-                    MainNV mainNV = new MainNV();
+                    MainNV1 mainNV = new MainNV1();
                     mainNV.ShowDialog();
                 }
                 else
