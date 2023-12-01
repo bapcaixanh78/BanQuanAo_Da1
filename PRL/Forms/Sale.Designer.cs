@@ -70,7 +70,7 @@
             panel1.Controls.Add(label1);
             panel1.Location = new Point(12, 12);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1344, 336);
+            panel1.Size = new Size(1344, 360);
             panel1.TabIndex = 0;
             // 
             // txt_MoTa
@@ -111,7 +111,7 @@
             // 
             pictureBox1.Anchor = AnchorStyles.None;
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(102, 18);
+            pictureBox1.Location = new Point(102, 30);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(192, 172);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -183,9 +183,9 @@
             groupBox1.Controls.Add(dtg_Sale);
             groupBox1.Dock = DockStyle.Bottom;
             groupBox1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            groupBox1.Location = new Point(0, 348);
+            groupBox1.Location = new Point(0, 378);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(1787, 330);
+            groupBox1.Size = new Size(1787, 300);
             groupBox1.TabIndex = 1;
             groupBox1.TabStop = false;
             groupBox1.Text = "Sales' information";
@@ -199,7 +199,7 @@
             dtg_Sale.Name = "dtg_Sale";
             dtg_Sale.RowHeadersWidth = 51;
             dtg_Sale.RowTemplate.Height = 29;
-            dtg_Sale.Size = new Size(1781, 297);
+            dtg_Sale.Size = new Size(1781, 267);
             dtg_Sale.TabIndex = 0;
             dtg_Sale.CellClick += dtg_Sale_CellClick;
             // 
@@ -213,7 +213,7 @@
             groupBox2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             groupBox2.Location = new Point(1374, 0);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(413, 348);
+            groupBox2.Size = new Size(413, 378);
             groupBox2.TabIndex = 0;
             groupBox2.TabStop = false;
             groupBox2.Text = "Services";
@@ -259,7 +259,7 @@
             txt_Search.BackColor = SystemColors.Info;
             txt_Search.Dock = DockStyle.Bottom;
             txt_Search.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            txt_Search.Location = new Point(3, 311);
+            txt_Search.Location = new Point(3, 341);
             txt_Search.Margin = new Padding(4);
             txt_Search.Name = "txt_Search";
             txt_Search.PlaceholderText = "Search";

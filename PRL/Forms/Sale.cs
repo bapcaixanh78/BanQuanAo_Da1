@@ -21,7 +21,7 @@ namespace PRL.Forms
         {
             dtg_Sale.DataSource = null;
             dtg_Sale.Rows.Clear();//Clear dữ liệu trước khi tìm kiếm
-            dtg_Sale.ColumnCount = 7;
+            dtg_Sale.ColumnCount = 8;
             dtg_Sale.Columns[0].Name = "STT";
             dtg_Sale.Columns[1].Name = "Tên Khuyến mãi";
             dtg_Sale.Columns[2].Name = "Thời gian bắt đầu";

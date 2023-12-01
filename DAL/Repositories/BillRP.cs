@@ -18,12 +18,14 @@ namespace DAL.Repositories
         }
         public bool Add(Hoadon HD)
         {
-            throw new NotImplementedException();
+            _dbcontext.Add(HD);
+            _dbcontext.SaveChanges();
+            return true;
         }
 
         public List<Hoadon> GetAll()
         {
-            throw new NotImplementedException();
+            return _dbcontext.Hoadons.ToList();
         }
     }
 }

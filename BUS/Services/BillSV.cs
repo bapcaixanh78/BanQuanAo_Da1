@@ -16,9 +16,23 @@ namespace BUS.Services
         {
             billRP = new BillRP();
         }
+
+        public string AddBill(Hoadon hoadon)
+        {
+            if (billRP.Add(hoadon) == true)
+            {
+                return "You have added successfully";
+            }
+            else
+            {
+                return "You have failed to add";
+            }
+        }
+
         public List<Hoadon> GetHoadons(string search)
         {
-            throw new NotImplementedException();
+            return billRP.GetAll();
         }
+
     }
 }

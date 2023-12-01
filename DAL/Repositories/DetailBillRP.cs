@@ -19,22 +19,28 @@ namespace DAL.Repositories
         }
         public bool Add(Hoadonchitiet HDCT)
         {
-            throw new NotImplementedException();
+            _dbcontext.Add(HDCT);
+            _dbcontext.SaveChanges();
+            return true;
         }
 
         public bool Delete(Hoadonchitiet HDCT)
         {
-            throw new NotImplementedException();
+            _dbcontext.Remove(HDCT);
+            _dbcontext.SaveChanges();
+            return true;
         }
 
         public List<Hoadonchitiet> GetAll()
         {
-            throw new NotImplementedException();
+            return _dbcontext.Hoadonchitiets.ToList();
         }
 
         public bool Update(Hoadonchitiet HDCT)
         {
-            throw new NotImplementedException();
+            _dbcontext.Update(HDCT);
+            _dbcontext.SaveChanges();
+            return true;
         }
     }
 }
