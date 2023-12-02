@@ -1,6 +1,7 @@
 ﻿using BUS.IServices;
 using BUS.Services;
 using DAL.Model;
+using PRL.VIewModel;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,6 +9,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -24,7 +26,7 @@ namespace PRL.Forms
         ISaleSV _salesv;
         Guid _idWhenClickCTSP;
         Guid _idWhenClickSP;
-        List<Hoadonchitiet> _Lstgiohang;
+        List<Cart> _Lstgiohang;
         public Vending3()
         {
             _colorsv = new ColorSV();
@@ -34,11 +36,13 @@ namespace PRL.Forms
             _producsv = new ProductsSV();
             _picturesv = new PictureSV();
             _salesv = new SaleSV();
-            _Lstgiohang = new List<Hoadonchitiet>();
+            _Lstgiohang = new List<Cart>();
             InitializeComponent();
             LoadGrid(null);
+            LoadKM();
         }
-        public void LoadGrid(string input)
+
+        public void LoadKM()
         {
             foreach (var s in _salesv.GetKM())
             {
@@ -46,6 +50,10 @@ namespace PRL.Forms
             }
             cmb_Sale.SelectedIndex = 0;
             cmb_Sale.DropDownStyle = ComboBoxStyle.DropDownList;
+        }
+        public void LoadGrid(string input)
+        {
+
 
             int stt = 1;
             Dtg_LstProduct.ColumnCount = 9;
@@ -91,15 +99,6 @@ namespace PRL.Forms
         }
 
 
-        public void AddToCart(Hoadonchitiet cart)
-        {
-            Hoadonchitiet tmp = new Hoadonchitiet()
-            {
-                Id = Guid.NewGuid(),
-                Soluong = int.Parse(txt_SoLuong.Text),
-                Giaban = decimal.Parse(txt_Gia.Text),
-            };
-        }
 
         private void Dtg_LstProduct_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -117,11 +116,18 @@ namespace PRL.Forms
 
             txt_name.Text = SP.Ten;
             txt_Gia.Text = CTSP.Giaban.ToString();
-            txt_SoLuong.Text = CTSP.Soluongton.ToString();
             Image tmp = _detailproductsv.GetImageByPath(CTSP.Id);
             Picturebox_Product.Image = tmp;
 
             //Add cart
+            //Cart Crt = new Cart()
+            //{
+            //    Id = Guid.NewGuid(),
+            //    TenSp = txt_name.Text,
+            //    Mausac = Dtg_LstProduct.Rows[rowindex].Cells[4].Value.ToString(),
+            //     = Dtg_LstProduct.Rows[rowindex].Cells[4].Value.ToString(),
+            //    Mausac = Dtg_LstProduct.Rows[rowindex].Cells[4].Value.ToString(),
+            //};
 
 
 
@@ -129,9 +135,22 @@ namespace PRL.Forms
 
         private void txt_SoLuong_TextChanged(object sender, EventArgs e)
         {
-            string tmp = txt_Gia.Text;
+            Regex regex = new Regex(@"^\d+$");
+            if (txt_SoLuong.Text != null)
+            {
+                string tmp = txt_Gia.Text;
 
-            txt_Tong.Text = (int.Parse(txt_SoLuong.Text) * decimal.Parse(tmp)).ToString();
+                txt_Tong.Text = (int.Parse(txt_SoLuong.Text) * decimal.Parse(tmp)).ToString();
+            }
+            else if (!regex.IsMatch(txt_SoLuong.Text))
+            {
+                MessageBox.Show("")
+            }
+        }
+
+        private void btn_Add_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
