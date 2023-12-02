@@ -1,16 +1,20 @@
 ﻿using BUS.Services;
-using DAL.Model;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 
 namespace BUS.Utilites
 {
-    public class StaffValidate
+    public class ProductValidate
     {
-        private static StaffSV staffSV = new StaffSV();
+        private static ProductsSV productsSV = new ProductsSV();
 
-        public StaffValidate()
+        public ProductValidate()
         {
-            staffSV = new StaffSV();
+            productsSV = new ProductsSV();
         }
 
         public static bool CheckEmptyString(string input)
@@ -46,43 +50,35 @@ namespace BUS.Utilites
             return true;
         }
 
-        public static bool CheckIfAccountListIsEmpty()
+        public static bool CheckIfContainLetter(string input)
         {
-            List<Nhanvien> nhanviens = staffSV.GetAll();
-            if (nhanviens == null)
+            foreach (char c in input)
             {
-                return true;
+                if (!char.IsDigit(c) && c!='.' && c!=',' && c!='-')
+                {
+                    return false;
+                }
             }
-            return false;
+            return true;
         }
 
-        public static bool CheckIfStaffAccountNameExist(string name)
+        public static bool CheckIfNegativeValue(string input)
         {
-            if (staffSV.GetAll().Find(x => x.Taikhoan == name) != null)
-            {
-                return true;
-            }
-            return false;
-        }
-
-        public static bool CheckIfStaffAccountNameExistUpdate(string originalName, string updateName)
-        {
-            var nhanviens = staffSV.GetAll();
-            if (originalName == updateName)
+            if(input.StartsWith("-"))
             {
                 return false;
-            }
-            if (staffSV.GetAll().Find(x => x.Ten == updateName) != null)
+            }return true;
+        }
+
+        public static bool CheckIfProductNameExist(string name)
+        {
+            if (productsSV.GetSP(null).Find(x => x.Ten == name) != null)
             {
                 return true;
             }
             return false;
         }
 
-        public static bool CheckEmail(string email)
-        {
-            string emailRegex = @"^[^\s@]+@[^\s@]+\.[^\s@]+$";
-            return Regex.IsMatch(email, emailRegex);
-        }
+
     }
 }

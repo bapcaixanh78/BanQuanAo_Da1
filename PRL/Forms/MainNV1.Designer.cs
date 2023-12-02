@@ -337,6 +337,7 @@
             Controls.Add(panel1);
             Name = "MainNV1";
             Text = "MainNV1";
+            Load += MainNV1_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             pn_ChucNang.ResumeLayout(false);

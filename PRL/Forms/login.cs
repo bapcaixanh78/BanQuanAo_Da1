@@ -39,7 +39,7 @@ namespace PRL.Forms
         {
             if (StaffValidate.CheckEmptyString(txt_Username.Text) == false || StaffValidate.CheckEmptyString(txt_Password.Text) == false)
             {
-                MessageBox.Show("Please fill in username and password","Log into Shirt Haven");
+                MessageBox.Show("Please fill in username and password", "Log into Shirt Haven");
             }
             if (StaffValidate.CheckIfAccountListIsEmpty() == true)
             {
@@ -50,30 +50,34 @@ namespace PRL.Forms
                 Nhanvien nhanvien = staffSV.CheckStaffLogin(txt_Username.Text, txt_Password.Text);
                 if (nhanvien != null && nhanvien.Quyen == 0)
                 {
-                    MessageBox.Show(" Welcome back, " + nhanvien.Ten+".", "Log into Shirt Haven");
+                    MessageBox.Show(" Welcome back, " + nhanvien.Ten + ".", "Log into Shirt Haven");
                     this.Hide();
-                    Main main = new Main();
+                    Main main = new Main()
+                    {
+                        account = nhanvien
+                    };
                     main.ShowDialog();
                 }
                 else if (nhanvien != null && nhanvien.Quyen == 1)
                 {
-                    MessageBox.Show(" Welcome back, " + nhanvien.Ten+".", "Log into Shirt Havenogin");
+                    MessageBox.Show(" Welcome back, " + nhanvien.Ten + ".", "Log into Shirt Havenogin");
                     this.Hide();
-                    MainNV1 mainNV = new MainNV1();
+                    MainNV1 mainNV = new MainNV1()
+                    {
+                        account = nhanvien
+                    };
                     mainNV.ShowDialog();
                 }
                 else
                 {
-
-                    MessageBox.Show("The user name or password is incorrect. Try again.", "Log into Shirt Haven", MessageBoxButtons.OK,MessageBoxIcon.Information);
-
+                    MessageBox.Show("The user name or password is incorrect. Try again.", "Log into Shirt Haven", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
         }
 
         private void cb_showpass_CheckedChanged(object sender, EventArgs e)
         {
-            if(cb_showpass.Checked == true)
+            if (cb_showpass.Checked == true)
             {
                 txt_Password.UseSystemPasswordChar = false;
             }
