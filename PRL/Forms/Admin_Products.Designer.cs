@@ -51,14 +51,18 @@
             groupBox2 = new GroupBox();
             btn_clear = new Button();
             groupBox3 = new GroupBox();
+            cmb_list = new ComboBox();
+            label9 = new Label();
             txt_ImgPath = new TextBox();
             btn_browser = new Button();
             cmb_Material = new ComboBox();
             label8 = new Label();
             Picturebox_Product = new PictureBox();
             panel1 = new Panel();
-            label9 = new Label();
-            cmb_list = new ComboBox();
+            comboBox1 = new ComboBox();
+            comboBox2 = new ComboBox();
+            comboBox3 = new ComboBox();
+            lb_filter = new Label();
             ((System.ComponentModel.ISupportInitialize)dtg_SanPham).BeginInit();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
@@ -283,6 +287,10 @@
             // 
             // groupBox3
             // 
+            groupBox3.Controls.Add(lb_filter);
+            groupBox3.Controls.Add(comboBox3);
+            groupBox3.Controls.Add(comboBox2);
+            groupBox3.Controls.Add(comboBox1);
             groupBox3.Controls.Add(cmb_list);
             groupBox3.Controls.Add(label9);
             groupBox3.Controls.Add(txt_ImgPath);
@@ -310,6 +318,25 @@
             groupBox3.Size = new Size(1446, 441);
             groupBox3.TabIndex = 31;
             groupBox3.TabStop = false;
+            // 
+            // cmb_list
+            // 
+            cmb_list.BackColor = SystemColors.Info;
+            cmb_list.FormattingEnabled = true;
+            cmb_list.Location = new Point(839, 340);
+            cmb_list.Name = "cmb_list";
+            cmb_list.Size = new Size(329, 28);
+            cmb_list.TabIndex = 37;
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label9.Location = new Point(648, 340);
+            label9.Name = "label9";
+            label9.Size = new Size(50, 28);
+            label9.TabIndex = 36;
+            label9.Text = "List :";
             // 
             // txt_ImgPath
             // 
@@ -368,24 +395,38 @@
             panel1.Size = new Size(1787, 441);
             panel1.TabIndex = 32;
             // 
-            // label9
+            // comboBox1
             // 
-            label9.AutoSize = true;
-            label9.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label9.Location = new Point(648, 340);
-            label9.Name = "label9";
-            label9.Size = new Size(50, 28);
-            label9.TabIndex = 36;
-            label9.Text = "List :";
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Location = new Point(1205, 82);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(226, 28);
+            comboBox1.TabIndex = 38;
             // 
-            // cmb_list
+            // comboBox2
             // 
-            cmb_list.BackColor = SystemColors.Info;
-            cmb_list.FormattingEnabled = true;
-            cmb_list.Location = new Point(839, 340);
-            cmb_list.Name = "cmb_list";
-            cmb_list.Size = new Size(329, 28);
-            cmb_list.TabIndex = 37;
+            comboBox2.FormattingEnabled = true;
+            comboBox2.Location = new Point(1205, 127);
+            comboBox2.Name = "comboBox2";
+            comboBox2.Size = new Size(226, 28);
+            comboBox2.TabIndex = 39;
+            // 
+            // comboBox3
+            // 
+            comboBox3.FormattingEnabled = true;
+            comboBox3.Location = new Point(1205, 172);
+            comboBox3.Name = "comboBox3";
+            comboBox3.Size = new Size(226, 28);
+            comboBox3.TabIndex = 40;
+            // 
+            // lb_filter
+            // 
+            lb_filter.AutoSize = true;
+            lb_filter.Location = new Point(1205, 43);
+            lb_filter.Name = "lb_filter";
+            lb_filter.Size = new Size(42, 20);
+            lb_filter.TabIndex = 41;
+            lb_filter.Text = "Filter";
             // 
             // Admin_Products
             // 
@@ -441,5 +482,9 @@
         private TextBox txt_ImgPath;
         private ComboBox cmb_list;
         private Label label9;
+        private Label lb_filter;
+        private ComboBox comboBox3;
+        private ComboBox comboBox2;
+        private ComboBox comboBox1;
     }
 }
