@@ -118,7 +118,7 @@ namespace PRL.Forms
                 return;
             }
 
-            if (!ProductValidate.CheckIfContainSymbol(txtTenHang.Text))
+            if (ProductValidate.CheckIfContainSymbol(txtTenHang.Text))
             {
                 MessageBox.Show("Name can't contain symbols");
                 return;
@@ -239,7 +239,7 @@ namespace PRL.Forms
                 return;
             }
 
-            if (!ProductValidate.CheckIfContainSymbol(txtTenHang.Text))
+            if (ProductValidate.CheckIfContainSymbol(txtTenHang.Text))
             {
                 MessageBox.Show("Name can't contain symbols");
                 return;
