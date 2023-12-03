@@ -51,6 +51,13 @@
             groupBox2 = new GroupBox();
             btn_clear = new Button();
             groupBox3 = new GroupBox();
+            label12 = new Label();
+            label11 = new Label();
+            label10 = new Label();
+            lb_filter = new Label();
+            cmb_statusFilter = new ComboBox();
+            cmb_colorFIlter = new ComboBox();
+            cmb_sizeFilter = new ComboBox();
             cmb_list = new ComboBox();
             label9 = new Label();
             txt_ImgPath = new TextBox();
@@ -59,10 +66,6 @@
             label8 = new Label();
             Picturebox_Product = new PictureBox();
             panel1 = new Panel();
-            comboBox1 = new ComboBox();
-            comboBox2 = new ComboBox();
-            comboBox3 = new ComboBox();
-            lb_filter = new Label();
             ((System.ComponentModel.ISupportInitialize)dtg_SanPham).BeginInit();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
@@ -287,10 +290,13 @@
             // 
             // groupBox3
             // 
+            groupBox3.Controls.Add(label12);
+            groupBox3.Controls.Add(label11);
+            groupBox3.Controls.Add(label10);
             groupBox3.Controls.Add(lb_filter);
-            groupBox3.Controls.Add(comboBox3);
-            groupBox3.Controls.Add(comboBox2);
-            groupBox3.Controls.Add(comboBox1);
+            groupBox3.Controls.Add(cmb_statusFilter);
+            groupBox3.Controls.Add(cmb_colorFIlter);
+            groupBox3.Controls.Add(cmb_sizeFilter);
             groupBox3.Controls.Add(cmb_list);
             groupBox3.Controls.Add(label9);
             groupBox3.Controls.Add(txt_ImgPath);
@@ -318,6 +324,72 @@
             groupBox3.Size = new Size(1446, 441);
             groupBox3.TabIndex = 31;
             groupBox3.TabStop = false;
+            // 
+            // label12
+            // 
+            label12.AutoSize = true;
+            label12.Location = new Point(1196, 288);
+            label12.Name = "label12";
+            label12.Size = new Size(49, 20);
+            label12.TabIndex = 44;
+            label12.Text = "Status";
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Location = new Point(1202, 198);
+            label11.Name = "label11";
+            label11.Size = new Size(45, 20);
+            label11.TabIndex = 43;
+            label11.Text = "Color";
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Location = new Point(1202, 101);
+            label10.Name = "label10";
+            label10.Size = new Size(36, 20);
+            label10.TabIndex = 42;
+            label10.Text = "Size";
+            // 
+            // lb_filter
+            // 
+            lb_filter.AutoSize = true;
+            lb_filter.Location = new Point(1205, 43);
+            lb_filter.Name = "lb_filter";
+            lb_filter.Size = new Size(42, 20);
+            lb_filter.TabIndex = 41;
+            lb_filter.Text = "Filter";
+            // 
+            // cmb_statusFilter
+            // 
+            cmb_statusFilter.BackColor = SystemColors.Info;
+            cmb_statusFilter.FormattingEnabled = true;
+            cmb_statusFilter.Location = new Point(1196, 320);
+            cmb_statusFilter.Name = "cmb_statusFilter";
+            cmb_statusFilter.Size = new Size(123, 28);
+            cmb_statusFilter.TabIndex = 40;
+            cmb_statusFilter.SelectedIndexChanged += cmb_statusFilter_SelectedIndexChanged;
+            // 
+            // cmb_colorFIlter
+            // 
+            cmb_colorFIlter.BackColor = SystemColors.Info;
+            cmb_colorFIlter.FormattingEnabled = true;
+            cmb_colorFIlter.Location = new Point(1196, 234);
+            cmb_colorFIlter.Name = "cmb_colorFIlter";
+            cmb_colorFIlter.Size = new Size(123, 28);
+            cmb_colorFIlter.TabIndex = 39;
+            cmb_colorFIlter.SelectedIndexChanged += cmb_colorFIlter_SelectedIndexChanged;
+            // 
+            // cmb_sizeFilter
+            // 
+            cmb_sizeFilter.BackColor = SystemColors.Info;
+            cmb_sizeFilter.FormattingEnabled = true;
+            cmb_sizeFilter.Location = new Point(1196, 144);
+            cmb_sizeFilter.Name = "cmb_sizeFilter";
+            cmb_sizeFilter.Size = new Size(123, 28);
+            cmb_sizeFilter.TabIndex = 38;
+            cmb_sizeFilter.SelectedIndexChanged += cmb_sizeFilter_SelectedIndexChanged;
             // 
             // cmb_list
             // 
@@ -395,39 +467,6 @@
             panel1.Size = new Size(1787, 441);
             panel1.TabIndex = 32;
             // 
-            // comboBox1
-            // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(1205, 82);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(226, 28);
-            comboBox1.TabIndex = 38;
-            // 
-            // comboBox2
-            // 
-            comboBox2.FormattingEnabled = true;
-            comboBox2.Location = new Point(1205, 127);
-            comboBox2.Name = "comboBox2";
-            comboBox2.Size = new Size(226, 28);
-            comboBox2.TabIndex = 39;
-            // 
-            // comboBox3
-            // 
-            comboBox3.FormattingEnabled = true;
-            comboBox3.Location = new Point(1205, 172);
-            comboBox3.Name = "comboBox3";
-            comboBox3.Size = new Size(226, 28);
-            comboBox3.TabIndex = 40;
-            // 
-            // lb_filter
-            // 
-            lb_filter.AutoSize = true;
-            lb_filter.Location = new Point(1205, 43);
-            lb_filter.Name = "lb_filter";
-            lb_filter.Size = new Size(42, 20);
-            lb_filter.TabIndex = 41;
-            lb_filter.Text = "Filter";
-            // 
             // Admin_Products
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -483,8 +522,11 @@
         private ComboBox cmb_list;
         private Label label9;
         private Label lb_filter;
-        private ComboBox comboBox3;
-        private ComboBox comboBox2;
-        private ComboBox comboBox1;
+        private ComboBox cmb_statusFilter;
+        private ComboBox cmb_colorFIlter;
+        private ComboBox cmb_sizeFilter;
+        private Label label12;
+        private Label label11;
+        private Label label10;
     }
 }

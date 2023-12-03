@@ -65,7 +65,7 @@ namespace PRL.Forms
                 MessageBox.Show("Name can't contains number");
                 return;
             }
-            if(!StaffValidate.CheckIfContainSymbol(txt_Account.Text))
+            if(StaffValidate.CheckIfContainSymbol(txt_Account.Text))
             {
                 MessageBox.Show("Name can't contain symbols");
                 return;
@@ -136,11 +136,16 @@ namespace PRL.Forms
                 MessageBox.Show("Name can't contains number");
                 return;
             }
+            if (StaffValidate.CheckIfContainSymbol(txt_Account.Text))
+            {
+                MessageBox.Show("Name can't contain symbols");
+                return;
+            }
 
             //Check xem tên tài khoản đã tồn tại chauw
             if (StaffValidate.CheckIfStaffAccountNameExistUpdate(dtg_NhanVien.CurrentRow.Cells[1].Value.ToString(), txt_Account.Text))
             {
-                MessageBox.Show("Account name already exist");
+                MessageBox.Show("Account's name already exist");
                 return;
             }
 

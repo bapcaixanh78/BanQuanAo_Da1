@@ -32,7 +32,7 @@ namespace BUS.Utilites
         public static bool CheckIfContainSymbol(string input)
         {
             // Regular expression pattern to match symbols
-            string pattern = @"[\p{S}]";
+            string pattern = @"[!@#$%^&*()\-_=+[\]{}|;:'\"",.<>/?]";
 
             // Check if input contains symbols
             return Regex.IsMatch(input, pattern);
@@ -73,6 +73,20 @@ namespace BUS.Utilites
         public static bool CheckIfProductNameExist(string name)
         {
             if (productsSV.GetSP(null).Find(x => x.Ten == name) != null)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public static bool CheckIfProductNameExistUpdate(string originalName, string updateName)
+        {
+            var nhanviens = productsSV.GetSP(null);
+            if (originalName == updateName)
+            {
+                return false;
+            }
+            if (productsSV.GetSP(null).Find(x=>x.Ten == updateName) != null)
             {
                 return true;
             }

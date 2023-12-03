@@ -2,18 +2,7 @@
 using BUS.Services;
 using BUS.Utilites;
 using DAL.Model;
-using FSharp.Data.Runtime.StructuralTypes;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Security.Policy;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using static Microsoft.FSharp.Core.ByRefKinds;
 
 namespace PRL.Forms
 {
@@ -41,6 +30,7 @@ namespace PRL.Forms
             InitializeComponent();
             LoadComboBox();
             LoadGrid(null);
+
         }
 
         public void LoadComboBox()
@@ -48,9 +38,13 @@ namespace PRL.Forms
             foreach (var s in _colorsv.GetMauaos())
             {
                 cmb_Color.Items.Add(s.Mau);
+                cmb_colorFIlter.Items.Add(s.Mau);
             }
             cmb_Color.SelectedIndex = 0;
             cmb_Color.DropDownStyle = ComboBoxStyle.DropDownList;
+            //cmb_colorFIlter.SelectedIndex = 0;
+
+            cmb_colorFIlter.DropDownStyle = ComboBoxStyle.DropDownList;
 
             foreach (var s in _materialsv.GetChatlieus())
             {
@@ -62,9 +56,12 @@ namespace PRL.Forms
             foreach (var s in _sizesv.GetKichthuocs())
             {
                 cmb_Size.Items.Add(s.Size);
+                cmb_sizeFilter.Items.Add(s.Size);
             }
             cmb_Size.SelectedIndex = 0;
             cmb_Size.DropDownStyle = ComboBoxStyle.DropDownList;
+            //cmb_sizeFilter.SelectedIndex = 0;
+            cmb_sizeFilter.DropDownStyle = ComboBoxStyle.DropDownList;
 
             foreach (var s in _listSV.GetDanhmucs())
             {
@@ -72,11 +69,17 @@ namespace PRL.Forms
             }
             cmb_list.SelectedIndex = 0;
             cmb_list.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmb_statusFilter.Items.Add("Còn hàng");
+            cmb_statusFilter.Items.Add("Hết hàng");
+            //cmb_statusFilter.SelectedIndex = 0;
+            cmb_statusFilter.DropDownStyle = ComboBoxStyle.DropDownList;
         }
 
         public void LoadGrid(string input)
         {
             int stt = 1;
+            dtg_SanPham.DataSource = null;
+            dtg_SanPham.Rows.Clear();
             dtg_SanPham.ColumnCount = 12;
             dtg_SanPham.Columns[0].Name = "STT";
             dtg_SanPham.Columns[1].Name = "ID";
@@ -92,7 +95,7 @@ namespace PRL.Forms
             dtg_SanPham.Columns[10].Name = "Mô tả";
             dtg_SanPham.Columns[11].Name = "ID Ảnh";
             dtg_SanPham.Columns[11].Visible = false;
-            dtg_SanPham.Rows.Clear();
+
             dtg_SanPham.AllowUserToAddRows = false;
             foreach (var sp in _detailproductsv.GetAll1(txt_TimKiemSP.Text))
             {
@@ -102,6 +105,7 @@ namespace PRL.Forms
 
         private void btn_Add_Click(object sender, EventArgs e)
         {
+            //Kiểm tra chuỗi rỗng
             if (!ProductValidate.CheckEmptyString(txtTenHang.Text) ||
                 !ProductValidate.CheckEmptyString(txtGiaNhap.Text) ||
                 !ProductValidate.CheckEmptyString(txtGiaBan.Text) ||
@@ -112,23 +116,28 @@ namespace PRL.Forms
                 return;
             }
 
+            //Kiểm tra chứa số
             if (!ProductValidate.CheckIfContainNumber(txtTenHang.Text))
             {
                 MessageBox.Show("Name can't contain number");
                 return;
             }
 
+            //Kiểm tra chứa ký tự
             if (ProductValidate.CheckIfContainSymbol(txtTenHang.Text))
             {
                 MessageBox.Show("Name can't contain symbols");
                 return;
             }
+
+            //Kiểm tra tên sản phẩm đã tồn tại chưa
             if (ProductValidate.CheckIfProductNameExist(txtTenHang.Text))
             {
                 MessageBox.Show("Product name already exist");
                 return;
             }
 
+            //Kiểm tra có chứa ký tự
             if (!ProductValidate.CheckIfContainLetter(txtGiaNhap.Text) ||
                 !ProductValidate.CheckIfContainLetter(txtGiaBan.Text) ||
                 !ProductValidate.CheckIfContainLetter(txt_SoLuong.Text))
@@ -136,6 +145,8 @@ namespace PRL.Forms
                 MessageBox.Show("Prices or quantity can't contain letters");
                 return;
             }
+
+            //Kiểm tra giá trị âm
             if (!ProductValidate.CheckIfNegativeValue(txtGiaNhap.Text) ||
                 !ProductValidate.CheckIfNegativeValue(txtGiaBan.Text) ||
                 !ProductValidate.CheckIfNegativeValue(txt_SoLuong.Text))
@@ -144,9 +155,11 @@ namespace PRL.Forms
                 return;
             }
 
-            if (decimal.Parse(txtGiaNhap.Text) > decimal.Parse(txtGiaBan.Text))
+            //Kiểm tra giá nhập lớn hơn giá bán
+            if ((decimal.Parse(txtGiaNhap.Text) > decimal.Parse(txtGiaBan.Text)) ||
+                (decimal.Parse(txtGiaNhap.Text) == decimal.Parse(txtGiaBan.Text)))
             {
-                MessageBox.Show("Entry price can't be greater than selling price");
+                MessageBox.Show("Entry price can't be greater or equal to selling price");
                 return;
             }
 
@@ -222,7 +235,6 @@ namespace PRL.Forms
 
         private void btn_Update_Click(object sender, EventArgs e)
         {
-
             if (!ProductValidate.CheckEmptyString(txtTenHang.Text) ||
                 !ProductValidate.CheckEmptyString(txtGiaNhap.Text) ||
                 !ProductValidate.CheckEmptyString(txtGiaBan.Text) ||
@@ -242,6 +254,12 @@ namespace PRL.Forms
             if (ProductValidate.CheckIfContainSymbol(txtTenHang.Text))
             {
                 MessageBox.Show("Name can't contain symbols");
+                return;
+            }
+
+            if (ProductValidate.CheckIfProductNameExistUpdate(dtg_SanPham.CurrentRow.Cells[2].Value.ToString(), txtTenHang.Text))
+            {
+                MessageBox.Show("Product's name already exist");
                 return;
             }
 
@@ -299,11 +317,11 @@ namespace PRL.Forms
                     MessageBox.Show(_detailproductsv.Update(CTSP));
                     _producsv.Update(SP);
                     _picturesv.UpdateImg(tmpImg);
+                    clear();
                 }
                 else
                 {
                     return;
-                    LoadGrid(null);
                 }
             }
             catch (Exception ex)
@@ -413,5 +431,29 @@ namespace PRL.Forms
                 MessageBox.Show(err.Message);
             }
         }
+
+        private void cmb_sizeFilter_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var sizeFilter = _sizesv.FindIDbyName(cmb_sizeFilter.Text);
+            List<Chitietsanpham> chitietsanphams = _detailproductsv.GetAll(null)
+                .Where(x => x.Idkichthuoc == sizeFilter)
+                .ToList();
+            LoadGridSP(chitietsanphams);
+        }
+
+        private void cmb_colorFIlter_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var colorFilter = _colorsv.FindIDbyName(cmb_colorFIlter.Text);
+            List<Chitietsanpham> chitietsanphams = _detailproductsv.GetAll(null).Where(x => x.Idmauao == colorFilter).ToList();
+            LoadGridSP(chitietsanphams);
+        }
+
+        private void cmb_statusFilter_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            List<Chitietsanpham> chitietsanphams = _detailproductsv.GetAll(null).Where(x => x.Trangthai == cmb_statusFilter.Text).ToList();
+            LoadGridSP(chitietsanphams);
+        }
+
+        
     }
 }

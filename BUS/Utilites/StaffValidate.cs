@@ -28,7 +28,7 @@ namespace BUS.Utilites
         public static bool CheckIfContainSymbol(string input)
         {
             // Regular expression pattern to match symbols
-            string pattern = @"[\p{S}]";
+            string pattern = @"[!@#$%^&*()\-_=+[\]{}|;:'\"",.<>/?]";
 
             // Check if input contains symbols
             return Regex.IsMatch(input, pattern);
