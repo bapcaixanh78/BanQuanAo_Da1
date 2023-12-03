@@ -13,6 +13,7 @@ namespace BUS.IServices
         public string Add(Khuyenmai KM);
         public string Delete(Guid id);
         public List<Khuyenmai> GetKhuyenMaiByName(string name);
+        public int GetDiscountByName(string name);
 
         public List<Khuyenmai> GetKM();
     }

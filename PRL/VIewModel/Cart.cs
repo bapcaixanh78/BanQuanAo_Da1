@@ -9,8 +9,12 @@ namespace PRL.VIewModel
     public class Cart
     {
         public Guid Id { get; set; }
+        public Guid IdSanpham { get; set; }
         public string TenSp { get; set; }
+        public decimal GiaTongSanPhamMua { get; set; }
+
         public int Soluongmua { get; set; }
+
         public string Mausac { get; set; }
         public string Chatlieu { get; set; }
         public string Size { get; set; }

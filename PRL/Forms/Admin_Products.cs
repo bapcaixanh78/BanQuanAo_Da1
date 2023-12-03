@@ -1,5 +1,6 @@
 ﻿using BUS.IServices;
 using BUS.Services;
+using BUS.Utilites;
 using DAL.Model;
 using FSharp.Data.Runtime.StructuralTypes;
 using System;
@@ -18,15 +19,16 @@ namespace PRL.Forms
 {
     public partial class Admin_Products : Form
     {
-        IColorSV _colorsv;
-        IMaterialSV _materialsv;
-        IDetailProductsSV _detailproductsv;
-        IPictureSV _picturesv;
-        ISizeSV _sizesv;
-        IProductsSV _producsv;
-        IListSV1 _listSV;
-        Guid _idWhenClickCTSP;
-        Guid _idWhenClickSP;
+        private IColorSV _colorsv;
+        private IMaterialSV _materialsv;
+        private IDetailProductsSV _detailproductsv;
+        private IPictureSV _picturesv;
+        private ISizeSV _sizesv;
+        private IProductsSV _producsv;
+        private IListSV1 _listSV;
+        private Guid _idWhenClickCTSP;
+        private Guid _idWhenClickSP;
+
         public Admin_Products()
         {
             _colorsv = new ColorSV();
@@ -39,7 +41,6 @@ namespace PRL.Forms
             InitializeComponent();
             LoadComboBox();
             LoadGrid(null);
-
         }
 
         public void LoadComboBox()
@@ -95,29 +96,71 @@ namespace PRL.Forms
             dtg_SanPham.AllowUserToAddRows = false;
             foreach (var sp in _detailproductsv.GetAll1(txt_TimKiemSP.Text))
             {
-
-                dtg_SanPham.Rows.Add(stt++, sp.Id, _producsv.Findbyid(sp.Idsanpham).Ten, sp.Gianhap, sp.Giaban, sp.Soluongton, _colorsv.FindNamebyID(_colorsv.convertGUID(sp.Idmauao)), _sizesv.FindNamebyID(_sizesv.convertGUID(sp.Idkichthuoc)), _materialsv.FindNamebyID(_materialsv.convertGUID(sp.Idchatlieu)),_listSV.FindNamebyID(_listSV.convertGUID(sp.Iddanhmuc)), sp.Mota, sp.IdAnh);
+                dtg_SanPham.Rows.Add(stt++, sp.Id, _producsv.Findbyid(sp.Idsanpham).Ten, sp.Gianhap, sp.Giaban, sp.Soluongton, _colorsv.FindNamebyID(_colorsv.convertGUID(sp.Idmauao)), _sizesv.FindNamebyID(_sizesv.convertGUID(sp.Idkichthuoc)), _materialsv.FindNamebyID(_materialsv.convertGUID(sp.Idchatlieu)), _listSV.FindNamebyID(_listSV.convertGUID(sp.Iddanhmuc)), sp.Mota, sp.IdAnh);
             }
         }
 
         private void btn_Add_Click(object sender, EventArgs e)
         {
+            if (!ProductValidate.CheckEmptyString(txtTenHang.Text) ||
+                !ProductValidate.CheckEmptyString(txtGiaNhap.Text) ||
+                !ProductValidate.CheckEmptyString(txtGiaBan.Text) ||
+                !ProductValidate.CheckEmptyString(txt_SoLuong.Text))
+
+            {
+                MessageBox.Show("Please fill all required fields");
+                return;
+            }
+
+            if (!ProductValidate.CheckIfContainNumber(txtTenHang.Text))
+            {
+                MessageBox.Show("Name can't contain number");
+                return;
+            }
+
+            if (!ProductValidate.CheckIfContainSymbol(txtTenHang.Text))
+            {
+                MessageBox.Show("Name can't contain symbols");
+                return;
+            }
+            if (ProductValidate.CheckIfProductNameExist(txtTenHang.Text))
+            {
+                MessageBox.Show("Product name already exist");
+                return;
+            }
+
+            if (!ProductValidate.CheckIfContainLetter(txtGiaNhap.Text) ||
+                !ProductValidate.CheckIfContainLetter(txtGiaBan.Text) ||
+                !ProductValidate.CheckIfContainLetter(txt_SoLuong.Text))
+            {
+                MessageBox.Show("Prices or quantity can't contain letters");
+                return;
+            }
+            if (!ProductValidate.CheckIfNegativeValue(txtGiaNhap.Text) ||
+                !ProductValidate.CheckIfNegativeValue(txtGiaBan.Text) ||
+                !ProductValidate.CheckIfNegativeValue(txt_SoLuong.Text))
+            {
+                MessageBox.Show("Prices or quantity can't be negative values");
+                return;
+            }
+
+            if (decimal.Parse(txtGiaNhap.Text) > decimal.Parse(txtGiaBan.Text))
+            {
+                MessageBox.Show("Entry price can't be greater than selling price");
+                return;
+            }
+
             var CTSP = new Chitietsanpham();
             var SP = new Sanpham()
             {
                 Id = Guid.NewGuid(),
                 Ten = txtTenHang.Text,
-
             };
             var Img = new Anh()
             {
                 Idanh = Guid.NewGuid(),
                 Path = txt_ImgPath.Text,
             };
-
-
-
-
 
             CTSP.IdAnh = Img.Idanh;
             CTSP.Gianhap = decimal.Parse(txtGiaNhap.Text);
@@ -142,16 +185,12 @@ namespace PRL.Forms
                 _producsv.Add(SP);
                 MessageBox.Show(_detailproductsv.Add(CTSP));
                 clear();
-
-
-
             }
             else
             {
                 return;
             }
             LoadGrid(null);
-
         }
 
         private void dtg_SanPham_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -179,12 +218,54 @@ namespace PRL.Forms
             txt_ImgPath.Text = _detailproductsv.GetPathImgByIdImg(_detailproductsv.convertGUID(CTSP.IdAnh));
             Image tmp = _detailproductsv.GetImageByPath(CTSP.Id);
             Picturebox_Product.Image = tmp;
-
-
         }
 
         private void btn_Update_Click(object sender, EventArgs e)
         {
+
+            if (!ProductValidate.CheckEmptyString(txtTenHang.Text) ||
+                !ProductValidate.CheckEmptyString(txtGiaNhap.Text) ||
+                !ProductValidate.CheckEmptyString(txtGiaBan.Text) ||
+                !ProductValidate.CheckEmptyString(txt_SoLuong.Text))
+
+            {
+                MessageBox.Show("Please fill all required fields");
+                return;
+            }
+
+            if (!ProductValidate.CheckIfContainNumber(txtTenHang.Text))
+            {
+                MessageBox.Show("Name can't contain number");
+                return;
+            }
+
+            if (!ProductValidate.CheckIfContainSymbol(txtTenHang.Text))
+            {
+                MessageBox.Show("Name can't contain symbols");
+                return;
+            }
+
+            if (!ProductValidate.CheckIfContainLetter(txtGiaNhap.Text) ||
+                !ProductValidate.CheckIfContainLetter(txtGiaBan.Text) ||
+                !ProductValidate.CheckIfContainLetter(txt_SoLuong.Text))
+            {
+                MessageBox.Show("Prices or quantity can't contain letters");
+                return;
+            }
+            if (!ProductValidate.CheckIfNegativeValue(txtGiaNhap.Text) ||
+                !ProductValidate.CheckIfNegativeValue(txtGiaBan.Text) ||
+                !ProductValidate.CheckIfNegativeValue(txt_SoLuong.Text))
+            {
+                MessageBox.Show("Prices or quantity can't be negative values");
+                return;
+            }
+
+            if (decimal.Parse(txtGiaNhap.Text) > decimal.Parse(txtGiaBan.Text))
+            {
+                MessageBox.Show("Entry price can't be greater than selling price");
+                return;
+            }
+
             try
             {
                 var CTSP = _detailproductsv.GetAll1(null).FirstOrDefault(x => x.Id == _idWhenClickCTSP);
@@ -218,15 +299,12 @@ namespace PRL.Forms
                     MessageBox.Show(_detailproductsv.Update(CTSP));
                     _producsv.Update(SP);
                     _picturesv.UpdateImg(tmpImg);
-                
                 }
                 else
                 {
                     return;
                     LoadGrid(null);
-
                 }
-                
             }
             catch (Exception ex)
             {
@@ -234,8 +312,6 @@ namespace PRL.Forms
                 return;
             };
             LoadGrid(null);
-            
-
         }
 
         public void LoadGridSP(List<Chitietsanpham> chitietsanphams)
@@ -260,10 +336,10 @@ namespace PRL.Forms
             dtg_SanPham.AllowUserToAddRows = false;
             foreach (var sp in chitietsanphams)
             {
-
                 dtg_SanPham.Rows.Add(stt++, sp.Id, _producsv.Findbyid(sp.Idsanpham).Ten, sp.Gianhap, sp.Giaban, sp.Soluongton, _colorsv.FindNamebyID(_colorsv.convertGUID(sp.Idmauao)), _sizesv.FindNamebyID(_sizesv.convertGUID(sp.Idkichthuoc)), _materialsv.FindNamebyID(_materialsv.convertGUID(sp.Idchatlieu)), _listSV.FindNamebyID(_listSV.convertGUID(sp.Iddanhmuc)), sp.Mota, sp.IdAnh);
             }
         }
+
         private void txt_TimKiemSP_TextChanged(object sender, EventArgs e)
         {
             List<Chitietsanpham> chitietsanphams = _detailproductsv.GetAll(null);
@@ -285,8 +361,8 @@ namespace PRL.Forms
 
         private void dtg_SanPham_CellLeave(object sender, DataGridViewCellEventArgs e)
         {
-
         }
+
         public void clear()
         {
             txtTenHang.Text = null;
@@ -299,8 +375,7 @@ namespace PRL.Forms
             rtxt_MoTa.Text = null;
             txt_SoLuong.Text = null;
             txt_ImgPath.Text = null;
-            Picturebox_Product.Image = Image.FromFile("D:\\Da1_5\\GIT\\BanQuanAo_Da1\\PRL\\IMG\\default-thumbnail.jpg");
-
+            Picturebox_Product.Image = Image.FromFile("C:\\Users\\Acer\\Documents\\GitHub\\BanQuanAo_Da1\\PRL\\IMG\\default-thumbnail.jpg");
         }
 
         private void btn_clear_Click(object sender, EventArgs e)
@@ -315,7 +390,7 @@ namespace PRL.Forms
             rtxt_MoTa.Text = null;
             txt_SoLuong.Text = null;
             txt_ImgPath.Text = null;
-            Picturebox_Product.Image = Image.FromFile("D:\\Da1_5\\GIT\\BanQuanAo_Da1\\PRL\\IMG\\default-thumbnail.jpg");
+            Picturebox_Product.Image = Image.FromFile("C:\\Users\\Acer\\Documents\\GitHub\\BanQuanAo_Da1\\PRL\\IMG\\default-thumbnail.jpg");
         }
 
         private void btn_browser_Click(object sender, EventArgs e)

@@ -33,7 +33,7 @@
             Pn_Up = new Panel();
             Picturebox_Product = new PictureBox();
             groupBox2 = new GroupBox();
-            textBox2 = new TextBox();
+            txt_ID = new TextBox();
             label1 = new Label();
             txt_name = new TextBox();
             label2 = new Label();
@@ -102,7 +102,7 @@
             Pn_Up.Controls.Add(groupBox1);
             Pn_Up.Location = new Point(0, 0);
             Pn_Up.Name = "Pn_Up";
-            Pn_Up.Size = new Size(1543, 321);
+            Pn_Up.Size = new Size(1543, 330);
             Pn_Up.TabIndex = 1;
             // 
             // Picturebox_Product
@@ -111,14 +111,14 @@
             Picturebox_Product.Image = (Image)resources.GetObject("Picturebox_Product.Image");
             Picturebox_Product.Location = new Point(811, 23);
             Picturebox_Product.Name = "Picturebox_Product";
-            Picturebox_Product.Size = new Size(233, 241);
+            Picturebox_Product.Size = new Size(233, 250);
             Picturebox_Product.SizeMode = PictureBoxSizeMode.StretchImage;
             Picturebox_Product.TabIndex = 32;
             Picturebox_Product.TabStop = false;
             // 
             // groupBox2
             // 
-            groupBox2.Controls.Add(textBox2);
+            groupBox2.Controls.Add(txt_ID);
             groupBox2.Controls.Add(label1);
             groupBox2.Controls.Add(txt_name);
             groupBox2.Controls.Add(label2);
@@ -131,19 +131,19 @@
             groupBox2.Dock = DockStyle.Right;
             groupBox2.Location = new Point(1116, 0);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(427, 321);
+            groupBox2.Size = new Size(427, 330);
             groupBox2.TabIndex = 2;
             groupBox2.TabStop = false;
             groupBox2.Text = "Product details";
             // 
-            // textBox2
+            // txt_ID
             // 
-            textBox2.Enabled = false;
-            textBox2.Location = new Point(126, 43);
-            textBox2.Name = "textBox2";
-            textBox2.ReadOnly = true;
-            textBox2.Size = new Size(230, 27);
-            textBox2.TabIndex = 30;
+            txt_ID.Enabled = false;
+            txt_ID.Location = new Point(126, 43);
+            txt_ID.Name = "txt_ID";
+            txt_ID.ReadOnly = true;
+            txt_ID.Size = new Size(230, 27);
+            txt_ID.TabIndex = 30;
             // 
             // label1
             // 
@@ -236,7 +236,7 @@
             groupBox1.Dock = DockStyle.Left;
             groupBox1.Location = new Point(0, 0);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(744, 321);
+            groupBox1.Size = new Size(744, 330);
             groupBox1.TabIndex = 1;
             groupBox1.TabStop = false;
             groupBox1.Text = "List product";
@@ -250,7 +250,7 @@
             Dtg_LstProduct.Name = "Dtg_LstProduct";
             Dtg_LstProduct.RowHeadersWidth = 51;
             Dtg_LstProduct.RowTemplate.Height = 29;
-            Dtg_LstProduct.Size = new Size(738, 295);
+            Dtg_LstProduct.Size = new Size(738, 304);
             Dtg_LstProduct.TabIndex = 2;
             Dtg_LstProduct.CellClick += Dtg_LstProduct_CellClick;
             // 
@@ -261,9 +261,9 @@
             pn_Bottom.Controls.Add(groupBox6);
             pn_Bottom.Controls.Add(groupBox5);
             pn_Bottom.Dock = DockStyle.Bottom;
-            pn_Bottom.Location = new Point(0, 353);
+            pn_Bottom.Location = new Point(0, 362);
             pn_Bottom.Name = "pn_Bottom";
-            pn_Bottom.Size = new Size(1569, 387);
+            pn_Bottom.Size = new Size(1569, 378);
             pn_Bottom.TabIndex = 0;
             // 
             // groupBox4
@@ -283,7 +283,7 @@
             groupBox4.Dock = DockStyle.Fill;
             groupBox4.Location = new Point(947, 0);
             groupBox4.Name = "groupBox4";
-            groupBox4.Size = new Size(622, 387);
+            groupBox4.Size = new Size(622, 378);
             groupBox4.TabIndex = 4;
             groupBox4.TabStop = false;
             // 
@@ -301,6 +301,7 @@
             cmb_Sale.Name = "cmb_Sale";
             cmb_Sale.Size = new Size(143, 28);
             cmb_Sale.TabIndex = 27;
+            cmb_Sale.SelectedIndexChanged += cmb_Sale_SelectedIndexChanged;
             // 
             // groupBox3
             // 
@@ -376,7 +377,7 @@
             // 
             lb_Tong.AutoSize = true;
             lb_Tong.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
-            lb_Tong.Location = new Point(187, 141);
+            lb_Tong.Location = new Point(95, 141);
             lb_Tong.Name = "lb_Tong";
             lb_Tong.Size = new Size(22, 25);
             lb_Tong.TabIndex = 20;
@@ -431,7 +432,7 @@
             groupBox6.Dock = DockStyle.Left;
             groupBox6.Location = new Point(744, 0);
             groupBox6.Name = "groupBox6";
-            groupBox6.Size = new Size(203, 387);
+            groupBox6.Size = new Size(203, 378);
             groupBox6.TabIndex = 2;
             groupBox6.TabStop = false;
             groupBox6.Text = "Services";
@@ -455,6 +456,7 @@
             btn_clear.TabIndex = 21;
             btn_clear.Text = "Clear";
             btn_clear.UseVisualStyleBackColor = true;
+            btn_clear.Click += btn_clear_Click;
             // 
             // btn_update
             // 
@@ -465,6 +467,7 @@
             btn_update.TabIndex = 20;
             btn_update.Text = "Update";
             btn_update.UseVisualStyleBackColor = true;
+            btn_update.Click += btn_update_Click;
             // 
             // btn_Add
             // 
@@ -483,7 +486,7 @@
             groupBox5.Dock = DockStyle.Left;
             groupBox5.Location = new Point(0, 0);
             groupBox5.Name = "groupBox5";
-            groupBox5.Size = new Size(744, 387);
+            groupBox5.Size = new Size(744, 378);
             groupBox5.TabIndex = 1;
             groupBox5.TabStop = false;
             groupBox5.Text = "Cart";
@@ -492,13 +495,13 @@
             // 
             dtg_Cart.BackgroundColor = SystemColors.ActiveCaption;
             dtg_Cart.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dtg_Cart.Dock = DockStyle.Fill;
             dtg_Cart.Location = new Point(3, 23);
             dtg_Cart.Name = "dtg_Cart";
             dtg_Cart.RowHeadersWidth = 51;
             dtg_Cart.RowTemplate.Height = 29;
-            dtg_Cart.Size = new Size(738, 361);
+            dtg_Cart.Size = new Size(738, 291);
             dtg_Cart.TabIndex = 13;
+            dtg_Cart.CellClick += dtg_Cart_CellClick;
             // 
             // Vending3
             // 
@@ -566,7 +569,7 @@
         private Label label8;
         private Button btn_clear;
         private Button btn_Delete;
-        private TextBox textBox2;
+        private TextBox txt_ID;
         private Label label1;
     }
 }

@@ -1,5 +1,6 @@
 ﻿using BUS.IServices;
 using BUS.Services;
+using BUS.Utilites;
 using DAL.Model;
 using PRL.VIewModel;
 using System;
@@ -8,6 +9,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -26,7 +28,9 @@ namespace PRL.Forms
         ISaleSV _salesv;
         Guid _idWhenClickCTSP;
         Guid _idWhenClickSP;
+        Guid _idWhenClickCart;
         List<Cart> _Lstgiohang;
+
         public Vending3()
         {
             _colorsv = new ColorSV();
@@ -40,6 +44,32 @@ namespace PRL.Forms
             InitializeComponent();
             LoadGrid(null);
             LoadKM();
+            dtg_Cart.ScrollBars = ScrollBars.Both;
+        }
+
+        public string GetTenSanpham(Guid input)//truyen vao id chitietsanpham
+        {
+            //tim ten san pham de them vao gio hang
+            var tensp = _producsv.Findbyid(_detailproductsv.GetAll1(null).FirstOrDefault(c => c.Id == input).Idsanpham).Ten;
+            return tensp;
+        }
+        public string Getkichthuoc(Guid input)//truyen vao id chitietsanpham
+        {
+            //tim size de them vao gio hang
+            var size = _sizesv.FindNamebyID(ProductValidate.convertGUID(_detailproductsv.GetAll1(null).FirstOrDefault(c => c.Id == input).Idkichthuoc));
+            return size;
+        }
+        public string GetChatLieu(Guid input)//truyen vao id chitietsanpham
+        {
+            //tim chat lieu de them vao gio hang
+            var chatlieu = _materialsv.FindNamebyID(ProductValidate.convertGUID(_detailproductsv.GetAll1(null).FirstOrDefault(c => c.Id == input).Idchatlieu));
+            return chatlieu;
+        }
+        public string GetMauSac(Guid input)//truyen vao id chitietsanpham
+        {
+            //tim chat lieu de them vao gio hang
+            var mausac = _colorsv.FindNamebyID(ProductValidate.convertGUID(_detailproductsv.GetAll1(null).FirstOrDefault(c => c.Id == input).Idmauao));
+            return mausac;
         }
 
         public void LoadKM()
@@ -48,7 +78,7 @@ namespace PRL.Forms
             {
                 cmb_Sale.Items.Add(s.Tenmakhuyenmai);
             }
-            cmb_Sale.SelectedIndex = 0;
+            //cmb_Sale.SelectedIndex = 0;
             cmb_Sale.DropDownStyle = ComboBoxStyle.DropDownList;
         }
         public void LoadGrid(string input)
@@ -59,7 +89,7 @@ namespace PRL.Forms
             Dtg_LstProduct.ColumnCount = 9;
             Dtg_LstProduct.Columns[0].Name = "STT";
             Dtg_LstProduct.Columns[1].Name = "ID";
-            Dtg_LstProduct.Columns[1].Visible = false;
+            //Dtg_LstProduct.Columns[1].Visible = false;
             Dtg_LstProduct.Columns[2].Name = "Tên";
             Dtg_LstProduct.Columns[3].Name = "Số lượng";
             Dtg_LstProduct.Columns[4].Name = "Màu";
@@ -78,24 +108,37 @@ namespace PRL.Forms
             }
         }
 
-        public void LoadGridSP(List<Hoadonchitiet> hoadonchitiets)
+        public void LoadDTGCart(List<Cart> lstcart)
         {
-            //int stt = 1;
-            //dtg_Cart.ColumnCount = 6;
-            //dtg_Cart.Columns[0].Name = "STT";
-            //dtg_Cart.Columns[1].Name = "ID";
-            //dtg_Cart.Columns[1].Visible = false;
-            //dtg_Cart.Columns[2].Name = "Tên sản phẩm";
-            //dtg_Cart.Columns[3].Name = "Số lượng";
-            //dtg_Cart.Columns[4].Name = "Giá bán";
-            //dtg_Cart.Columns[5].Name = "ID sản phẩm";
-            //dtg_Cart.Rows.Clear();
-            //dtg_Cart.AllowUserToAddRows = false;
-            //foreach (var sp in hoadonchitiets)
-            //{
+            decimal tmpgia = 0;
+            int stt = 1;
+            dtg_Cart.ColumnCount = 8;
+            dtg_Cart.Columns[0].Name = "STT";
+            dtg_Cart.Columns[1].Name = "ID";
+            dtg_Cart.Columns[1].Visible = false;
+            dtg_Cart.Columns[2].Name = "Tên sản phẩm";
+            dtg_Cart.Columns[3].Name = "Số lượng mua";
+            dtg_Cart.Columns[4].Name = "Màu sắc";
+            dtg_Cart.Columns[5].Name = "Chất liệu";
+            dtg_Cart.Columns[6].Name = "Size";
+            dtg_Cart.Columns[7].Name = "Giá";
+            dtg_Cart.Rows.Clear();
+            dtg_Cart.AllowUserToAddRows = false;
+            foreach (var sp in lstcart)
+            {
 
-            //    dtg_Cart.Rows.Add(stt++, sp.Id,_producsv.Findbyid());
-            //}
+                dtg_Cart.Rows.Add(stt++, sp.Id, sp.TenSp, sp.Soluongmua, sp.Mausac, sp.Chatlieu, sp.Size, sp.GiaTongSanPhamMua);
+            }
+
+            for (int i = 0; i < lstcart.Count; i++)
+            {
+                tmpgia += lstcart[i].GiaTongSanPhamMua;
+            }
+            lb_Tong.Text = tmpgia.ToString();
+            if(string.IsNullOrEmpty(cmb_Sale.Text))
+            {
+                lb_TienPhaiTra.Text = lb_Tong.Text;
+            }
         }
 
 
@@ -118,16 +161,7 @@ namespace PRL.Forms
             txt_Gia.Text = CTSP.Giaban.ToString();
             Image tmp = _detailproductsv.GetImageByPath(CTSP.Id);
             Picturebox_Product.Image = tmp;
-
-            //Add cart
-            //Cart Crt = new Cart()
-            //{
-            //    Id = Guid.NewGuid(),
-            //    TenSp = txt_name.Text,
-            //    Mausac = Dtg_LstProduct.Rows[rowindex].Cells[4].Value.ToString(),
-            //     = Dtg_LstProduct.Rows[rowindex].Cells[4].Value.ToString(),
-            //    Mausac = Dtg_LstProduct.Rows[rowindex].Cells[4].Value.ToString(),
-            //};
+            txt_ID.Text = ProductValidate.convertGUID(CTSP.Id).ToString();
 
 
 
@@ -135,22 +169,132 @@ namespace PRL.Forms
 
         private void txt_SoLuong_TextChanged(object sender, EventArgs e)
         {
-            Regex regex = new Regex(@"^\d+$");
-            if (txt_SoLuong.Text != null)
-            {
-                string tmp = txt_Gia.Text;
 
-                txt_Tong.Text = (int.Parse(txt_SoLuong.Text) * decimal.Parse(tmp)).ToString();
-            }
-            else if (!regex.IsMatch(txt_SoLuong.Text))
+            //không có gì
+            //check null cho textbox số lượng mua % check không có kí tự chữ
+            if (ProductValidate.CheckEmptyString(txt_SoLuong.Text))
             {
-                MessageBox.Show("")
+                if (ProductValidate.IsNumeric(txt_SoLuong.Text))
+                {
+                    string tmp = txt_Gia.Text;
+
+                    txt_Tong.Text = (int.Parse(txt_SoLuong.Text) * decimal.Parse(tmp)).ToString();
+
+                }
+                else
+                {
+                    MessageBox.Show("Prices or quantity can't contain letters");
+                    return;
+                }
             }
+
+
+
         }
 
         private void btn_Add_Click(object sender, EventArgs e)
         {
 
+
+
+            //check số lượng mua nhỏ hơn số lượng tốn
+            var ctsp = _detailproductsv.GetAll(null).FirstOrDefault(c => c.Id.ToString() == txt_ID.Text);
+            if (int.Parse(txt_SoLuong.Text) > ctsp.Soluongton)
+            {
+                MessageBox.Show("The product in stock has only " + ctsp.Soluongton + " items left, please enter a quantity to purchase that is less than the available stock.");
+                return;
+            }
+
+
+            var tmp = _Lstgiohang.FirstOrDefault(c => c.IdSanpham.ToString() == txt_ID.Text);
+
+            //Nếu trong giỏ hàng không có sản phẩm nào giống nhau cần cộng dồn.=> tạo cart mới
+            if (tmp == null)
+            {
+                var cart = new Cart()
+                {
+                    Id = Guid.NewGuid(),
+                    IdSanpham = Guid.Parse(txt_ID.Text),
+                    TenSp = GetTenSanpham(Guid.Parse(txt_ID.Text)),
+                    Soluongmua = int.Parse(txt_SoLuong.Text),
+                    Mausac = GetMauSac(Guid.Parse(txt_ID.Text)),
+                    Size = Getkichthuoc(Guid.Parse(txt_ID.Text)),
+                    Chatlieu = GetChatLieu(Guid.Parse(txt_ID.Text)),
+                    GiaTongSanPhamMua = int.Parse(txt_SoLuong.Text) * decimal.Parse(txt_Gia.Text),
+                };
+                _Lstgiohang.Add(cart);
+                LoadDTGCart(_Lstgiohang);
+            }
+
+            //nếu trong giỏ hàng có sản phẩm giống nhau cần cộng dồn, => lấy cart cũ + dồn số lượng mua lên.
+            else
+            {
+
+                var slmuanew = tmp.Soluongmua += int.Parse(txt_SoLuong.Text);
+                if (ctsp.Soluongton > slmuanew)
+                {
+                    tmp.Soluongmua = slmuanew;
+                    tmp.GiaTongSanPhamMua = tmp.GiaTongSanPhamMua + decimal.Parse(txt_Tong.Text);
+                    LoadDTGCart(_Lstgiohang);
+                }
+                else
+                {
+                    MessageBox.Show("The product in stock has only " + ctsp.Soluongton + " items left, please enter a quantity to purchase that is less than the available stock.");
+                    return;
+                }
+            }
+        }
+
+        private void btn_clear_Click(object sender, EventArgs e)
+        {
+            _Lstgiohang.Clear();
+            LoadDTGCart(_Lstgiohang);
+        }
+
+        private void dtg_Cart_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int rowindex = e.RowIndex;
+            //lấy id từ dòng đang bấm kết hợp cell
+            if (rowindex == -1)
+            {
+                return;
+            }
+            //_idWhenClickCTSP = Guid.Parse(Dtg_LstProduct.Rows[rowindex].Cells[1].Value.ToString());
+            _idWhenClickCart = Guid.Parse(dtg_Cart.Rows[rowindex].Cells[1].Value.ToString());
+            var cart = _Lstgiohang.FirstOrDefault(c => c.Id == _idWhenClickCart);
+            txt_name.Text = cart.TenSp;
+            txt_SoLuong.Text = cart.Soluongmua.ToString();
+            Image tmp = _detailproductsv.GetImageByPath(cart.IdSanpham);
+            Picturebox_Product.Image = tmp;
+            txt_ID.Text = ProductValidate.convertGUID(cart.IdSanpham).ToString();
+        }
+
+        private void btn_update_Click(object sender, EventArgs e)
+        {
+            _idWhenClickCTSP = Guid.Parse(txt_ID.Text);
+            var tmp = _Lstgiohang.FirstOrDefault(c => c.IdSanpham == _idWhenClickCTSP);
+            tmp.Soluongmua = int.Parse(txt_SoLuong.Text);
+            tmp.GiaTongSanPhamMua += decimal.Parse(txt_Tong.Text);
+            LoadDTGCart(_Lstgiohang);
+        }
+
+        public string GetTenKH()
+        {
+            return txt_KhachHang.Text;
+        }
+        public string GetSDT_KH()
+        {
+            return txt_SDT.Text;
+        }
+
+        private void cmb_Sale_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            decimal sotiengiam = decimal.Parse(lb_Tong.Text) * _salesv.GetDiscountByName(cmb_Sale.Text) / 100;
+            if (cmb_Sale.Text != null)
+            {
+                lb_TienPhaiTra.Text = (decimal.Parse(lb_Tong.Text) - sotiengiam).ToString();
+            }
         }
     }
 }
+

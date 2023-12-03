@@ -42,6 +42,11 @@ namespace BUS.Services
             }
         }
 
+        public int GetDiscountByName(string name)
+        {
+            return GetKM().FirstOrDefault(c=>c.Tenmakhuyenmai == name).Giamgia;
+        }
+
         public List<Khuyenmai> GetKhuyenMaiByName(string name)
         {
             return saleRP.GetKhuyemaiByName(name);

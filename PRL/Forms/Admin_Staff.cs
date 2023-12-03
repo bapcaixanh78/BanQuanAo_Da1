@@ -51,9 +51,34 @@ namespace PRL.Forms
 
         private void btn_Add_Click(object sender, EventArgs e)
         {
+            if (StaffValidate.CheckEmptyString(txt_TenNV.Text) == false ||
+                StaffValidate.CheckEmptyString(txt_Account.Text) == false ||
+                StaffValidate.CheckEmptyString(txt_Password.Text) == false ||
+                StaffValidate.CheckEmptyString(txt_DiaChi.Text) == false ||
+                StaffValidate.CheckEmptyString(txt_email.Text) == false)
+            {
+                MessageBox.Show("Please fill in all required fields.");
+                return;
+            }
+            if (!StaffValidate.CheckIfContainNumber(txt_TenNV.Text))
+            {
+                MessageBox.Show("Name can't contains number");
+                return;
+            }
+            if(!StaffValidate.CheckIfContainSymbol(txt_Account.Text))
+            {
+                MessageBox.Show("Name can't contain symbols");
+                return;
+            }
             if (StaffValidate.CheckIfStaffAccountNameExist(txt_Account.Text))
             {
-                MessageBox.Show("Tên tài khoản đã tồn tại");
+                MessageBox.Show("Account name already exist");
+                return;
+            }
+            if (!StaffValidate.CheckEmail(txt_email.Text))
+            {
+                MessageBox.Show("Check email format");
+                return;
             }
             else
             {
@@ -94,9 +119,36 @@ namespace PRL.Forms
 
         private void btn_Update_Click(object sender, EventArgs e)
         {
-            if (StaffValidate.CheckIfStaffAccountNameExist(txt_Account.Text))
+            //Check chuỗi rỗng
+            if (StaffValidate.CheckEmptyString(txt_TenNV.Text) == false ||
+                StaffValidate.CheckEmptyString(txt_Account.Text) == false ||
+                StaffValidate.CheckEmptyString(txt_Password.Text) == false ||
+                StaffValidate.CheckEmptyString(txt_DiaChi.Text) == false ||
+                StaffValidate.CheckEmptyString(txt_email.Text) == false)
             {
-                MessageBox.Show("Tên tài khoản đã tồn tại");
+                MessageBox.Show("Please fill in all required fields.");
+                return;
+            }
+
+            //Check xem tên có chứa số hay không
+            if (!StaffValidate.CheckIfContainNumber(txt_TenNV.Text))
+            {
+                MessageBox.Show("Name can't contains number");
+                return;
+            }
+
+            //Check xem tên tài khoản đã tồn tại chauw
+            if (StaffValidate.CheckIfStaffAccountNameExistUpdate(dtg_NhanVien.CurrentRow.Cells[1].Value.ToString(), txt_Account.Text))
+            {
+                MessageBox.Show("Account name already exist");
+                return;
+            }
+
+            //Check định dạng email
+            if (!StaffValidate.CheckEmail(txt_email.Text))
+            {
+                MessageBox.Show("Check email format");
+                return;
             }
             else
             {

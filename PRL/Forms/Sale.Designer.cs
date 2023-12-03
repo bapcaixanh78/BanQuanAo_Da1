@@ -122,7 +122,7 @@
             // 
             txt_MinBill.BackColor = SystemColors.Info;
             txt_MinBill.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            txt_MinBill.Location = new Point(470, 181);
+            txt_MinBill.Location = new Point(470, 185);
             txt_MinBill.Margin = new Padding(4);
             txt_MinBill.Name = "txt_MinBill";
             txt_MinBill.Size = new Size(336, 34);
@@ -134,9 +134,9 @@
             label4.Location = new Point(311, 195);
             label4.Margin = new Padding(4, 0, 4, 0);
             label4.Name = "label4";
-            label4.Size = new Size(70, 20);
+            label4.Size = new Size(104, 20);
             label4.TabIndex = 65;
-            label4.Text = "Min bill : ";
+            label4.Text = "Discount(%)  : ";
             // 
             // label3
             // 

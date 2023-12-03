@@ -395,6 +395,7 @@
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Main";
             Text = "Shirt Haven";
+            Load += Main_Load;
             panel1.ResumeLayout(false);
             panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
