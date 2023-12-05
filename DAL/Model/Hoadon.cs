@@ -19,7 +19,7 @@ namespace DAL.Model
         public string? Ghichu { get; set; }
         [Column(TypeName = "nvarchar(500)")]
 
-        public string Trangthai { get; set; }
+        public string? Trangthai { get; set; }
 
         //khoa ngoai
         public Guid Idnhanvien { get;set; }
@@ -30,7 +30,7 @@ namespace DAL.Model
 
         public virtual ICollection<Hoadonchitiet> hoadonchitiets { get; set; }
 
-        public Guid Idkhuyenmai { get; set; }
+        public Guid? Idkhuyenmai { get; set; }
         public virtual Khuyenmai khuyenmai { get;set; }
 
          
