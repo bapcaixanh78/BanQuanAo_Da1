@@ -20,5 +20,7 @@ namespace DAL.Model
 
         public Guid Idchitietsanpham { get; set; }
         public virtual Chitietsanpham chitietsanpham { get; set; }
+
+        public string? Trangthai { get; set; }
     }
 }

@@ -16,5 +16,6 @@ namespace BUS.IServices
         public int GetDiscountByName(string name);
 
         public List<Khuyenmai> GetKM();
+        public Guid GetidKhuyenMaiByName(string name);
     }
 }

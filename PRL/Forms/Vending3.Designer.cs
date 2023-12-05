@@ -181,6 +181,7 @@
             txt_SoLuong.Size = new Size(230, 27);
             txt_SoLuong.TabIndex = 23;
             txt_SoLuong.TextChanged += txt_SoLuong_TextChanged;
+            txt_SoLuong.Leave += txt_SoLuong_Leave;
             // 
             // txt_Tong
             // 
@@ -248,6 +249,7 @@
             Dtg_LstProduct.Dock = DockStyle.Fill;
             Dtg_LstProduct.Location = new Point(3, 23);
             Dtg_LstProduct.Name = "Dtg_LstProduct";
+            Dtg_LstProduct.ReadOnly = true;
             Dtg_LstProduct.RowHeadersWidth = 51;
             Dtg_LstProduct.RowTemplate.Height = 29;
             Dtg_LstProduct.Size = new Size(738, 304);
@@ -310,15 +312,17 @@
             // 
             // txt_SDT
             // 
-            txt_SDT.Location = new Point(6, 59);
+            txt_SDT.Location = new Point(3, 37);
             txt_SDT.Name = "txt_SDT";
             txt_SDT.PlaceholderText = "Phone Number";
             txt_SDT.Size = new Size(270, 27);
             txt_SDT.TabIndex = 3;
+            txt_SDT.TextChanged += txt_SDT_TextChanged;
+            txt_SDT.Leave += txt_SDT_Leave;
             // 
             // txt_KhachHang
             // 
-            txt_KhachHang.Location = new Point(6, 27);
+            txt_KhachHang.Location = new Point(3, 71);
             txt_KhachHang.Name = "txt_KhachHang";
             txt_KhachHang.PlaceholderText = "Customer's name";
             txt_KhachHang.Size = new Size(270, 27);

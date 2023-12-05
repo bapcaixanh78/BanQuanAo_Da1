@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BUS.IServices
 {
-    internal interface IBillSV
+    public interface IBillSV
     {
         public string AddBill(Hoadon hoadon);
         public List<Hoadon> GetHoadons(string search);

@@ -33,7 +33,7 @@ namespace DAL.Model
         public Guid? Idkhuyenmai { get; set; }
         public virtual Khuyenmai khuyenmai { get;set; }
 
-         
+
 
     }
 }

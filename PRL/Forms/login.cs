@@ -7,7 +7,6 @@ namespace PRL.Forms
     public partial class login : Form
     {
         private StaffSV staffSV = new StaffSV();
-
         public login(StaffSV staffSV)
         {
             this.staffSV = staffSV;
@@ -73,7 +72,6 @@ namespace PRL.Forms
                 this.Hide();
                 Main main = new Main();
                 Main.account = nhanvien;
-                
                 main.ShowDialog();
             }
             else if (nhanvien != null && nhanvien.Quyen == 1)

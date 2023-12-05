@@ -29,6 +29,17 @@ namespace BUS.Services
             }
         }
 
+        public bool ChecktrungSDTKH(string KH)
+        {
+            var check = GetAll().FirstOrDefault(c=>c.Sdt.Trim() == KH.Trim());
+            if (check == null)
+            {
+
+                return true;//add kh moi
+            }
+            else return false; // khong add
+        }
+
         public string Delete(Khachhang kh)
         {
             throw new NotImplementedException();
@@ -39,11 +50,30 @@ namespace BUS.Services
             return customersRP.GetKH();
         }
 
+        public Guid GetIDBYSDT(string SDT)
+        {
+            var tmp = GetAll().FirstOrDefault(c=>c.Sdt.Trim().Equals(SDT.Trim()));
+            return tmp.Id;
+        }
+
         public List<Khachhang> GetKH(string search)
         {
             return customersRP.GetKHbyName(search);
         }
-        
+
+        public string GetTenBySDt(string SDt)
+        {
+            List<string> Lstsdt = GetAll().Select(c=>c.Sdt).ToList();
+            bool check = Lstsdt.Contains(SDt);
+            if(check)
+            {
+                return GetAll().FirstOrDefault(c => c.Sdt == SDt).Ten;
+            }
+            else
+            {
+                return "";
+            }
+        }
 
         public string Update(Khachhang kh)
         {

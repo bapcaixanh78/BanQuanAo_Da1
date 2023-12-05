@@ -47,6 +47,11 @@ namespace BUS.Services
             return GetKM().FirstOrDefault(c=>c.Tenmakhuyenmai == name).Giamgia;
         }
 
+        public Guid GetidKhuyenMaiByName(string name)
+        {
+           return GetKM().FirstOrDefault(c=>c.Tenmakhuyenmai.ToLower() == name.ToLower()).Id;
+        }
+
         public List<Khuyenmai> GetKhuyenMaiByName(string name)
         {
             return saleRP.GetKhuyemaiByName(name);
