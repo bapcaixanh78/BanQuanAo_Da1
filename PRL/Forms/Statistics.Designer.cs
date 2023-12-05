@@ -37,7 +37,7 @@
             // 
             // panel1
             // 
-            panel1.BackColor = Color.MidnightBlue;
+            panel1.BackColor = SystemColors.ScrollBar;
             panel1.Controls.Add(btn_Close);
             panel1.Controls.Add(btn_AllProducts);
             panel1.Dock = DockStyle.Top;
