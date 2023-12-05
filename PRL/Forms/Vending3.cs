@@ -29,7 +29,12 @@ namespace PRL.Forms
         Guid _idWhenClickCTSP;
         Guid _idWhenClickSP;
         Guid _idWhenClickCart;
-        List<Cart> _Lstgiohang;
+        public static List<Cart> _Lstgiohang = new List<Cart>();
+        public Nhanvien Nhanvien = new Nhanvien();
+        public static decimal Tongtienphaithanhtoan;
+        public static decimal Tongtiendagiam;
+        public static decimal Tienkhachtra;
+        public static decimal Tientralai;
 
         public Vending3()
         {
@@ -40,12 +45,31 @@ namespace PRL.Forms
             _producsv = new ProductsSV();
             _picturesv = new PictureSV();
             _salesv = new SaleSV();
-            _Lstgiohang = new List<Cart>();
             InitializeComponent();
             LoadGrid(null);
             LoadKM();
             dtg_Cart.ScrollBars = ScrollBars.Both;
         }
+
+
+        //===============TÀI NGUYÊN CHO FORM BILL===================
+        public string GetTenKH()
+        {
+            return txt_KhachHang.Text;
+        }
+        public string GetSDT_KH()
+        {
+            return txt_SDT.Text;
+        }
+
+        public List<Cart> GetCarts()
+        {
+            return _Lstgiohang;
+        }
+        //==========================================================
+
+
+
 
         public string GetTenSanpham(Guid input)//truyen vao id chitietsanpham
         {
@@ -135,9 +159,9 @@ namespace PRL.Forms
                 tmpgia += lstcart[i].GiaTongSanPhamMua;
             }
             lb_Tong.Text = tmpgia.ToString();
-            if(string.IsNullOrEmpty(cmb_Sale.Text))
+            if (string.IsNullOrEmpty(cmb_Sale.Text))
             {
-                lb_TienPhaiTra.Text = lb_Tong.Text;
+                lb_Totalaftersale.Text = lb_Tong.Text;
             }
         }
 
@@ -278,21 +302,116 @@ namespace PRL.Forms
             LoadDTGCart(_Lstgiohang);
         }
 
-        public string GetTenKH()
-        {
-            return txt_KhachHang.Text;
-        }
-        public string GetSDT_KH()
-        {
-            return txt_SDT.Text;
-        }
+
 
         private void cmb_Sale_SelectedIndexChanged(object sender, EventArgs e)
         {
             decimal sotiengiam = decimal.Parse(lb_Tong.Text) * _salesv.GetDiscountByName(cmb_Sale.Text) / 100;
             if (cmb_Sale.Text != null)
             {
-                lb_TienPhaiTra.Text = (decimal.Parse(lb_Tong.Text) - sotiengiam).ToString();
+                lb_Totalaftersale.Text = (decimal.Parse(lb_Tong.Text) - sotiengiam).ToString();
+            }
+        }
+
+        private void btn_ThanhToan_Click(object sender, EventArgs e)
+        {
+            //Nếu ô tiền khách trả bị null
+            if (!string.IsNullOrEmpty(txt_CashReceived.Text))
+            {
+                
+                if (lb_Totalaftersale.Text == "0")
+                {
+                    if (decimal.Parse(txt_CashReceived.Text) <= 0)
+                    {
+                        //Lỗi tiền khách trả âm
+
+                        MessageBox.Show("This field does not accept negative numbers or zero.", "Inform");
+                        return;
+                    }
+                    else if (decimal.Parse(lb_TienThua.Text) < 0)
+                    {
+                        //Lỗi tiền khách trả nhỏ hơn tiền hàng(sau khi giảm giá)
+                        MessageBox.Show("Received money must be greater than or equal to the amount to be paid by the customer.", "Inform");
+                        return;
+                    }
+                }
+                else
+                {
+                    if (decimal.Parse(txt_CashReceived.Text) <= 0)
+                    {
+                        //Lỗi tiền khách trả âm
+                        MessageBox.Show("This field does not accept negative numbers or zero.", "Inform");
+                        return;
+                    }
+                    else if (decimal.Parse(lb_TienThua.Text) < 0)
+                    {
+                        //Lỗi tiền khách trả nhỏ hơn tiền hàng(sau khi giảm giá)
+                        MessageBox.Show("Received money must be greater than or equal to the amount to be paid by the customer.", "Inform");
+                        return;
+                    }
+                }
+
+                //Nếu thỏa mãn hết cách điều kiện thì add hóa đơn
+                if(decimal.Parse(txt_CashReceived.Text) >= decimal.Parse(lb_Totalaftersale.Text))
+                {
+                    var option = MessageBox.Show(
+"Are you sure you want to proceed with the payment for this order?", "Notification", MessageBoxButtons.YesNo);
+                    if (option == DialogResult.Yes)
+                    {
+                        Tongtienphaithanhtoan = decimal.Parse(lb_Totalaftersale.Text);
+                        Tienkhachtra = decimal.Parse(txt_CashReceived.Text);
+                        Tientralai = decimal.Parse(txt_CashReceived.Text) - decimal.Parse(lb_Totalaftersale.Text);
+                        if (!string.IsNullOrEmpty(cmb_Sale.Text))
+                        {
+                            Tongtiendagiam = Tongtienphaithanhtoan - decimal.Parse(lb_Tong.Text) * _salesv.GetDiscountByName(cmb_Sale.Text) / 100;
+                        }
+                        else
+                        {
+                            Tongtiendagiam = 0;
+                        }
+                        using (Bill_Forms form2 = new Bill_Forms())
+                        {
+                            form2.ShowDialog();
+                        }
+                    }
+                    else
+                    {
+                        return;
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("This field does not null here.", "Inform");
+
+                return;
+            }
+        }
+
+        private void txt_CashReceived_TextChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txt_CashReceived.Text))
+            {
+                lb_TienThua.Text = "0";
+            }
+            else
+            {
+                if (lb_Totalaftersale.Text == "0")
+                {
+                    lb_TienThua.Text = (decimal.Parse(txt_CashReceived.Text) - decimal.Parse(lb_Tong.Text)).ToString();
+                    if (string.IsNullOrEmpty(txt_CashReceived.Text))
+                    {
+                        return;
+                    }
+                }
+                else
+                {
+                    if (string.IsNullOrEmpty(txt_CashReceived.Text))
+                    {
+                        return;
+                    }
+                    lb_TienThua.Text = (decimal.Parse(txt_CashReceived.Text) - decimal.Parse(lb_Totalaftersale.Text)).ToString();
+                }
             }
         }
     }

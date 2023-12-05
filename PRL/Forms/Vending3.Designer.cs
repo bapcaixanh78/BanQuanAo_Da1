@@ -47,7 +47,6 @@
             Dtg_LstProduct = new DataGridView();
             pn_Bottom = new Panel();
             groupBox4 = new GroupBox();
-            textBox1 = new TextBox();
             cmb_Sale = new ComboBox();
             groupBox3 = new GroupBox();
             txt_SDT = new TextBox();
@@ -55,12 +54,13 @@
             btn_ThanhToan = new Button();
             label12 = new Label();
             lb_TienThua = new Label();
-            lb_TienPhaiTra = new Label();
+            lb_Totalaftersale = new Label();
             lb_Tong = new Label();
             label11 = new Label();
             label10 = new Label();
             label9 = new Label();
             label8 = new Label();
+            txt_CashReceived = new TextBox();
             groupBox6 = new GroupBox();
             btn_Delete = new Button();
             btn_clear = new Button();
@@ -268,31 +268,24 @@
             // 
             // groupBox4
             // 
-            groupBox4.Controls.Add(textBox1);
             groupBox4.Controls.Add(cmb_Sale);
             groupBox4.Controls.Add(groupBox3);
             groupBox4.Controls.Add(btn_ThanhToan);
             groupBox4.Controls.Add(label12);
             groupBox4.Controls.Add(lb_TienThua);
-            groupBox4.Controls.Add(lb_TienPhaiTra);
+            groupBox4.Controls.Add(lb_Totalaftersale);
             groupBox4.Controls.Add(lb_Tong);
             groupBox4.Controls.Add(label11);
             groupBox4.Controls.Add(label10);
             groupBox4.Controls.Add(label9);
             groupBox4.Controls.Add(label8);
+            groupBox4.Controls.Add(txt_CashReceived);
             groupBox4.Dock = DockStyle.Fill;
             groupBox4.Location = new Point(947, 0);
             groupBox4.Name = "groupBox4";
             groupBox4.Size = new Size(622, 378);
             groupBox4.TabIndex = 4;
             groupBox4.TabStop = false;
-            // 
-            // textBox1
-            // 
-            textBox1.Location = new Point(456, 183);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(125, 27);
-            textBox1.TabIndex = 28;
             // 
             // cmb_Sale
             // 
@@ -342,6 +335,7 @@
             btn_ThanhToan.TabIndex = 26;
             btn_ThanhToan.Text = "Check out";
             btn_ThanhToan.UseVisualStyleBackColor = false;
+            btn_ThanhToan.Click += btn_ThanhToan_Click;
             // 
             // label12
             // 
@@ -363,15 +357,15 @@
             lb_TienThua.TabIndex = 23;
             lb_TienThua.Text = "0";
             // 
-            // lb_TienPhaiTra
+            // lb_Totalaftersale
             // 
-            lb_TienPhaiTra.AutoSize = true;
-            lb_TienPhaiTra.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
-            lb_TienPhaiTra.Location = new Point(559, 139);
-            lb_TienPhaiTra.Name = "lb_TienPhaiTra";
-            lb_TienPhaiTra.Size = new Size(20, 23);
-            lb_TienPhaiTra.TabIndex = 22;
-            lb_TienPhaiTra.Text = "0";
+            lb_Totalaftersale.AutoSize = true;
+            lb_Totalaftersale.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
+            lb_Totalaftersale.Location = new Point(559, 139);
+            lb_Totalaftersale.Name = "lb_Totalaftersale";
+            lb_Totalaftersale.Size = new Size(20, 23);
+            lb_Totalaftersale.TabIndex = 22;
+            lb_Totalaftersale.Text = "0";
             // 
             // lb_Tong
             // 
@@ -422,6 +416,14 @@
             label8.Size = new Size(49, 25);
             label8.TabIndex = 15;
             label8.Text = "Total";
+            // 
+            // txt_CashReceived
+            // 
+            txt_CashReceived.Location = new Point(446, 183);
+            txt_CashReceived.Name = "txt_CashReceived";
+            txt_CashReceived.Size = new Size(152, 27);
+            txt_CashReceived.TabIndex = 28;
+            txt_CashReceived.TextChanged += txt_CashReceived_TextChanged;
             // 
             // groupBox6
             // 
@@ -559,12 +561,12 @@
         private Button btn_ThanhToan;
         private Label label12;
         private Label lb_TienThua;
-        private Label lb_TienPhaiTra;
+        private Label lb_Totalaftersale;
         private Label label11;
         private Label label10;
         private Label label9;
         private PictureBox Picturebox_Product;
-        private TextBox textBox1;
+        private TextBox txt_CashReceived;
         private Label lb_Tong;
         private Label label8;
         private Button btn_clear;

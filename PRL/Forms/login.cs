@@ -71,10 +71,9 @@ namespace PRL.Forms
             {
                 MessageBox.Show(" Welcome back, " + nhanvien.Ten + ".", "Log into Shirt Haven");
                 this.Hide();
-                Main main = new Main()
-                {
-                    account = nhanvien
-                };
+                Main main = new Main();
+                Main.account = nhanvien;
+                
                 main.ShowDialog();
             }
             else if (nhanvien != null && nhanvien.Quyen == 1)

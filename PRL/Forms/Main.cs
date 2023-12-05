@@ -17,7 +17,7 @@ namespace PRL.Forms
     {
         private Button currentButton;
         private Form activeForm;
-        public Nhanvien account { get; set; }
+        public static Nhanvien account { get; set; }
 
         public Main()
         {
@@ -212,7 +212,7 @@ namespace PRL.Forms
 
         private void Main_Load(object sender, EventArgs e)
         {
-            //lb_Username.Text = account.Ten.ToString();
+            lb_Username.Text = account.Ten.ToString();
         }
     }
 }

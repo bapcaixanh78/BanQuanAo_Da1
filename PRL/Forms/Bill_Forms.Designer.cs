@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Bill_Forms));
             pictureBox1 = new PictureBox();
             label1 = new Label();
             label2 = new Label();
@@ -47,45 +48,49 @@
             label15 = new Label();
             lb_NguoiBan = new Label();
             label17 = new Label();
+            btn_XuatFile = new Button();
+            btn_Out = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dtg_Bill).BeginInit();
             SuspendLayout();
             // 
             // pictureBox1
             // 
-            pictureBox1.Location = new Point(78, 39);
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(-1, -1);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(100, 100);
+            pictureBox1.Size = new Size(142, 147);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.Location = new Point(199, 49);
+            label1.Font = new Font("Cooper Black", 19.8000011F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.Location = new Point(169, 37);
             label1.Name = "label1";
-            label1.Size = new Size(124, 28);
+            label1.Size = new Size(225, 39);
             label1.TabIndex = 1;
             label1.Text = "Shirt Haven";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label2.Location = new Point(235, 82);
+            label2.Font = new Font("Cooper Black", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
+            label2.Location = new Point(221, 86);
             label2.Name = "label2";
-            label2.Size = new Size(137, 20);
+            label2.Size = new Size(223, 26);
             label2.TabIndex = 2;
             label2.Text = "Bring you a comfy";
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            label3.Location = new Point(146, 154);
+            label3.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
+            label3.Location = new Point(145, 160);
             label3.Name = "label3";
-            label3.Size = new Size(188, 28);
+            label3.Size = new Size(213, 31);
             label3.TabIndex = 3;
             label3.Text = "Hóa đơn bán hàng";
             // 
@@ -109,12 +114,13 @@
             // 
             // dtg_Bill
             // 
+            dtg_Bill.BackgroundColor = SystemColors.ActiveCaption;
             dtg_Bill.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dtg_Bill.Location = new Point(12, 267);
+            dtg_Bill.Location = new Point(12, 263);
             dtg_Bill.Name = "dtg_Bill";
             dtg_Bill.RowHeadersWidth = 51;
             dtg_Bill.RowTemplate.Height = 29;
-            dtg_Bill.Size = new Size(457, 123);
+            dtg_Bill.Size = new Size(457, 127);
             dtg_Bill.TabIndex = 7;
             // 
             // label6
@@ -193,11 +199,11 @@
             // 
             label14.AutoSize = true;
             label14.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            label14.Location = new Point(78, 591);
+            label14.Location = new Point(47, 578);
             label14.Name = "label14";
-            label14.Size = new Size(326, 28);
+            label14.Size = new Size(374, 56);
             label14.TabIndex = 16;
-            label14.Text = "Cảm ơn quý khách và hẹn gặp lại";
+            label14.Text = "---Cảm ơn quý khách và hẹn gặp lại---\r\n\r\n";
             // 
             // label15
             // 
@@ -226,11 +232,39 @@
             label17.TabIndex = 19;
             label17.Text = "Hotline : 123456789";
             // 
+            // btn_XuatFile
+            // 
+            btn_XuatFile.Image = (Image)resources.GetObject("btn_XuatFile.Image");
+            btn_XuatFile.ImageAlign = ContentAlignment.MiddleLeft;
+            btn_XuatFile.Location = new Point(68, 671);
+            btn_XuatFile.Name = "btn_XuatFile";
+            btn_XuatFile.Size = new Size(110, 50);
+            btn_XuatFile.TabIndex = 20;
+            btn_XuatFile.Text = "Xuất file";
+            btn_XuatFile.TextAlign = ContentAlignment.MiddleRight;
+            btn_XuatFile.UseVisualStyleBackColor = true;
+            // 
+            // btn_Out
+            // 
+            btn_Out.Image = (Image)resources.GetObject("btn_Out.Image");
+            btn_Out.ImageAlign = ContentAlignment.MiddleLeft;
+            btn_Out.Location = new Point(299, 671);
+            btn_Out.Name = "btn_Out";
+            btn_Out.Size = new Size(110, 50);
+            btn_Out.TabIndex = 21;
+            btn_Out.Text = "Đóng";
+            btn_Out.TextAlign = ContentAlignment.MiddleRight;
+            btn_Out.UseVisualStyleBackColor = true;
+            btn_Out.Click += btn_Out_Click;
+            // 
             // Bill_Forms
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(481, 665);
+            BackColor = SystemColors.ScrollBar;
+            ClientSize = new Size(481, 727);
+            Controls.Add(btn_Out);
+            Controls.Add(btn_XuatFile);
             Controls.Add(label17);
             Controls.Add(lb_NguoiBan);
             Controls.Add(label15);
@@ -252,7 +286,9 @@
             Controls.Add(pictureBox1);
             FormBorderStyle = FormBorderStyle.None;
             Name = "Bill_Forms";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Bill_Forms";
+            Load += Bill_Forms_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)dtg_Bill).EndInit();
             ResumeLayout(false);
@@ -280,5 +316,7 @@
         private Label label15;
         private Label lb_NguoiBan;
         private Label label17;
+        private Button btn_XuatFile;
+        private Button btn_Out;
     }
 }
