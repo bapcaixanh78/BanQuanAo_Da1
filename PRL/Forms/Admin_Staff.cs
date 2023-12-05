@@ -65,7 +65,7 @@ namespace PRL.Forms
                 MessageBox.Show("Name can't contains number");
                 return;
             }
-            if(StaffValidate.CheckIfContainSymbol(txt_Account.Text))
+            if (StaffValidate.CheckIfContainSymbol(txt_Account.Text))
             {
                 MessageBox.Show("Name can't contain symbols");
                 return;

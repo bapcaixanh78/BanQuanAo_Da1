@@ -20,11 +20,13 @@ namespace PRL.Forms
         {
             InitializeComponent();
             customersSV = new CustomersSV();
+            LoadDataToGridview(customersSV.GetAll());
 
         }
         public Admin_Customers2(CustomersSV customersSV)
         {
             this.customersSV = customersSV;
+            LoadDataToGridview(customersSV.GetKH(null));
         }
 
         public void LoadDataToGridview(List<Khachhang> khachhangs)

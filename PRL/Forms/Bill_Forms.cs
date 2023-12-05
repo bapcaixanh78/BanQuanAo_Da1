@@ -16,7 +16,8 @@ namespace PRL.Forms
     {
         public List<Cart> _lstcartinbill;
         public Nhanvien _nhanvien = new Nhanvien();
-        public Khachhang _khachhang = new Khachhang();
+        public string _Tenkhachhang;
+        public string _SDTKhachhang;
         public decimal _Tienphaithanhtoan;
         public decimal _TienDagiam;
         public decimal _Tienkhachtra;
@@ -26,6 +27,7 @@ namespace PRL.Forms
             InitializeComponent();
             _lstcartinbill = Vending3._Lstgiohang;
             LoadDTGCart(_lstcartinbill);
+            _Tenkhachhang = Vending3.TenKhachhang;
         }
         public void LoadDTGCart(List<Cart> lstcart)
         {
@@ -72,6 +74,7 @@ namespace PRL.Forms
             lb_TongTienPhaiTra.Text = Vending3.Tongtienphaithanhtoan.ToString();
             lb_NgayBan.Text = DateTime.Now.ToString();
             lb_NguoiBan.Text = _nhanvien.Ten.ToString();
+            lb_nguoimua.Text = _Tenkhachhang;
         }
     }
 }

@@ -192,6 +192,7 @@
             // 
             // dtg_Sale
             // 
+            dtg_Sale.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dtg_Sale.BackgroundColor = SystemColors.ActiveCaption;
             dtg_Sale.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dtg_Sale.Dock = DockStyle.Fill;

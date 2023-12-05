@@ -18,7 +18,9 @@ namespace DAL.Repositories
         }
         public bool Add(Khachhang KH)
         {
-            throw new NotImplementedException();
+            _dbcontext.Add(KH);
+            _dbcontext.SaveChanges();
+            return true;
         }
 
         public List<Khachhang> GetKH()

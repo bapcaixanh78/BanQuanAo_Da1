@@ -111,6 +111,8 @@
             // 
             // dtg_KhachHang
             // 
+            dtg_KhachHang.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dtg_KhachHang.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dtg_KhachHang.BackgroundColor = SystemColors.ActiveCaption;
             dtg_KhachHang.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dtg_KhachHang.Dock = DockStyle.Fill;

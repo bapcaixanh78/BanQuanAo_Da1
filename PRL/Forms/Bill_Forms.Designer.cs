@@ -50,6 +50,8 @@
             label17 = new Label();
             btn_XuatFile = new Button();
             btn_Out = new Button();
+            label5 = new Label();
+            lb_nguoimua = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dtg_Bill).BeginInit();
             SuspendLayout();
@@ -57,9 +59,9 @@
             // pictureBox1
             // 
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(-1, -1);
+            pictureBox1.Location = new Point(40, -3);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(142, 147);
+            pictureBox1.Size = new Size(201, 161);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
@@ -68,7 +70,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Cooper Black", 19.8000011F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(169, 37);
+            label1.Location = new Point(436, 35);
             label1.Name = "label1";
             label1.Size = new Size(225, 39);
             label1.TabIndex = 1;
@@ -78,7 +80,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Cooper Black", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
-            label2.Location = new Point(221, 86);
+            label2.Location = new Point(509, 86);
             label2.Name = "label2";
             label2.Size = new Size(223, 26);
             label2.TabIndex = 2;
@@ -87,10 +89,10 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
-            label3.Location = new Point(145, 160);
+            label3.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point);
+            label3.Location = new Point(332, 112);
             label3.Name = "label3";
-            label3.Size = new Size(213, 31);
+            label3.Size = new Size(316, 46);
             label3.TabIndex = 3;
             label3.Text = "Hóa đơn bán hàng";
             // 
@@ -106,7 +108,7 @@
             // lb_NgayBan
             // 
             lb_NgayBan.AutoSize = true;
-            lb_NgayBan.Location = new Point(169, 191);
+            lb_NgayBan.Location = new Point(720, 191);
             lb_NgayBan.Name = "lb_NgayBan";
             lb_NgayBan.Size = new Size(50, 20);
             lb_NgayBan.TabIndex = 5;
@@ -114,19 +116,20 @@
             // 
             // dtg_Bill
             // 
+            dtg_Bill.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dtg_Bill.BackgroundColor = SystemColors.ActiveCaption;
             dtg_Bill.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dtg_Bill.Location = new Point(12, 263);
+            dtg_Bill.Location = new Point(12, 289);
             dtg_Bill.Name = "dtg_Bill";
             dtg_Bill.RowHeadersWidth = 51;
             dtg_Bill.RowTemplate.Height = 29;
-            dtg_Bill.Size = new Size(457, 127);
+            dtg_Bill.Size = new Size(939, 127);
             dtg_Bill.TabIndex = 7;
             // 
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(12, 415);
+            label6.Location = new Point(12, 441);
             label6.Name = "label6";
             label6.Size = new Size(191, 20);
             label6.TabIndex = 8;
@@ -135,7 +138,7 @@
             // lb_TongTienPhaiTra
             // 
             lb_TongTienPhaiTra.AutoSize = true;
-            lb_TongTienPhaiTra.Location = new Point(409, 415);
+            lb_TongTienPhaiTra.Location = new Point(720, 441);
             lb_TongTienPhaiTra.Name = "lb_TongTienPhaiTra";
             lb_TongTienPhaiTra.Size = new Size(50, 20);
             lb_TongTienPhaiTra.TabIndex = 9;
@@ -144,7 +147,7 @@
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(12, 455);
+            label8.Location = new Point(12, 481);
             label8.Name = "label8";
             label8.Size = new Size(142, 20);
             label8.TabIndex = 10;
@@ -153,7 +156,7 @@
             // lb_TongTienGiam
             // 
             lb_TongTienGiam.AutoSize = true;
-            lb_TongTienGiam.Location = new Point(409, 455);
+            lb_TongTienGiam.Location = new Point(720, 481);
             lb_TongTienGiam.Name = "lb_TongTienGiam";
             lb_TongTienGiam.Size = new Size(50, 20);
             lb_TongTienGiam.TabIndex = 11;
@@ -162,7 +165,7 @@
             // label10
             // 
             label10.AutoSize = true;
-            label10.Location = new Point(12, 495);
+            label10.Location = new Point(12, 521);
             label10.Name = "label10";
             label10.Size = new Size(112, 20);
             label10.TabIndex = 12;
@@ -171,7 +174,7 @@
             // lb_TienKhachTra
             // 
             lb_TienKhachTra.AutoSize = true;
-            lb_TienKhachTra.Location = new Point(401, 495);
+            lb_TienKhachTra.Location = new Point(720, 521);
             lb_TienKhachTra.Name = "lb_TienKhachTra";
             lb_TienKhachTra.Size = new Size(58, 20);
             lb_TienKhachTra.TabIndex = 13;
@@ -180,7 +183,7 @@
             // label12
             // 
             label12.AutoSize = true;
-            label12.Location = new Point(12, 535);
+            label12.Location = new Point(12, 561);
             label12.Name = "label12";
             label12.Size = new Size(90, 20);
             label12.TabIndex = 14;
@@ -189,7 +192,7 @@
             // lb_TienThua
             // 
             lb_TienThua.AutoSize = true;
-            lb_TienThua.Location = new Point(401, 535);
+            lb_TienThua.Location = new Point(720, 561);
             lb_TienThua.Name = "lb_TienThua";
             lb_TienThua.Size = new Size(58, 20);
             lb_TienThua.TabIndex = 15;
@@ -199,7 +202,7 @@
             // 
             label14.AutoSize = true;
             label14.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            label14.Location = new Point(47, 578);
+            label14.Location = new Point(315, 599);
             label14.Name = "label14";
             label14.Size = new Size(374, 56);
             label14.TabIndex = 16;
@@ -217,7 +220,7 @@
             // lb_NguoiBan
             // 
             lb_NguoiBan.AutoSize = true;
-            lb_NguoiBan.Location = new Point(169, 221);
+            lb_NguoiBan.Location = new Point(720, 221);
             lb_NguoiBan.Name = "lb_NguoiBan";
             lb_NguoiBan.Size = new Size(58, 20);
             lb_NguoiBan.TabIndex = 18;
@@ -226,7 +229,7 @@
             // label17
             // 
             label17.AutoSize = true;
-            label17.Location = new Point(171, 634);
+            label17.Location = new Point(436, 644);
             label17.Name = "label17";
             label17.Size = new Size(141, 20);
             label17.TabIndex = 19;
@@ -236,9 +239,9 @@
             // 
             btn_XuatFile.Image = (Image)resources.GetObject("btn_XuatFile.Image");
             btn_XuatFile.ImageAlign = ContentAlignment.MiddleLeft;
-            btn_XuatFile.Location = new Point(68, 671);
+            btn_XuatFile.Location = new Point(315, 678);
             btn_XuatFile.Name = "btn_XuatFile";
-            btn_XuatFile.Size = new Size(110, 50);
+            btn_XuatFile.Size = new Size(109, 50);
             btn_XuatFile.TabIndex = 20;
             btn_XuatFile.Text = "Xuất file";
             btn_XuatFile.TextAlign = ContentAlignment.MiddleRight;
@@ -248,7 +251,7 @@
             // 
             btn_Out.Image = (Image)resources.GetObject("btn_Out.Image");
             btn_Out.ImageAlign = ContentAlignment.MiddleLeft;
-            btn_Out.Location = new Point(299, 671);
+            btn_Out.Location = new Point(622, 678);
             btn_Out.Name = "btn_Out";
             btn_Out.Size = new Size(110, 50);
             btn_Out.TabIndex = 21;
@@ -257,12 +260,32 @@
             btn_Out.UseVisualStyleBackColor = true;
             btn_Out.Click += btn_Out_Click;
             // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(12, 254);
+            label5.Name = "label5";
+            label5.Size = new Size(114, 20);
+            label5.TabIndex = 22;
+            label5.Text = "Tên khách hàng:";
+            // 
+            // lb_nguoimua
+            // 
+            lb_nguoimua.AutoSize = true;
+            lb_nguoimua.Location = new Point(720, 254);
+            lb_nguoimua.Name = "lb_nguoimua";
+            lb_nguoimua.Size = new Size(58, 20);
+            lb_nguoimua.TabIndex = 23;
+            lb_nguoimua.Text = "label16";
+            // 
             // Bill_Forms
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.ScrollBar;
-            ClientSize = new Size(481, 727);
+            BackColor = Color.OldLace;
+            ClientSize = new Size(962, 751);
+            Controls.Add(lb_nguoimua);
+            Controls.Add(label5);
             Controls.Add(btn_Out);
             Controls.Add(btn_XuatFile);
             Controls.Add(label17);
@@ -318,5 +341,7 @@
         private Label label17;
         private Button btn_XuatFile;
         private Button btn_Out;
+        private Label label5;
+        private Label lb_nguoimua;
     }
 }

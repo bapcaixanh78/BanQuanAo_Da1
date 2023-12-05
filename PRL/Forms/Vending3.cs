@@ -26,9 +26,12 @@ namespace PRL.Forms
         ISizeSV _sizesv;
         IProductsSV _producsv;
         ISaleSV _salesv;
+        ICustomersSV _customersv;
         Guid _idWhenClickCTSP;
         Guid _idWhenClickSP;
         Guid _idWhenClickCart;
+        public static string TenKhachhang;
+        public static string SDTKhachhang;
         public static List<Cart> _Lstgiohang = new List<Cart>();
         public Nhanvien Nhanvien = new Nhanvien();
         public static decimal Tongtienphaithanhtoan;
@@ -45,10 +48,12 @@ namespace PRL.Forms
             _producsv = new ProductsSV();
             _picturesv = new PictureSV();
             _salesv = new SaleSV();
+            _customersv = new CustomersSV();
             InitializeComponent();
             LoadGrid(null);
             LoadKM();
             dtg_Cart.ScrollBars = ScrollBars.Both;
+
         }
 
 
@@ -318,7 +323,7 @@ namespace PRL.Forms
             //Nếu ô tiền khách trả bị null
             if (!string.IsNullOrEmpty(txt_CashReceived.Text))
             {
-                
+
                 if (lb_Totalaftersale.Text == "0")
                 {
                     if (decimal.Parse(txt_CashReceived.Text) <= 0)
@@ -352,7 +357,7 @@ namespace PRL.Forms
                 }
 
                 //Nếu thỏa mãn hết cách điều kiện thì add hóa đơn
-                if(decimal.Parse(txt_CashReceived.Text) >= decimal.Parse(lb_Totalaftersale.Text))
+                if (decimal.Parse(txt_CashReceived.Text) >= decimal.Parse(lb_Totalaftersale.Text))
                 {
                     var option = MessageBox.Show(
 "Are you sure you want to proceed with the payment for this order?", "Notification", MessageBoxButtons.YesNo);
@@ -369,6 +374,18 @@ namespace PRL.Forms
                         {
                             Tongtiendagiam = 0;
                         }
+                        TenKhachhang = GetTenKH();
+                        SDTKhachhang = GetSDT_KH();
+
+                        //add khach hang
+                        var customernew = new Khachhang()
+                        {
+                            Id = Guid.NewGuid(),
+                            Ten = GetTenKH(),
+                            Sdt = GetSDT_KH()
+                        };
+                        _customersv.Add(customernew);
+
                         using (Bill_Forms form2 = new Bill_Forms())
                         {
                             form2.ShowDialog();

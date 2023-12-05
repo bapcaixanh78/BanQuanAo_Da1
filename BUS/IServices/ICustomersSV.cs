@@ -10,6 +10,7 @@ namespace BUS.IServices
 {
     public interface ICustomersSV
     {
+        public string Add(Khachhang kh);
         public string Update(Khachhang kh);
         public string Delete(Khachhang kh);
         public List<Khachhang> GetKH(string search);

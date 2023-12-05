@@ -46,6 +46,7 @@
             // 
             // dtg_SanPham
             // 
+            dtg_SanPham.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dtg_SanPham.BackgroundColor = SystemColors.ActiveCaption;
             dtg_SanPham.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dtg_SanPham.Dock = DockStyle.Fill;

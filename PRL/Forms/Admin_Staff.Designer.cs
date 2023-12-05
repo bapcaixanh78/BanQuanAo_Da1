@@ -108,6 +108,7 @@
             // 
             // dtg_NhanVien
             // 
+            dtg_NhanVien.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dtg_NhanVien.BackgroundColor = SystemColors.ActiveCaption;
             dtg_NhanVien.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dtg_NhanVien.Dock = DockStyle.Fill;

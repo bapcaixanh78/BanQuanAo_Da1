@@ -16,6 +16,19 @@ namespace BUS.Services
         {
             customersRP = new CustomersRP();
         }
+
+        public string Add(Khachhang kh)
+        {
+            if (customersRP.Add(kh) == true)
+            {
+                return "You have added successfully";
+            }
+            else
+            {
+                return "You have failed to add";
+            }
+        }
+
         public string Delete(Khachhang kh)
         {
             throw new NotImplementedException();
