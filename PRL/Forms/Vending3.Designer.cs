@@ -252,6 +252,7 @@
             Dtg_LstProduct.ReadOnly = true;
             Dtg_LstProduct.RowHeadersWidth = 51;
             Dtg_LstProduct.RowTemplate.Height = 29;
+            Dtg_LstProduct.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             Dtg_LstProduct.Size = new Size(738, 304);
             Dtg_LstProduct.TabIndex = 2;
             Dtg_LstProduct.CellClick += Dtg_LstProduct_CellClick;
@@ -452,6 +453,7 @@
             btn_Delete.TabIndex = 22;
             btn_Delete.Text = "Delete";
             btn_Delete.UseVisualStyleBackColor = true;
+            btn_Delete.Click += btn_Delete_Click;
             // 
             // btn_clear
             // 
@@ -503,8 +505,10 @@
             dtg_Cart.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dtg_Cart.Location = new Point(3, 23);
             dtg_Cart.Name = "dtg_Cart";
+            dtg_Cart.ReadOnly = true;
             dtg_Cart.RowHeadersWidth = 51;
             dtg_Cart.RowTemplate.Height = 29;
+            dtg_Cart.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dtg_Cart.Size = new Size(738, 291);
             dtg_Cart.TabIndex = 13;
             dtg_Cart.CellClick += dtg_Cart_CellClick;

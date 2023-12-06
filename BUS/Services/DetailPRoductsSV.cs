@@ -137,6 +137,11 @@ namespace BUS.Services
         {
             return guid ?? Guid.Empty;
         }
+
+        public List<Chitietsanpham> GetAllSanphamConHang()
+        {
+            return detailProductsRP.GetAll().Where(c=>c.Trangthai == "Còn hàng").ToList();
+        }
     }
 }
 

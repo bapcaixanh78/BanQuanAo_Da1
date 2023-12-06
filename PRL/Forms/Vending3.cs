@@ -44,6 +44,7 @@ namespace PRL.Forms
         public static decimal Tientralai;
         public Hoadon _Hoadon;
         public Hoadonchitiet _Hoadonchitiet;
+        public static string SaleDangdung;
         public Vending3()
         {
             _colorsv = new ColorSV();
@@ -197,7 +198,7 @@ namespace PRL.Forms
             Image tmp = _detailproductsv.GetImageByPath(CTSP.Id);
             Picturebox_Product.Image = tmp;
             txt_ID.Text = ProductValidate.convertGUID(CTSP.Id).ToString();
-
+            txt_Tong.Text = txt_Gia.Text;
 
 
         }
@@ -205,6 +206,36 @@ namespace PRL.Forms
         private void txt_SoLuong_TextChanged(object sender, EventArgs e)
         {
 
+            //Nếu txtsoluong null
+            if (string.IsNullOrEmpty(txt_SoLuong.Text))
+            {
+                txt_Tong.Text = txt_Gia.Text;
+
+            }
+            //Check số âm
+            else if (!ProductValidate.CheckIfNegativeValue(txt_SoLuong.Text))
+            {
+                MessageBox.Show("Can't be negative value!");
+                txt_SoLuong.Text = null;
+                return;
+            }
+            //Check phải là số
+            else if (!ProductValidate.IsNumeric(txt_SoLuong.Text))
+            {
+                MessageBox.Show("Can't fill the letters!", "Inform");
+                txt_SoLuong.Text = null;
+                return;
+            }
+            else if(string.IsNullOrEmpty(txt_ID.Text))
+            {
+                MessageBox.Show("You need to select a product!", "Inform");
+                txt_SoLuong.Text = null;return;
+            }
+            else
+            {
+                txt_Tong.Text = (int.Parse(txt_SoLuong.Text) * decimal.Parse(txt_Gia.Text)).ToString();
+
+            }
 
 
 
@@ -213,88 +244,87 @@ namespace PRL.Forms
 
         private void btn_Add_Click(object sender, EventArgs e)
         {
-            if(!string.IsNullOrEmpty( txt_ID.Text))
+            if(string.IsNullOrEmpty(txt_SoLuong.Text))
             {
-                //check số lượng mua nhỏ hơn số lượng tốn
-                var ctsp = _detailproductsv.GetAll(null).FirstOrDefault(c => c.Id.ToString() == txt_ID.Text);
-                if (int.Parse(txt_SoLuong.Text) > ctsp.Soluongton)
-                {
-                    MessageBox.Show("The product in stock has only " + ctsp.Soluongton + " items left, please enter a quantity to purchase that is less than the available stock.");
-                    return;
-                }
-
-
-                var tmp = _Lstgiohang.FirstOrDefault(c => c.IdSanpham.ToString() == txt_ID.Text);
-
-                ////add hd
-                //_id_Hoa_Don_Khi_Add_SP = Guid.NewGuid();
-
-                //_Hoadon = new Hoadon
-                //{
-                //    Id = _id_Hoa_Don_Khi_Add_SP,
-                //    Ngaytao = DateTime.Now,
-                //    Trangthai = "Chưa thanh toán",
-
-
-                //};
-                //add cthd
-                //_Hoadonchitiet = new Hoadonchitiet
-                //{
-                //    Id = Guid.NewGuid(),
-                //    Soluong = int.Parse(txt_SoLuong.Text),
-                //    Giaban = decimal.Parse(txt_Gia.Text),
-                //    Idhoadon = _id_Hoa_Don_Khi_Add_SP,
-                //    Idchitietsanpham = Guid.Parse(txt_ID.Text),
-                //};
-                //Nếu trong giỏ hàng không có sản phẩm nào giống nhau cần cộng dồn.=> tạo cart mới
-                if (tmp == null)
-                {
-                    var cart = new Cart()
-                    {
-                        Id = Guid.NewGuid(),
-                        IdSanpham = Guid.Parse(txt_ID.Text),
-                        TenSp = GetTenSanpham(Guid.Parse(txt_ID.Text)),
-                        Soluongmua = int.Parse(txt_SoLuong.Text),
-                        Mausac = GetMauSac(Guid.Parse(txt_ID.Text)),
-                        Size = Getkichthuoc(Guid.Parse(txt_ID.Text)),
-                        Chatlieu = GetChatLieu(Guid.Parse(txt_ID.Text)),
-                        GiaTongSanPhamMua = int.Parse(txt_SoLuong.Text) * decimal.Parse(txt_Gia.Text),
-                    };
-                    _Lstgiohang.Add(cart);
-                    LoadDTGCart(_Lstgiohang);
-                }
-
-                //nếu trong giỏ hàng có sản phẩm giống nhau cần cộng dồn, => lấy cart cũ + dồn số lượng mua lên.
-                else
-                {
-
-                    var slmuanew = tmp.Soluongmua += int.Parse(txt_SoLuong.Text);
-                    if (ctsp.Soluongton > slmuanew)
-                    {
-                        tmp.Soluongmua = slmuanew;
-                        tmp.GiaTongSanPhamMua = tmp.GiaTongSanPhamMua + decimal.Parse(txt_Tong.Text);
-                        LoadDTGCart(_Lstgiohang);
-                    }
-                    else
-                    {
-                        MessageBox.Show("The product in stock has only " + ctsp.Soluongton + " items left, please enter a quantity to purchase that is less than the available stock.");
-                        return;
-                    }
-                }
+                MessageBox.Show("You need to fill the quantity!", "Inform");return;
             }
             else
             {
-                MessageBox.Show("You need to select a product!", "Inform");return;
+                //CHECK KHI CHƯA CHỌN SẢN PHẨM MÀ ĐÃ BẤM ADD
+                if (!string.IsNullOrEmpty(txt_ID.Text))
+                {
+                    //check số lượng mua nhỏ hơn số lượng tốn
+                    var ctsp = _detailproductsv.GetAll(null).FirstOrDefault(c => c.Id.ToString() == txt_ID.Text);
+                    if (int.Parse(txt_SoLuong.Text) > ctsp.Soluongton)
+                    {
+                        MessageBox.Show("The product in stock has only " + ctsp.Soluongton + " items left, please enter a quantity to purchase that is less than the available stock.");
+                        txt_SoLuong.Text = null;
+                        return;
+                    }
+
+
+                    var tmp = _Lstgiohang.FirstOrDefault(c => c.IdSanpham.ToString() == txt_ID.Text);
+
+                    //Nếu trong giỏ hàng không có sản phẩm nào giống nhau cần cộng dồn.=> tạo cart mới
+                    if (tmp == null)
+                    {
+                        var cart = new Cart()
+                        {
+                            Id = Guid.NewGuid(),
+                            IdSanpham = Guid.Parse(txt_ID.Text),
+                            TenSp = GetTenSanpham(Guid.Parse(txt_ID.Text)),
+                            Soluongmua = int.Parse(txt_SoLuong.Text),
+                            Mausac = GetMauSac(Guid.Parse(txt_ID.Text)),
+                            Size = Getkichthuoc(Guid.Parse(txt_ID.Text)),
+                            Chatlieu = GetChatLieu(Guid.Parse(txt_ID.Text)),
+                            GiaTongSanPhamMua = int.Parse(txt_SoLuong.Text) * decimal.Parse(txt_Gia.Text),
+                        };
+                        _Lstgiohang.Add(cart);
+                        LoadDTGCart(_Lstgiohang);
+                    }
+
+                    //nếu trong giỏ hàng có sản phẩm giống nhau cần cộng dồn, => lấy cart cũ + dồn số lượng mua lên.
+                    else
+                    {
+
+                        var slmuanew = tmp.Soluongmua += int.Parse(txt_SoLuong.Text);
+                        if (ctsp.Soluongton > slmuanew)
+                        {
+                            tmp.Soluongmua = slmuanew;
+                            tmp.GiaTongSanPhamMua = tmp.GiaTongSanPhamMua + decimal.Parse(txt_Tong.Text);
+                            LoadDTGCart(_Lstgiohang);
+                        }
+                        else
+                        {
+                            MessageBox.Show("The product in stock has only " + ctsp.Soluongton + " items left, please enter a quantity to purchase that is less than the available stock.");
+                            return;
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("You need to select a product!", "Inform"); return;
+                }
             }
 
 
-    
+
         }
 
         private void btn_clear_Click(object sender, EventArgs e)
         {
+            cmb_Sale.Text = null;
+            txt_SoLuong.Text = null;
+            txt_name.Text = null;
+            txt_ID.Text = null;
+            txt_KhachHang.Text = null;
+            txt_Gia.Text = null;
+            txt_SDT.Text = null;
+            txt_Tong.Text = null;
             _Lstgiohang.Clear();
             LoadDTGCart(_Lstgiohang);
+            Picturebox_Product.Image = Image.FromFile("D:\\Da1_5\\GIT\\BanQuanAo_Da1\\PRL\\IMG\\default-thumbnail.jpg");
+
         }
 
         private void dtg_Cart_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -317,13 +347,22 @@ namespace PRL.Forms
 
         private void btn_update_Click(object sender, EventArgs e)
         {
-            if(!string.IsNullOrEmpty(txt_ID.Text))
+            //CHECK KHI CHƯA CHỌN SẢN PHẨM MÀ ĐÃ BẤM UPDATE
+            if (!string.IsNullOrEmpty(txt_ID.Text))
             {
                 _idWhenClickCTSP = Guid.Parse(txt_ID.Text);
                 var tmp = _Lstgiohang.FirstOrDefault(c => c.IdSanpham == _idWhenClickCTSP);
                 if (!string.IsNullOrEmpty(txt_SoLuong.Text))
                 {
-                    tmp.Soluongmua = int.Parse(txt_SoLuong.Text);
+                    var ctsptmp = _detailproductsv.GetAll(null).FirstOrDefault(c => c.Id == Guid.Parse(txt_ID.Text));
+                    if (ctsptmp.Soluongton < int.Parse(txt_SoLuong.Text))
+                    {
+                        MessageBox.Show("The product in stock has only " + ctsptmp.Soluongton + " items left, please enter a quantity to purchase that is less than the available stock.");
+                        txt_SoLuong.Text = null;
+                        return;
+                    }
+                    else
+                        tmp.Soluongmua = int.Parse(txt_SoLuong.Text);
                 }
                 else
                 {
@@ -335,14 +374,15 @@ namespace PRL.Forms
             }
             else
             {
-                MessageBox.Show("You need to select a product!", "Inform");return;
+                MessageBox.Show("You need to select a product!", "Inform"); return;
             }
         }
 
 
-
+        //KHI CHỌN KHUYẾN MÃI, TIỀN SẼ TỰ TRỪ
         private void cmb_Sale_SelectedIndexChanged(object sender, EventArgs e)
         {
+
             decimal sotiengiam = decimal.Parse(lb_Tong.Text) * _salesv.GetDiscountByName(cmb_Sale.Text) / 100;
             if (cmb_Sale.Text != null)
             {
@@ -389,7 +429,7 @@ namespace PRL.Forms
                 }
 
                 //Nếu thỏa mãn hết cách điều kiện thì add hóa đơn
-                if (decimal.Parse(txt_CashReceived.Text) >= decimal.Parse(lb_Totalaftersale.Text))
+                if (decimal.Parse(txt_CashReceived.Text) >= decimal.Parse(lb_Totalaftersale.Text))//TIỀN KHÁCH TRẢ LỚN HƠN TIỀN PHẢI TRẢ => TRUE
                 {
                     var option = MessageBox.Show("Are you sure you want to proceed with the payment for this order?", "Notification", MessageBoxButtons.YesNo);
                     if (option == DialogResult.Yes)
@@ -397,15 +437,23 @@ namespace PRL.Forms
                         Tongtienphaithanhtoan = decimal.Parse(lb_Totalaftersale.Text);
                         Tienkhachtra = decimal.Parse(txt_CashReceived.Text);
                         Tientralai = decimal.Parse(txt_CashReceived.Text) - decimal.Parse(lb_Totalaftersale.Text);
+                        SaleDangdung = cmb_Sale.Text;
                         if (!string.IsNullOrEmpty(cmb_Sale.Text))
                         {
-                            Tongtiendagiam = Tongtienphaithanhtoan - decimal.Parse(lb_Tong.Text) * _salesv.GetDiscountByName(cmb_Sale.Text) / 100;
+                            /*ar sale = decimal.Parse(lb_Tong.Text) * _salesv.GetDiscountByName(cmb_Sale.Text) / 100;*/
+                            Tongtiendagiam = decimal.Parse(lb_Tong.Text) - decimal.Parse(lb_Totalaftersale.Text);
                         }
                         else
                         {
                             Tongtiendagiam = 0;
                         }
 
+                        if (!ProductValidate.CheckSDT(txt_SDT.Text))
+                        {
+                            MessageBox.Show("This phone number isn't in the correct format!","Inform");
+                            txt_KhachHang.Text = null;
+                            return;
+                        };
 
                         //add khach hang
                         var customernew = new Khachhang()
@@ -414,13 +462,13 @@ namespace PRL.Forms
                             Ten = txt_KhachHang.Text,
                             Sdt = txt_SDT.Text
                         };
-
+                        //NẾU LÀ KHÁCH HÀNG MỚI THÌ SẼ ADD 
                         if (_customersv.ChecktrungSDTKH(txt_SDT.Text))
                         {
                             _customersv.Add(customernew);
 
                         }
-
+                        //GÁN VÀO BIẾN TENKHACHHANG ĐỂ BINDING SANG FORM HÓA ĐƠN
                         TenKhachhang = txt_KhachHang.Text;
 
                         //add hoa don
@@ -444,18 +492,19 @@ namespace PRL.Forms
                             //}
 
 
-
                             if (!string.IsNullOrEmpty(cmb_Sale.Text))
                             {
                                 _Hoadon.Idkhuyenmai = _salesv.GetidKhuyenMaiByName(cmb_Sale.Text);
                             }
-                            else
+                            else            //NẾU KHÁCH HÀNG KHÔNG DÙNG KHUYẾN MÃI, THÌ Ô ID KHUYẾN MÃI TRONG CTHD SẼ TRỐNG
                             {
                                 _Hoadon.Idkhuyenmai = null;
                             }
                             _Billsv.AddBill(_Hoadon);
+
                         }
 
+                        //CHẠY VÒNG FOREACH ADD TỪNG CHI TIẾT HÓA ĐƠN.
                         foreach (var hdct in _Lstgiohang)
                         {
                             Hoadonchitiet hdctnew = new Hoadonchitiet()
@@ -466,12 +515,33 @@ namespace PRL.Forms
                                 Idhoadon = _Hoadon.Id,
                                 Idchitietsanpham = hdct.IdSanpham
                             };
+                            //KHI ẤN CHECK OUT NÀY THÌ SẢN PHẨM TRONG DATA SẼ TỰ BỊ TRỪ.
+                            var chitietsanpham = _detailproductsv.GetAll(null).FirstOrDefault(c => c.Id == hdct.IdSanpham);
+                            chitietsanpham.Soluongton -= hdctnew.Soluong;
+                            if (chitietsanpham.Soluongton == 0)
+                            {
+                                chitietsanpham.Trangthai = "Hết hàng";
+                            }
+                            _detailproductsv.Update(chitietsanpham);
                             _DetaiBill.AddDetailBill(hdctnew);
                         }
 
-                        using (Bill_Forms form2 = new Bill_Forms())
+
+                        if(string.IsNullOrEmpty(txt_SDT.Text) || string.IsNullOrEmpty(txt_KhachHang.Text))
                         {
-                            form2.ShowDialog();
+                            MessageBox.Show("You need do fill customer's name and phone numbers!", "Inform");
+                            return;
+                        }
+                        else
+                        {
+                            //MỞ FORM BILL
+                            using (Bill_Forms form2 = new Bill_Forms())
+                            {
+                                form2.ShowDialog();
+                            }
+                            LoadGrid(null);
+                            _Lstgiohang.Clear();
+                            LoadDTGCart(_Lstgiohang);
                         }
                     }
                     else
@@ -572,6 +642,13 @@ namespace PRL.Forms
                     return;
                 }
             }
+        }
+
+        private void btn_Delete_Click(object sender, EventArgs e)
+        {
+            var tmp = _Lstgiohang.FirstOrDefault(c => c.IdSanpham == Guid.Parse(txt_ID.Text));
+            _Lstgiohang.Remove(tmp);
+            LoadDTGCart(_Lstgiohang);
         }
     }
 }
