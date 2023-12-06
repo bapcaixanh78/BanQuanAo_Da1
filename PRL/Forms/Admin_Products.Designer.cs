@@ -51,6 +51,7 @@
             groupBox2 = new GroupBox();
             btn_clear = new Button();
             groupBox3 = new GroupBox();
+            btn_filter = new Button();
             label12 = new Label();
             label11 = new Label();
             label10 = new Label();
@@ -291,6 +292,7 @@
             // 
             // groupBox3
             // 
+            groupBox3.Controls.Add(btn_filter);
             groupBox3.Controls.Add(label12);
             groupBox3.Controls.Add(label11);
             groupBox3.Controls.Add(label10);
@@ -325,6 +327,16 @@
             groupBox3.Size = new Size(1446, 441);
             groupBox3.TabIndex = 31;
             groupBox3.TabStop = false;
+            // 
+            // btn_filter
+            // 
+            btn_filter.Location = new Point(1202, 387);
+            btn_filter.Name = "btn_filter";
+            btn_filter.Size = new Size(94, 29);
+            btn_filter.TabIndex = 45;
+            btn_filter.Text = "Search";
+            btn_filter.UseVisualStyleBackColor = true;
+            btn_filter.Click += btn_filter_Click;
             // 
             // label12
             // 
@@ -370,7 +382,6 @@
             cmb_statusFilter.Name = "cmb_statusFilter";
             cmb_statusFilter.Size = new Size(123, 28);
             cmb_statusFilter.TabIndex = 40;
-            cmb_statusFilter.SelectedIndexChanged += cmb_statusFilter_SelectedIndexChanged;
             // 
             // cmb_colorFIlter
             // 
@@ -380,7 +391,6 @@
             cmb_colorFIlter.Name = "cmb_colorFIlter";
             cmb_colorFIlter.Size = new Size(123, 28);
             cmb_colorFIlter.TabIndex = 39;
-            cmb_colorFIlter.SelectedIndexChanged += cmb_colorFIlter_SelectedIndexChanged;
             // 
             // cmb_sizeFilter
             // 
@@ -390,7 +400,6 @@
             cmb_sizeFilter.Name = "cmb_sizeFilter";
             cmb_sizeFilter.Size = new Size(123, 28);
             cmb_sizeFilter.TabIndex = 38;
-            cmb_sizeFilter.SelectedIndexChanged += cmb_sizeFilter_SelectedIndexChanged;
             // 
             // cmb_list
             // 
@@ -529,5 +538,6 @@
         private Label label12;
         private Label label11;
         private Label label10;
+        private Button btn_filter;
     }
 }

@@ -235,6 +235,7 @@ namespace PRL.Forms
 
         private void btn_Update_Click(object sender, EventArgs e)
         {
+            //Kiểm tra chuỗi rỗng
             if (!ProductValidate.CheckEmptyString(txtTenHang.Text) ||
                 !ProductValidate.CheckEmptyString(txtGiaNhap.Text) ||
                 !ProductValidate.CheckEmptyString(txtGiaBan.Text) ||
@@ -245,24 +246,28 @@ namespace PRL.Forms
                 return;
             }
 
+            //Kiểm tra chứa số
             if (!ProductValidate.CheckIfContainNumber(txtTenHang.Text))
             {
                 MessageBox.Show("Name can't contain number");
                 return;
             }
 
+            //Kiểm tra chứa ký tự
             if (ProductValidate.CheckIfContainSymbol(txtTenHang.Text))
             {
                 MessageBox.Show("Name can't contain symbols");
                 return;
             }
 
+            //Kiểm tra tên đã tồn tại không tính tên ban đầu
             if (ProductValidate.CheckIfProductNameExistUpdate(dtg_SanPham.CurrentRow.Cells[2].Value.ToString(), txtTenHang.Text))
             {
                 MessageBox.Show("Product's name already exist");
                 return;
             }
 
+            //Kiểm tra chứa ký tự
             if (!ProductValidate.CheckIfContainLetter(txtGiaNhap.Text) ||
                 !ProductValidate.CheckIfContainLetter(txtGiaBan.Text) ||
                 !ProductValidate.CheckIfContainLetter(txt_SoLuong.Text))
@@ -270,6 +275,8 @@ namespace PRL.Forms
                 MessageBox.Show("Prices or quantity can't contain letters");
                 return;
             }
+
+            //Kiểm tra giá trị âm
             if (!ProductValidate.CheckIfNegativeValue(txtGiaNhap.Text) ||
                 !ProductValidate.CheckIfNegativeValue(txtGiaBan.Text) ||
                 !ProductValidate.CheckIfNegativeValue(txt_SoLuong.Text))
@@ -278,9 +285,11 @@ namespace PRL.Forms
                 return;
             }
 
-            if (decimal.Parse(txtGiaNhap.Text) > decimal.Parse(txtGiaBan.Text))
+            //Check giá nhập lớn hơn giá bán
+            if ((decimal.Parse(txtGiaNhap.Text) > decimal.Parse(txtGiaBan.Text)) ||
+                (decimal.Parse(txtGiaNhap.Text) == decimal.Parse(txtGiaBan.Text)))
             {
-                MessageBox.Show("Entry price can't be greater than selling price");
+                MessageBox.Show("Entry price can't be greater or equal to selling price");
                 return;
             }
 
@@ -454,6 +463,18 @@ namespace PRL.Forms
             LoadGridSP(chitietsanphams);
         }
 
+        private void btn_filter_Click(object sender, EventArgs e)
+        {
+            Guid? sizeFilter = string.IsNullOrEmpty(cmb_sizeFilter.Text) ? (Guid?)null : _sizesv.FindIDbyName(cmb_sizeFilter.Text);
+            Guid? colorFilter = string.IsNullOrEmpty(cmb_colorFIlter.Text) ? (Guid?)null : _colorsv.FindIDbyName(cmb_colorFIlter.Text);
+            var statusFilter = string.IsNullOrEmpty(cmb_statusFilter.Text) ? null : cmb_statusFilter.Text;
 
+            List<Chitietsanpham> chitietsanphams = _detailproductsv.GetAll(null)
+                .Where(x => (sizeFilter == null || x.Idkichthuoc == sizeFilter) &&
+                            (colorFilter == null || x.Idmauao == colorFilter) &&
+                            (statusFilter == null || x.Trangthai == statusFilter))
+                .ToList();
+            LoadGridSP(chitietsanphams);
+        }
     }
 }
