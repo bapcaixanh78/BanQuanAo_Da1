@@ -83,8 +83,10 @@
             dtg_SanPham.Dock = DockStyle.Fill;
             dtg_SanPham.Location = new Point(3, 23);
             dtg_SanPham.Name = "dtg_SanPham";
+            dtg_SanPham.ReadOnly = true;
             dtg_SanPham.RowHeadersWidth = 51;
             dtg_SanPham.RowTemplate.Height = 29;
+            dtg_SanPham.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dtg_SanPham.Size = new Size(1781, 186);
             dtg_SanPham.TabIndex = 17;
             dtg_SanPham.CellClick += dtg_SanPham_CellClick;

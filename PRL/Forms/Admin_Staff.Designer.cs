@@ -115,8 +115,10 @@
             dtg_NhanVien.Location = new Point(4, 31);
             dtg_NhanVien.Margin = new Padding(4);
             dtg_NhanVien.Name = "dtg_NhanVien";
+            dtg_NhanVien.ReadOnly = true;
             dtg_NhanVien.RowHeadersWidth = 51;
             dtg_NhanVien.RowTemplate.Height = 29;
+            dtg_NhanVien.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dtg_NhanVien.Size = new Size(1779, 220);
             dtg_NhanVien.TabIndex = 49;
             dtg_NhanVien.CellClick += dtg_NhanVien_CellClick;

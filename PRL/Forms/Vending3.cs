@@ -287,8 +287,8 @@ namespace PRL.Forms
                     else
                     {
 
-                        var slmuanew = tmp.Soluongmua += int.Parse(txt_SoLuong.Text);
-                        if (ctsp.Soluongton > slmuanew)
+                        var slmuanew = tmp.Soluongmua + int.Parse(txt_SoLuong.Text);
+                        if (ctsp.Soluongton >= slmuanew)
                         {
                             tmp.Soluongmua = slmuanew;
                             tmp.GiaTongSanPhamMua = tmp.GiaTongSanPhamMua + decimal.Parse(txt_Tong.Text);
@@ -311,7 +311,8 @@ namespace PRL.Forms
 
         }
 
-        private void btn_clear_Click(object sender, EventArgs e)
+
+        public void ClearForm()
         {
             cmb_Sale.Text = null;
             txt_SoLuong.Text = null;
@@ -321,10 +322,14 @@ namespace PRL.Forms
             txt_Gia.Text = null;
             txt_SDT.Text = null;
             txt_Tong.Text = null;
+
+            Picturebox_Product.Image = Image.FromFile("D:\\Da1_5\\GIT\\BanQuanAo_Da1\\PRL\\IMG\\default-thumbnail.jpg");
+        }
+        private void btn_clear_Click(object sender, EventArgs e)
+        {
             _Lstgiohang.Clear();
             LoadDTGCart(_Lstgiohang);
-            Picturebox_Product.Image = Image.FromFile("D:\\Da1_5\\GIT\\BanQuanAo_Da1\\PRL\\IMG\\default-thumbnail.jpg");
-
+            ClearForm();
         }
 
         private void dtg_Cart_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -361,7 +366,10 @@ namespace PRL.Forms
                         txt_SoLuong.Text = null;
                         return;
                     }
-                    else
+                    else if (string.IsNullOrEmpty(txt_SoLuong.Text))
+                    {
+
+                    }else
                         tmp.Soluongmua = int.Parse(txt_SoLuong.Text);
                 }
                 else
@@ -376,6 +384,7 @@ namespace PRL.Forms
             {
                 MessageBox.Show("You need to select a product!", "Inform"); return;
             }
+            ClearForm();
         }
 
 
@@ -539,6 +548,7 @@ namespace PRL.Forms
                             {
                                 form2.ShowDialog();
                             }
+                            ClearForm();
                             LoadGrid(null);
                             _Lstgiohang.Clear();
                             LoadDTGCart(_Lstgiohang);
@@ -649,6 +659,7 @@ namespace PRL.Forms
             var tmp = _Lstgiohang.FirstOrDefault(c => c.IdSanpham == Guid.Parse(txt_ID.Text));
             _Lstgiohang.Remove(tmp);
             LoadDTGCart(_Lstgiohang);
+            ClearForm();
         }
     }
 }

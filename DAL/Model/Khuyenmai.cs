@@ -22,7 +22,7 @@ namespace DAL.Model
         [Column(TypeName = "nvarchar(500)")]
 
         public string? Mota { get; set; }
-
+        public string Trangthai { get; set; }
 
         //khoa ngoai
         public virtual ICollection<Hoadon> Hoadons { get; set; }

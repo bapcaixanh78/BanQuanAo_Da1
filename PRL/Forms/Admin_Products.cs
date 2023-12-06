@@ -80,7 +80,7 @@ namespace PRL.Forms
             int stt = 1;
             dtg_SanPham.DataSource = null;
             dtg_SanPham.Rows.Clear();
-            dtg_SanPham.ColumnCount = 12;
+            dtg_SanPham.ColumnCount = 13;
             dtg_SanPham.Columns[0].Name = "STT";
             dtg_SanPham.Columns[1].Name = "ID";
             dtg_SanPham.Columns[1].Visible = false;
@@ -95,11 +95,13 @@ namespace PRL.Forms
             dtg_SanPham.Columns[10].Name = "Mô tả";
             dtg_SanPham.Columns[11].Name = "ID Ảnh";
             dtg_SanPham.Columns[11].Visible = false;
+            dtg_SanPham.Columns[12].Name = "Trạng thái";
+
 
             dtg_SanPham.AllowUserToAddRows = false;
             foreach (var sp in _detailproductsv.GetAll1(txt_TimKiemSP.Text))
             {
-                dtg_SanPham.Rows.Add(stt++, sp.Id, _producsv.Findbyid(sp.Idsanpham).Ten, sp.Gianhap, sp.Giaban, sp.Soluongton, _colorsv.FindNamebyID(_colorsv.convertGUID(sp.Idmauao)), _sizesv.FindNamebyID(_sizesv.convertGUID(sp.Idkichthuoc)), _materialsv.FindNamebyID(_materialsv.convertGUID(sp.Idchatlieu)), _listSV.FindNamebyID(_listSV.convertGUID(sp.Iddanhmuc)), sp.Mota, sp.IdAnh);
+                dtg_SanPham.Rows.Add(stt++, sp.Id, _producsv.Findbyid(sp.Idsanpham).Ten, sp.Gianhap, sp.Giaban, sp.Soluongton, _colorsv.FindNamebyID(_colorsv.convertGUID(sp.Idmauao)), _sizesv.FindNamebyID(_sizesv.convertGUID(sp.Idkichthuoc)), _materialsv.FindNamebyID(_materialsv.convertGUID(sp.Idchatlieu)), _listSV.FindNamebyID(_listSV.convertGUID(sp.Iddanhmuc)), sp.Mota, sp.IdAnh, sp.Trangthai);
             }
         }
 
@@ -344,7 +346,7 @@ namespace PRL.Forms
         public void LoadGridSP(List<Chitietsanpham> chitietsanphams)
         {
             int stt = 1;
-            dtg_SanPham.ColumnCount = 12;
+            dtg_SanPham.ColumnCount = 13;
             dtg_SanPham.Columns[0].Name = "STT";
             dtg_SanPham.Columns[1].Name = "ID";
             dtg_SanPham.Columns[1].Visible = false;
@@ -358,12 +360,13 @@ namespace PRL.Forms
             dtg_SanPham.Columns[9].Name = "Danh mục";
             dtg_SanPham.Columns[10].Name = "Mô tả";
             dtg_SanPham.Columns[11].Name = "ID Ảnh";
+            dtg_SanPham.Columns[11].Name = "Trạng thái";
             dtg_SanPham.Columns[11].Visible = false;
             dtg_SanPham.Rows.Clear();
             dtg_SanPham.AllowUserToAddRows = false;
             foreach (var sp in chitietsanphams)
             {
-                dtg_SanPham.Rows.Add(stt++, sp.Id, _producsv.Findbyid(sp.Idsanpham).Ten, sp.Gianhap, sp.Giaban, sp.Soluongton, _colorsv.FindNamebyID(_colorsv.convertGUID(sp.Idmauao)), _sizesv.FindNamebyID(_sizesv.convertGUID(sp.Idkichthuoc)), _materialsv.FindNamebyID(_materialsv.convertGUID(sp.Idchatlieu)), _listSV.FindNamebyID(_listSV.convertGUID(sp.Iddanhmuc)), sp.Mota, sp.IdAnh);
+                dtg_SanPham.Rows.Add(stt++, sp.Id, _producsv.Findbyid(sp.Idsanpham).Ten, sp.Gianhap, sp.Giaban, sp.Soluongton, _colorsv.FindNamebyID(_colorsv.convertGUID(sp.Idmauao)), _sizesv.FindNamebyID(_sizesv.convertGUID(sp.Idkichthuoc)), _materialsv.FindNamebyID(_materialsv.convertGUID(sp.Idchatlieu)), _listSV.FindNamebyID(_listSV.convertGUID(sp.Iddanhmuc)), sp.Mota, sp.IdAnh, sp.Trangthai);
             }
         }
 
@@ -402,22 +405,14 @@ namespace PRL.Forms
             rtxt_MoTa.Text = null;
             txt_SoLuong.Text = null;
             txt_ImgPath.Text = null;
-            Picturebox_Product.Image = Image.FromFile("C:\\Users\\Acer\\Documents\\GitHub\\BanQuanAo_Da1\\PRL\\IMG\\default-thumbnail.jpg");
+            Picturebox_Product.Image = Image.FromFile("D:\\Da1_5\\GIT\\BanQuanAo_Da1\\PRL\\IMG\\default-thumbnail.jpg");
         }
 
         private void btn_clear_Click(object sender, EventArgs e)
         {
-            txtTenHang.Text = null;
-            txtGiaNhap.Text = null;
-            txtGiaBan.Text = null;
-            cmb_Color.SelectedIndex = 0;
-            cmb_Material.SelectedIndex = 0;
-            cmb_Size.SelectedIndex = 0;
-            cmb_list.SelectedIndex = 0;
-            rtxt_MoTa.Text = null;
-            txt_SoLuong.Text = null;
-            txt_ImgPath.Text = null;
-            Picturebox_Product.Image = Image.FromFile("C:\\Users\\Acer\\Documents\\GitHub\\BanQuanAo_Da1\\PRL\\IMG\\default-thumbnail.jpg");
+            var lst = _detailproductsv.GetAll(null);
+            clear();
+            LoadGridSP(lst);
         }
 
         private void btn_browser_Click(object sender, EventArgs e)
