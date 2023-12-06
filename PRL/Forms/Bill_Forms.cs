@@ -76,7 +76,14 @@ namespace PRL.Forms
             _nhanvien = Main.account;
             lb_TienKhachTra.Text = Vending3.Tienkhachtra.ToString();
             lb_TienThua.Text = Vending3.Tientralai.ToString();
-            lb_TongTienGiam.Text = Vending3.Tongtiendagiam.ToString();
+            if(!string.IsNullOrEmpty(Vending3.SaleDangdung))
+            {
+                lb_TongTienGiam.Text = Vending3.Tongtiendagiam.ToString() + " (" + Vending3.SaleDangdung + ")";
+            }
+            else
+            {
+                lb_TongTienGiam.Text = Vending3.Tongtiendagiam.ToString();
+            }
             lb_TongTienPhaiTra.Text = Vending3.Tongtienphaithanhtoan.ToString();
             lb_NgayBan.Text = DateTime.Now.ToString();
             lb_NguoiBan.Text = _nhanvien.Ten.ToString();
@@ -207,7 +214,7 @@ namespace PRL.Forms
 
                 // Add a line for "Tiền khách phải trả"
                 XPoint tienPhaiTraPosition = new XPoint(startPositionX, position.Y);
-                string tienPhaiTra = "Tiền khách phải trả: " +lb_TienKhachTra.Text;
+                string tienPhaiTra = "Tiền khách trả : " + lb_TienKhachTra.Text;
                 gfx.DrawString(tienPhaiTra, font, XBrushes.Black, tienPhaiTraPosition);
 
                 position.Y += 20; // Move to the next line

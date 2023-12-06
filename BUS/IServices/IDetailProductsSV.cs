@@ -15,6 +15,7 @@ namespace BUS.IServices
         public string Delete(Chitietsanpham CTSP);
         public List<Chitietsanpham> GetAll(string search);
         public List<Chitietsanpham> GetAll1(string search);
+        public List<Chitietsanpham> GetAllSanphamConHang();
         public Image GetImageByPath(Guid ID);
         public string GetPathImgByIdImg(Guid ID);
         public Guid convertGUID(Guid? guid);
