@@ -246,6 +246,7 @@
             btn_XuatFile.Text = "Xuất file";
             btn_XuatFile.TextAlign = ContentAlignment.MiddleRight;
             btn_XuatFile.UseVisualStyleBackColor = true;
+            btn_XuatFile.Click += btn_XuatFile_Click;
             // 
             // btn_Out
             // 
