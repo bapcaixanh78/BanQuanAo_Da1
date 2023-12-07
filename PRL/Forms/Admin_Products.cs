@@ -30,7 +30,6 @@ namespace PRL.Forms
             InitializeComponent();
             LoadComboBox();
             LoadGrid(null);
-
         }
 
         public void LoadComboBox()
@@ -69,8 +68,9 @@ namespace PRL.Forms
             }
             cmb_list.SelectedIndex = 0;
             cmb_list.DropDownStyle = ComboBoxStyle.DropDownList;
+
             cmb_statusFilter.Items.Add("Còn hàng");
-            cmb_statusFilter.Items.Add("Hết hàng");
+            cmb_statusFilter.Items.Add("Hết hàng");
             //cmb_statusFilter.SelectedIndex = 0;
             cmb_statusFilter.DropDownStyle = ComboBoxStyle.DropDownList;
         }
@@ -93,15 +93,14 @@ namespace PRL.Forms
             dtg_SanPham.Columns[8].Name = "Chất liệu";
             dtg_SanPham.Columns[9].Name = "Danh mục";
             dtg_SanPham.Columns[10].Name = "Mô tả";
-            dtg_SanPham.Columns[11].Name = "ID Ảnh";
-            dtg_SanPham.Columns[11].Visible = false;
-            dtg_SanPham.Columns[12].Name = "Trạng thái";
-
+            dtg_SanPham.Columns[11].Name = "Trạng thái";
+            dtg_SanPham.Columns[12].Name = "ID Ảnh";
+            dtg_SanPham.Columns[12].Visible = false;
 
             dtg_SanPham.AllowUserToAddRows = false;
             foreach (var sp in _detailproductsv.GetAll1(txt_TimKiemSP.Text))
             {
-                dtg_SanPham.Rows.Add(stt++, sp.Id, _producsv.Findbyid(sp.Idsanpham).Ten, sp.Gianhap, sp.Giaban, sp.Soluongton, _colorsv.FindNamebyID(_colorsv.convertGUID(sp.Idmauao)), _sizesv.FindNamebyID(_sizesv.convertGUID(sp.Idkichthuoc)), _materialsv.FindNamebyID(_materialsv.convertGUID(sp.Idchatlieu)), _listSV.FindNamebyID(_listSV.convertGUID(sp.Iddanhmuc)), sp.Mota, sp.IdAnh, sp.Trangthai);
+                dtg_SanPham.Rows.Add(stt++, sp.Id, _producsv.Findbyid(sp.Idsanpham).Ten, sp.Gianhap, sp.Giaban, sp.Soluongton, _colorsv.FindNamebyID(_colorsv.convertGUID(sp.Idmauao)), _sizesv.FindNamebyID(_sizesv.convertGUID(sp.Idkichthuoc)), _materialsv.FindNamebyID(_materialsv.convertGUID(sp.Idchatlieu)), _listSV.FindNamebyID(_listSV.convertGUID(sp.Iddanhmuc)), sp.Mota, sp.Trangthai, sp.IdAnh);
             }
         }
 
@@ -317,6 +316,7 @@ namespace PRL.Forms
                 CTSP.IdAnh = _picturesv.FindIdByPath(txt_ImgPath.Text);
                 CTSP.Giaban = decimal.Parse(txtGiaBan.Text);
                 CTSP.Gianhap = decimal.Parse(txtGiaNhap.Text);
+                CTSP.Soluongton = int.Parse(txt_SoLuong.Text);
                 CTSP.Idmauao = _colorsv.FindIDbyName(cmb_Color.SelectedItem.ToString());
                 CTSP.Idchatlieu = _materialsv.FindIDbyName(cmb_Material.SelectedItem.ToString());
                 CTSP.Idkichthuoc = _sizesv.FindIDbyName(cmb_Size.SelectedItem.ToString());
@@ -339,8 +339,13 @@ namespace PRL.Forms
             {
                 clear();
                 return;
-            };
-            LoadGrid(null);
+            }
+            finally
+            {
+                List<Chitietsanpham> chitietsanphams = _detailproductsv.GetAll1(null);
+                LoadGridSP(chitietsanphams);
+            }
+            
         }
 
         public void LoadGridSP(List<Chitietsanpham> chitietsanphams)
@@ -359,14 +364,15 @@ namespace PRL.Forms
             dtg_SanPham.Columns[8].Name = "Chất liệu";
             dtg_SanPham.Columns[9].Name = "Danh mục";
             dtg_SanPham.Columns[10].Name = "Mô tả";
-            dtg_SanPham.Columns[11].Name = "ID Ảnh";
-            dtg_SanPham.Columns[11].Name = "Trạng thái";
-            dtg_SanPham.Columns[11].Visible = false;
+            dtg_SanPham.Columns[11].Name = "Trạng thái";
+            dtg_SanPham.Columns[12].Name = "ID Ảnh";
+            dtg_SanPham.Columns[12].Visible = false;
             dtg_SanPham.Rows.Clear();
             dtg_SanPham.AllowUserToAddRows = false;
+
             foreach (var sp in chitietsanphams)
             {
-                dtg_SanPham.Rows.Add(stt++, sp.Id, _producsv.Findbyid(sp.Idsanpham).Ten, sp.Gianhap, sp.Giaban, sp.Soluongton, _colorsv.FindNamebyID(_colorsv.convertGUID(sp.Idmauao)), _sizesv.FindNamebyID(_sizesv.convertGUID(sp.Idkichthuoc)), _materialsv.FindNamebyID(_materialsv.convertGUID(sp.Idchatlieu)), _listSV.FindNamebyID(_listSV.convertGUID(sp.Iddanhmuc)), sp.Mota, sp.IdAnh, sp.Trangthai);
+                dtg_SanPham.Rows.Add(stt++, sp.Id, _producsv.Findbyid(sp.Idsanpham).Ten, sp.Gianhap, sp.Giaban, sp.Soluongton, _colorsv.FindNamebyID(_colorsv.convertGUID(sp.Idmauao)), _sizesv.FindNamebyID(_sizesv.convertGUID(sp.Idkichthuoc)), _materialsv.FindNamebyID(_materialsv.convertGUID(sp.Idchatlieu)), _listSV.FindNamebyID(_listSV.convertGUID(sp.Iddanhmuc)), sp.Mota, sp.Trangthai, sp.IdAnh);
             }
         }
 
@@ -405,7 +411,7 @@ namespace PRL.Forms
             rtxt_MoTa.Text = null;
             txt_SoLuong.Text = null;
             txt_ImgPath.Text = null;
-            Picturebox_Product.Image = Image.FromFile("D:\\Da1_5\\GIT\\BanQuanAo_Da1\\PRL\\IMG\\default-thumbnail.jpg");
+            Picturebox_Product.Image = Image.FromFile("C:\\Users\\Acer\\Documents\\GitHub\\BanQuanAo_Da1\\PRL\\IMG\\default-thumbnail.jpg");
         }
 
         private void btn_clear_Click(object sender, EventArgs e)
@@ -465,10 +471,25 @@ namespace PRL.Forms
             var statusFilter = string.IsNullOrEmpty(cmb_statusFilter.Text) ? null : cmb_statusFilter.Text;
 
             List<Chitietsanpham> chitietsanphams = _detailproductsv.GetAll(null)
-                .Where(x => (sizeFilter == null || x.Idkichthuoc == sizeFilter) &&
-                            (colorFilter == null || x.Idmauao == colorFilter) &&
-                            (statusFilter == null || x.Trangthai == statusFilter))
-                .ToList();
+    .Where(x => (sizeFilter == null || x.Idkichthuoc == sizeFilter) &&
+                (colorFilter == null || x.Idmauao == colorFilter))
+    .ToList();
+            string selectedStatus = cmb_statusFilter.SelectedItem.ToString(); // Get the selected status from the ComboBox
+
+            if (selectedStatus == "Còn hàng")
+            {
+                chitietsanphams = chitietsanphams.Where(sp => sp.Trangthai == "Còn hàng").ToList();
+            }
+            else if (selectedStatus == "Hết hàng")
+            {
+                chitietsanphams = chitietsanphams.Where(sp => sp.Trangthai == "Hết hàng").ToList();
+            }
+            else
+            {
+                // Handle the case where no status is selected or the selected status is not recognized
+                chitietsanphams = chitietsanphams; // Show all products if no status filter is applied
+            }
+
             LoadGridSP(chitietsanphams);
         }
     }
