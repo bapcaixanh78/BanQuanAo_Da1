@@ -126,7 +126,7 @@
             btn_ThongKe.Name = "btn_ThongKe";
             btn_ThongKe.Size = new Size(202, 60);
             btn_ThongKe.TabIndex = 6;
-            btn_ThongKe.Text = "Statistics";
+            btn_ThongKe.Text = "Revenue";
             btn_ThongKe.UseVisualStyleBackColor = true;
             btn_ThongKe.Click += btn_ThongKe_Click;
             btn_ThongKe.MouseEnter += btn_ThongKe_MouseEnter;

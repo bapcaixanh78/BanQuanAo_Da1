@@ -80,5 +80,10 @@ namespace BUS.Services
                 return "Update thất bại";
             }
         }
+
+        public string GetNameStaffById(Guid id)
+        {
+            return GetAll().FirstOrDefault(c => c.Id == id).Ten;
+        }
     }
 }

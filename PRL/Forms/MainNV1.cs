@@ -139,7 +139,7 @@ namespace PRL.Forms
 
         private void btn_ThongKe_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new Forms.Statistics(), sender);
+            OpenChildForm(new Forms.Revenue(), sender);
         }
 
         private void btn_DangXuat_Click(object sender, EventArgs e)

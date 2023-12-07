@@ -11,5 +11,6 @@ namespace BUS.IServices
     {
         public string AddDetailBill(Hoadonchitiet hdct);
         public List<Hoadonchitiet> GetAllHoaDonChiTiet();
+        public decimal DoanhThuMangVe(Guid idnv);
     }
 }

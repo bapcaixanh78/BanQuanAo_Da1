@@ -17,5 +17,6 @@ namespace BUS.IServices
 
         public List<Khuyenmai> GetKM();
         public Guid GetidKhuyenMaiByName(string name);
+        public string GetTenById(Guid id);
     }
 }

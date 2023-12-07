@@ -20,5 +20,7 @@ namespace BUS.IServices
         public List<Nhanvien> GetStaffByName(string name);
 
         public List<Nhanvien> GetAll();
+
+        public string GetNameStaffById(Guid id);
     }
 }

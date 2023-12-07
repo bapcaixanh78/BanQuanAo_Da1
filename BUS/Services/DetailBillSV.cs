@@ -12,9 +12,12 @@ namespace BUS.Services
     public class DetailBillSV : IDetailBillSV
     {
         private DetailBillRP detailBillRP;
+        public BillRP _billsv;
         public DetailBillSV()
         {
+
             detailBillRP = new DetailBillRP();
+            _billsv = new BillRP();
         }
 
         public string AddDetailBill(Hoadonchitiet hdct)
@@ -27,6 +30,18 @@ namespace BUS.Services
             {
                 return "You have failed to add";
             }
+        }
+
+        public decimal DoanhThuMangVe(Guid idnv)
+        {
+            //lấy ra tất cả id hóa đơn của 1 thằng nhân viên bán được
+            var lstbill = _billsv.GetAll().Where(c => c.Idnhanvien == idnv).Select(c => c.Id).ToList();
+            decimal tongtien = 0;
+            foreach (var bill in lstbill)
+            {
+                tongtien += GetAllHoaDonChiTiet().FirstOrDefault(c => c.Idhoadon == bill).Giaban;
+            }
+            return tongtien;
         }
 
         public List<Hoadonchitiet> GetAllHoaDonChiTiet()

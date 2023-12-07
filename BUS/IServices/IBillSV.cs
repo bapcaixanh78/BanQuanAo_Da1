@@ -11,5 +11,7 @@ namespace BUS.IServices
     {
         public string AddBill(Hoadon hoadon);
         public List<Hoadon> GetHoadons(string search);
+        public decimal TongTienHoaDon(Guid Id);
+        public int GetCountBillInaStaff(Guid idnv);
     }
 }

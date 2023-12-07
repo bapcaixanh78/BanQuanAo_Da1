@@ -112,7 +112,10 @@ namespace PRL.Forms
         {
             foreach (var s in _salesv.GetKM())
             {
-                cmb_Sale.Items.Add(s.Tenmakhuyenmai);
+                if(s.Trangthai == "Hoạt động")
+                {
+                    cmb_Sale.Items.Add(s.Tenmakhuyenmai);
+                }
             }
             //cmb_Sale.SelectedIndex = 0;
             cmb_Sale.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -362,22 +365,28 @@ namespace PRL.Forms
                     var ctsptmp = _detailproductsv.GetAll(null).FirstOrDefault(c => c.Id == Guid.Parse(txt_ID.Text));
                     if (ctsptmp.Soluongton < int.Parse(txt_SoLuong.Text))
                     {
+                        //Lỗi số lượng mua nhiều hơn số lượng tồn
                         MessageBox.Show("The product in stock has only " + ctsptmp.Soluongton + " items left, please enter a quantity to purchase that is less than the available stock.");
                         txt_SoLuong.Text = null;
                         return;
                     }
                     else if (string.IsNullOrEmpty(txt_SoLuong.Text))
                     {
-
-                    }else
+                        MessageBox.Show("This field can't be null","Inform");return;
+                    }
+                    else
+                    {
                         tmp.Soluongmua = int.Parse(txt_SoLuong.Text);
+                        tmp.GiaTongSanPhamMua = int.Parse(txt_SoLuong.Text) * decimal.Parse(txt_Gia.Text);
+
+                    }
                 }
                 else
                 {
                     MessageBox.Show("Quantity fields can't be empty!", "Inform");
                     return;
                 }
-                tmp.GiaTongSanPhamMua += decimal.Parse(txt_Tong.Text);
+                //tmp.GiaTongSanPhamMua += decimal.Parse(txt_Tong.Text);
                 LoadDTGCart(_Lstgiohang);
             }
             else
@@ -488,7 +497,7 @@ namespace PRL.Forms
                                 Id = Guid.NewGuid(),
                                 Ngaytao = DateTime.Now,
                                 Idnhanvien = Main.account.Id,
-
+                                Trangthai = "Đã thanh toán",
                             };
                             //Nếu mà sdt khách hàng tồn tại rồi thì tự động điền idkhachhang vào hóa đơn
                             if (!string.IsNullOrEmpty(customernew.Id.ToString()))

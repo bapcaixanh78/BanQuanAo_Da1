@@ -61,6 +61,11 @@ namespace BUS.Services
             return customersRP.GetKHbyName(search);
         }
 
+        public string GetTenBYId(Guid id)
+        {
+            return GetAll().FirstOrDefault(c => c.Id == id).Ten;
+        }
+
         public string GetTenBySDt(string SDt)
         {
             List<string> Lstsdt = GetAll().Select(c=>c.Sdt).ToList();

@@ -31,17 +31,17 @@ namespace BUS.Services
 
         public string Delete(Guid id)
         {
-            var sale = saleRP.GetAll().FirstOrDefault(x => x.Id== id);
+            var sale = saleRP.GetAll().FirstOrDefault(x => x.Id == id);
             if (sale.Trangthai == "Hoạt động")
             {
-                sale.Trangthai = "Dừng hoạt động";
+                sale.Trangthai = "Dừng hoạt động";
             }
             else
             {
-                sale.Trangthai = "Hoạt động";
+                sale.Trangthai = "Hoạt động";
             }
 
-            if (saleRP.Update(sale) == true)
+            if(saleRP.Update(sale) == true)
             {
                 return "Lock Successfully";
             }
@@ -69,6 +69,11 @@ namespace BUS.Services
         public List<Khuyenmai> GetKM()
         {
             return saleRP.GetAll();
+        }
+
+        public string GetTenById(Guid id)
+        {
+            return GetKM().FirstOrDefault(c => c.Id == id).Tenmakhuyenmai;
         }
 
         public string Update(Guid id, Khuyenmai KM)

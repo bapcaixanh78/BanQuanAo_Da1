@@ -52,7 +52,7 @@ namespace PRL.Forms
 
             //Đăng nhập nếu qua được validate
             Nhanvien nhanvien = staffSV.CheckStaffLogin(txt_Username.Text, txt_Password.Text);
-            if(nhanvien == null)
+            if (nhanvien == null)
             {
                 MessageBox.Show("Account doesn't exist");
                 return;

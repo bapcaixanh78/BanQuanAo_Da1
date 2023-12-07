@@ -70,7 +70,7 @@
             btn_Login.Location = new Point(53, 562);
             btn_Login.Name = "btn_Login";
             btn_Login.Size = new Size(324, 49);
-            btn_Login.TabIndex = 8;
+            btn_Login.TabIndex = 3;
             btn_Login.Text = "Login";
             btn_Login.UseVisualStyleBackColor = false;
             btn_Login.Click += btn_Login_Click;
@@ -154,7 +154,7 @@
             cb_showpass.Location = new Point(53, 496);
             cb_showpass.Name = "cb_showpass";
             cb_showpass.Size = new Size(134, 24);
-            cb_showpass.TabIndex = 17;
+            cb_showpass.TabIndex = 2;
             cb_showpass.Text = "Show password";
             cb_showpass.UseVisualStyleBackColor = true;
             cb_showpass.CheckedChanged += cb_showpass_CheckedChanged;
@@ -169,7 +169,7 @@
             btn_Exit.Location = new Point(0, 625);
             btn_Exit.Name = "btn_Exit";
             btn_Exit.Size = new Size(421, 45);
-            btn_Exit.TabIndex = 16;
+            btn_Exit.TabIndex = 4;
             btn_Exit.Text = "Exit";
             btn_Exit.UseVisualStyleBackColor = true;
             btn_Exit.Click += btn_Exit_Click;
@@ -203,7 +203,7 @@
             txt_Password.Name = "txt_Password";
             txt_Password.PlaceholderText = " Password here...";
             txt_Password.Size = new Size(291, 27);
-            txt_Password.TabIndex = 12;
+            txt_Password.TabIndex = 1;
             txt_Password.UseSystemPasswordChar = true;
             // 
             // txt_Username
@@ -213,7 +213,7 @@
             txt_Username.Name = "txt_Username";
             txt_Username.PlaceholderText = " Username here...";
             txt_Username.Size = new Size(291, 27);
-            txt_Username.TabIndex = 11;
+            txt_Username.TabIndex = 0;
             // 
             // label5
             // 
