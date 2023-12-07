@@ -29,12 +29,13 @@ namespace PRL.Forms
             dtg_Sale.Columns[4].Name = "Giảm giá";
             dtg_Sale.Columns[5].Name = "Mô tả";
             dtg_Sale.Columns[6].Name = "ID";
+            dtg_Sale.Columns[7].Name = "Trạng thái";
             dtg_Sale.Columns[6].Visible = false;
             dtg_Sale.AllowUserToAddRows = false;
             int stt = 1;
             foreach (var item in khuyenmais)
             {
-                dtg_Sale.Rows.Add(stt++, item.Tenmakhuyenmai, item.Thoigianbatdau, item.Thoigianketthuc, item.Giamgia, item.Mota, item.Id);
+                dtg_Sale.Rows.Add(stt++, item.Tenmakhuyenmai, item.Thoigianbatdau, item.Thoigianketthuc, item.Giamgia, item.Mota, item.Id, item.Trangthai);
             }
         }
 
@@ -80,7 +81,9 @@ namespace PRL.Forms
                 Thoigianketthuc = dtpk_EndDate.Value,
                 Giamgia = int.Parse(txt_MinBill.Text),
                 Mota = txt_MoTa.Text
+
             };
+            khuyenmai.Trangthai = ("Hoạt dộng");
             saleSV.Add(khuyenmai);
             List<Khuyenmai> khuyenmais = saleSV.GetKM();
             LoadDataToGridview(khuyenmais);
@@ -94,8 +97,8 @@ namespace PRL.Forms
 
         private void btn_Delete_Click(object sender, EventArgs e)
         {
-            Guid currentId = (Guid)dtg_Sale.CurrentRow.Cells[6].Value;
-            saleSV.Delete(currentId);
+            Guid currentID = (Guid)dtg_Sale.CurrentRow.Cells[6].Value;
+            saleSV.Delete(currentID);
             List<Khuyenmai> khuyenmais = saleSV.GetKM();
             LoadDataToGridview(khuyenmais);
         }

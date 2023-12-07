@@ -31,14 +31,23 @@ namespace BUS.Services
 
         public string Delete(Guid id)
         {
-            var khuyenmai = saleRP.GetAll().FirstOrDefault(x=> x.Id == id);
-            if(saleRP.Delete(khuyenmai))
+            var sale = saleRP.GetAll().FirstOrDefault(x => x.Id== id);
+            if (sale.Trangthai == "Hoạt động")
             {
-                return "Sale deleted successfully";
+                sale.Trangthai = "Dừng hoạt động";
             }
             else
             {
-                return "Failed to delete Sale";
+                sale.Trangthai = "Hoạt động";
+            }
+
+            if (saleRP.Update(sale) == true)
+            {
+                return "Lock Successfully";
+            }
+            else
+            {
+                return "Lock failed";
             }
         }
 

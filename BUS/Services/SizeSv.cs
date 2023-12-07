@@ -41,5 +41,7 @@ namespace BUS.Services
         {
             return sizeRP.GetKichthuocs();
         }
+
+       
     }
 }

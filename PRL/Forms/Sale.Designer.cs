@@ -198,8 +198,10 @@
             dtg_Sale.Dock = DockStyle.Fill;
             dtg_Sale.Location = new Point(3, 30);
             dtg_Sale.Name = "dtg_Sale";
+            dtg_Sale.ReadOnly = true;
             dtg_Sale.RowHeadersWidth = 51;
             dtg_Sale.RowTemplate.Height = 29;
+            dtg_Sale.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dtg_Sale.Size = new Size(1781, 267);
             dtg_Sale.TabIndex = 0;
             dtg_Sale.CellClick += dtg_Sale_CellClick;
