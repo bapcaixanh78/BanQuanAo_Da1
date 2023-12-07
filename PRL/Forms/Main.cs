@@ -130,11 +130,19 @@ namespace PRL.Forms
         {
             if (activeForm != null)
                 activeForm.Close();
+
             ActivateButton(btnSender);
             activeForm = childForm;
             childForm.TopLevel = false;
             childForm.FormBorderStyle = FormBorderStyle.None;
             childForm.Dock = DockStyle.Fill;
+
+            // Cast child form to Admin_Staff and set the value
+            if (childForm is Admin_Staff adminStaffForm)
+            {
+                adminStaffForm.nhanvien = account;
+            }
+
             this.pn_ChucNang.Controls.Add(childForm);
             this.pn_ChucNang.Tag = childForm;
             childForm.BringToFront();

@@ -7,6 +7,7 @@ namespace PRL.Forms
     public partial class Admin_Staff : Form
     {
         private StaffSV staffSV = new StaffSV();
+        public Nhanvien nhanvien { get; set; }
 
         public Admin_Staff()
         {
@@ -177,6 +178,17 @@ namespace PRL.Forms
         private void btn_Lock_Click(object sender, EventArgs e)
         {
             Guid currentID = (Guid)dtg_NhanVien.CurrentRow.Cells[9].Value;
+
+            if (currentID == Guid.Empty)
+            {
+                MessageBox.Show("Please select a staff");
+                return;
+            }
+            if(currentID == nhanvien.Id)
+            {
+                MessageBox.Show("User can't lock their own account");
+                return;
+            }
             staffSV.Lock(currentID);
             List<Nhanvien> nhanviens = staffSV.GetAll();
             LoadDataToGridview(nhanviens);
