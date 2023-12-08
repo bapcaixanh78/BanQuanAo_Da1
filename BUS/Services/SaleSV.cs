@@ -32,13 +32,13 @@ namespace BUS.Services
         public string Delete(Guid id)
         {
             var sale = saleRP.GetAll().FirstOrDefault(x => x.Id == id);
-            if (sale.Trangthai == "Hoạt động")
+            if (sale.Trangthai == "Dừng hoạt động")
             {
-                sale.Trangthai = "Dừng hoạt động";
+                sale.Trangthai = "Hoạt động";
             }
             else
             {
-                sale.Trangthai = "Hoạt động";
+                sale.Trangthai = "Dừng hoạt động";
             }
 
             if(saleRP.Update(sale) == true)

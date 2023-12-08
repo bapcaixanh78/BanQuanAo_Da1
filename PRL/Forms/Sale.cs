@@ -6,6 +6,7 @@ namespace PRL.Forms
     public partial class Sale : Form
     {
         private SaleSV saleSV = new SaleSV();
+        
 
         public Sale()
         {
@@ -47,6 +48,7 @@ namespace PRL.Forms
 
         private void dtg_Sale_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            
             txt_TenSale.Text = dtg_Sale.CurrentRow.Cells[1].Value.ToString();
             dtpk_StartDate.Value = (DateTime)dtg_Sale.CurrentRow.Cells[2].Value;
             dtpk_EndDate.Value = (DateTime)dtg_Sale.CurrentRow.Cells[3].Value;
@@ -69,11 +71,13 @@ namespace PRL.Forms
             saleSV.Update(currentId, khuyenmaiUpdate);
             List<Khuyenmai> khuyenmais = saleSV.GetKM();
             LoadDataToGridview(khuyenmais);
+            clear();
         }
 
         private void btn_Add_Click(object sender, EventArgs e)
         {
             Khuyenmai khuyenmai = new Khuyenmai()
+            
             {
                 Id = new Guid(),
                 Tenmakhuyenmai = txt_TenSale.Text,
@@ -83,10 +87,11 @@ namespace PRL.Forms
                 Mota = txt_MoTa.Text
 
             };
-            khuyenmai.Trangthai = ("Hoạt dộng");
+            khuyenmai.Trangthai = ("Hoạt động");
             saleSV.Add(khuyenmai);
             List<Khuyenmai> khuyenmais = saleSV.GetKM();
             LoadDataToGridview(khuyenmais);
+            clear();
         }
 
         private void txt_Search_TextChanged(object sender, EventArgs e)
@@ -94,13 +99,30 @@ namespace PRL.Forms
             List<Khuyenmai> khuyenmais = saleSV.GetKhuyenMaiByName(txt_Search.Text);
             LoadDataToGridview(khuyenmais);
         }
+        public void clear()
+        {
+            txt_TenSale = null;
+            txt_MinBill = null;
+            dtpk_EndDate = null;
+            dtpk_StartDate = null;
+            txt_MoTa = null;
+        }
 
         private void btn_Delete_Click(object sender, EventArgs e)
         {
-            Guid currentID = (Guid)dtg_Sale.CurrentRow.Cells[6].Value;
-            saleSV.Delete(currentID);
-            List<Khuyenmai> khuyenmais = saleSV.GetKM();
-            LoadDataToGridview(khuyenmais);
+            var option = MessageBox.Show("Confirm","Inform",MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (option == DialogResult.Yes)
+            {
+                Guid currentID = (Guid)dtg_Sale.CurrentRow.Cells[6].Value;
+                saleSV.Delete(currentID);
+                List<Khuyenmai> khuyenmais = saleSV.GetKM();
+                LoadDataToGridview(khuyenmais);
+                clear();
+            }
+            else
+            {
+                return;
+            }
         }
     }
 }
