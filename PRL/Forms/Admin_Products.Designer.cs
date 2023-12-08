@@ -427,6 +427,7 @@
             txt_ImgPath.BackColor = SystemColors.Info;
             txt_ImgPath.Location = new Point(159, 331);
             txt_ImgPath.Name = "txt_ImgPath";
+            txt_ImgPath.ReadOnly = true;
             txt_ImgPath.Size = new Size(285, 27);
             txt_ImgPath.TabIndex = 35;
             // 

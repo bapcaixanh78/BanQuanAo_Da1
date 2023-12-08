@@ -117,7 +117,7 @@ namespace PRL.Forms
                 saleSV.Delete(currentID);
                 List<Khuyenmai> khuyenmais = saleSV.GetKM();
                 LoadDataToGridview(khuyenmais);
-                clear();
+
             }
             else
             {

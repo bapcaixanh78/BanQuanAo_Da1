@@ -294,6 +294,12 @@ namespace PRL.Forms
                 return;
             }
 
+            if(txt_SoLuong.Text == "0")
+            {
+                MessageBox.Show("Quantity can't be zero");
+                return;
+            }
+
             try
             {
                 var CTSP = _detailproductsv.GetAll1(null).FirstOrDefault(x => x.Id == _idWhenClickCTSP);
@@ -440,28 +446,6 @@ namespace PRL.Forms
             {
                 MessageBox.Show(err.Message);
             }
-        }
-
-        private void cmb_sizeFilter_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            var sizeFilter = _sizesv.FindIDbyName(cmb_sizeFilter.Text);
-            List<Chitietsanpham> chitietsanphams = _detailproductsv.GetAll(null)
-                .Where(x => x.Idkichthuoc == sizeFilter)
-                .ToList();
-            LoadGridSP(chitietsanphams);
-        }
-
-        private void cmb_colorFIlter_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            var colorFilter = _colorsv.FindIDbyName(cmb_colorFIlter.Text);
-            List<Chitietsanpham> chitietsanphams = _detailproductsv.GetAll(null).Where(x => x.Idmauao == colorFilter).ToList();
-            LoadGridSP(chitietsanphams);
-        }
-
-        private void cmb_statusFilter_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            List<Chitietsanpham> chitietsanphams = _detailproductsv.GetAll(null).Where(x => x.Trangthai == cmb_statusFilter.Text).ToList();
-            LoadGridSP(chitietsanphams);
         }
 
         private void btn_filter_Click(object sender, EventArgs e)

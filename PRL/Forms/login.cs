@@ -39,14 +39,14 @@ namespace PRL.Forms
             //Check chuỗi rỗng
             if (StaffValidate.CheckEmptyString(txt_Username.Text) == false || StaffValidate.CheckEmptyString(txt_Password.Text) == false)
             {
-                MessageBox.Show("Please fill in username and password", "Log into Shirt Haven");
+                MessageBox.Show("Please fill in Username and Password", "Login");
                 return;
             }
 
             //Check xem có tài khoản nào trong database không
             if (StaffValidate.CheckIfAccountListIsEmpty() == true)
             {
-                MessageBox.Show("Database doesn't contain any accounts");
+                MessageBox.Show("Database doesn't contain any accounts", "Login");
                 return;
             }
 
@@ -54,20 +54,20 @@ namespace PRL.Forms
             Nhanvien nhanvien = staffSV.CheckStaffLogin(txt_Username.Text, txt_Password.Text);
             if (nhanvien == null)
             {
-                MessageBox.Show("Account doesn't exist");
+                MessageBox.Show("Incorrect Username or Password", "Login");
                 return;
             }
 
             //Kiểm tra trạng thái tài khoaản
             if (nhanvien.Trangthai == "Vô hiệu hóa")
             {
-                MessageBox.Show("Account Disabled");
+                MessageBox.Show("Account Disabled", "Login");
                 return;
             }
 
             //Kiểm tra quyền
             if (nhanvien != null && nhanvien.Quyen == 0)
-            {
+            {   //Admin
                 MessageBox.Show(" Welcome back, " + nhanvien.Ten + ".", "Log into Shirt Haven");
                 this.Hide();
                 Main main = new Main();
@@ -75,8 +75,8 @@ namespace PRL.Forms
                 main.ShowDialog();
             }
             else if (nhanvien != null && nhanvien.Quyen == 1)
-            {
-                MessageBox.Show(" Welcome back, " + nhanvien.Ten + ".", "Log into Shirt Havenogin");
+            {   //Nhân viên
+                MessageBox.Show(" Welcome back, " + nhanvien.Ten + ".", "Log into Shirt Haven");
                 this.Hide();
                 MainNV1 mainNV = new MainNV1()
                 {
@@ -86,7 +86,7 @@ namespace PRL.Forms
             }
             else
             {
-                MessageBox.Show("The user name or password is incorrect. Try again.", "Log into Shirt Haven", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("The user name or password is incorrect. Try again.", "Login", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 

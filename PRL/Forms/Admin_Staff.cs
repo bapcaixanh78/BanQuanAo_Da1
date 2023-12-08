@@ -178,12 +178,13 @@ namespace PRL.Forms
         private void btn_Lock_Click(object sender, EventArgs e)
         {
             Guid currentID = (Guid)dtg_NhanVien.CurrentRow.Cells[9].Value;
-
+            //Kiểm tra chọn nhân viên
             if (currentID == Guid.Empty)
             {
                 MessageBox.Show("Please select a staff");
                 return;
             }
+            //Kiểm tra tài khoản khóa có trùng với tài khoản hiện tại
             if(currentID == nhanvien.Id)
             {
                 MessageBox.Show("User can't lock their own account");
