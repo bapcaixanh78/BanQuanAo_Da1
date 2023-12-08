@@ -1,4 +1,6 @@
-﻿using BUS.Services;
+﻿using BUS.IServices;
+using BUS.Services;
+using BUS.Utilites;
 using DAL.Model;
 
 namespace PRL.Forms
@@ -6,7 +8,7 @@ namespace PRL.Forms
     public partial class Sale : Form
     {
         private SaleSV saleSV = new SaleSV();
-        
+
 
         public Sale()
         {
@@ -48,7 +50,7 @@ namespace PRL.Forms
 
         private void dtg_Sale_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            
+
             txt_TenSale.Text = dtg_Sale.CurrentRow.Cells[1].Value.ToString();
             dtpk_StartDate.Value = (DateTime)dtg_Sale.CurrentRow.Cells[2].Value;
             dtpk_EndDate.Value = (DateTime)dtg_Sale.CurrentRow.Cells[3].Value;
@@ -57,41 +59,113 @@ namespace PRL.Forms
         }
 
         private void btn_Update_Click(object sender, EventArgs e)
-        {
-            Guid currentId = (Guid)dtg_Sale.CurrentRow.Cells[6].Value;
-            Khuyenmai khuyenmaiUpdate = new Khuyenmai()
+        {       // track ngày kết thúc lớn nhất là 1 năm tính từ ngày bắt đầu
+            if(!SaleValidate.CheckEnddatetoolong(dtpk_EndDate.Value, dtpk_StartDate.Value))
             {
-                Id = currentId,
-                Tenmakhuyenmai = txt_TenSale.Text,
-                Thoigianbatdau = dtpk_StartDate.Value,
-                Thoigianketthuc = dtpk_EndDate.Value,
-                Giamgia = int.Parse(txt_MinBill.Text),
-                Mota = txt_MoTa.Text
-            };
-            saleSV.Update(currentId, khuyenmaiUpdate);
-            List<Khuyenmai> khuyenmais = saleSV.GetKM();
-            LoadDataToGridview(khuyenmais);
-            clear();
+                MessageBox.Show("hết hạn", "Inform");
+                return;
+            }
+            // ngày bắt đầu mới phải bằng hoặc sau ngày bắt đầu cũ
+            if (SaleValidate.CheckifstartdateUpdate(dtpk_StartDate.Value,DateTime.Parse(dtg_Sale.CurrentRow.Cells[2].Value.ToString())))
+            {
+                MessageBox.Show("Bắt đầu mới sau bắt đầu cũ", "Inform");
+                return;
+            }
+            //  check ngày hết tồn tại trước ngày bắt đầu
+            if (SaleValidate.Checkifstartdatelaterenddate(dtpk_StartDate.Value, dtpk_EndDate.Value)){
+                MessageBox.Show("Hến hạn trước ngày bắt đầu", "Inform");
+                return;
+            }
+            // check tên sale đã tồn tại
+            if (SaleValidate.CheckIfSaleNameExistUpdate(dtg_Sale.CurrentRow.Cells[1].Value.ToString(), txt_TenSale.Text))
+            {
+                MessageBox.Show("Name already exist!", "Inform");
+                return;
+            }
+            else
+            {
+                Guid currentId = (Guid)dtg_Sale.CurrentRow.Cells[6].Value;
+                Khuyenmai khuyenmaiUpdate = new Khuyenmai()
+                {
+                    Id = currentId,
+                    Tenmakhuyenmai = txt_TenSale.Text,
+                    Thoigianbatdau = dtpk_StartDate.Value,
+                    Thoigianketthuc = dtpk_EndDate.Value,
+                    Giamgia = int.Parse(txt_MinBill.Text),
+                    Mota = txt_MoTa.Text
+                };
+
+                var option = MessageBox.Show("Confirm", "Notification", MessageBoxButtons.YesNo);
+                if (option == DialogResult.Yes)
+                {
+                    MessageBox.Show(saleSV.Update(currentId, khuyenmaiUpdate));
+                    clear();
+                }
+                else
+                {
+                    return;
+                }
+                List<Khuyenmai> khuyenmais = saleSV.GetKM();
+                LoadDataToGridview(khuyenmais);
+                clear();
+            }
         }
 
         private void btn_Add_Click(object sender, EventArgs e)
         {
-            Khuyenmai khuyenmai = new Khuyenmai()
-            
+            // track ngày kết thúc lớn nhất là 1 năm tính từ ngày bắt đầu
+            if (!SaleValidate.CheckEnddatetoolong(dtpk_EndDate.Value, dtpk_StartDate.Value))
             {
-                Id = new Guid(),
-                Tenmakhuyenmai = txt_TenSale.Text,
-                Thoigianbatdau = dtpk_StartDate.Value,
-                Thoigianketthuc = dtpk_EndDate.Value,
-                Giamgia = int.Parse(txt_MinBill.Text),
-                Mota = txt_MoTa.Text
+                MessageBox.Show("hết hạn", "Inform");
+                return;
+            }
+            // ngày bắt đầu mới phải bằng hoặc sau ngày tạo
+            if (SaleValidate.Checkifstartdate(dtpk_StartDate.Value))
+            {
+                MessageBox.Show("Bắt đầu quá lâu", "Inform");
+                return;
+            }
+            //  check ngày hết tồn tại trước ngày bắt đầu
+            if (SaleValidate.Checkifstartdatelaterenddate(dtpk_StartDate.Value, dtpk_EndDate.Value))
+            {
+                MessageBox.Show("Hến hạn trước ngày bắt đầu", "Inform");
+                return;
+            }
+            // check tên sale đã tồn tại
+            if (SaleValidate.CheckIfSaleNameExist(txt_TenSale.Text))
+            {
+                MessageBox.Show("Name already exist!", "Inform");
+                return;
+            }
+            else
+            {
+                Khuyenmai khuyenmai = new Khuyenmai()
 
-            };
-            khuyenmai.Trangthai = ("Hoạt động");
-            saleSV.Add(khuyenmai);
-            List<Khuyenmai> khuyenmais = saleSV.GetKM();
-            LoadDataToGridview(khuyenmais);
-            clear();
+                {
+                    Id = new Guid(),
+                    Tenmakhuyenmai = txt_TenSale.Text,
+                    Thoigianbatdau = dtpk_StartDate.Value,
+                    Thoigianketthuc = dtpk_EndDate.Value,
+                    Giamgia = int.Parse(txt_MinBill.Text),
+                    Mota = txt_MoTa.Text
+
+                };
+                khuyenmai.Trangthai = ("Hoạt động");
+
+                var option = MessageBox.Show("Confirm", "Notification", MessageBoxButtons.YesNo);
+                if (option == DialogResult.Yes)
+                {
+                    MessageBox.Show(saleSV.Add(khuyenmai));
+                    clear();
+                }
+                else
+                {
+                    return;
+                }
+                List<Khuyenmai> khuyenmais = saleSV.GetKM();
+                LoadDataToGridview(khuyenmais);
+                clear();
+            }
         }
 
         private void txt_Search_TextChanged(object sender, EventArgs e)
@@ -101,28 +175,34 @@ namespace PRL.Forms
         }
         public void clear()
         {
-            txt_TenSale = null;
-            txt_MinBill = null;
-            dtpk_EndDate = null;
-            dtpk_StartDate = null;
-            txt_MoTa = null;
+            txt_TenSale.Text = null;
+            txt_MinBill.Text = null;
+            dtpk_EndDate.Value = DateTime.Now;
+            dtpk_StartDate.Value = DateTime.Now;
+            txt_MoTa.Text = null;
         }
 
         private void btn_Delete_Click(object sender, EventArgs e)
         {
-            var option = MessageBox.Show("Confirm","Inform",MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            var option = MessageBox.Show("Confirm", "Inform", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (option == DialogResult.Yes)
             {
                 Guid currentID = (Guid)dtg_Sale.CurrentRow.Cells[6].Value;
                 saleSV.Delete(currentID);
                 List<Khuyenmai> khuyenmais = saleSV.GetKM();
                 LoadDataToGridview(khuyenmais);
-
+                clear();
             }
             else
             {
                 return;
             }
+
+        }
+
+        private void btn_clear_Click(object sender, EventArgs e)
+        {
+            clear();
         }
     }
 }

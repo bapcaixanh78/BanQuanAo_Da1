@@ -48,6 +48,7 @@
             btn_Add = new Button();
             btn_Update = new Button();
             txt_Search = new TextBox();
+            btn_clear = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             groupBox1.SuspendLayout();
@@ -208,6 +209,7 @@
             // 
             // groupBox2
             // 
+            groupBox2.Controls.Add(btn_clear);
             groupBox2.Controls.Add(btn_Delete);
             groupBox2.Controls.Add(btn_Add);
             groupBox2.Controls.Add(btn_Update);
@@ -229,7 +231,7 @@
             btn_Delete.Name = "btn_Delete";
             btn_Delete.Size = new Size(407, 62);
             btn_Delete.TabIndex = 79;
-            btn_Delete.Text = "Delete";
+            btn_Delete.Text = "Lock/Unlock";
             btn_Delete.UseVisualStyleBackColor = true;
             btn_Delete.Click += btn_Delete_Click;
             // 
@@ -269,6 +271,18 @@
             txt_Search.Size = new Size(407, 34);
             txt_Search.TabIndex = 76;
             txt_Search.TextChanged += txt_Search_TextChanged;
+            // 
+            // btn_clear
+            // 
+            btn_clear.Dock = DockStyle.Top;
+            btn_clear.Location = new Point(3, 216);
+            btn_clear.Margin = new Padding(4);
+            btn_clear.Name = "btn_clear";
+            btn_clear.Size = new Size(407, 62);
+            btn_clear.TabIndex = 80;
+            btn_clear.Text = "Clear";
+            btn_clear.UseVisualStyleBackColor = true;
+            btn_clear.Click += btn_clear_Click;
             // 
             // Sale
             // 
@@ -313,5 +327,6 @@
         private TextBox txt_MoTa;
         private Label label5;
         private Button btn_Delete;
+        private Button btn_clear;
     }
 }
