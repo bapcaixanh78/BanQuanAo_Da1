@@ -62,18 +62,18 @@ namespace PRL.Forms
         {       // track ngày kết thúc lớn nhất là 1 năm tính từ ngày bắt đầu
             if(!SaleValidate.CheckEnddatetoolong(dtpk_EndDate.Value, dtpk_StartDate.Value))
             {
-                MessageBox.Show("hết hạn", "Inform");
+                MessageBox.Show("The end date can't exceed 1 year from the start date", "Inform");
                 return;
             }
             // ngày bắt đầu mới phải bằng hoặc sau ngày bắt đầu cũ
             if (SaleValidate.CheckifstartdateUpdate(dtpk_StartDate.Value,DateTime.Parse(dtg_Sale.CurrentRow.Cells[2].Value.ToString())))
             {
-                MessageBox.Show("Bắt đầu mới sau bắt đầu cũ", "Inform");
+                MessageBox.Show("New start date has to be the same or greater than the old one", "Inform");
                 return;
             }
             //  check ngày hết tồn tại trước ngày bắt đầu
             if (SaleValidate.Checkifstartdatelaterenddate(dtpk_StartDate.Value, dtpk_EndDate.Value)){
-                MessageBox.Show("Hến hạn trước ngày bắt đầu", "Inform");
+                MessageBox.Show("End date can't be before start date", "Inform");
                 return;
             }
             // check tên sale đã tồn tại
@@ -116,19 +116,19 @@ namespace PRL.Forms
             // track ngày kết thúc lớn nhất là 1 năm tính từ ngày bắt đầu
             if (!SaleValidate.CheckEnddatetoolong(dtpk_EndDate.Value, dtpk_StartDate.Value))
             {
-                MessageBox.Show("hết hạn", "Inform");
+                MessageBox.Show("The end date can't exceed 1 year from the start date", "Inform");
                 return;
             }
             // ngày bắt đầu mới phải bằng hoặc sau ngày tạo
             if (SaleValidate.Checkifstartdate(dtpk_StartDate.Value))
             {
-                MessageBox.Show("Bắt đầu quá lâu", "Inform");
+                MessageBox.Show("New start date has to be the same or greater than the old one", "Inform");
                 return;
             }
             //  check ngày hết tồn tại trước ngày bắt đầu
             if (SaleValidate.Checkifstartdatelaterenddate(dtpk_StartDate.Value, dtpk_EndDate.Value))
             {
-                MessageBox.Show("Hến hạn trước ngày bắt đầu", "Inform");
+                MessageBox.Show("End date can't be before start date", "Inform");
                 return;
             }
             // check tên sale đã tồn tại
