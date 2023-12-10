@@ -323,6 +323,10 @@ namespace PRL.Forms
                 CTSP.Giaban = decimal.Parse(txtGiaBan.Text);
                 CTSP.Gianhap = decimal.Parse(txtGiaNhap.Text);
                 CTSP.Soluongton = int.Parse(txt_SoLuong.Text);
+                if(CTSP.Soluongton > 0)
+                {
+                    CTSP.Trangthai = "Còn hàng";
+                }
                 CTSP.Idmauao = _colorsv.FindIDbyName(cmb_Color.SelectedItem.ToString());
                 CTSP.Idchatlieu = _materialsv.FindIDbyName(cmb_Material.SelectedItem.ToString());
                 CTSP.Idkichthuoc = _sizesv.FindIDbyName(cmb_Size.SelectedItem.ToString());
@@ -417,7 +421,7 @@ namespace PRL.Forms
             rtxt_MoTa.Text = null;
             txt_SoLuong.Text = null;
             txt_ImgPath.Text = null;
-            Picturebox_Product.Image = Image.FromFile("C:\\Users\\Acer\\Documents\\GitHub\\BanQuanAo_Da1\\PRL\\IMG\\default-thumbnail.jpg");
+            Picturebox_Product.Image = Image.FromFile("D:\\Da1_5\\GIT\\BanQuanAo_Da1\\PRL\\IMG\\default-thumbnail.jpg");
         }
 
         private void btn_clear_Click(object sender, EventArgs e)

@@ -52,5 +52,25 @@ namespace BUS.Services
             var lst = GetHoadons(null).Where(c=>c.Idnhanvien == idnv).ToList().Count;
             return lst;
         }
+
+        public List<Hoadon> Getlistofunpaidinvoices()
+        {
+            return GetHoadons(null).Where(c => c.Trangthai == "Chưa thanh toán").ToList();
+        }
+
+        public string UpdateBill(Hoadon hoadon)
+        {
+            var clone = billRP.GetAll().FirstOrDefault(x => x.Id == hoadon.Id);
+
+            clone.Trangthai = hoadon.Trangthai;
+            if (billRP.Update(clone))
+            {
+                return "You have updated successfully";
+            }
+            else
+            {
+                return "You have failed to update";
+            }
+        }
     }
 }

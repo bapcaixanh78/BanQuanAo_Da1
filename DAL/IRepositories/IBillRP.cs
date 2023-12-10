@@ -10,6 +10,7 @@ namespace DAL.IRepositories
     internal interface IBillRP
     {
         public bool Add(Hoadon HD);
+        public bool Update(Hoadon HD);
         public List<Hoadon> GetAll();
 
     }

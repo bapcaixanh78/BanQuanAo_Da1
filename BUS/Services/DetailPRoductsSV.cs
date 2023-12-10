@@ -138,9 +138,21 @@ namespace BUS.Services
             return guid ?? Guid.Empty;
         }
 
-        public List<Chitietsanpham> GetAllSanphamConHang()
+
+        public string GetTenSP(Guid idchitiet)
         {
-            return detailProductsRP.GetAll().Where(c=>c.Trangthai == "Còn hàng").ToList();
+            var ctsp = detailProductsRP.GetAll().FirstOrDefault(c => c.Id == idchitiet);
+            var sp = productsRP.GetAll().FirstOrDefault(c => c.Id == ctsp.Idsanpham);
+            return sp.Ten;
+        }
+
+        public List<Chitietsanpham> GetLstSpConHang()
+        {
+            return GetAll1(null).Where(c => c.Soluongton > 0).ToList();
+        }
+        public List<Chitietsanpham> GetLstSpHetHang()
+        {
+            return GetAll1(null).Where(c => c.Soluongton ==0).ToList();
         }
     }
 }

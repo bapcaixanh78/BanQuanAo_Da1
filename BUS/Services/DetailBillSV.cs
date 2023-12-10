@@ -12,10 +12,17 @@ namespace BUS.Services
     public class DetailBillSV : IDetailBillSV
     {
         private DetailBillRP detailBillRP;
+        public DetailPRoductsSV _detaiprod;
+        public ColorRP _colorsv;
+        public SizeRP _sizesv;
+        public MaterialRP _materialsv;
         public BillRP _billsv;
         public DetailBillSV()
         {
-
+            _colorsv = new ColorRP();
+            _materialsv = new MaterialRP();
+            _sizesv = new SizeRP();
+            _detaiprod = new DetailPRoductsSV();
             detailBillRP = new DetailBillRP();
             _billsv = new BillRP();
         }
@@ -47,6 +54,27 @@ namespace BUS.Services
         public List<Hoadonchitiet> GetAllHoaDonChiTiet()
         {
             return detailBillRP.GetAll();
+        }
+
+        public string GetMauAo(Guid idctsp)
+        {
+            var ctsp = _detaiprod.GetAll(null).FirstOrDefault(c=>c.Id == idctsp);
+            var cl = _colorsv.GetMauaos().FirstOrDefault(c => c.Id == ctsp.Idmauao);
+            return cl.Mau;
+        }
+
+        public string GetSize(Guid idctsp)
+        {
+            var ctsp = _detaiprod.GetAll(null).FirstOrDefault(c => c.Id == idctsp);
+            var cl = _sizesv.GetKichthuocs().FirstOrDefault(c => c.Id == ctsp.Idkichthuoc);
+            return cl.Size;
+        }
+
+        public string GetChatLieu(Guid idctsp)
+        {
+            var ctsp = _detaiprod.GetAll(null).FirstOrDefault(c => c.Id == idctsp);
+            var cl = _materialsv.GetChatlieus().FirstOrDefault(c => c.Id == ctsp.Idchatlieu);
+            return cl.Ten;
         }
     }
 }

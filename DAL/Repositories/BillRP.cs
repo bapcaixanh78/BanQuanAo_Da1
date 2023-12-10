@@ -27,5 +27,12 @@ namespace DAL.Repositories
         {
             return _dbcontext.Hoadons.ToList();
         }
+
+        public bool Update(Hoadon HD)
+        {
+            _dbcontext.Update(HD);
+            _dbcontext.SaveChanges();
+            return true;
+        }
     }
 }

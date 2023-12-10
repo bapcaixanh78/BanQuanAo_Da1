@@ -78,7 +78,7 @@
             panel1.ForeColor = Color.White;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(202, 678);
+            panel1.Size = new Size(202, 853);
             panel1.TabIndex = 0;
             // 
             // btn_DangXuat
@@ -272,7 +272,7 @@
             panel3.Dock = DockStyle.Top;
             panel3.Location = new Point(202, 0);
             panel3.Name = "panel3";
-            panel3.Size = new Size(1585, 79);
+            panel3.Size = new Size(1730, 79);
             panel3.TabIndex = 2;
             // 
             // label4
@@ -348,7 +348,7 @@
             pn_ChucNang.Dock = DockStyle.Fill;
             pn_ChucNang.Location = new Point(202, 79);
             pn_ChucNang.Name = "pn_ChucNang";
-            pn_ChucNang.Size = new Size(1585, 599);
+            pn_ChucNang.Size = new Size(1730, 774);
             pn_ChucNang.TabIndex = 3;
             // 
             // pictureBox4
@@ -357,7 +357,7 @@
             pictureBox4.Image = (Image)resources.GetObject("pictureBox4.Image");
             pictureBox4.Location = new Point(1138, 99);
             pictureBox4.Name = "pictureBox4";
-            pictureBox4.Size = new Size(307, 467);
+            pictureBox4.Size = new Size(452, 642);
             pictureBox4.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox4.TabIndex = 3;
             pictureBox4.TabStop = false;
@@ -368,7 +368,7 @@
             pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
             pictureBox3.Location = new Point(114, 99);
             pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(307, 467);
+            pictureBox3.Size = new Size(452, 642);
             pictureBox3.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox3.TabIndex = 2;
             pictureBox3.TabStop = false;
@@ -379,7 +379,7 @@
             pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
             pictureBox2.Location = new Point(626, 99);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(307, 467);
+            pictureBox2.Size = new Size(452, 642);
             pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox2.TabIndex = 1;
             pictureBox2.TabStop = false;
@@ -388,7 +388,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1787, 678);
+            ClientSize = new Size(1932, 853);
             Controls.Add(pn_ChucNang);
             Controls.Add(panel3);
             Controls.Add(panel1);

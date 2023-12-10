@@ -33,7 +33,7 @@ namespace PRL.Forms
         Guid _idWhenClickCTSP;
         Guid _idWhenClickSP;
         Guid _idWhenClickCart;
-        Guid _id_Hoa_Don_Khi_Add_SP;
+        Guid _idWhenClickWaitingbill;
         public static string TenKhachhang;
         public static string SDTKhachhang;
         public static List<Cart> _Lstgiohang = new List<Cart>();
@@ -45,6 +45,7 @@ namespace PRL.Forms
         public Hoadon _Hoadon;
         public Hoadonchitiet _Hoadonchitiet;
         public static string SaleDangdung;
+
         public Vending3()
         {
             _colorsv = new ColorSV();
@@ -61,6 +62,10 @@ namespace PRL.Forms
             LoadGrid(null);
             LoadKM();
             dtg_Cart.ScrollBars = ScrollBars.Both;
+            txt_ID.Visible = false;
+            LoadGridWaitingBill(_Billsv.Getlistofunpaidinvoices());
+            _idWhenClickWaitingbill = Guid.Empty;
+            _Lstgiohang.Clear();
 
         }
 
@@ -112,12 +117,12 @@ namespace PRL.Forms
         {
             foreach (var s in _salesv.GetKM())
             {
-                if(s.Trangthai == "Hoạt động")
+                if (s.Trangthai == "Hoạt động")
                 {
                     cmb_Sale.Items.Add(s.Tenmakhuyenmai);
                 }
             }
-            //cmb_Sale.SelectedIndex = 0;
+            cmb_Sale.SelectedIndex = 1;
             cmb_Sale.DropDownStyle = ComboBoxStyle.DropDownList;
         }
         public void LoadGrid(string input)
@@ -138,13 +143,12 @@ namespace PRL.Forms
             Dtg_LstProduct.Columns[8].Name = "ID Ảnh";
             Dtg_LstProduct.Rows.Clear();
             Dtg_LstProduct.AllowUserToAddRows = false;
-            foreach (var sp in _detailproductsv.GetAll1(null))
+            foreach (var sp in _detailproductsv.GetLstSpConHang())
             {
-                if (sp.Trangthai == "Còn hàng")
-                {
-                    Dtg_LstProduct.Rows.Add(stt++, sp.Id, _producsv.Findbyid(sp.Idsanpham).Ten, sp.Soluongton, _colorsv.FindNamebyID(_colorsv.convertGUID(sp.Idmauao)), _sizesv.FindNamebyID(_sizesv.convertGUID(sp.Idkichthuoc)), _materialsv.FindNamebyID(_materialsv.convertGUID(sp.Idchatlieu)), sp.Mota, sp.IdAnh);
-                }
+
+                Dtg_LstProduct.Rows.Add(stt++, sp.Id, _producsv.Findbyid(sp.Idsanpham).Ten, sp.Soluongton, _colorsv.FindNamebyID(_colorsv.convertGUID(sp.Idmauao)), _sizesv.FindNamebyID(_sizesv.convertGUID(sp.Idkichthuoc)), _materialsv.FindNamebyID(_materialsv.convertGUID(sp.Idchatlieu)), sp.Mota, sp.IdAnh);
             }
+
         }
 
         public void LoadDTGCart(List<Cart> lstcart)
@@ -229,10 +233,10 @@ namespace PRL.Forms
                 txt_SoLuong.Text = null;
                 return;
             }
-            else if(string.IsNullOrEmpty(txt_ID.Text))
+            else if (string.IsNullOrEmpty(txt_ID.Text))
             {
                 MessageBox.Show("You need to select a product!", "Inform");
-                txt_SoLuong.Text = null;return;
+                txt_SoLuong.Text = null; return;
             }
             else
             {
@@ -247,9 +251,9 @@ namespace PRL.Forms
 
         private void btn_Add_Click(object sender, EventArgs e)
         {
-            if(string.IsNullOrEmpty(txt_SoLuong.Text))
+            if (string.IsNullOrEmpty(txt_SoLuong.Text))
             {
-                MessageBox.Show("You need to fill the quantity!", "Inform");return;
+                MessageBox.Show("You need to fill the quantity!", "Inform"); return;
             }
             else
             {
@@ -274,6 +278,7 @@ namespace PRL.Forms
                         var cart = new Cart()
                         {
                             Id = Guid.NewGuid(),
+
                             IdSanpham = Guid.Parse(txt_ID.Text),
                             TenSp = GetTenSanpham(Guid.Parse(txt_ID.Text)),
                             Soluongmua = int.Parse(txt_SoLuong.Text),
@@ -282,6 +287,7 @@ namespace PRL.Forms
                             Chatlieu = GetChatLieu(Guid.Parse(txt_ID.Text)),
                             GiaTongSanPhamMua = int.Parse(txt_SoLuong.Text) * decimal.Parse(txt_Gia.Text),
                         };
+                        _idWhenClickCart = cart.Id;
                         _Lstgiohang.Add(cart);
                         LoadDTGCart(_Lstgiohang);
                     }
@@ -317,7 +323,9 @@ namespace PRL.Forms
 
         public void ClearForm()
         {
-            cmb_Sale.Text = null;
+            _idWhenClickWaitingbill = Guid.Empty;
+            dataGridView1.ClearSelection();
+            //cmb_Sale.Text = null;
             txt_SoLuong.Text = null;
             txt_name.Text = null;
             txt_ID.Text = null;
@@ -325,13 +333,21 @@ namespace PRL.Forms
             txt_Gia.Text = null;
             txt_SDT.Text = null;
             txt_Tong.Text = null;
-
+            lb_Totalaftersale.Text = 0.ToString();
+            lb_Tong.Text = 0.ToString();
+            lb_TienThua.Text = 0.ToString();
+            txt_CashReceived.Text = null;
             Picturebox_Product.Image = Image.FromFile("D:\\Da1_5\\GIT\\BanQuanAo_Da1\\PRL\\IMG\\default-thumbnail.jpg");
         }
         private void btn_clear_Click(object sender, EventArgs e)
         {
+            txt_CashReceived.Text = null;
+            lb_TienThua.Text = 0.ToString();
+            txt_KhachHang.Enabled = true;
+            txt_SDT.Enabled = true;
             _Lstgiohang.Clear();
             LoadDTGCart(_Lstgiohang);
+            cmb_Sale.SelectedIndex = 1;
             ClearForm();
         }
 
@@ -343,7 +359,8 @@ namespace PRL.Forms
             {
                 return;
             }
-            //_idWhenClickCTSP = Guid.Parse(Dtg_LstProduct.Rows[rowindex].Cells[1].Value.ToString());
+            //
+            //_idWhenClickCTSP = Guid.Parse(Dtg_LstProduct.Rows[rowindex].Cells[1].Value.ToString()
             _idWhenClickCart = Guid.Parse(dtg_Cart.Rows[rowindex].Cells[1].Value.ToString());
             var cart = _Lstgiohang.FirstOrDefault(c => c.Id == _idWhenClickCart);
             txt_name.Text = cart.TenSp;
@@ -372,7 +389,7 @@ namespace PRL.Forms
                     }
                     else if (string.IsNullOrEmpty(txt_SoLuong.Text))
                     {
-                        MessageBox.Show("This field can't be null","Inform");return;
+                        MessageBox.Show("This field can't be null", "Inform"); return;
                     }
                     else
                     {
@@ -401,53 +418,206 @@ namespace PRL.Forms
         private void cmb_Sale_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+
+
             decimal sotiengiam = decimal.Parse(lb_Tong.Text) * _salesv.GetDiscountByName(cmb_Sale.Text) / 100;
-            if (cmb_Sale.Text != null)
-            {
-                lb_Totalaftersale.Text = (decimal.Parse(lb_Tong.Text) - sotiengiam).ToString();
-            }
+            lb_Totalaftersale.Text = (decimal.Parse(lb_Tong.Text) - sotiengiam).ToString();
+
         }
 
         private void btn_ThanhToan_Click(object sender, EventArgs e)
         {
-            //Nếu ô tiền khách trả bị null
-            if (!string.IsNullOrEmpty(txt_CashReceived.Text))
+            //<*> 2 trường hợp LỚN: 1.là thanh toán chậm theo hóa đơn chờ, 2. là thanh toán nhanh.
+
+            //~~~~~~~~~~~~~TH1: THANH TOÁN THEO HÓA ĐƠN CHỜ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+            if (_idWhenClickWaitingbill != Guid.Empty)
             {
-
-                if (lb_Totalaftersale.Text == "0")
+                //2. PHẢI ĐIỀN SDT KHÁCH HÀNG
+                if (string.IsNullOrEmpty(txt_SDT.Text))
                 {
-                    if (decimal.Parse(txt_CashReceived.Text) <= 0)
-                    {
-                        //Lỗi tiền khách trả âm
-
-                        MessageBox.Show("This field does not accept negative numbers or zero.", "Inform");
-                        return;
-                    }
-                    else if (decimal.Parse(lb_TienThua.Text) < 0)
-                    {
-                        //Lỗi tiền khách trả nhỏ hơn tiền hàng(sau khi giảm giá)
-                        MessageBox.Show("Received money must be greater than or equal to the amount to be paid by the customer.", "Inform");
-                        return;
-                    }
+                    MessageBox.Show("You need to fill customer's phone numbers before add this bill!", "Inform"); return;
                 }
+                //4. PHẢI ĐIỀN TÊN KHÁCH HÀNG
+                if (string.IsNullOrEmpty(txt_KhachHang.Text))
+                {
+                    MessageBox.Show("You need to fill customer's name before add this bill!", "Inform"); return;
+                }
+                //5. Nếu ô tiền khách trả bị null
+                if (string.IsNullOrEmpty(txt_CashReceived.Text))
+                {
+                    MessageBox.Show("Cash received from customer can't be null!", "Inform"); return;
+                }
+                //6. Nếu ô tiền khách trả <= 0
+                if (decimal.Parse(txt_CashReceived.Text) <= 0)
+                {
+                    MessageBox.Show("Cash received from customer can't be less than 0", "Inform");
+                    return;
+                }
+                //7. Nếu tiền khách trả nhỏ hơn tiền hàng
+                if (decimal.Parse(lb_TienThua.Text) < 0)
+                {
+                    MessageBox.Show("Received money must be greater than or equal to the amount to be paid by the customer.", "Inform");
+                    return;
+                }
+                //8. Trường hợp 1 khách hàng đặt hóa đơn chờ trước, nhưng hàng trong kho đã hết
+
+                //get lst tat ca sp het hang trong kho
+                //lst to
+                var lsttmp = _detailproductsv.GetLstSpHetHang().Select(c => c.Id).ToList(); // lst idctsp het hang
+
+                // =>idcthd =>idchitietsp co trong hoa don khach hang mua
+                //lst nho
+                var cthd = _DetaiBill.GetAllHoaDonChiTiet().Where(c => c.Idhoadon == _idWhenClickWaitingbill).Select(c => c.Idchitietsanpham).ToList(); //lst id ctsp khach hang mua
+
+                //lấy được 1 lst idctsp mà khách  hàng mua nhưng trong kho đã hết hàng
+                var commonElements = lsttmp.Where(item => cthd.Contains(item)).ToList();
+                var hdcho = _DetaiBill.GetAllHoaDonChiTiet().Where(c=>c.Idhoadon == _idWhenClickWaitingbill);
+                if (commonElements.Count == 0)  //KHI TẤT CẢ SẢN PHẨM TRONG KHO ĐỀU > ĐƠN ĐẶT HÀNG
+                {
+                    //    //nếu số lượng hàng đặt mua > số lượng tồn
+                    List<string> lstten1 = new();
+                    foreach (var x in cthd)
+                    {
+                        var slton = _detailproductsv.GetAll(null).FirstOrDefault(c => c.Id == x).Soluongton;
+                        var slmua = hdcho.FirstOrDefault(c => c.Idchitietsanpham == x).Soluong;
+                        if (slmua > slton)
+                        {
+                            lstten1.Add(_detailproductsv.GetTenSP(x));
+                            
+
+                        }
+                    }
+                    if(lstten1.Count > 0)
+                    {
+                        MessageBox.Show(string.Join(", ", lstten1) + " isn't enough to sell!", "Inform"); return;
+                    }
+                        //Khi check hết tiến hành thanh toán
+                        var FindBill = _Billsv.GetHoadons(null).FirstOrDefault(c => c.Id == _idWhenClickWaitingbill);
+                    //Có thể update được cả mã khuyến mãi
+
+                    FindBill.Idkhuyenmai = _salesv.GetidKhuyenMaiByName(cmb_Sale.Text);
+
+                    FindBill.Trangthai = "Đã thanh toán";
+                    var option = MessageBox.Show("Are you sure you want to proceed with the payment for this order?", "Notification", MessageBoxButtons.YesNo);
+                    if (option == DialogResult.Yes)
+                    {
+                        Tongtienphaithanhtoan = decimal.Parse(lb_Totalaftersale.Text);
+                        Tienkhachtra = decimal.Parse(txt_CashReceived.Text);
+                        Tientralai = decimal.Parse(txt_CashReceived.Text) - decimal.Parse(lb_Totalaftersale.Text);
+                        SaleDangdung = cmb_Sale.Text;
+                        /*ar sale = decimal.Parse(lb_Tong.Text) * _salesv.GetDiscountByName(cmb_Sale.Text) / 100;*/
+                        Tongtiendagiam = decimal.Parse(lb_Tong.Text) - decimal.Parse(lb_Totalaftersale.Text);
+                        foreach (var hdct in _Lstgiohang)
+                        {
+                            //KHI ẤN CHECK OUT NÀY THÌ SẢN PHẨM TRONG DATA SẼ TỰ BỊ TRỪ.
+                            var chitietsanpham = _detailproductsv.GetAll(null).FirstOrDefault(c => c.Id == hdct.IdSanpham);
+                            chitietsanpham.Soluongton -= hdct.Soluongmua;
+                            if (chitietsanpham.Soluongton == 0)
+                            {
+                                chitietsanpham.Trangthai = "Hết hàng";
+                            }
+                            _detailproductsv.Update(chitietsanpham);
+                        }
+
+                        //Nếu đồng ý thì mới sửa bill
+                        _Billsv.UpdateBill(FindBill);
+
+                        //gán thông tin cho form hóa đơn load ra
+                        Tienkhachtra = decimal.Parse(txt_CashReceived.Text);
+                        Tientralai = decimal.Parse(lb_TienThua.Text);
+                        Tongtiendagiam = decimal.Parse(lb_Tong.Text) - decimal.Parse(lb_Totalaftersale.Text);
+                        SaleDangdung = cmb_Sale.Text;
+
+                        Tongtienphaithanhtoan = decimal.Parse(lb_Totalaftersale.Text);
+
+                        //Mở form thanh toán bill
+                        using (Bill_Forms form2 = new Bill_Forms())
+                        {
+                            form2.ShowDialog();
+                        }
+
+
+                        //load lại dtg
+                        LoadGrid(null);
+                        _Lstgiohang.Clear();
+                        LoadDTGCart(_Lstgiohang);
+                        LoadGridWaitingBill(_Billsv.Getlistofunpaidinvoices());
+                        ClearForm();
+                    }
+
+
+                    else
+                    {
+                        //không đồng ý thì return không sửa bill
+                        return;
+                    }
+                    cmb_Sale.SelectedIndex = 1;
+                }
+
+
+
                 else
                 {
-                    if (decimal.Parse(txt_CashReceived.Text) <= 0)
+                    List<string> lstten = new List<string>();
+                    foreach (var x in commonElements)
                     {
-                        //Lỗi tiền khách trả âm
-                        MessageBox.Show("This field does not accept negative numbers or zero.", "Inform");
-                        return;
-                    }
-                    else if (decimal.Parse(lb_TienThua.Text) < 0)
-                    {
-                        //Lỗi tiền khách trả nhỏ hơn tiền hàng(sau khi giảm giá)
-                        MessageBox.Show("Received money must be greater than or equal to the amount to be paid by the customer.", "Inform");
-                        return;
-                    }
+                        lstten.Add(_detailproductsv.GetTenSP(x));
+                    };
+                    MessageBox.Show(string.Join(", ", lstten) + " you have ordered are currently out of stock. Please check back later.", "Inform");
+                    ClearForm();
+                    return;
+
                 }
 
-                //Nếu thỏa mãn hết cách điều kiện thì add hóa đơn
-                if (decimal.Parse(txt_CashReceived.Text) >= decimal.Parse(lb_Totalaftersale.Text))//TIỀN KHÁCH TRẢ LỚN HƠN TIỀN PHẢI TRẢ => TRUE
+            }
+
+
+            //~~~~~~~~~~~~~~~~~~TH2: THANH TOÁN NHANH~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+            else
+            {
+                // <*> CHECK CÁC LỖI CÓ THỂ XẢY RA
+
+                //1. Check giỏ hàng bị null
+                if (_Lstgiohang.Count == 0)
+                {
+                    MessageBox.Show("This cart being null, can't add waiting bill!", "Inform"); return;
+                }
+                //2. PHẢI ĐIỀN SDT KHÁCH HÀNG
+                if (string.IsNullOrEmpty(txt_SDT.Text))
+                {
+                    MessageBox.Show("You need to fill customer's phone numbers before add this bill!", "Inform"); return;
+                }
+                //3. Check định dạng số điện thoại
+                if (!ProductValidate.CheckSDT(txt_SDT.Text))
+                {
+                    MessageBox.Show("This phone number isn't in the correct format!", "Inform");
+                    txt_SDT.Text = null;
+                    txt_KhachHang.Text = null;
+                    return;
+                }
+                //4. PHẢI ĐIỀN TÊN KHÁCH HÀNG
+                if (string.IsNullOrEmpty(txt_KhachHang.Text))
+                {
+                    MessageBox.Show("You need to fill customer's name before add this bill!", "Inform"); return;
+                }
+                //5. Nếu ô tiền khách trả bị null
+                if (string.IsNullOrEmpty(txt_CashReceived.Text))
+                {
+                    MessageBox.Show("Cash received from customer can't be null!", "Inform"); return;
+                }
+                //6. Nếu ô tiền khách trả <= 0
+                if (decimal.Parse(txt_CashReceived.Text) <= 0)
+                {
+                    MessageBox.Show("Cash received from customer can't be less than 0", "Inform");
+                    return;
+                }
+                //7. Nếu tiền khách trả nhỏ hơn tiền hàng
+                if (decimal.Parse(lb_TienThua.Text) < 0)
+                {
+                    MessageBox.Show("Received money must be greater than or equal to the amount to be paid by the customer.", "Inform");
+                    return;
+                }
+                else
                 {
                     var option = MessageBox.Show("Are you sure you want to proceed with the payment for this order?", "Notification", MessageBoxButtons.YesNo);
                     if (option == DialogResult.Yes)
@@ -456,22 +626,9 @@ namespace PRL.Forms
                         Tienkhachtra = decimal.Parse(txt_CashReceived.Text);
                         Tientralai = decimal.Parse(txt_CashReceived.Text) - decimal.Parse(lb_Totalaftersale.Text);
                         SaleDangdung = cmb_Sale.Text;
-                        if (!string.IsNullOrEmpty(cmb_Sale.Text))
-                        {
-                            /*ar sale = decimal.Parse(lb_Tong.Text) * _salesv.GetDiscountByName(cmb_Sale.Text) / 100;*/
-                            Tongtiendagiam = decimal.Parse(lb_Tong.Text) - decimal.Parse(lb_Totalaftersale.Text);
-                        }
-                        else
-                        {
-                            Tongtiendagiam = 0;
-                        }
 
-                        if (!ProductValidate.CheckSDT(txt_SDT.Text))
-                        {
-                            MessageBox.Show("This phone number isn't in the correct format!","Inform");
-                            txt_KhachHang.Text = null;
-                            return;
-                        };
+                        Tongtiendagiam = decimal.Parse(lb_Tong.Text) - decimal.Parse(lb_Totalaftersale.Text);
+
 
                         //add khach hang
                         var customernew = new Khachhang()
@@ -480,12 +637,14 @@ namespace PRL.Forms
                             Ten = txt_KhachHang.Text,
                             Sdt = txt_SDT.Text
                         };
+
                         //NẾU LÀ KHÁCH HÀNG MỚI THÌ SẼ ADD 
                         if (_customersv.ChecktrungSDTKH(txt_SDT.Text))
                         {
                             _customersv.Add(customernew);
 
                         }
+
                         //GÁN VÀO BIẾN TENKHACHHANG ĐỂ BINDING SANG FORM HÓA ĐƠN
                         TenKhachhang = txt_KhachHang.Text;
 
@@ -504,22 +663,10 @@ namespace PRL.Forms
                             {
                                 _Hoadon.Idkhachhang = _customersv.GetIDBYSDT(txt_SDT.Text);
                             }
-                            //else//nếu 
-                            //{
-                            //    _Hoadon.Idkhachhang = customernew.Id;
-                            //}
 
+                            _Hoadon.Idkhuyenmai = _salesv.GetidKhuyenMaiByName(cmb_Sale.Text);
 
-                            if (!string.IsNullOrEmpty(cmb_Sale.Text))
-                            {
-                                _Hoadon.Idkhuyenmai = _salesv.GetidKhuyenMaiByName(cmb_Sale.Text);
-                            }
-                            else            //NẾU KHÁCH HÀNG KHÔNG DÙNG KHUYẾN MÃI, THÌ Ô ID KHUYẾN MÃI TRONG CTHD SẼ TRỐNG
-                            {
-                                _Hoadon.Idkhuyenmai = null;
-                            }
                             _Billsv.AddBill(_Hoadon);
-
                         }
 
                         //CHẠY VÒNG FOREACH ADD TỪNG CHI TIẾT HÓA ĐƠN.
@@ -543,37 +690,26 @@ namespace PRL.Forms
                             _detailproductsv.Update(chitietsanpham);
                             _DetaiBill.AddDetailBill(hdctnew);
                         }
+                        //gán thông tin cho form hóa đơn load ra
+                        Tienkhachtra = decimal.Parse(txt_CashReceived.Text);
+                        Tientralai = decimal.Parse(lb_TienThua.Text);
+                        Tongtiendagiam = decimal.Parse(lb_Tong.Text) - decimal.Parse(lb_Totalaftersale.Text);
 
+                        SaleDangdung = cmb_Sale.Text;
 
-                        if(string.IsNullOrEmpty(txt_SDT.Text) || string.IsNullOrEmpty(txt_KhachHang.Text))
+                        Tongtienphaithanhtoan = decimal.Parse(lb_Totalaftersale.Text);
+                        //Mở form thanh toán bill
+                        using (Bill_Forms form2 = new Bill_Forms())
                         {
-                            MessageBox.Show("You need do fill customer's name and phone numbers!", "Inform");
-                            return;
+                            form2.ShowDialog();
                         }
-                        else
-                        {
-                            //MỞ FORM BILL
-                            using (Bill_Forms form2 = new Bill_Forms())
-                            {
-                                form2.ShowDialog();
-                            }
-                            ClearForm();
-                            LoadGrid(null);
-                            _Lstgiohang.Clear();
-                            LoadDTGCart(_Lstgiohang);
-                        }
+                        _Lstgiohang.Clear();
+                        LoadDTGCart(_Lstgiohang);
+                        LoadGrid(null);
+                        ClearForm();
                     }
-                    else
-                    {
-                        return;
-                    }
+
                 }
-            }
-            else
-            {
-                MessageBox.Show("This field does not null here.", "Inform");
-
-                return;
             }
         }
 
@@ -616,11 +752,6 @@ namespace PRL.Forms
                     };
                 }
             }
-        }
-
-        private void txt_SDT_TextChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void txt_SDT_Leave(object sender, EventArgs e)
@@ -669,6 +800,199 @@ namespace PRL.Forms
             _Lstgiohang.Remove(tmp);
             LoadDTGCart(_Lstgiohang);
             ClearForm();
+        }
+
+
+
+
+        private void Vending3_Load(object sender, EventArgs e)
+        {
+            dataGridView1.ClearSelection();
+        }
+
+        private void btn_AddWaitingBill_Click(object sender, EventArgs e)
+        {
+
+            //PHẢI ĐIỀN SDT KHÁCH HÀNG
+            if (string.IsNullOrEmpty(txt_SDT.Text))
+            {
+                MessageBox.Show("You need to fill customer's phone numbers before add this bill!", "Inform"); return;
+            }
+            if (!ProductValidate.CheckSDT(txt_SDT.Text))
+            {
+                //check format
+                MessageBox.Show("This phone number isn't in the correct format!", "Inform");
+                txt_SDT.Text = null;
+                txt_KhachHang.Text = null;
+                return;
+            }
+            //PHẢI ĐIỀN TÊN KHÁCH HÀNG
+            else if (string.IsNullOrEmpty(txt_KhachHang.Text))
+            {
+                MessageBox.Show("You need to fill customer's name before add this bill!", "Inform"); return;
+            }
+            //CHECK XEM GIỎ HÀNG CÓ BỊ NULL KHÔNG
+            else if (_Lstgiohang.Count == 0)
+            {
+                MessageBox.Show("This cart being null, can't add waiting bill!", "Inform"); return;
+            }
+            else
+            {
+                var confirm = MessageBox.Show("Are you sure add a new waiting bill?", "Inform", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (confirm == DialogResult.Yes)
+                {
+                    //add khach hang
+                    var customernew = new Khachhang()
+                    {
+                        Id = Guid.NewGuid(),
+                        Ten = txt_KhachHang.Text,
+                        Sdt = txt_SDT.Text
+                    };
+                    //NẾU LÀ KHÁCH HÀNG MỚI THÌ SẼ ADD 
+                    if (_customersv.ChecktrungSDTKH(txt_SDT.Text))
+                    {
+                        _customersv.Add(customernew);
+
+                    }
+
+                    //GÁN VÀO BIẾN TENKHACHHANG ĐỂ BINDING SANG FORM HÓA ĐƠN
+                    TenKhachhang = txt_KhachHang.Text;
+
+                    //add hoa don
+                    using (login lg = new login())
+                    {
+                        _Hoadon = new Hoadon
+                        {
+                            Id = Guid.NewGuid(),
+                            Ngaytao = DateTime.Now,
+                            Idnhanvien = Main.account.Id,
+                            Trangthai = "Chưa thanh toán",
+                        };
+                        //Nếu mà sdt khách hàng tồn tại rồi thì tự động điền idkhachhang vào hóa đơn
+                        if (!string.IsNullOrEmpty(customernew.Id.ToString()))
+                        {
+                            _Hoadon.Idkhachhang = _customersv.GetIDBYSDT(txt_SDT.Text);
+                        }
+
+                        _Hoadon.Idkhuyenmai = _salesv.GetidKhuyenMaiByName(cmb_Sale.Text);
+
+                        _Billsv.AddBill(_Hoadon);
+
+                        //ADD HDCT
+                        foreach (var hdct in _Lstgiohang)
+                        {
+                            Hoadonchitiet hdctnew = new Hoadonchitiet()
+                            {
+                                Id = Guid.NewGuid(),
+                                Soluong = hdct.Soluongmua,
+                                Giaban = hdct.GiaTongSanPhamMua,
+                                Idhoadon = _Hoadon.Id,
+                                Idchitietsanpham = hdct.IdSanpham
+                            };
+                            _DetaiBill.AddDetailBill(hdctnew);
+
+                        }
+
+                        LoadGridWaitingBill(_Billsv.Getlistofunpaidinvoices());
+                        _Lstgiohang.Clear();
+                        LoadDTGCart(_Lstgiohang);
+                        ClearForm();
+                    }
+                }
+                else
+                {
+
+                    return;
+                }
+            }
+        }
+
+
+        public void LoadGridWaitingBill(List<Hoadon> LstWaiting)
+        {
+            int stt = 1;
+            dtg_Waitingbill.ColumnCount = 7;
+            dtg_Waitingbill.Rows.Clear();
+            dtg_Waitingbill.Columns[0].Name = "STT";
+            dtg_Waitingbill.Columns[1].Name = "ID";
+            dtg_Waitingbill.Columns[1].Visible = false;
+            dtg_Waitingbill.Columns[2].Name = "Ngày tạo";
+            dtg_Waitingbill.Columns[3].Name = "Tên khách hàng";
+            dtg_Waitingbill.Columns[4].Name = "Số điện thoại khách hàng";
+            dtg_Waitingbill.Columns[5].Name = "Khuyến mại đang dùng";
+            dtg_Waitingbill.Columns[6].Name = "Trạng thái";
+            foreach (var sp in LstWaiting)
+            {
+                if (string.IsNullOrEmpty(sp.Idkhuyenmai.ToString()))
+                {
+                    dtg_Waitingbill.Rows.Add(stt++, sp.Id, sp.Ngaytao, _customersv.GetTenBYId(sp.Idkhachhang), _customersv.GetAll().FirstOrDefault(c => c.Id == sp.Idkhachhang).Sdt, "Không dùng khuyến mại", sp.Trangthai);
+                }
+                else
+                {
+                    dtg_Waitingbill.Rows.Add(stt++, sp.Id, sp.Ngaytao, _customersv.GetTenBYId(sp.Idkhachhang), _customersv.GetAll().FirstOrDefault(c => c.Id == sp.Idkhachhang).Sdt, _salesv.GetTenById(ProductValidate.convertGUID(sp.Idkhuyenmai)), sp.Trangthai);
+                }
+
+            }
+
+        }
+
+        private void dtg_Waitingbill_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            _Lstgiohang.Clear();
+            txt_KhachHang.Enabled = false;
+            txt_SDT.Enabled = false;
+            int rowindex = e.RowIndex;
+            //lấy id từ dòng đang bấm kết hợp cell
+            if (rowindex == -1)
+            {
+                return;
+            }
+            _idWhenClickWaitingbill = Guid.Parse(dtg_Waitingbill.Rows[rowindex].Cells[1].Value.ToString());
+            var billchuathanhtoan = _Billsv.GetHoadons(null).FirstOrDefault(c => c.Id == _idWhenClickWaitingbill);
+            txt_KhachHang.Text = _customersv.GetTenBYId(billchuathanhtoan.Idkhachhang);
+            txt_SDT.Text = _customersv.GetAll().FirstOrDefault(c => c.Id == billchuathanhtoan.Idkhachhang).Sdt;
+            decimal tongtien = 0;
+            //Tìm 1 list các hóa đơn chi tiết có cùng 1 id hóa đơn
+            List<Hoadonchitiet> lsttmp = _DetaiBill.GetAllHoaDonChiTiet().Where(c => c.Idhoadon == _idWhenClickWaitingbill).ToList();
+            ////tính tổng tiền của tất cả hóa đơn đó
+            for (int i = 0; i < lsttmp.Count; i++)
+            {
+                //load lai ve gio hang
+                var cartnew = new Cart()
+                {
+                    Id = Guid.NewGuid(),
+                    IdSanpham = lsttmp[i].Idchitietsanpham,
+                    TenSp = _detailproductsv.GetTenSP(lsttmp[i].Idchitietsanpham),
+                    GiaTongSanPhamMua = lsttmp[i].Giaban,
+                    Soluongmua = lsttmp[i].Soluong,
+                    Mausac = _DetaiBill.GetMauAo(lsttmp[i].Idchitietsanpham),
+                    Size = _DetaiBill.GetSize(lsttmp[i].Idchitietsanpham),
+                    Chatlieu = _DetaiBill.GetChatLieu(lsttmp[i].Idchitietsanpham)
+                };
+                //Load ve cac textbox
+                txt_ID.Text = cartnew.IdSanpham.ToString();
+                txt_name.Text = cartnew.TenSp.ToString();
+                txt_SoLuong.Text = cartnew.Soluongmua.ToString();
+                txt_Gia.Text = _detailproductsv.GetAll1(null).FirstOrDefault(c => c.Id == cartnew.IdSanpham).Giaban.ToString();
+                txt_Tong.Text = (int.Parse(txt_SoLuong.Text) * decimal.Parse(txt_Gia.Text)).ToString();
+                _Lstgiohang.Add(cartnew);
+                tongtien += lsttmp[i].Giaban;
+                LoadDTGCart(_Lstgiohang);
+            }
+            lb_Tong.Text = tongtien.ToString();
+
+
+
+            lb_Totalaftersale.Text = (decimal.Parse(txt_Tong.Text) - _salesv.GetDiscountByName(cmb_Sale.Text)).ToString();
+
+
+
+
+        }
+
+        private void dtg_Waitingbill_Leave(object sender, EventArgs e)
+        {
+
         }
     }
 }

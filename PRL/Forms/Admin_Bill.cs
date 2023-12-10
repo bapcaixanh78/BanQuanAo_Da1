@@ -72,6 +72,7 @@ namespace PRL.Forms
 
         public void LoadGrid(List<HoadonViewModel> lst)
         {
+            
             int stt = 1;
             dtg_Bill.DataSource = null;
             dtg_Bill.Rows.Clear();
@@ -81,27 +82,52 @@ namespace PRL.Forms
             dtg_Bill.Columns[1].Visible = false;
             dtg_Bill.Columns[2].Name = "Ngày tạo";
             dtg_Bill.Columns[3].Name = "Ghi chú";
-            dtg_Bill.Columns[4].Name = "Trạng thái";
-            dtg_Bill.Columns[5].Name = "Tổng tiền của hóa đơn";
-            dtg_Bill.Columns[6].Name = "Nhân viên bán hàng";
-            dtg_Bill.Columns[7].Name = "Khách hàng";
-            dtg_Bill.Columns[8].Name = "Khuyến mãi đã dùng";
+            dtg_Bill.Columns[4].Name = "Tổng tiền của hóa đơn";
+            dtg_Bill.Columns[5].Name = "Nhân viên bán hàng";
+            dtg_Bill.Columns[6].Name = "Khách hàng";
+            dtg_Bill.Columns[7].Name = "Khuyến mãi đã dùng";
+            dtg_Bill.Columns[8].Name = "Trạng thái";
 
 
             dtg_Bill.AllowUserToAddRows = false;
-            foreach (var x in lst)
+            for(int i = 0; i < lst.Count; i++) 
             {
-                if (string.IsNullOrEmpty(x.Ghichu))
+                if (string.IsNullOrEmpty(lst[i].Ghichu))
                 {
-                    x.Ghichu = "Không có ghi chú";
+                    lst[i].Ghichu = "Không có ghi chú";
                 }
-                if (x.Idkhuyenmai == null)
+                if (lst[i].Idkhuyenmai == null)
                 {
-                    dtg_Bill.Rows.Add(stt++, x.Id, x.Ngaytao, x.Ghichu, x.Trangthai, x.TongTienCuaHoaDon, _Staffsv.GetNameStaffById(x.Idnhanvien), _Customersv.GetTenBYId(x.Idkhachhang), "Không dùng khuyến mãi");
+                    dtg_Bill.Rows.Add(stt++, lst[i].Id, lst[i].Ngaytao, lst[i].Ghichu, lst[i].TongTienCuaHoaDon, _Staffsv.GetUserstaffByid(lst[i].Idnhanvien), _Customersv.GetTenBYId(lst[i].Idkhachhang), "Không dùng khuyến mãi", lst[i].Trangthai);
+                    if (lst[i].Trangthai == "Chưa thanh toán")
+                    {
+                        dtg_Bill.Rows[i].DefaultCellStyle.BackColor = Color.OrangeRed;
+                        dtg_Bill.Rows[i].DefaultCellStyle.ForeColor = Color.Black;
+                    }
+                    else
+                    {
+                        dtg_Bill.Rows[i].DefaultCellStyle.BackColor = Color.Green;
+                        dtg_Bill.Rows[i].DefaultCellStyle.ForeColor = Color.White;
+                    }
                 }
+
                 else
-                    dtg_Bill.Rows.Add(stt++, x.Id, x.Ngaytao, x.Ghichu, x.Trangthai, x.TongTienCuaHoaDon, _Staffsv.GetNameStaffById(x.Idnhanvien), _Customersv.GetTenBYId(x.Idkhachhang), _saleSV.GetTenById(ProductValidate.convertGUID(x.Idkhuyenmai)));
+                {
+                    dtg_Bill.Rows.Add(stt++, lst[i].Id, lst[i].Ngaytao, lst[i].Ghichu, lst[i].TongTienCuaHoaDon, _Staffsv.GetNameStaffById(lst[i].Idnhanvien), _Customersv.GetTenBYId(lst[i].Idkhachhang), _saleSV.GetTenById(ProductValidate.convertGUID(lst[i].Idkhuyenmai)), lst[i].Trangthai);
+                    if (lst[i].Trangthai == "Chưa thanh toán")
+                    {
+                        dtg_Bill.Rows[i].DefaultCellStyle.BackColor = Color.OrangeRed;
+                        dtg_Bill.Rows[i].DefaultCellStyle.ForeColor = Color.Black;
+                    }
+                    else
+                    {
+                        dtg_Bill.Rows[i].DefaultCellStyle.BackColor = Color.Green;
+                        dtg_Bill.Rows[i].DefaultCellStyle.ForeColor = Color.White;
+                    }
+                }
+                    
             }
+
         }
         private void btn_Search_Click(object sender, EventArgs e)
         {

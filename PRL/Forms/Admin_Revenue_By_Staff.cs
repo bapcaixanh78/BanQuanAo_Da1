@@ -27,6 +27,7 @@ namespace PRL.Forms
             _billsv = new BillSV();
             _detailBillsv = new DetailBillSV();
             InitializeComponent();
+            FillList();
             LoadGrid(_lstRevenue);
         }
 
@@ -43,7 +44,7 @@ namespace PRL.Forms
         public void FillList()
 
         {
-            _lstRevenue.Clear();
+            //_lstRevenue.Clear();
             foreach (var nv in _staffsv.GetAll())
             {
                 Revenue_By_Staff tmp = new Revenue_By_Staff

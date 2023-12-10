@@ -108,7 +108,7 @@ namespace BUS.Utilites
 
         public static bool CheckSDT(string input)
         {
-            string pattern = @"^(\(0\d{2}\)|0\d{2})[-.\s]?\d{3}[-.\s]?\d{4}$";
+            string pattern = @"^0\d{9,10}$";
             if (Regex.IsMatch(input, pattern))
             {
                 return true;

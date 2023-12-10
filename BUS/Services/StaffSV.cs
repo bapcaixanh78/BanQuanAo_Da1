@@ -85,5 +85,10 @@ namespace BUS.Services
         {
             return GetAll().FirstOrDefault(c => c.Id == id).Ten;
         }
+
+        public string GetUserstaffByid(Guid id)
+        {
+            return GetAll().FirstOrDefault(c => c.Id == id).Taikhoan;
+        }
     }
 }

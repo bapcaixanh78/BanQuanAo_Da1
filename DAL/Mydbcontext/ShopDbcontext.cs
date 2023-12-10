@@ -17,7 +17,7 @@ namespace DAL.Mydbcontext
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Data Source=.\sqlexpress;Initial Catalog=ShopQuanAo;Integrated Security=True");
+            optionsBuilder.UseSqlServer(@"Data Source=.\sqlexpress;Initial Catalog=ShopQuanAo;Integrated Security=True;TrustServerCertificate=True;");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

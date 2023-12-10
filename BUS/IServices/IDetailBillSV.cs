@@ -12,5 +12,8 @@ namespace BUS.IServices
         public string AddDetailBill(Hoadonchitiet hdct);
         public List<Hoadonchitiet> GetAllHoaDonChiTiet();
         public decimal DoanhThuMangVe(Guid idnv);
+        public string GetMauAo(Guid idctsp);
+        public string GetSize(Guid idctsp);
+        public string GetChatLieu(Guid idctsp);
     }
 }
