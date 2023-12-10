@@ -61,22 +61,22 @@
             // 
             // pictureBox4
             // 
-            pictureBox4.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            pictureBox4.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             pictureBox4.Image = (Image)resources.GetObject("pictureBox4.Image");
-            pictureBox4.Location = new Point(1138, 99);
+            pictureBox4.Location = new Point(1136, 106);
             pictureBox4.Name = "pictureBox4";
-            pictureBox4.Size = new Size(307, 467);
+            pictureBox4.Size = new Size(378, 481);
             pictureBox4.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox4.TabIndex = 3;
             pictureBox4.TabStop = false;
             // 
             // pictureBox2
             // 
-            pictureBox2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            pictureBox2.Anchor = AnchorStyles.Top;
             pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
-            pictureBox2.Location = new Point(626, 99);
+            pictureBox2.Location = new Point(607, 106);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(307, 467);
+            pictureBox2.Size = new Size(388, 481);
             pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox2.TabIndex = 1;
             pictureBox2.TabStop = false;
@@ -98,11 +98,11 @@
             // 
             // label3
             // 
-            label3.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            label3.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             label3.AutoSize = true;
             label3.Font = new Font("Elephant", 16.1999989F, FontStyle.Regular, GraphicsUnit.Point);
             label3.ForeColor = Color.Black;
-            label3.Location = new Point(1188, 61);
+            label3.Location = new Point(1223, 61);
             label3.Name = "label3";
             label3.Size = new Size(206, 35);
             label3.TabIndex = 5;
@@ -110,22 +110,20 @@
             // 
             // pictureBox3
             // 
-            pictureBox3.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
-            pictureBox3.Location = new Point(114, 99);
+            pictureBox3.Location = new Point(91, 106);
             pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(307, 467);
+            pictureBox3.Size = new Size(373, 481);
             pictureBox3.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox3.TabIndex = 2;
             pictureBox3.TabStop = false;
             // 
             // label1
             // 
-            label1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             label1.AutoSize = true;
             label1.Font = new Font("Elephant", 16.1999989F, FontStyle.Regular, GraphicsUnit.Point);
             label1.ForeColor = Color.Black;
-            label1.Location = new Point(85, 61);
+            label1.Location = new Point(91, 61);
             label1.Name = "label1";
             label1.Size = new Size(373, 35);
             label1.TabIndex = 4;
@@ -133,11 +131,11 @@
             // 
             // label2
             // 
-            label2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            label2.Anchor = AnchorStyles.Top;
             label2.AutoSize = true;
             label2.Font = new Font("Elephant", 16.1999989F, FontStyle.Regular, GraphicsUnit.Point);
             label2.ForeColor = Color.Black;
-            label2.Location = new Point(651, 61);
+            label2.Location = new Point(670, 61);
             label2.Name = "label2";
             label2.Size = new Size(258, 35);
             label2.TabIndex = 3;
