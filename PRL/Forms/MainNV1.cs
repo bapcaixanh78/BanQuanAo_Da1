@@ -159,7 +159,9 @@ namespace PRL.Forms
 
         private void MainNV1_Load(object sender, EventArgs e)
         {
-            lb_Username.Text = account.Ten.ToString();
+            this.TopMost = true;
+            this.FormBorderStyle = FormBorderStyle.None;
+            this.WindowState = FormWindowState.Maximized;
         }
     }
 }

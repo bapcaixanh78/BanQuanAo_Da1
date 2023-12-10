@@ -137,7 +137,7 @@ namespace PRL.Forms
             childForm.FormBorderStyle = FormBorderStyle.None;
             childForm.Dock = DockStyle.Fill;
 
-            // Cast child form to Admin_Staff and set the value
+            // Đẩy nhân viên từ Form Main vào Form Staff
             if (childForm is Admin_Staff adminStaffForm)
             {
                 adminStaffForm.nhanvien = account;
@@ -220,7 +220,9 @@ namespace PRL.Forms
 
         private void Main_Load(object sender, EventArgs e)
         {
-            lb_Username.Text = account.Ten.ToString();
+            this.TopMost = true;
+            this.FormBorderStyle = FormBorderStyle.None;
+            this.WindowState = FormWindowState.Maximized;
         }
     }
 }
