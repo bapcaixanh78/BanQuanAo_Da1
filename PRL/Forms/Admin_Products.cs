@@ -420,7 +420,7 @@ namespace PRL.Forms
             }
             else
             {
-                LoadGrid(null);
+                LoadGrid(_detailproductsv.GetAll1(null));
             }
         }
 

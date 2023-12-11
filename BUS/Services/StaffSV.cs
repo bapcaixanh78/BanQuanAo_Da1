@@ -71,13 +71,14 @@ namespace BUS.Services
             nhanvien.Diachi = NVUpdate.Diachi;
             nhanvien.Email = NVUpdate.Email;
             nhanvien.Quyen = NVUpdate.Quyen;
+            
             if (staffRP.Update(nhanvien) == true)
             {
-                return "Update thành công";
+                return "You have updated successfully";
             }
             else
             {
-                return "Update thất bại";
+                return "You have failed to update";
             }
         }
 

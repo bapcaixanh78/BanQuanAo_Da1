@@ -136,10 +136,18 @@ namespace PRL.Forms
         }
         private void btn_Search_Click(object sender, EventArgs e)
         {
-            var start = dtpk_start.Value;
-            var end = dtpk_end.Value;
-            var lstFilter = _lstBill.Where(c => c.Ngaytao >= start && c.Ngaytao <= end).ToList();
-            LoadGrid(lstFilter);
+            if (BillVaildate.Checkifstartdatelaterenddate(dtpk_start.Value, dtpk_end.Value))
+            {
+                MessageBox.Show("End date can't be before start date", "Inform");
+                return;
+            }
+            else
+            {
+                var start = dtpk_start.Value;
+                var end = dtpk_end.Value;
+                var lstFilter = _lstBill.Where(c => c.Ngaytao >= start && c.Ngaytao <= end).ToList();
+                LoadGrid(lstFilter);
+            }
 
         }
 

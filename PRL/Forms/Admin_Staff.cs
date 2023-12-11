@@ -109,7 +109,16 @@ namespace PRL.Forms
                         Ngaytao = DateTime.Now,
                         Trangthai = "Hoạt động"
                     };
-                    staffSV.Add(nhanvien);
+                var option = MessageBox.Show("Confirm", "Notification", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (option == DialogResult.Yes)
+                {
+                    MessageBox.Show(staffSV.Add(nhanvien));
+                }
+                else
+                {
+                    return;
+                }
+                
                     List<Nhanvien> nhanviens = staffSV.GetAll();
                     LoadDataToGridview(nhanviens);
                 }
@@ -183,13 +192,24 @@ namespace PRL.Forms
                         Email = txt_email.Text,
                         Quyen = cbb_role.SelectedValue == "Quản lý" ? 0 : 1,
                     };
-                    staffSV.Update(currentID, nhanVienUpdate);
-                    List<Nhanvien> nhanviens = staffSV.GetAll();
+                var option = MessageBox.Show("Confirm", "Notification", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (option == DialogResult.Yes)
+                {
+                    MessageBox.Show( staffSV.Update(currentID, nhanVienUpdate));
+                }
+                else
+                {
+                    return;
+                }
+                List<Nhanvien> nhanviens = staffSV.GetAll();
                     LoadDataToGridview(nhanviens);
                 }
             }
 
-            private void btn_Lock_Click(object sender, EventArgs e)
+        private void btn_Lock_Click(object sender, EventArgs e)
+        {
+            var option = MessageBox.Show("Confirm", "Inform", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (option == DialogResult.Yes)
             {
                 Guid currentID = (Guid)dtg_NhanVien.CurrentRow.Cells[9].Value;
                 //Kiểm tra chọn nhân viên
@@ -208,6 +228,12 @@ namespace PRL.Forms
                 List<Nhanvien> nhanviens = staffSV.GetAll();
                 LoadDataToGridview(nhanviens);
             }
+
+            else
+            {
+                return;
+            }
+        }
 
             private void txt_TimKiemNV_TextChanged(object sender, EventArgs e)
             {
