@@ -32,6 +32,13 @@
             dtg_Bill = new DataGridView();
             groupBox1 = new GroupBox();
             panel2 = new Panel();
+            btn_refresh = new Button();
+            btn_dathanhtoan = new Button();
+            btn_chuathanhtoan = new Button();
+            lb_paid = new Label();
+            lb_unpaid = new Label();
+            label4 = new Label();
+            label3 = new Label();
             label2 = new Label();
             dtpk_end = new DateTimePicker();
             btn_Search = new Button();
@@ -72,6 +79,13 @@
             // 
             // panel2
             // 
+            panel2.Controls.Add(btn_refresh);
+            panel2.Controls.Add(btn_dathanhtoan);
+            panel2.Controls.Add(btn_chuathanhtoan);
+            panel2.Controls.Add(lb_paid);
+            panel2.Controls.Add(lb_unpaid);
+            panel2.Controls.Add(label4);
+            panel2.Controls.Add(label3);
             panel2.Controls.Add(label2);
             panel2.Controls.Add(dtpk_end);
             panel2.Controls.Add(btn_Search);
@@ -84,11 +98,89 @@
             panel2.Size = new Size(1787, 272);
             panel2.TabIndex = 0;
             // 
+            // btn_refresh
+            // 
+            btn_refresh.BackColor = Color.Beige;
+            btn_refresh.Font = new Font("Century Gothic", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point);
+            btn_refresh.ForeColor = Color.White;
+            btn_refresh.Image = (Image)resources.GetObject("btn_refresh.Image");
+            btn_refresh.Location = new Point(1571, 37);
+            btn_refresh.Name = "btn_refresh";
+            btn_refresh.Size = new Size(105, 83);
+            btn_refresh.TabIndex = 57;
+            btn_refresh.UseVisualStyleBackColor = false;
+            btn_refresh.Click += btn_refresh_Click;
+            // 
+            // btn_dathanhtoan
+            // 
+            btn_dathanhtoan.BackColor = Color.LimeGreen;
+            btn_dathanhtoan.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            btn_dathanhtoan.ForeColor = SystemColors.ButtonFace;
+            btn_dathanhtoan.Location = new Point(1363, 37);
+            btn_dathanhtoan.Name = "btn_dathanhtoan";
+            btn_dathanhtoan.Size = new Size(202, 83);
+            btn_dathanhtoan.TabIndex = 55;
+            btn_dathanhtoan.Text = "Payment completed";
+            btn_dathanhtoan.UseVisualStyleBackColor = false;
+            btn_dathanhtoan.Click += btn_dathanhtoan_Click;
+            // 
+            // btn_chuathanhtoan
+            // 
+            btn_chuathanhtoan.BackColor = Color.OrangeRed;
+            btn_chuathanhtoan.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            btn_chuathanhtoan.Location = new Point(1155, 36);
+            btn_chuathanhtoan.Name = "btn_chuathanhtoan";
+            btn_chuathanhtoan.Size = new Size(202, 83);
+            btn_chuathanhtoan.TabIndex = 56;
+            btn_chuathanhtoan.Text = "Payment pending";
+            btn_chuathanhtoan.UseVisualStyleBackColor = false;
+            btn_chuathanhtoan.Click += btn_chuathanhtoan_Click;
+            // 
+            // lb_paid
+            // 
+            lb_paid.AutoSize = true;
+            lb_paid.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            lb_paid.Location = new Point(695, 205);
+            lb_paid.Name = "lb_paid";
+            lb_paid.Size = new Size(23, 28);
+            lb_paid.TabIndex = 54;
+            lb_paid.Text = "0";
+            // 
+            // lb_unpaid
+            // 
+            lb_unpaid.AutoSize = true;
+            lb_unpaid.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            lb_unpaid.Location = new Point(695, 147);
+            lb_unpaid.Name = "lb_unpaid";
+            lb_unpaid.Size = new Size(23, 28);
+            lb_unpaid.TabIndex = 53;
+            lb_unpaid.Text = "0";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label4.Location = new Point(391, 205);
+            label4.Name = "label4";
+            label4.Size = new Size(230, 28);
+            label4.TabIndex = 52;
+            label4.Text = "Number of paid invoices:";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label3.Location = new Point(391, 147);
+            label3.Name = "label3";
+            label3.Size = new Size(252, 28);
+            label3.TabIndex = 51;
+            label3.Text = "Number of unpaid invoices:";
+            // 
             // label2
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label2.Location = new Point(436, 149);
+            label2.Location = new Point(391, 91);
             label2.Name = "label2";
             label2.Size = new Size(93, 28);
             label2.TabIndex = 47;
@@ -96,7 +188,7 @@
             // 
             // dtpk_end
             // 
-            dtpk_end.Location = new Point(700, 151);
+            dtpk_end.Location = new Point(695, 93);
             dtpk_end.Name = "dtpk_end";
             dtpk_end.Size = new Size(285, 27);
             dtpk_end.TabIndex = 46;
@@ -107,9 +199,9 @@
             btn_Search.Font = new Font("Century Gothic", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point);
             btn_Search.ForeColor = Color.White;
             btn_Search.Image = (Image)resources.GetObject("btn_Search.Image");
-            btn_Search.Location = new Point(1038, 95);
+            btn_Search.Location = new Point(1029, 37);
             btn_Search.Name = "btn_Search";
-            btn_Search.Size = new Size(105, 83);
+            btn_Search.Size = new Size(105, 82);
             btn_Search.TabIndex = 45;
             btn_Search.UseVisualStyleBackColor = false;
             btn_Search.Click += btn_Search_Click;
@@ -118,7 +210,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(436, 95);
+            label1.Location = new Point(391, 37);
             label1.Name = "label1";
             label1.Size = new Size(101, 28);
             label1.TabIndex = 39;
@@ -126,7 +218,7 @@
             // 
             // dtpk_start
             // 
-            dtpk_start.Location = new Point(700, 95);
+            dtpk_start.Location = new Point(695, 37);
             dtpk_start.Name = "dtpk_start";
             dtpk_start.Size = new Size(285, 27);
             dtpk_start.TabIndex = 38;
@@ -169,9 +261,15 @@
         private DateTimePicker dtpk_start;
         private Label label1;
         private ComboBox cmb_FilterbyStaff;
-        private Label label3;
         private Button btn_Search;
         private Label label2;
         private DateTimePicker dtpk_end;
+        private Label label4;
+        private Label label3;
+        private Label lb_paid;
+        private Label lb_unpaid;
+        private Button btn_dathanhtoan;
+        private Button btn_chuathanhtoan;
+        private Button btn_refresh;
     }
 }

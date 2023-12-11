@@ -51,6 +51,7 @@ namespace PRL.Forms
                 {
                     IdNhanVien = nv.Id,
                     Ten = nv.Ten,
+                    Account = nv.Taikhoan,
                     Email = nv.Email,
                     Soluonghoadon = _billsv.GetCountBillInaStaff(nv.Id),
                     DoanhThuMangVe = DoanhThuMangVeCua1NhanVien(nv.Id)
@@ -69,7 +70,7 @@ namespace PRL.Forms
             dtg_revenuebystaff.Columns[0].Name = "STT";
             dtg_revenuebystaff.Columns[1].Name = "ID";
             dtg_revenuebystaff.Columns[1].Visible = false;
-            dtg_revenuebystaff.Columns[2].Name = "Tên nhân viên";
+            dtg_revenuebystaff.Columns[2].Name = "Tài khoản";
             dtg_revenuebystaff.Columns[3].Name = "Email";
             dtg_revenuebystaff.Columns[4].Name = "Số lượng hóa đơn";
             dtg_revenuebystaff.Columns[5].Name = "Doanh thu mang về";
@@ -78,7 +79,7 @@ namespace PRL.Forms
             dtg_revenuebystaff.AllowUserToAddRows = false;
             foreach (var x in lst)
             {
-                dtg_revenuebystaff.Rows.Add(stt++, x.IdNhanVien, x.Ten, x.Email, x.Soluonghoadon, x.DoanhThuMangVe);
+                dtg_revenuebystaff.Rows.Add(stt++, x.IdNhanVien, x.Account, x.Email, x.Soluonghoadon, x.DoanhThuMangVe);
             }
             
         }

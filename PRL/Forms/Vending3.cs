@@ -337,7 +337,7 @@ namespace PRL.Forms
             lb_Tong.Text = 0.ToString();
             lb_TienThua.Text = 0.ToString();
             txt_CashReceived.Text = null;
-            Picturebox_Product.Image = Image.FromFile("C:\\Users\\Acer\\Documents\\GitHub\\BanQuanAo_Da1\\PRL\\IMG\\default-thumbnail.jpg");
+            Picturebox_Product.Image = Image.FromFile("D:\\Da1_5\\GIT\\BanQuanAo_Da1\\PRL\\IMG\\default-thumbnail.jpg");
         }
         private void btn_clear_Click(object sender, EventArgs e)
         {
@@ -808,6 +808,7 @@ namespace PRL.Forms
         private void Vending3_Load(object sender, EventArgs e)
         {
             dataGridView1.ClearSelection();
+            _Lstgiohang.Clear();
         }
 
         private void btn_AddWaitingBill_Click(object sender, EventArgs e)
@@ -951,6 +952,7 @@ namespace PRL.Forms
             var billchuathanhtoan = _Billsv.GetHoadons(null).FirstOrDefault(c => c.Id == _idWhenClickWaitingbill);
             txt_KhachHang.Text = _customersv.GetTenBYId(billchuathanhtoan.Idkhachhang);
             txt_SDT.Text = _customersv.GetAll().FirstOrDefault(c => c.Id == billchuathanhtoan.Idkhachhang).Sdt;
+            cmb_Sale.SelectedIndex = _salesv.GetKM().FindIndex(c => c.Id == billchuathanhtoan.Idkhuyenmai);
             decimal tongtien = 0;
             //Tìm 1 list các hóa đơn chi tiết có cùng 1 id hóa đơn
             List<Hoadonchitiet> lsttmp = _DetaiBill.GetAllHoaDonChiTiet().Where(c => c.Idhoadon == _idWhenClickWaitingbill).ToList();

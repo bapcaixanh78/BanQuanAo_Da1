@@ -27,6 +27,8 @@ namespace PRL.Forms
         public IStaffSV _staffsv;
         private DataTable dataTable;
         public static List<HoadonViewModel> _lstBill = new List<HoadonViewModel>();
+        public static List<HoadonViewModel> _lstBillUnpaid = new List<HoadonViewModel>();
+        public static List<HoadonViewModel> _lstBillPaid = new List<HoadonViewModel>();
         public Admin_Bill()
         {
             _staffsv = new StaffSV();
@@ -39,10 +41,14 @@ namespace PRL.Forms
             LoadBill();
             LoadGrid(_lstBill);
             //LoadCmbStaff();
+            lb_paid.Text = _lstBillPaid.Count.ToString();
+            lb_unpaid.Text = _lstBillUnpaid.Count.ToString();
         }
         public void LoadBill()
         {
             _lstBill.Clear();
+            _lstBillPaid.Clear();
+            _lstBillUnpaid.Clear();
             foreach (var x in _billsv.GetHoadons(null))
             {
                 HoadonViewModel tmp = new HoadonViewModel()
@@ -57,22 +63,21 @@ namespace PRL.Forms
                     Idkhuyenmai = x.Idkhuyenmai
                 };
                 _lstBill.Add(tmp);
+                if (x.Trangthai == "Chưa thanh toán")
+                {
+                    _lstBillUnpaid.Add(tmp);
+                }
+                else
+                {
+                    _lstBillPaid.Add(tmp);
+                }
             }
         }
-        //public void LoadCmbStaff()
-        //{
-        //    foreach (var s in _staffsv.GetAll())
-        //    {
-        //        cmb_FilterbyStaff.Items.Add(s.Ten);
 
-        //    }
-        //    //cmb_Sale.SelectedIndex = 0;
-        //    cmb_FilterbyStaff.DropDownStyle = ComboBoxStyle.DropDownList;
-        //}
 
         public void LoadGrid(List<HoadonViewModel> lst)
         {
-            
+
             int stt = 1;
             dtg_Bill.DataSource = null;
             dtg_Bill.Rows.Clear();
@@ -90,7 +95,7 @@ namespace PRL.Forms
 
 
             dtg_Bill.AllowUserToAddRows = false;
-            for(int i = 0; i < lst.Count; i++) 
+            for (int i = 0; i < lst.Count; i++)
             {
                 if (string.IsNullOrEmpty(lst[i].Ghichu))
                 {
@@ -125,7 +130,7 @@ namespace PRL.Forms
                         dtg_Bill.Rows[i].DefaultCellStyle.ForeColor = Color.White;
                     }
                 }
-                    
+
             }
 
         }
@@ -141,6 +146,24 @@ namespace PRL.Forms
         private void dtpk_FilterByTime_ValueChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void btn_chuathanhtoan_Click(object sender, EventArgs e)
+        {
+            LoadBill();
+            LoadGrid(_lstBillUnpaid);
+        }
+
+        private void btn_dathanhtoan_Click(object sender, EventArgs e)
+        {
+            LoadBill();
+            LoadGrid(_lstBillPaid);
+        }
+
+        private void btn_refresh_Click(object sender, EventArgs e)
+        {
+            LoadBill();
+            LoadGrid(_lstBill);
         }
     }
 }

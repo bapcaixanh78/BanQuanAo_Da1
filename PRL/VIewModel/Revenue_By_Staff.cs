@@ -10,6 +10,7 @@ namespace PRL.VIewModel
     {
         public Guid IdNhanVien { get; set; }
         public string Ten { get; set; }
+        public string Account { get; set; }
         public string Email { get; set; }
         public int Soluonghoadon { get; set; }
         public decimal DoanhThuMangVe { get; set; }
