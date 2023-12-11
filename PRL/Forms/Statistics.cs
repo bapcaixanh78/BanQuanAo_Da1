@@ -63,7 +63,7 @@ namespace PRL.Forms
 
         private void btn_AllProducts_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new Forms.Admin_Revenue_By_Staff(), sender);
+            OpenChildForm(new Forms.Revenue_By_Products(), sender);
         }
 
         private void btn_AllProducts_MouseEnter(object sender, EventArgs e)

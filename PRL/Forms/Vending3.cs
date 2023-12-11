@@ -337,7 +337,7 @@ namespace PRL.Forms
             lb_Tong.Text = 0.ToString();
             lb_TienThua.Text = 0.ToString();
             txt_CashReceived.Text = null;
-            Picturebox_Product.Image = Image.FromFile("D:\\Da1_5\\GIT\\BanQuanAo_Da1\\PRL\\IMG\\default-thumbnail.jpg");
+            Picturebox_Product.Image = Image.FromFile("C:\\Users\\Acer\\Documents\\GitHub\\BanQuanAo_Da1\\PRL\\IMG\\default-thumbnail.jpg");
         }
         private void btn_clear_Click(object sender, EventArgs e)
         {

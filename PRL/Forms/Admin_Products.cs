@@ -29,7 +29,7 @@ namespace PRL.Forms
             _picturesv = new PictureSV();
             InitializeComponent();
             LoadComboBox();
-            LoadGrid(null);
+            LoadGrid(_detailproductsv.GetAll1(null));
         }
 
         public void LoadComboBox()
@@ -75,7 +75,7 @@ namespace PRL.Forms
             cmb_statusFilter.DropDownStyle = ComboBoxStyle.DropDownList;
         }
 
-        public void LoadGrid(string input)
+        public void LoadGrid(List<Chitietsanpham> CTSP)
         {
             int stt = 1;
             dtg_SanPham.DataSource = null;
@@ -98,9 +98,22 @@ namespace PRL.Forms
             dtg_SanPham.Columns[12].Visible = false;
 
             dtg_SanPham.AllowUserToAddRows = false;
-            foreach (var sp in _detailproductsv.GetAll1(txt_TimKiemSP.Text))
+            
+            for (int i = 0; i < CTSP.Count; i++)
             {
-                dtg_SanPham.Rows.Add(stt++, sp.Id, _producsv.Findbyid(sp.Idsanpham).Ten, sp.Gianhap, sp.Giaban, sp.Soluongton, _colorsv.FindNamebyID(_colorsv.convertGUID(sp.Idmauao)), _sizesv.FindNamebyID(_sizesv.convertGUID(sp.Idkichthuoc)), _materialsv.FindNamebyID(_materialsv.convertGUID(sp.Idchatlieu)), _listSV.FindNamebyID(_listSV.convertGUID(sp.Iddanhmuc)), sp.Mota, sp.Trangthai, sp.IdAnh);
+
+                dtg_SanPham.Rows.Add(stt++, CTSP[i].Id, _producsv.Findbyid(CTSP[i].Idsanpham).Ten, CTSP[i].Gianhap, CTSP[i].Giaban, CTSP[i].Soluongton, _colorsv.FindNamebyID(_colorsv.convertGUID(CTSP[i].Idmauao)), _sizesv.FindNamebyID(_sizesv.convertGUID(CTSP[i].Idkichthuoc)), _materialsv.FindNamebyID(_materialsv.convertGUID(CTSP[i].Idchatlieu)), _listSV.FindNamebyID(_listSV.convertGUID(CTSP[i].Iddanhmuc)), CTSP[i].Mota, CTSP[i].Trangthai, CTSP[i].IdAnh);
+                if (CTSP[i].Soluongton<=0)
+                {
+                    dtg_SanPham.Rows[i].DefaultCellStyle.BackColor = Color.OrangeRed;
+                    dtg_SanPham.Rows[i].DefaultCellStyle.ForeColor = Color.Black;
+                }
+                else
+                {
+                    dtg_SanPham.Rows[i].DefaultCellStyle.BackColor = Color.Green;
+                    dtg_SanPham.Rows[i].DefaultCellStyle.ForeColor = Color.White;
+                }
+
             }
         }
 

@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            btn_By_Products = new Button();
             btn_Close = new Button();
             btn_ByStaff = new Button();
             panel2 = new Panel();
@@ -38,6 +39,7 @@
             // panel1
             // 
             panel1.BackColor = SystemColors.ScrollBar;
+            panel1.Controls.Add(btn_By_Products);
             panel1.Controls.Add(btn_Close);
             panel1.Controls.Add(btn_ByStaff);
             panel1.Dock = DockStyle.Top;
@@ -45,6 +47,24 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(1787, 72);
             panel1.TabIndex = 0;
+            // 
+            // btn_By_Products
+            // 
+            btn_By_Products.BackColor = Color.Black;
+            btn_By_Products.Dock = DockStyle.Left;
+            btn_By_Products.FlatAppearance.BorderSize = 0;
+            btn_By_Products.FlatStyle = FlatStyle.Flat;
+            btn_By_Products.Font = new Font("Century Gothic", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
+            btn_By_Products.ForeColor = Color.White;
+            btn_By_Products.Location = new Point(272, 0);
+            btn_By_Products.Name = "btn_By_Products";
+            btn_By_Products.Size = new Size(272, 72);
+            btn_By_Products.TabIndex = 2;
+            btn_By_Products.Text = "Revenue by products";
+            btn_By_Products.UseVisualStyleBackColor = false;
+            btn_By_Products.Click += btn_By_Products_Click;
+            btn_By_Products.MouseEnter += btn_By_Products_MouseEnter;
+            btn_By_Products.MouseLeave += btn_By_Products_MouseLeave;
             // 
             // btn_Close
             // 
@@ -107,5 +127,6 @@
         private Button btn_ByStaff;
         private Panel panel2;
         private Button btn_Close;
+        private Button btn_By_Products;
     }
 }

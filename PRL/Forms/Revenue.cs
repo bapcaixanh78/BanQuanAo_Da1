@@ -82,5 +82,22 @@ namespace PRL.Forms
                 activeForm.Close();
             Reset();
         }
+
+
+
+        private void btn_By_Products_MouseEnter(object sender, EventArgs e)
+        {
+            btn_By_Products.Font = new Font(btn_By_Products.Font.FontFamily, 14);
+        }
+
+        private void btn_By_Products_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new Forms.Revenue_By_Products(), sender);
+        }
+
+        private void btn_By_Products_MouseLeave(object sender, EventArgs e)
+        {
+            btn_By_Products.Font = new Font(btn_By_Products.Font.FontFamily, 12);
+        }
     }
 }

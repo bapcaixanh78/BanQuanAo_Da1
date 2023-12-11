@@ -139,7 +139,7 @@ namespace PRL.Forms
 
         private void btn_ThongKe_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new Forms.Revenue(), sender);
+            OpenChildForm(new Forms.Statistics(), sender);
         }
 
         private void btn_DangXuat_Click(object sender, EventArgs e)
@@ -160,7 +160,7 @@ namespace PRL.Forms
         private void MainNV1_Load(object sender, EventArgs e)
         {
             lb_Username.Text = account.Ten;
-            this.TopMost = true;
+            
             this.FormBorderStyle = FormBorderStyle.None;
             this.WindowState = FormWindowState.Maximized;
         }
