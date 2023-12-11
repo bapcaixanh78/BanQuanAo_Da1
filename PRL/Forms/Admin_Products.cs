@@ -17,7 +17,6 @@ namespace PRL.Forms
         private IListSV1 _listSV;
         private Guid _idWhenClickCTSP;
         private Guid _idWhenClickSP;
-       
 
         public Admin_Products()
         {
@@ -69,7 +68,6 @@ namespace PRL.Forms
             }
             cmb_list.SelectedIndex = 0;
             cmb_list.DropDownStyle = ComboBoxStyle.DropDownList;
-
             cmb_statusFilter.Items.Add("Còn hàng");
             cmb_statusFilter.Items.Add("Hết hàng");
             //cmb_statusFilter.SelectedIndex = 0;
@@ -99,12 +97,11 @@ namespace PRL.Forms
             dtg_SanPham.Columns[12].Visible = false;
 
             dtg_SanPham.AllowUserToAddRows = false;
-            
+
             for (int i = 0; i < CTSP.Count; i++)
             {
-
                 dtg_SanPham.Rows.Add(stt++, CTSP[i].Id, _producsv.Findbyid(CTSP[i].Idsanpham).Ten, CTSP[i].Gianhap, CTSP[i].Giaban, CTSP[i].Soluongton, _colorsv.FindNamebyID(_colorsv.convertGUID(CTSP[i].Idmauao)), _sizesv.FindNamebyID(_sizesv.convertGUID(CTSP[i].Idkichthuoc)), _materialsv.FindNamebyID(_materialsv.convertGUID(CTSP[i].Idchatlieu)), _listSV.FindNamebyID(_listSV.convertGUID(CTSP[i].Iddanhmuc)), CTSP[i].Mota, CTSP[i].Trangthai, CTSP[i].IdAnh);
-                if (CTSP[i].Soluongton<=0)
+                if (CTSP[i].Soluongton <= 0)
                 {
                     dtg_SanPham.Rows[i].DefaultCellStyle.BackColor = Color.OrangeRed;
                     dtg_SanPham.Rows[i].DefaultCellStyle.ForeColor = Color.Black;
@@ -114,7 +111,6 @@ namespace PRL.Forms
                     dtg_SanPham.Rows[i].DefaultCellStyle.BackColor = Color.Green;
                     dtg_SanPham.Rows[i].DefaultCellStyle.ForeColor = Color.White;
                 }
-
             }
         }
 
@@ -308,7 +304,7 @@ namespace PRL.Forms
                 return;
             }
 
-            if(txt_SoLuong.Text == "0")
+            if (txt_SoLuong.Text == "0")
             {
                 MessageBox.Show("Quantity can't be zero");
                 return;
@@ -337,7 +333,7 @@ namespace PRL.Forms
                 CTSP.Giaban = decimal.Parse(txtGiaBan.Text);
                 CTSP.Gianhap = decimal.Parse(txtGiaNhap.Text);
                 CTSP.Soluongton = int.Parse(txt_SoLuong.Text);
-                if(CTSP.Soluongton > 0)
+                if (CTSP.Soluongton > 0)
                 {
                     CTSP.Trangthai = "Còn hàng";
                 }
@@ -369,7 +365,6 @@ namespace PRL.Forms
                 List<Chitietsanpham> chitietsanphams = _detailproductsv.GetAll1(null);
                 LoadGridSP(chitietsanphams);
             }
-            
         }
 
         public void LoadGridSP(List<Chitietsanpham> CTSP)
@@ -396,7 +391,6 @@ namespace PRL.Forms
 
             for (int i = 0; i < CTSP.Count; i++)
             {
-
                 dtg_SanPham.Rows.Add(stt++, CTSP[i].Id, _producsv.Findbyid(CTSP[i].Idsanpham).Ten, CTSP[i].Gianhap, CTSP[i].Giaban, CTSP[i].Soluongton, _colorsv.FindNamebyID(_colorsv.convertGUID(CTSP[i].Idmauao)), _sizesv.FindNamebyID(_sizesv.convertGUID(CTSP[i].Idkichthuoc)), _materialsv.FindNamebyID(_materialsv.convertGUID(CTSP[i].Idchatlieu)), _listSV.FindNamebyID(_listSV.convertGUID(CTSP[i].Iddanhmuc)), CTSP[i].Mota, CTSP[i].Trangthai, CTSP[i].IdAnh);
                 if (CTSP[i].Soluongton <= 0)
                 {
@@ -408,7 +402,6 @@ namespace PRL.Forms
                     dtg_SanPham.Rows[i].DefaultCellStyle.BackColor = Color.Green;
                     dtg_SanPham.Rows[i].DefaultCellStyle.ForeColor = Color.White;
                 }
-
             }
         }
 
@@ -447,6 +440,9 @@ namespace PRL.Forms
             rtxt_MoTa.Text = null;
             txt_SoLuong.Text = null;
             txt_ImgPath.Text = null;
+            cmb_sizeFilter.SelectedIndex = -1;
+            cmb_colorFIlter.SelectedIndex = -1;
+            cmb_statusFilter.SelectedIndex = -1;
             Picturebox_Product.Image = Image.FromFile("C:\\Users\\Acer\\Documents\\GitHub\\BanQuanAo_Da1\\PRL\\IMG\\default-thumbnail.jpg");
         }
 
@@ -484,17 +480,14 @@ namespace PRL.Forms
             Guid? colorFilter = string.IsNullOrEmpty(cmb_colorFIlter.Text) ? (Guid?)null : _colorsv.FindIDbyName(cmb_colorFIlter.Text);
             var statusFilter = string.IsNullOrEmpty(cmb_statusFilter.Text) ? null : cmb_statusFilter.Text;
 
-            List<Chitietsanpham> chitietsanphams = _detailproductsv.GetAll(null)
-    .Where(x => (sizeFilter == null || x.Idkichthuoc == sizeFilter) &&
-                (colorFilter == null || x.Idmauao == colorFilter))
-    .ToList();
-            string selectedStatus = cmb_statusFilter.SelectedItem.ToString(); // Get the selected status from the ComboBox
+            List<Chitietsanpham> chitietsanphams = _detailproductsv.GetAll(null).Where(x => (sizeFilter == null || x.Idkichthuoc == sizeFilter) && (colorFilter == null || x.Idmauao == colorFilter)).ToList();
+            string selectedStatus = cmb_statusFilter.ValueMember.ToString(); // Get the selected status from the ComboBox
 
             if (selectedStatus == "Còn hàng")
             {
                 chitietsanphams = chitietsanphams.Where(sp => sp.Trangthai == "Còn hàng").ToList();
             }
-            else if (selectedStatus == "Hết hàng")
+            else if (selectedStatus == "Hết hàng")
             {
                 chitietsanphams = chitietsanphams.Where(sp => sp.Trangthai == "Hết hàng").ToList();
             }
