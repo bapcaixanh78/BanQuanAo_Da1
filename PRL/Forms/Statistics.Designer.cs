@@ -62,17 +62,18 @@
             // 
             // btn_AllProducts
             // 
+            btn_AllProducts.BackColor = SystemColors.InactiveCaptionText;
             btn_AllProducts.Dock = DockStyle.Left;
             btn_AllProducts.FlatAppearance.BorderSize = 0;
             btn_AllProducts.FlatStyle = FlatStyle.Flat;
-            btn_AllProducts.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            btn_AllProducts.Font = new Font("Century Gothic", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
             btn_AllProducts.ForeColor = Color.White;
             btn_AllProducts.Location = new Point(0, 0);
             btn_AllProducts.Name = "btn_AllProducts";
             btn_AllProducts.Size = new Size(205, 118);
             btn_AllProducts.TabIndex = 0;
             btn_AllProducts.Text = "All Products";
-            btn_AllProducts.UseVisualStyleBackColor = true;
+            btn_AllProducts.UseVisualStyleBackColor = false;
             btn_AllProducts.Click += btn_AllProducts_Click;
             btn_AllProducts.MouseEnter += btn_AllProducts_MouseEnter;
             btn_AllProducts.MouseLeave += btn_AllProducts_MouseLeave;

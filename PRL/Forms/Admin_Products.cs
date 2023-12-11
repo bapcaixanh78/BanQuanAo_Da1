@@ -17,6 +17,7 @@ namespace PRL.Forms
         private IListSV1 _listSV;
         private Guid _idWhenClickCTSP;
         private Guid _idWhenClickSP;
+       
 
         public Admin_Products()
         {
@@ -217,7 +218,7 @@ namespace PRL.Forms
             {
                 return;
             }
-            LoadGrid(null);
+            LoadGrid(_detailproductsv.GetAll1(null));
         }
 
         private void dtg_SanPham_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -371,7 +372,7 @@ namespace PRL.Forms
             
         }
 
-        public void LoadGridSP(List<Chitietsanpham> chitietsanphams)
+        public void LoadGridSP(List<Chitietsanpham> CTSP)
         {
             int stt = 1;
             dtg_SanPham.ColumnCount = 13;
@@ -393,9 +394,21 @@ namespace PRL.Forms
             dtg_SanPham.Rows.Clear();
             dtg_SanPham.AllowUserToAddRows = false;
 
-            foreach (var sp in chitietsanphams)
+            for (int i = 0; i < CTSP.Count; i++)
             {
-                dtg_SanPham.Rows.Add(stt++, sp.Id, _producsv.Findbyid(sp.Idsanpham).Ten, sp.Gianhap, sp.Giaban, sp.Soluongton, _colorsv.FindNamebyID(_colorsv.convertGUID(sp.Idmauao)), _sizesv.FindNamebyID(_sizesv.convertGUID(sp.Idkichthuoc)), _materialsv.FindNamebyID(_materialsv.convertGUID(sp.Idchatlieu)), _listSV.FindNamebyID(_listSV.convertGUID(sp.Iddanhmuc)), sp.Mota, sp.Trangthai, sp.IdAnh);
+
+                dtg_SanPham.Rows.Add(stt++, CTSP[i].Id, _producsv.Findbyid(CTSP[i].Idsanpham).Ten, CTSP[i].Gianhap, CTSP[i].Giaban, CTSP[i].Soluongton, _colorsv.FindNamebyID(_colorsv.convertGUID(CTSP[i].Idmauao)), _sizesv.FindNamebyID(_sizesv.convertGUID(CTSP[i].Idkichthuoc)), _materialsv.FindNamebyID(_materialsv.convertGUID(CTSP[i].Idchatlieu)), _listSV.FindNamebyID(_listSV.convertGUID(CTSP[i].Iddanhmuc)), CTSP[i].Mota, CTSP[i].Trangthai, CTSP[i].IdAnh);
+                if (CTSP[i].Soluongton <= 0)
+                {
+                    dtg_SanPham.Rows[i].DefaultCellStyle.BackColor = Color.OrangeRed;
+                    dtg_SanPham.Rows[i].DefaultCellStyle.ForeColor = Color.Black;
+                }
+                else
+                {
+                    dtg_SanPham.Rows[i].DefaultCellStyle.BackColor = Color.Green;
+                    dtg_SanPham.Rows[i].DefaultCellStyle.ForeColor = Color.White;
+                }
+
             }
         }
 
@@ -434,7 +447,7 @@ namespace PRL.Forms
             rtxt_MoTa.Text = null;
             txt_SoLuong.Text = null;
             txt_ImgPath.Text = null;
-            Picturebox_Product.Image = Image.FromFile("D:\\Da1_5\\GIT\\BanQuanAo_Da1\\PRL\\IMG\\default-thumbnail.jpg");
+            Picturebox_Product.Image = Image.FromFile("C:\\Users\\Acer\\Documents\\GitHub\\BanQuanAo_Da1\\PRL\\IMG\\default-thumbnail.jpg");
         }
 
         private void btn_clear_Click(object sender, EventArgs e)
