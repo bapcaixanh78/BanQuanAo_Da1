@@ -154,6 +154,11 @@ namespace BUS.Services
         {
             return GetAll1(null).Where(c => c.Soluongton ==0).ToList();
         }
+
+        public Chitietsanpham GetSP(Guid id)
+        {
+            return detailProductsRP.GetAll().Where(x=> x.Id == id).FirstOrDefault();
+        }
     }
 }
 

@@ -14,6 +14,7 @@ namespace BUS.IServices
         public string Update(Chitietsanpham CTSP);
         public string Delete(Chitietsanpham CTSP);
         public List<Chitietsanpham> GetAll(string search);
+        public Chitietsanpham GetSP(Guid id);
         public List<Chitietsanpham> GetLstSpConHang();
         public List<Chitietsanpham> GetLstSpHetHang();
         public List<Chitietsanpham> GetAll1(string search);
