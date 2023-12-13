@@ -166,7 +166,7 @@ namespace PRL.Forms
                     Giamgia = int.Parse(txt_MinBill.Text),
                     Mota = txt_MoTa.Text
                 };
-                khuyenmai.Trangthai = ("Hoạt động");
+                khuyenmai.Trangthai = ("Hoạt động");
 
                 var option = MessageBox.Show("Confirm", "Notification", MessageBoxButtons.YesNo);
                 if (option == DialogResult.Yes)
