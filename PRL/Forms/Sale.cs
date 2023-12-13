@@ -45,7 +45,7 @@ namespace PRL.Forms
             for (int i = 0; i < khuyenmais.Count; i++)
             {
                 dtg_Sale.Rows.Add(stt++, khuyenmais[i].Tenmakhuyenmai, khuyenmais[i].Thoigianbatdau, khuyenmais[i].Thoigianketthuc, khuyenmais[i].Giamgia, khuyenmais[i].Mota, khuyenmais[i].Id, khuyenmais[i].Trangthai);
-                if (khuyenmais[i].Trangthai != "Dừng hoạt động")
+                if (khuyenmais[i].Trangthai == "Dừng hoạt động")
                 {
                     dtg_Sale.Rows[i].DefaultCellStyle.BackColor = Color.OrangeRed;
                     dtg_Sale.Rows[i].DefaultCellStyle.ForeColor = Color.Black;
@@ -54,6 +54,7 @@ namespace PRL.Forms
                 {
                     dtg_Sale.Rows[i].DefaultCellStyle.BackColor = Color.Green;
                     dtg_Sale.Rows[i].DefaultCellStyle.ForeColor = Color.White;
+
                 }
             }
         }

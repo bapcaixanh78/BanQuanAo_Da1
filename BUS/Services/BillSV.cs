@@ -13,10 +13,12 @@ namespace BUS.Services
     {
         private BillRP billRP;
         public IDetailBillSV detailbill;
+        public ISaleSV salesv;
         public BillSV()
         {
             detailbill = new DetailBillSV();
             billRP = new BillRP();
+            salesv = new SaleSV();
         }
 
         public string AddBill(Hoadon hoadon)
@@ -36,15 +38,17 @@ namespace BUS.Services
             return billRP.GetAll();
         }
 
-        public decimal TongTienHoaDon(Guid Id)
+        public decimal TongTienHoaDon(Guid Idhd, Guid idKM)
         {
             decimal tongtienhoadon = 0;
             //lấy 1 list giá từng hóa đơn chi tiết trong 1 hóa đơn
-            var lsttongtiencua1hdct = detailbill.GetAllHoaDonChiTiet().Where(h => h.Idhoadon == Id).Select(c=>c.Giaban);//Giá này là giá tổng sản phẩm mua trong từng hóa đơn chi tiết (Số lượng * giá 1 sản phẩm)
-            foreach(var x in lsttongtiencua1hdct)
+            var lsttongtiencua1hd = detailbill.GetAllHoaDonChiTiet().Where(h => h.Idhoadon == Idhd).Select(c=>c.Giaban);//Giá này là giá tổng sản phẩm mua trong từng hóa đơn chi tiết (Số lượng * giá 1 sản phẩm)
+            foreach(var x in lsttongtiencua1hd)
             {
                 tongtienhoadon += x;
-            }return tongtienhoadon;
+            }
+            decimal Aftersale = tongtienhoadon - (tongtienhoadon*salesv.GetKM().FirstOrDefault(c => c.Id == idKM).Giamgia/100);
+            return Aftersale;
         }
 
         public int GetCountBillInaStaff(Guid idnv)

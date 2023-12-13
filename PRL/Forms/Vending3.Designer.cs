@@ -211,7 +211,7 @@
             panel2.Controls.Add(txt_Gia);
             panel2.Controls.Add(label4);
             panel2.Dock = DockStyle.Top;
-            panel2.Location = new Point(3, 219);
+            panel2.Location = new Point(3, 297);
             panel2.Name = "panel2";
             panel2.Size = new Size(385, 262);
             panel2.TabIndex = 3;
@@ -219,7 +219,7 @@
             // txt_ID
             // 
             txt_ID.Enabled = false;
-            txt_ID.Location = new Point(110, 7);
+            txt_ID.Location = new Point(110, 18);
             txt_ID.Name = "txt_ID";
             txt_ID.ReadOnly = true;
             txt_ID.Size = new Size(241, 27);
@@ -228,7 +228,7 @@
             // txt_name
             // 
             txt_name.Enabled = false;
-            txt_name.Location = new Point(110, 7);
+            txt_name.Location = new Point(110, 18);
             txt_name.Name = "txt_name";
             txt_name.ReadOnly = true;
             txt_name.Size = new Size(241, 27);
@@ -238,7 +238,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
-            label2.Location = new Point(9, 6);
+            label2.Location = new Point(9, 17);
             label2.Name = "label2";
             label2.Size = new Size(63, 25);
             label2.TabIndex = 31;
@@ -246,15 +246,16 @@
             // 
             // txt_SoLuong
             // 
-            txt_SoLuong.Location = new Point(110, 47);
+            txt_SoLuong.Location = new Point(110, 58);
             txt_SoLuong.Name = "txt_SoLuong";
             txt_SoLuong.Size = new Size(241, 27);
             txt_SoLuong.TabIndex = 35;
+            txt_SoLuong.TextChanged += txt_SoLuong_TextChanged_1;
             // 
             // txt_Tong
             // 
             txt_Tong.Enabled = false;
-            txt_Tong.Location = new Point(110, 137);
+            txt_Tong.Location = new Point(110, 148);
             txt_Tong.Name = "txt_Tong";
             txt_Tong.ReadOnly = true;
             txt_Tong.Size = new Size(241, 27);
@@ -264,7 +265,7 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
-            label3.Location = new Point(9, 46);
+            label3.Location = new Point(9, 57);
             label3.Name = "label3";
             label3.Size = new Size(84, 25);
             label3.TabIndex = 32;
@@ -274,7 +275,7 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
-            label5.Location = new Point(9, 134);
+            label5.Location = new Point(9, 145);
             label5.Name = "label5";
             label5.Size = new Size(53, 25);
             label5.TabIndex = 34;
@@ -283,7 +284,7 @@
             // txt_Gia
             // 
             txt_Gia.Enabled = false;
-            txt_Gia.Location = new Point(110, 91);
+            txt_Gia.Location = new Point(110, 102);
             txt_Gia.Name = "txt_Gia";
             txt_Gia.ReadOnly = true;
             txt_Gia.Size = new Size(241, 27);
@@ -293,7 +294,7 @@
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
-            label4.Location = new Point(9, 89);
+            label4.Location = new Point(9, 100);
             label4.Name = "label4";
             label4.Size = new Size(53, 25);
             label4.TabIndex = 33;
@@ -305,16 +306,16 @@
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(3, 23);
             panel1.Name = "panel1";
-            panel1.Size = new Size(385, 196);
+            panel1.Size = new Size(385, 274);
             panel1.TabIndex = 33;
             // 
             // Picturebox_Product
             // 
             Picturebox_Product.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             Picturebox_Product.Image = (Image)resources.GetObject("Picturebox_Product.Image");
-            Picturebox_Product.Location = new Point(110, -3);
+            Picturebox_Product.Location = new Point(40, -3);
             Picturebox_Product.Name = "Picturebox_Product";
-            Picturebox_Product.Size = new Size(241, 193);
+            Picturebox_Product.Size = new Size(311, 271);
             Picturebox_Product.SizeMode = PictureBoxSizeMode.StretchImage;
             Picturebox_Product.TabIndex = 32;
             Picturebox_Product.TabStop = false;

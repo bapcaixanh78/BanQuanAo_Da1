@@ -99,7 +99,208 @@ namespace DAL.Mydbcontext
         public DbSet<Nhanvien> Nhanvien { get; set; }
         public DbSet<Sanpham> Sanphams { get; set; }
 
+        void SeedingData(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Sanpham>().HasData(
+                new Sanpham
+                {
+                    Id = Guid.NewGuid(),
+                    Ten = "Áo Phông Graphic Vàng",
+                },
+                new Sanpham
+                {
+                    Id = Guid.NewGuid(),
+                    Ten = "Áo Phông Trắng Unisex",
+                },
+                new Sanpham
+                {
+                    Id = Guid.NewGuid(),
+                    Ten = "Áo Phông Đen Basic"
+                },
+                new Sanpham
+                {
+                    Id = Guid.NewGuid(),
+                    Ten = "Áo Phông Oversized Xám"
+                },
+                new Sanpham
+                {
+                    Id = Guid.NewGuid(),
+                    Ten = "Áo Phông Vintage Nâu"
+                },
+                new Sanpham
+                {
+                    Id = Guid.NewGuid(),
+                    Ten = "Áo Phông 3 Màu",
+                },
+                new Sanpham
+                {
+                    Id = Guid.NewGuid(),
+                    Ten = "Áo Phông Xám Basic",
+                },
+                new Sanpham
+                {
+                    Id = Guid.NewGuid(),
+                    Ten = "Áo Phông Nâu Basic"
+                },
+                new Sanpham
+                {
+                    Id = Guid.NewGuid(),
+                    Ten = "Áo Phông Vàng Basic"
+                },
+                new Sanpham
+                {
+                    Id = Guid.NewGuid(),
+                    Ten = "Áo phông họa tiết dân tộc"
+                }
+                );
 
+
+            modelBuilder.Entity<Chatlieu>().HasData(
+
+                new Chatlieu
+                {
+                    Id = Guid.NewGuid(),
+                    Ten = "Cotton",
+                    Mota = "Có sự thoáng khí và thoải mái, phù hợp cho nhiều loại áo.",
+                },
+                new Chatlieu
+                {
+                    Id = Guid.NewGuid(),
+                    Ten = "Polyester",
+                    Mota = "Chất liệu nh kun, không nhăn, chống nhăn và nhanh khô, thích hợp cho áo phông thể thao và hoạt động vận động.",
+                },
+                new Chatlieu
+                {
+                    Id = Guid.NewGuid(),
+                    Ten = "Blend ",
+                    Mota = "Kết hợp giữa cotton và polyester hoặc các chất liệu khác, tạo ra sự kết hợp của các đặc tính khác nhau.",
+                },
+                new Chatlieu
+                {
+                    Id = Guid.NewGuid(),
+                    Ten = "Linen (Lanh)",
+                    Mota = "Nhẹ nhàng, mát mẻ, tuy nhiên, có thể nhăn nhanh hơn so với một số loại khác.",
+                },
+                new Chatlieu
+                {
+                    Id = Guid.NewGuid(),
+                    Ten = "Bamboo",
+                    Mota = "Áo phông làm từ sợi tre có khả năng thấm hút mồ hôi và khá mềm mại.",
+                },
+                new Chatlieu
+                {
+                    Id = Guid.NewGuid(),
+                    Ten = "Spandex",
+                    Mota = "Thường được thêm vào để tăng độ co giãn, phù hợp cho áo thể thao và áo ôm.",
+                }
+                );
+
+            modelBuilder.Entity<Mauao>().HasData(
+                new Mauao
+                {
+                    Id = Guid.NewGuid(),
+                    Mau = "Trắng",
+                }, new Mauao
+                {
+                    Id = Guid.NewGuid(),
+                    Mau = "Đen"
+                }, new Mauao
+                {
+                    Id = Guid.NewGuid(),
+                    Mau = "Đỏ"
+                }, new Mauao
+                {
+                    Id = Guid.NewGuid(),
+                    Mau = "Hồng"
+                }, new Mauao
+                {
+                    Id = Guid.NewGuid(),
+                    Mau = "Xám"
+                }, new Mauao
+                {
+                    Id = Guid.NewGuid(),
+                    Mau = "Nâu"
+                },
+                 new Mauao
+                 {
+                     Id = Guid.NewGuid(),
+                     Mau = "Xanh nước biển"
+                 },
+                  new Mauao
+                  {
+                      Id = Guid.NewGuid(),
+                      Mau = "Xanh lá cây"
+                  },
+                   new Mauao
+                   {
+                       Id = Guid.NewGuid(),
+                       Mau = "Xanh rêu"
+                   },
+                    new Mauao
+                    {
+                        Id = Guid.NewGuid(),
+                        Mau = "Cam"
+                    }, new Mauao
+                    {
+                        Id = Guid.NewGuid(),
+                        Mau = "Vàng"
+                    }, new Mauao
+                    {
+                        Id = Guid.NewGuid(),
+                        Mau = "Kem"
+                    }, new Mauao
+                    {
+                        Id = Guid.NewGuid(),
+                        Mau = "Ghi"
+                    }, new Mauao
+                    {
+                        Id = Guid.NewGuid(),
+                        Mau = "Xanh navy"
+                    }, new Mauao
+                    {
+                        Id = Guid.NewGuid(),
+                        Mau = "Tím"
+                    }
+                );
+
+
+            modelBuilder.Entity<Kichthuoc>().HasData(
+                new Kichthuoc
+                {
+                    Id = Guid.NewGuid(),
+                    Size = "XS"
+                },
+                new Kichthuoc
+                {
+                    Id = Guid.NewGuid(),
+                    Size = "S"
+                },
+                new Kichthuoc
+                {
+                    Id = Guid.NewGuid(),
+                    Size = "M"
+                },
+                new Kichthuoc
+                {
+                    Id = Guid.NewGuid(),
+                    Size = "L"
+                },
+                new Kichthuoc
+                {
+                    Id = Guid.NewGuid(),
+                    Size = "XL"
+                },
+                new Kichthuoc
+                {
+                    Id = Guid.NewGuid(),
+                    Size = "XLL"
+                }
+                );
+
+            modelBuilder.Entity<Danhmuc>().HasData(
+                new Danhmuc {  Id = Guid.NewGuid(),
+                })
+        }
 
 
     }

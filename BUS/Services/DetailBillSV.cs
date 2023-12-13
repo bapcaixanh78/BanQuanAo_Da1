@@ -76,5 +76,22 @@ namespace BUS.Services
             var cl = _materialsv.GetChatlieus().FirstOrDefault(c => c.Id == ctsp.Idchatlieu);
             return cl.Ten;
         }
+
+        public string Update(Hoadonchitiet hdct)
+        {
+            var clone = detailBillRP.GetAll().FirstOrDefault(x => x.Id == hdct.Id);
+
+            clone.Giaban = hdct.Giaban;
+            clone.Soluong = hdct.Soluong;
+
+            if (detailBillRP.Update(clone))
+            {
+                return "You have updated successfully";
+            }
+            else
+            {
+                return "You have failed to update";
+            }
+        }
     }
 }

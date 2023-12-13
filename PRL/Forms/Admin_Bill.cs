@@ -57,7 +57,7 @@ namespace PRL.Forms
                     Ngaytao = x.Ngaytao,
                     Ghichu = x.Ghichu,
                     Trangthai = x.Trangthai,
-                    TongTienCuaHoaDon = _billsv.TongTienHoaDon(x.Id),
+                    TongTienCuaHoaDon = _billsv.TongTienHoaDon(x.Id,ProductValidate.convertGUID(x.Idkhuyenmai)),
                     Idnhanvien = x.Idnhanvien,
                     Idkhachhang = x.Idkhachhang,
                     Idkhuyenmai = x.Idkhuyenmai

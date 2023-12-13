@@ -10,6 +10,7 @@ namespace BUS.IServices
     public interface IDetailBillSV
     {
         public string AddDetailBill(Hoadonchitiet hdct);
+        public string Update(Hoadonchitiet hdct);
         public List<Hoadonchitiet> GetAllHoaDonChiTiet();
         public decimal DoanhThuMangVe(Guid idnv);
         public string GetMauAo(Guid idctsp);
