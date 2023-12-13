@@ -443,7 +443,7 @@ namespace PRL.Forms
             cmb_sizeFilter.SelectedIndex = -1;
             cmb_colorFIlter.SelectedIndex = -1;
             cmb_statusFilter.SelectedIndex = -1;
-            Picturebox_Product.Image = Image.FromFile("C:\\Users\\Acer\\Documents\\GitHub\\BanQuanAo_Da1\\PRL\\IMG\\default-thumbnail.jpg");
+            Picturebox_Product.Image = Image.FromFile("D:\\Da1_5\\GIT\\BanQuanAo_Da1\\PRL\\IMG\\default-thumbnail.jpg");
         }
 
         private void btn_clear_Click(object sender, EventArgs e)

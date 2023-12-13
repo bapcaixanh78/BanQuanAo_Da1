@@ -799,13 +799,23 @@ namespace PRL.Forms
                         //add hoa don
                         using (login lg = new login())
                         {
+                            var idnhanvientmp = Guid.Empty;
+                            if(Main.account == null)
+                            {
+                                idnhanvientmp = MainNV1.account.Id;
+                            }
+                            else
+                            {
+                                idnhanvientmp = Main.account.Id;
+                            }
                             _Hoadon = new Hoadon
                             {
                                 Id = Guid.NewGuid(),
                                 Ngaytao = DateTime.Now,
-                                Idnhanvien = Main.account.Id,
+                                Idnhanvien = idnhanvientmp,
                                 Trangthai = "Đã thanh toán",
                             };
+
                             //Nếu mà sdt khách hàng tồn tại rồi thì tự động điền idkhachhang vào hóa đơn
                             if (!string.IsNullOrEmpty(customernew.Id.ToString()))
                             {

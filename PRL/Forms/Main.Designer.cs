@@ -394,6 +394,7 @@
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Main";
             Text = "Shirt Haven";
+            FormClosed += Main_FormClosed;
             Load += Main_Load;
             panel1.ResumeLayout(false);
             panel2.ResumeLayout(false);

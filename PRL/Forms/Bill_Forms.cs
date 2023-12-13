@@ -73,7 +73,14 @@ namespace PRL.Forms
         private void Bill_Forms_Load(object sender, EventArgs e)
         {
             _lstcartinbill = Vending3._Lstgiohang;
-            _nhanvien = Main.account;
+            if(Main.account == null)
+            {
+                _nhanvien = MainNV1.account;
+            }
+            else
+            {
+                _nhanvien = Main.account;
+            }
             lb_TienKhachTra.Text = Vending3.Tienkhachtra.ToString();
             lb_TienThua.Text = Vending3.Tientralai.ToString();
             if(!string.IsNullOrEmpty(Vending3.SaleDangdung))

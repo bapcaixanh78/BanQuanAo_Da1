@@ -78,10 +78,8 @@ namespace PRL.Forms
             {   //Nhân viên
                 MessageBox.Show(" Welcome back, " + nhanvien.Ten + ".", "Log into Shirt Haven");
                 this.Hide();
-                MainNV1 mainNV = new MainNV1()
-                {
-                    account = nhanvien
-                };
+                MainNV1 mainNV = new();
+                MainNV1.account = nhanvien;
                 mainNV.ShowDialog();
             }
             else

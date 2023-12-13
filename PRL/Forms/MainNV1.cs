@@ -15,12 +15,13 @@ namespace PRL.Forms
     {
         private Button currentButton;
         private Form activeForm;
-        public Nhanvien account { get; set; }
+        public static Nhanvien account { get; set; }
 
         public MainNV1()
         {
             InitializeComponent();
             btnCloseChildForm.Visible = false;
+            account = null;
         }
 
         private void btn_KhachHang_MouseEnter(object sender, EventArgs e)
@@ -149,7 +150,7 @@ namespace PRL.Forms
             {
                 login login = new login();
                 login.Show();
-                this.Hide();
+                this.Close();
             }
             else
             {
@@ -160,9 +161,14 @@ namespace PRL.Forms
         private void MainNV1_Load(object sender, EventArgs e)
         {
             lb_Username.Text = account.Ten;
-            
+
             this.FormBorderStyle = FormBorderStyle.None;
             this.WindowState = FormWindowState.Maximized;
+        }
+
+        private void MainNV1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            account = null;
         }
     }
 }

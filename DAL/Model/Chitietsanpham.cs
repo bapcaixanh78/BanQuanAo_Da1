@@ -12,7 +12,9 @@ namespace DAL.Model
     {
         [Key]
         public Guid Id { get; set; }
+        [Column(TypeName = "decimal(18,0)")]
         public decimal Gianhap { get; set; }
+        [Column(TypeName = "decimal(18,0)")]
         public decimal Giaban { get; set; }
         public DateTime Ngaytao { get; set; }
         public int Soluongton { get; set; }

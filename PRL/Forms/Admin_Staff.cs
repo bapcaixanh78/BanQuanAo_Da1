@@ -190,7 +190,7 @@ namespace PRL.Forms
                         Matkhau = txt_Password.Text,
                         Diachi = txt_DiaChi.Text,
                         Email = txt_email.Text,
-                        Quyen = cbb_role.SelectedValue == "Quản lý" ? 0 : 1,
+                        Quyen = cbb_role.SelectedIndex == 0 ? 0 : 1,
                     };
                 var option = MessageBox.Show("Confirm", "Notification", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (option == DialogResult.Yes)

@@ -23,6 +23,7 @@ namespace PRL.Forms
         {
             InitializeComponent();
             btnCloseChildForm.Visible = false;
+            account = null;
         }
 
         private void btn_KhachHang_MouseEnter(object sender, EventArgs e)
@@ -210,7 +211,7 @@ namespace PRL.Forms
             {
                 login login = new login();
                 login.Show();
-                this.Hide();
+                this.Close();
             }
             else
             {
@@ -221,9 +222,14 @@ namespace PRL.Forms
         private void Main_Load(object sender, EventArgs e)
         {
             lb_Username.Text = account.Ten;
-            
+
             this.FormBorderStyle = FormBorderStyle.None;
             this.WindowState = FormWindowState.Maximized;
+        }
+
+        private void Main_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            account = null;
         }
     }
 }

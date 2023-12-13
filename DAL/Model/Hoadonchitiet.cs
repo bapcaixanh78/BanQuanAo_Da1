@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,7 @@ namespace DAL.Model
         [Key]
         public Guid Id { get; set; }
         public int Soluong {get; set; }
+        [Column(TypeName = "decimal(18,0)")]
         public decimal Giaban { get; set; }
 
         //khoa ngoai 
