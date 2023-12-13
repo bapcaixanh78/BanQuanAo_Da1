@@ -22,6 +22,8 @@ namespace DAL.Mydbcontext
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            SeedingData(modelBuilder);
+
             modelBuilder.Entity<Chitietsanpham>()
             .HasOne(p => p.Sanpham)
             .WithMany(c => c.Chitietsanphams)
@@ -104,7 +106,7 @@ namespace DAL.Mydbcontext
             modelBuilder.Entity<Sanpham>().HasData(
                 new Sanpham
                 {
-                    Id = Guid.NewGuid(),
+                    Id = Guid.Parse("b69de1e9-ebaf-43e5-89db-56cf6d9265bd"),
                     Ten = "Áo Phông Graphic Vàng",
                 },
                 new Sanpham
@@ -297,9 +299,15 @@ namespace DAL.Mydbcontext
                 }
                 );
 
-            modelBuilder.Entity<Danhmuc>().HasData(
-                new Danhmuc {  Id = Guid.NewGuid(),
-                })
+            modelBuilder.Entity<Khuyenmai>().HasData(
+                new Khuyenmai
+                {
+                    Id = Guid.NewGuid(),
+                    Tenmakhuyenmai = "Noel",
+                    Thoigianbatdau = DateTime.Parse("10/12/2023"),
+                    Thoigianketthuc = DateTime.Parse("15/12/2023"),
+                    Trangthai = "Hoạt động"
+                });
         }
 
 
