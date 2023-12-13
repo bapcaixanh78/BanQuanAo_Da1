@@ -570,6 +570,14 @@ namespace PRL.Forms
 
             decimal sotiengiam = decimal.Parse(lb_Tong.Text) * _salesv.GetDiscountByName(cmb_Sale.Text) / 100;
             lb_Totalaftersale.Text = (decimal.Parse(lb_Tong.Text) - sotiengiam).ToString();
+            if (!string.IsNullOrEmpty(txt_CashReceived.Text))
+            {
+                lb_TienThua.Text = (decimal.Parse(txt_CashReceived.Text) - decimal.Parse(lb_Totalaftersale.Text)).ToString();
+            }
+            else
+            {
+                lb_TienThua.Text = "0";
+            }
 
         }
 

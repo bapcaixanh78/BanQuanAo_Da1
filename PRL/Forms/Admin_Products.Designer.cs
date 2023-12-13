@@ -82,6 +82,7 @@
             dtg_SanPham.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dtg_SanPham.Dock = DockStyle.Fill;
             dtg_SanPham.Location = new Point(3, 23);
+            dtg_SanPham.MultiSelect = false;
             dtg_SanPham.Name = "dtg_SanPham";
             dtg_SanPham.ReadOnly = true;
             dtg_SanPham.RowHeadersWidth = 51;
