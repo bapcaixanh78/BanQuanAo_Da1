@@ -460,104 +460,111 @@ namespace PRL.Forms
 
         private void btn_update_Click(object sender, EventArgs e)
         {
-            if(_idWhenClickWaitingbill == Guid.Empty)
+            if(_Lstgiohang.Count == 0)
             {
-                //CHECK KHI CHƯA CHỌN SẢN PHẨM MÀ ĐÃ BẤM UPDATE
-                if (!string.IsNullOrEmpty(txt_ID.Text))
+                MessageBox.Show("Cart being null, can't update", "Inform");return;
+            }
+            else
+            {
+                if (_idWhenClickWaitingbill == Guid.Empty)
                 {
-                    _idWhenClickCTSP = Guid.Parse(txt_ID.Text);
-                    var tmp = _Lstgiohang.FirstOrDefault(c => c.IdSanpham == _idWhenClickCTSP);
-                    if (!string.IsNullOrEmpty(txt_SoLuong.Text))
+                    //CHECK KHI CHƯA CHỌN SẢN PHẨM MÀ ĐÃ BẤM UPDATE
+                    if (!string.IsNullOrEmpty(txt_ID.Text))
                     {
-                        var ctsptmp = _detailproductsv.GetAll(null).FirstOrDefault(c => c.Id == Guid.Parse(txt_ID.Text));
-                        if (ctsptmp.Soluongton < int.Parse(txt_SoLuong.Text))
+                        _idWhenClickCTSP = Guid.Parse(txt_ID.Text);
+                        var tmp = _Lstgiohang.FirstOrDefault(c => c.IdSanpham == _idWhenClickCTSP);
+                        if (!string.IsNullOrEmpty(txt_SoLuong.Text))
                         {
-                            //Lỗi số lượng mua nhiều hơn số lượng tồn
-                            MessageBox.Show("The product in stock has only " + ctsptmp.Soluongton + " items left, please enter a quantity to purchase that is less than the available stock.");
-                            txt_SoLuong.Text = null;
-                            return;
-                        }
-                        else if (string.IsNullOrEmpty(txt_SoLuong.Text))
-                        {
-                            MessageBox.Show("This field can't be null", "Inform"); return;
+                            var ctsptmp = _detailproductsv.GetAll(null).FirstOrDefault(c => c.Id == Guid.Parse(txt_ID.Text));
+                            if (ctsptmp.Soluongton < int.Parse(txt_SoLuong.Text))
+                            {
+                                //Lỗi số lượng mua nhiều hơn số lượng tồn
+                                MessageBox.Show("The product in stock has only " + ctsptmp.Soluongton + " items left, please enter a quantity to purchase that is less than the available stock.");
+                                txt_SoLuong.Text = null;
+                                return;
+                            }
+                            else if (string.IsNullOrEmpty(txt_SoLuong.Text))
+                            {
+                                MessageBox.Show("This field can't be null", "Inform"); return;
+                            }
+                            else
+                            {
+                                tmp.Soluongmua = int.Parse(txt_SoLuong.Text);
+                                tmp.GiaTongSanPhamMua = int.Parse(txt_SoLuong.Text) * decimal.Parse(txt_Gia.Text);
+
+                            }
                         }
                         else
                         {
-                            tmp.Soluongmua = int.Parse(txt_SoLuong.Text);
-                            tmp.GiaTongSanPhamMua = int.Parse(txt_SoLuong.Text) * decimal.Parse(txt_Gia.Text);
-
-                        }
-                    }
-                    else
-                    {
-                        MessageBox.Show("Quantity fields can't be empty!", "Inform");
-                        return;
-                    }
-                    //tmp.GiaTongSanPhamMua += decimal.Parse(txt_Tong.Text);
-                    LoadDTGCart(_Lstgiohang);
-                }
-                else
-                {
-                    MessageBox.Show("You need to select a product!", "Inform"); return;
-                }
-                ClearForm();
-            }
-            else // Xóa trong hóa đơn chờ
-            {
-                if(!string.IsNullOrEmpty(txt_SoLuong.Text))
-                {
-                    if (txt_SoLuong.Text == "0")
-                    {
-                        MessageBox.Show("Quantity can't be zero!", "Inform"); return;
-
-                    }
-
-                    else
-                    {
-                        //check số lượng mua nhỏ hơn số lượng tốn
-                        var ctsp1 = _detailproductsv.GetAll(null).FirstOrDefault(c => c.Id.ToString() == txt_ID.Text);
-                        if (int.Parse(txt_SoLuong.Text) > ctsp1.Soluongton)
-                        {
-                            MessageBox.Show("The product in stock has only " + ctsp1.Soluongton + " items left, please enter a quantity to purchase that is less than the available stock.");
-                            txt_SoLuong.Text = null;
+                            MessageBox.Show("Quantity fields can't be empty!", "Inform");
                             return;
                         }
-                        //lấy ra 1 thằng hóa đơn chờ cellclick
-                        var hdcho = _Billsv.GetHoadons(null).FirstOrDefault(c => c.Id == _idWhenClickWaitingbill);
-
-                        //Lấy ra 1 thằng cart cellclick => lấy idctsp
-                        var cartcellclick = _Lstgiohang.FirstOrDefault(c => c.Id == _idWhenClickCart);
-
-                        //lấy ra 1 thằng ctsp có cùng idctsp với thằng cart đang click
-                        var ctsp = _detailproductsv.GetAll1(null).FirstOrDefault(c => c.Id == cartcellclick.IdSanpham);
-
-                        //Lấy ra 1 list các cthd có cùng id với thằng hdcho ở trên
-                        var lstcthd = _DetaiBill.GetAllHoaDonChiTiet().Where(c => c.Idhoadon == hdcho.Id);
-
-                        //Update trong gio hang
-                        var tmp = _Lstgiohang.FirstOrDefault(c => c.IdSanpham == Guid.Parse(txt_ID.Text));
-                        tmp.Soluongmua = int.Parse(txt_SoLuong.Text);
-                        tmp.GiaTongSanPhamMua = tmp.Soluongmua * ctsp.Giaban;
-
-
-                        //Update trong db
-                        //Trong lstcthd, tìm 1 thằng cthd có cùng idsp với thằng cart đang click
-                        var cthdfordelete = lstcthd.FirstOrDefault(c => c.Idchitietsanpham == cartcellclick.IdSanpham);
-                        cthdfordelete.Giaban = tmp.GiaTongSanPhamMua;
-                        cthdfordelete.Soluong = tmp.Soluongmua;
-
-                        _DetaiBill.Update(cthdfordelete); // Update trong db
-
-                        //ClearForm();
+                        //tmp.GiaTongSanPhamMua += decimal.Parse(txt_Tong.Text);
                         LoadDTGCart(_Lstgiohang);
-                        LoadGridWaitingBill(_Billsv.Getlistofunpaidinvoices());
                     }
+                    else
+                    {
+                        MessageBox.Show("You need to select a product!", "Inform"); return;
+                    }
+                    ClearForm();
                 }
-                else
+                else // Xóa trong hóa đơn chờ
                 {
-                    MessageBox.Show("Quantity is not null", "Inform");return;
-                }
+                    if (!string.IsNullOrEmpty(txt_SoLuong.Text))
+                    {
+                        if (txt_SoLuong.Text == "0")
+                        {
+                            MessageBox.Show("Quantity can't be zero!", "Inform"); return;
 
+                        }
+
+                        else
+                        {
+                            //check số lượng mua nhỏ hơn số lượng tốn
+                            var ctsp1 = _detailproductsv.GetAll(null).FirstOrDefault(c => c.Id.ToString() == txt_ID.Text);
+                            if (int.Parse(txt_SoLuong.Text) > ctsp1.Soluongton)
+                            {
+                                MessageBox.Show("The product in stock has only " + ctsp1.Soluongton + " items left, please enter a quantity to purchase that is less than the available stock.");
+                                txt_SoLuong.Text = null;
+                                return;
+                            }
+                            //lấy ra 1 thằng hóa đơn chờ cellclick
+                            var hdcho = _Billsv.GetHoadons(null).FirstOrDefault(c => c.Id == _idWhenClickWaitingbill);
+
+                            //Lấy ra 1 thằng cart cellclick => lấy idctsp
+                            var cartcellclick = _Lstgiohang.FirstOrDefault(c => c.Id == _idWhenClickCart);
+
+                            //lấy ra 1 thằng ctsp có cùng idctsp với thằng cart đang click
+                            var ctsp = _detailproductsv.GetAll1(null).FirstOrDefault(c => c.Id == cartcellclick.IdSanpham);
+
+                            //Lấy ra 1 list các cthd có cùng id với thằng hdcho ở trên
+                            var lstcthd = _DetaiBill.GetAllHoaDonChiTiet().Where(c => c.Idhoadon == hdcho.Id);
+
+                            //Update trong gio hang
+                            var tmp = _Lstgiohang.FirstOrDefault(c => c.IdSanpham == Guid.Parse(txt_ID.Text));
+                            tmp.Soluongmua = int.Parse(txt_SoLuong.Text);
+                            tmp.GiaTongSanPhamMua = tmp.Soluongmua * ctsp.Giaban;
+
+
+                            //Update trong db
+                            //Trong lstcthd, tìm 1 thằng cthd có cùng idsp với thằng cart đang click
+                            var cthdfordelete = lstcthd.FirstOrDefault(c => c.Idchitietsanpham == cartcellclick.IdSanpham);
+                            cthdfordelete.Giaban = tmp.GiaTongSanPhamMua;
+                            cthdfordelete.Soluong = tmp.Soluongmua;
+
+                            _DetaiBill.Update(cthdfordelete); // Update trong db
+
+                            //ClearForm();
+                            LoadDTGCart(_Lstgiohang);
+                            LoadGridWaitingBill(_Billsv.Getlistofunpaidinvoices());
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Quantity is not null", "Inform"); return;
+                    }
+
+                }
             }
         }
 
