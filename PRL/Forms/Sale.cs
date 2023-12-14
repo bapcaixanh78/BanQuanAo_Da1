@@ -44,8 +44,19 @@ namespace PRL.Forms
 
             for (int i = 0; i < khuyenmais.Count; i++)
             {
+                if (khuyenmais[i].Thoigianbatdau.DayOfYear > DateTime.Now.DayOfYear)
+                {
+                    khuyenmais[i].Trangthai = ("Chưa hoạt động");
+                    saleSV.Update(khuyenmais[i].Id, khuyenmais[i]);
+                }
+                
+                else if (khuyenmais[i].Thoigianketthuc < DateTime.Now)
+                {
+                    khuyenmais[i].Trangthai = "Dừng hoạt động";
+                    saleSV.Update(khuyenmais[i].Id, khuyenmais[i]);
+                }
                 dtg_Sale.Rows.Add(stt++, khuyenmais[i].Tenmakhuyenmai, khuyenmais[i].Thoigianbatdau, khuyenmais[i].Thoigianketthuc, khuyenmais[i].Giamgia, khuyenmais[i].Mota, khuyenmais[i].Id, khuyenmais[i].Trangthai);
-                if (khuyenmais[i].Trangthai == "Dừng hoạt động")
+                if (khuyenmais[i].Trangthai == "Dừng hoạt động" || khuyenmais[i].Trangthai == "Chưa hoạt động")
                 {
                     dtg_Sale.Rows[i].DefaultCellStyle.BackColor = Color.OrangeRed;
                     dtg_Sale.Rows[i].DefaultCellStyle.ForeColor = Color.Black;
@@ -75,7 +86,13 @@ namespace PRL.Forms
         }
 
         private void btn_Update_Click(object sender, EventArgs e)
-        {       // track ngày kết thúc lớn nhất là 1 năm tính từ ngày bắt đầu
+        {
+            if (txt_MinBill.Text == null)
+            {
+                MessageBox.Show("Discount can't be empty", "Inform");
+                return;
+            }
+            // track ngày kết thúc lớn nhất là 1 năm tính từ ngày bắt đầu
             if (!SaleValidate.CheckEnddatetoolong(dtpk_EndDate.Value, dtpk_StartDate.Value))
             {
                 MessageBox.Show("The end date can't exceed 1 year from the start date", "Inform");
@@ -111,6 +128,19 @@ namespace PRL.Forms
                     Giamgia = int.Parse(txt_MinBill.Text),
                     Mota = txt_MoTa.Text
                 };
+                if (khuyenmaiUpdate.Thoigianbatdau > DateTime.Now)
+                {
+                    khuyenmaiUpdate.Trangthai = ("Chưa hoạt động");
+                }
+                else if (khuyenmaiUpdate.Thoigianbatdau <= DateTime.Now && khuyenmaiUpdate.Thoigianketthuc > DateTime.Now)
+                {
+                    khuyenmaiUpdate.Trangthai = ("Hoạt động");
+
+                }
+                else
+                {
+                    khuyenmaiUpdate.Trangthai = "Dừng hoạt động";
+                }
 
                 var option = MessageBox.Show("Confirm", "Notification", MessageBoxButtons.YesNo);
                 if (option == DialogResult.Yes)
@@ -130,6 +160,11 @@ namespace PRL.Forms
 
         private void btn_Add_Click(object sender, EventArgs e)
         {
+            if(txt_MinBill.Text == null)
+            {
+                MessageBox.Show("Discount can't be empty", "Inform");
+                return;
+            }
             // track ngày kết thúc lớn nhất là 1 năm tính từ ngày bắt đầu
             if (!SaleValidate.CheckEnddatetoolong(dtpk_EndDate.Value, dtpk_StartDate.Value))
             {
@@ -139,7 +174,7 @@ namespace PRL.Forms
             // ngày bắt đầu mới phải bằng hoặc sau ngày tạo
             if (!SaleValidate.Checkifstartdate(dtpk_StartDate.Value))
             {
-                MessageBox.Show("New discount start date has to be greater than current date", "Inform");
+                MessageBox.Show("New discount start date has to be greater or equal to current date", "Inform");
                 return;
             }
             //  check ngày hết tồn tại trước ngày bắt đầu
@@ -166,7 +201,19 @@ namespace PRL.Forms
                     Giamgia = int.Parse(txt_MinBill.Text),
                     Mota = txt_MoTa.Text
                 };
-                khuyenmai.Trangthai = ("Hoạt động");
+                if(khuyenmai.Thoigianbatdau > DateTime.Now)
+                {
+                    khuyenmai.Trangthai = ("Chưa hoạt động");
+                }
+                else if(khuyenmai.Thoigianbatdau.DayOfYear <=DateTime.Now.DayOfYear && khuyenmai.Thoigianketthuc.DayOfYear > DateTime.Now.DayOfYear && khuyenmai.Thoigianbatdau.Year <= DateTime.Now.Year && khuyenmai.Thoigianketthuc.Year >= DateTime.Now.Year) 
+                {
+                    khuyenmai.Trangthai = ("Hoạt động");
+
+                }
+                else
+                {
+                    khuyenmai.Trangthai = "Dừng hoạt động";
+                }
 
                 var option = MessageBox.Show("Confirm", "Notification", MessageBoxButtons.YesNo);
                 if (option == DialogResult.Yes)

@@ -48,11 +48,14 @@ namespace BUS.Utilites
         }
         public static bool Checkifstartdate(DateTime startdate)
         {
-            if(startdate <= DateTime.Now)
+            var noww = DateTime.Now.DayOfYear;
+            var start = startdate.DayOfYear;
+           
+            if(noww - start > 0 && DateTime.Now.Year - startdate.Year >=0)
             {
                 return false;
             }
-            return true;
+            else { return true; }
         }
         public static bool CheckifstartdateUpdate(DateTime newdate, DateTime olddate)
         {
